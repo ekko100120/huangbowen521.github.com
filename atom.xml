@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2014-12-31T17:09:42+08:00</updated>
+  <updated>2015-01-17T23:38:56+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,683 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在AWS中创建NAT节点]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/01/17/create-nat-node-in-aws/"/>
+    <updated>2015-01-17T23:23:15+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/01/17/create-nat-node-in-aws</id>
+    <content type="html"><![CDATA[<p>NAT, Network Address Translation,即网络地址转换。当内部网络的主机想要访问外网，但是又不想直接暴露给公网，可以通过NAT节点来访问外网。这样做有两个好处，第一是内网的主机无需拥有公网IP就可访问网络（NAT节点需要公网IP），节约了公网IP；第二是内网的主机由于没有公网IP，所以公网的电脑无法访问到它，这样就可以隐藏自己。一个很经典的示例是假如你有一台数据库服务器放置在内网中，为在同一个内网中的web服务器提供数据服务，为了安全性考虑你不会把它直接暴露在公网中。但是数据库服务器有时候自己是需要访问公网的，比如需要升级数据库服务器中的某些软件等。采用NAT方案可以很好的解决这个问题。</p>
+
+<!-- more -->
+
+
+<p>下图是NAT节点的功能示意图。</p>
+
+<p><img src="http://www.huangbowen.net/images/natnode.png"></p>
+
+<p>一些路由器或者装有特定软件的主机都可以作为NAT节点。在AWS中如果你想创建一个NAT节点的话那是非常的方便，因为AWS直接提供了预装了NAT软件的AMI，你只需直接使用该AMI在你的公共子网中实例化一台机器，并进行相应的配置即可。</p>
+
+<p>下面的图展示了在AWS中的一个经典的VPC架构。该VPC里面建立了两个子网，一个是公共子网，通过Intenet Geteway和公网连接；一个是私有子网，无法直接访问公网。然后在公共子网中建立了一个EC2机器，使用的是AWS提供的具有NAT功能的AMI，并为它分配了一个弹性IP，这样该EC2就是一个NAT节点。在私有子网的所有机器都具有了通过该NAT节点访问外网的能力。</p>
+
+<p><img src="http://www.huangbowen.net/images/vpcandnat.png"></p>
+
+<p>为了创建这样一套网络及机器，最简便的方式当然是使用AWS提供的CloudFormation了。如果不了解CloudFormation，可以看我以前写过的一篇文章 <a href="http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation/">《亚马逊云服务之CloudFormation》</a>。下面展示的是创建该整个VPC的CloudFormation脚本。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+<span class='line-number'>239</span>
+<span class='line-number'>240</span>
+<span class='line-number'>241</span>
+<span class='line-number'>242</span>
+<span class='line-number'>243</span>
+<span class='line-number'>244</span>
+<span class='line-number'>245</span>
+<span class='line-number'>246</span>
+<span class='line-number'>247</span>
+<span class='line-number'>248</span>
+<span class='line-number'>249</span>
+<span class='line-number'>250</span>
+<span class='line-number'>251</span>
+<span class='line-number'>252</span>
+<span class='line-number'>253</span>
+<span class='line-number'>254</span>
+<span class='line-number'>255</span>
+<span class='line-number'>256</span>
+<span class='line-number'>257</span>
+<span class='line-number'>258</span>
+<span class='line-number'>259</span>
+<span class='line-number'>260</span>
+<span class='line-number'>261</span>
+<span class='line-number'>262</span>
+<span class='line-number'>263</span>
+<span class='line-number'>264</span>
+<span class='line-number'>265</span>
+<span class='line-number'>266</span>
+<span class='line-number'>267</span>
+<span class='line-number'>268</span>
+<span class='line-number'>269</span>
+<span class='line-number'>270</span>
+<span class='line-number'>271</span>
+<span class='line-number'>272</span>
+<span class='line-number'>273</span>
+<span class='line-number'>274</span>
+<span class='line-number'>275</span>
+<span class='line-number'>276</span>
+<span class='line-number'>277</span>
+<span class='line-number'>278</span>
+<span class='line-number'>279</span>
+<span class='line-number'>280</span>
+<span class='line-number'>281</span>
+<span class='line-number'>282</span>
+<span class='line-number'>283</span>
+<span class='line-number'>284</span>
+<span class='line-number'>285</span>
+<span class='line-number'>286</span>
+<span class='line-number'>287</span>
+<span class='line-number'>288</span>
+<span class='line-number'>289</span>
+<span class='line-number'>290</span>
+<span class='line-number'>291</span>
+<span class='line-number'>292</span>
+<span class='line-number'>293</span>
+<span class='line-number'>294</span>
+<span class='line-number'>295</span>
+<span class='line-number'>296</span>
+<span class='line-number'>297</span>
+<span class='line-number'>298</span>
+<span class='line-number'>299</span>
+<span class='line-number'>300</span>
+<span class='line-number'>301</span>
+<span class='line-number'>302</span>
+<span class='line-number'>303</span>
+<span class='line-number'>304</span>
+<span class='line-number'>305</span>
+<span class='line-number'>306</span>
+<span class='line-number'>307</span>
+<span class='line-number'>308</span>
+<span class='line-number'>309</span>
+<span class='line-number'>310</span>
+<span class='line-number'>311</span>
+<span class='line-number'>312</span>
+<span class='line-number'>313</span>
+<span class='line-number'>314</span>
+<span class='line-number'>315</span>
+<span class='line-number'>316</span>
+<span class='line-number'>317</span>
+<span class='line-number'>318</span>
+<span class='line-number'>319</span>
+<span class='line-number'>320</span>
+<span class='line-number'>321</span>
+<span class='line-number'>322</span>
+<span class='line-number'>323</span>
+<span class='line-number'>324</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;AWSTemplateFormatVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;2010-09-09&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;Setup a vpc, which contains two subnets and one NAT machine&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;Parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;KeyName&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;Name of and existing EC2 KeyPair to enable SSH access to the instance&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;VpcCidr&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;CIDR address for the VPC to be created.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;10.2.0.0/16&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;AnyCidr&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;CIDR address for Any Where.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0/0&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;AvailabilityZone1&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;First AZ.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;cn-north-1a&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PublicSubnetCidr&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;Address range for a public subnet to be created in AZ1.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;10.2.1.0/24&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PrivateSubnetCidr&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;Address range for private subnet.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;10.2.2.0/24&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;NATInstanceType&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;Instance type for NAT&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;t1.micro&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;Mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;AWSNATAMI&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;cn-north-1&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;AMI&quot;</span><span class="p">:</span> <span class="s2">&quot;ami-eab220d3&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;Resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;VPC&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::VPC&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VpcCidr&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;InternetGateWay&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::InternetGateway&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;INTERNET_GATEWAY&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;GatewayToInternet&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::VPCGatewayAttachment&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;InternetGatewayId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;InternetGateWay&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PublicSubnet&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::Subnet&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicSubnetCidr&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;AvailabilityZone&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;AvailabilityZone1&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;PUBLIC_SUBNET&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PrivateSubnet&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::Subnet&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PrivateSubnetCidr&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;AvailabilityZone&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;AvailabilityZone1&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIVATE_SUBNET&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;DefaultSecurityGroup&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::SecurityGroup&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;GroupDescription&quot;</span><span class="p">:</span> <span class="s2">&quot;Default Instance SecurityGroup&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nt">&quot;SecurityGroupIngress&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;IpProtocol&quot;</span><span class="p">:</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;CidrIp&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VpcCidr&quot;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;DEFAULT_SECURITY_GROUP&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PublicRouteTable&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::RouteTable&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;PUBLIC_ROUTE_TABLE&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PublicRoute&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::Route&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;DestinationCidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;AnyCidr&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;GatewayId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;InternetGateWay&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;RouteTableId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicRouteTable&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PublicSubnetRouteTableAssociation&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::SubnetRouteTableAssociation&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;RouteTableId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicRouteTable&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;SubnetId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicSubnet&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;NATEIP&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::EIP&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;InstanceId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;NATInstance&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;NATInstance&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::Instance&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;InstanceType&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;NATInstanceType&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;KeyName&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;KeyName&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;SubnetId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicSubnet&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;SourceDestCheck&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>        <span class="nt">&quot;ImageId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Fn::FindInMap&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>            <span class="s2">&quot;AWSNATAMI&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>              <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::Region&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="s2">&quot;AMI&quot;</span>
+</span><span class='line'>          <span class="p">]</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;NAT&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;SecurityGroupIds&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;NATSecurityGroup&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PrivateSubnetRouteTable&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::RouteTable&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;PRIVATE_SUBNET_ROUTE_TABLE&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PrivateSubnetRoute&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::Route&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;DestinationCidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;AnyCidr&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;InstanceId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;NATInstance&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;RouteTableId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PrivateSubnetRouteTable&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PrivateSubnetRouteTableAssociation&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::SubnetRouteTableAssociation&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;RouteTableId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PrivateSubnetRouteTable&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;SubnetId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PrivateSubnet&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;NATSecurityGroup&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::SecurityGroup&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;GroupDescription&quot;</span><span class="p">:</span> <span class="s2">&quot;NAT Instance SecurityGroup&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nt">&quot;SecurityGroupIngress&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;IpProtocol&quot;</span><span class="p">:</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;CidrIp&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VpcCidr&quot;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;Key&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;NAT_SECURITY_GROUP&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;Outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;VPCId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PublicSubnetId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;public subnet id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicSubnet&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;PrivateSubnetId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;private subnet id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;PrivateSubnet&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;NATSecurityGroupId&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;NAT SG id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;NATSecurityGroup&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;NATEIP&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;NAT Server EIP.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;NATEIP&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你可以通过AWS提供的图形化界面AWS Management Console来使用该CloudFormation脚本，也可以通过AWS CLI来使用。使用以上的CloudFormation脚本创建的VPC可以一键创建你AWS中的基础网络架构。从此再也不用为配置网络发愁了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一个程序员的2014年总结]]></title>
@@ -3609,34 +4286,6 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 
 <p>官方具体解释请参见：<a href="http://chimera.labs.oreilly.com/books/1234000001741/ch04.html#_buildscript_dependencies">http://chimera.labs.oreilly.com/books/1234000001741/ch04.html#_buildscript_dependencies</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[健身4个月总结]]></title>
-    <link href="http://www.huangbowen.net/blog/2014/08/23/bodybuliding-4-month/"/>
-    <updated>2014-08-23T14:23:15+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2014/08/23/bodybuliding-4-month</id>
-    <content type="html"><![CDATA[<p>不知不觉，已经健身4个月了。刚开始健身的时候也没想到自己能坚持这么久，也没想到需要花费这么多的时间。不过目前一切都好，虽然健身花费了一些时间，但是也算有所收获，给自己的生活注入了一股新力量。也能每天有1到2个小时把自己从电脑前拉起来，去外面跑跑步，呼吸一下新鲜空气，去健身房聚聚哑铃，练习引体向上，突破身体的极限，或者去游泳池学习蛙泳、仰泳，与水亲密接触。</p>
-
-<!-- more -->
-
-
-<p>自己的体重从最重时的80KG降到了最低时的69公斤。现在目前维持在69到70公斤之间波动。经过这几个月的运动，我发现减肥真的没什么难的，只要能管住嘴、迈开腿，体重肯定会降下来的。在减脂的过程中不能急于求成，多少年涨上来的肉你想几天、几个月就减下来，那显然不太现实。我就抱着一颗平常心，只要每天不吃高热量的垃圾食品，又保持一定的有氧运动，体重随着时间肯定会降下来的。虽然它的下降不是想象中的线性下降，其实是下降-反弹-下降这样的曲线。但总体来说肯定是降下来的。我的目标是减到65公斤，目前看来有望在3个月后达成目标。</p>
-
-<p>减肥最有效的有氧运动还是长跑。由于自身底子不错，第一次跑步就跑了10公里。这样就给自己立下了一个标杆，每次跑步至少都要跑10公里。可能对于普通人来说10公里有些难以达到，但其实跑下来真不难。只要不要求速度，按着比平时走路快一点的步伐跑，那么坚持1，2个月后达到跑10公里的目标不在话下。后来10公里已经不满足我的兽欲了，渐渐的把距离增加到15公里，20公里，干脆参加了一次马拉松，跑了42公里。自己也成为了一个长跑爱好者，又报了11月份的西昌马拉松，并且开始有目的性针对性训练。长跑结束后的那种通透感妙不可言。希望明年还能参加50公里越野跑，甚至100公里越野跑。</p>
-
-<p>其实减肥不是我健身的目的。我健身的目的是拥有一定的肌肉，使自己变得更强壮。减肥只是为了能让肌肉线条凸显出来，最好能练出8块腹肌。刚开始我的主要健身方式就是做俯卧撑，深蹲，直立前屈身（俗称早上好）。这种运动不占地方，不费时间。每天早上40个深蹲，40个早上好。上班时利用跑build的时间做上20个俯卧撑，神清气爽。从最初每天20个俯卧撑的目标加到每天40个，100个，150个，200个，300个。本来一组只能做5个俯卧撑，现在一组做30个毫无压力。</p>
-
-<p>但是目前还仍然无法征服引体向上这座大山。反手引体向上现在只能做4个，正手只能做可怜的两个。这练了4个月的成果还真是有点拿不出手。希望满6个月的时候能够做12个反手引体和10个正手引体。</p>
-
-<p>除了上肢训练，腹肌训练我也没拉下。几乎每天都会做40个举退，60个卷腹。虽然小肚子靠减脂减没了，但是腹肌还是凸显不出来。现在换了腹肌撕裂者，每天撸一次腹肌撕裂者，希望能有点效果吧。</p>
-
-<p>通过这几个月的健身体验，我明白了涨肌肉绝对不是一件容易的事情。很多人可能头脑里认为给自己3个月时间钻在健身房里，也能练出一身漂亮的肌肉出来。我只能说这是痴人说梦。想拥有一身漂亮的肌肉绝对不是3，5个月，半年能够搞定的。至少1年起，3年能有小成都算不错了。像咱们上班族，时间本就不宽裕的，那训练周期还要加长。</p>
-
-<p>健身这条路自己还能坚持多久，这我也不知道。能做尽量做吧。反正自己心里有目标，一步一步向这个目标靠近，每天过的倒也充实。自己的极限在哪里，只有自己去挖掘，去突破。每天少了2个小时上网冲浪，多了2个小时跑步健身，长此以往，怕是人生轨迹都要改变。</p>
-
-<p>期待2015年，能参加一次100公里越野跑，拥有迷人的8块腹肌，还有学会俄式挺身，双力臂。自知不易，还需努力。</p>
 ]]></content>
   </entry>
   
