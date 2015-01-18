@@ -13,18 +13,19 @@ categories: 编程开发</p>
 <p>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;utf-8&rdquo;?>
 <feed xmlns="http://www.w3.org/2005/Atom"></p>
 
-<p>  <title>&lt;![CDATA[Tag: Ruby | 黄博文的地盘]]></title>
+<p>  <title>&lt;![CDATA[Tag: ruby | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/ruby/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2014-11-25T11:42:55+08:00</updated>
+  <updated>2014-12-31T17:09:42+08:00</updated>
   <id><a href="http://www.huangbowen.net/">http://www.huangbowen.net/</a></id>
   <author>
     <name>&lt;![CDATA[黄博文]]></name>
-    <email>&lt;![CDATA[<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#104;&#x75;&#97;&#x6e;&#103;&#98;&#x6f;&#119;&#x65;&#x6e;&#x35;&#x32;&#49;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x68;&#x75;&#97;&#110;&#103;&#x62;&#x6f;&#x77;&#x65;&#110;&#x35;&#50;&#49;&#x40;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>]]></email>
+    <email>&lt;![CDATA[<a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#104;&#117;&#x61;&#110;&#x67;&#x62;&#111;&#119;&#101;&#110;&#x35;&#50;&#49;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#104;&#117;&#x61;&#x6e;&#103;&#98;&#x6f;&#x77;&#101;&#x6e;&#x35;&#x32;&#49;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator></p>
 
 <p>  <entry>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:source/_posts/2013-09-23-not-easy-to-install-ruby.markdown
     <title type="html">&lt;![CDATA[升级ruby版本那&#8221;不堪回首的经历&#8221;]]></title>
     <link href="http://www.huangbowen.net/blog/2013/09/23/not-easy-to-install-ruby/"/>
     <updated>2013-09-23T13:53:00+08:00</updated>
@@ -449,13 +450,43 @@ categories: 编程开发</p>
 
 <hr />
 
-<p></code></pre></p>
+<hr />
+
+<pre><code>&lt;title type="html"&gt;&lt;![CDATA[避免每次输入bundler exec命令]]&gt;&lt;/title&gt;
+&lt;link href="http://www.huangbowen.net/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling/"/&gt;
+&lt;updated&gt;2013-02-04T00:24:00+08:00&lt;/updated&gt;
+&lt;id&gt;http://www.huangbowen.net/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling&lt;/id&gt;
+&lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;bundle在ruby的世界里是个好东西，它可以用来管理应用程序的依赖库。它能自动的下载和安装指定的gem，也可以随时更新指定的gem。&lt;/p&gt;
+</code></pre>
+
+<p><a href="https://rvm.io/">rvm</a>则是一个命令行工具，能帮助你轻松的安装，管理多个ruby环境。每个环境可以指定一系列的gem。它允许你为每一个项目指定其ruby的版本，需要的gem的版本。这能最大限度的避免由于ruby环境的差异，或者不同版本的gem造成的各种问题。</p>
+
+
+
+
+<p>当我在项目中引入了rvm后，使用rake命令时，每次都会出现这样的异常。</p>
+
+
+
+
+<pre><code class="bash">rake aborted!
+You have already activated rake 10.0.0, but your Gemfile requires rake 0.9.2.2. Using bundle exec may solve this.
+/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler/runtime.rb:31:in `block in setup'
+/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler/runtime.rb:17:in `setup'
+/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler.rb:116:in `setup'
+/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler/setup.rb:7:in `&lt;top (required)&gt;'
+/Users/twer/sourcecode/octopress/Rakefile:2:in `&lt;top (required)&gt;'
+(See full trace by running task with --trace)
+>>>>>>> 09615b67c1384817f01948313cc9bfa79d82b402:blog/tags/ruby/atom.xml
+</code></pre>
+
 
 <blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><p>b3de9a0dc5638d86b43bb607c665e95f3c151147:blog/tags/ruby/atom.xml</p></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>
 
 <p>我勒个去，貌似是权限问题，那么用sudo解决。</p>
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:source/_posts/2013-09-23-not-easy-to-install-ruby.markdown</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:source/<em>posts/2013-09-23-not-easy-to-install-ruby.markdown
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:source/</em>posts/2013-09-23-not-easy-to-install-ruby.markdown</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1007,3 +1038,81 @@ Bringing machine &lsquo;default&rsquo; up with &lsquo;virtualbox&rsquo; provider
 
 
 <blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><p>b3de9a0dc5638d86b43bb607c665e95f3c151147:blog/tags/ruby/atom.xml</p></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>
+
+<hr />
+
+<!-- more -->
+
+
+
+
+<p>从这个异常中我们可以看到，由于我在自己机器上已经安装了rake的<code>10.0.0</code>版本，但是这个项目中配置的rake版本却是<code>0.9.2.2</code>，所以在执行rake命令时应该使用Gemfile的。</p>
+
+
+
+
+<p>而<code>bundle exec</code>可以在当前bundle的上下文中执行一段脚本。通过它可以调用本项目中指定的rake版本来执行命令。</p>
+
+
+
+
+<p>下面是官方文档的说明。</p>
+
+
+
+
+<blockquote><p>In some cases, running executables without bundle exec may work, if the executable happens to be installed in your system and does not pull in any gems that conflict with your bundle. However, this is unreliable and is the source of considerable pain. Even if it looks like it works, it may not work in the future or on another machine.</p></blockquote>
+
+
+
+
+<p>所以我们只要每次执行命令的时候加上<code>bundle exec</code>的前缀就可以额。但是这样搞的很烦人，试想每天都要敲上百次这样的字符，而且还常常忘记。</p>
+
+
+
+
+<p>有一个方法可以避免每次都要键入<code>bundle exec</code>作为前缀。</p>
+
+
+
+
+<p>安装<a href="https://github.com/mpapis/rubygems-bundler">rubygems-bundler</a>。
+<code>bash
+$ gem install rubygems-bundler
+</code>
+然后运行：
+<code>bash
+$ gem regenerate_binstubs
+</code></p>
+
+
+
+
+<p>启用RVM hook:
+<code>bash
+$ rvm get head &amp;&amp; rvm reload
+$ chmod +x $rvm_path/hooks/after_cd_bundler
+</code>
+为自己的项目创建bundler stubs.
+<code>bash
+$ cd your_project_path
+$ bundle install --binstubs=./bundler_stubs
+</code></p>
+
+
+
+
+<p>最后重新打开terminal就可以直接执行ruby命令，不需要加上<code>bundler exec</code>前缀。</p>
+
+
+
+
+<p>如果想禁用次bundler的话，只需要在命令前面加上<code>NOEXEC_DISABLE=1</code>前缀。更详细的信息可以看[rubygems-bundler]的<a href="https://github.com/mpapis/rubygems-bundler">文档</a>。</p>
+
+
+<p>]]></content>
+  </entry></p>
+
+<p></feed></p>
+
+<blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><p>09615b67c1384817f01948313cc9bfa79d82b402:blog/tags/ruby/atom.xml</p></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>
