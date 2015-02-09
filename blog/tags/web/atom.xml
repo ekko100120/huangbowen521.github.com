@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: WEB | 黄博文的地盘]]></title>
+  <link href="http://www.huangbowen.net/blog/tags/web/atom.xml" rel="self"/>
+  <link href="http://www.huangbowen.net/"/>
+  <updated>2015-02-09T10:11:39+08:00</updated>
+  <id>http://www.huangbowen.net/</id>
+  <author>
+    <name><![CDATA[黄博文]]></name>
+    <email><![CDATA[huangbowen521@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[目前在做的一个web应用程序的前端选型]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application/"/>
+    <updated>2015-02-09T10:08:10+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application</id>
+    <content type="html"><![CDATA[<p>最近进入了一个新的项目组，要新起一个项目。这个Web项目是一个企业内部使用的系统，主要用来记录、追踪、管理潜在客户的数据。该系统有以下特点:</p>
+
+<!-- more -->
+
+
+<ol>
+<li>需要支持IE10及以上版本；</li>
+<li>后端采用micro service架构，全部是REST API；</li>
+<li>需要与现有的CRM系统（客户管理管理系统）集成，主要采用iframe嵌入页面的方式；</li>
+<li>系统开发周期为5个月左右，分为三个大的里程碑。</li>
+</ol>
+
+
+<p>经过多方考虑，最终选择AngularJS作为前端主要框架。
+理由：</p>
+
+<ol>
+<li>该系统为WEB应用程序，符合single page application的特点；</li>
+<li>由于后端采用REST API，所以前端使用AngularJS可以与其无缝对接；</li>
+<li>前端页面交互逻辑不复杂，呈现的数据量不会很大，所以不会遇到AngularJS性能问题；</li>
+<li>该技术栈与当前公司的技术策略相契合。</li>
+</ol>
+
+
+<p>当然除了AngularJS框架以外，还需要其它一系列框架来完成整个前端开发、测试、部署的流程。</p>
+
+<ul>
+<li><p>yeoman: 前端项目脚手架工具；</p></li>
+<li><p>NPM: 作为本地开发过程中使用到的Node.js的管理；</p></li>
+<li><p>Bower:作为前端项目使用到的依赖开的管理工具；之所以选择NPM作为开发包的管理，是因为NPM的整个依赖链是嵌套的，这样每个开发包之间不会相互影响；而Bower在管理包时依赖链是平行的，这样前端加载时无需重复加载被多次引用的依赖，保证了前端数据最小化。</p></li>
+<li><p>Grunt：作为整个项目的自动化构建管理工具；</p></li>
+<li><p>Karma：作为单元测试及集成测试运行工具；</p></li>
+<li><p>Jasmine：单元测试及BDD框架；</p></li>
+<li><p>Protractor: 驱动浏览器的框架，配合Jasmine用于端到端测试。</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

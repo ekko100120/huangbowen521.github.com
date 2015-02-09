@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-01-18T15:27:22+08:00</updated>
+  <updated>2015-02-09T10:11:39+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[目前在做的一个web应用程序的前端选型]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application/"/>
+    <updated>2015-02-09T10:08:10+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application</id>
+    <content type="html"><![CDATA[<p>最近进入了一个新的项目组，要新起一个项目。这个Web项目是一个企业内部使用的系统，主要用来记录、追踪、管理潜在客户的数据。该系统有以下特点:</p>
+
+<!-- more -->
+
+
+<ol>
+<li>需要支持IE10及以上版本；</li>
+<li>后端采用micro service架构，全部是REST API；</li>
+<li>需要与现有的CRM系统（客户管理管理系统）集成，主要采用iframe嵌入页面的方式；</li>
+<li>系统开发周期为5个月左右，分为三个大的里程碑。</li>
+</ol>
+
+
+<p>经过多方考虑，最终选择AngularJS作为前端主要框架。
+理由：</p>
+
+<ol>
+<li>该系统为WEB应用程序，符合single page application的特点；</li>
+<li>由于后端采用REST API，所以前端使用AngularJS可以与其无缝对接；</li>
+<li>前端页面交互逻辑不复杂，呈现的数据量不会很大，所以不会遇到AngularJS性能问题；</li>
+<li>该技术栈与当前公司的技术策略相契合。</li>
+</ol>
+
+
+<p>当然除了AngularJS框架以外，还需要其它一系列框架来完成整个前端开发、测试、部署的流程。</p>
+
+<ul>
+<li><p>yeoman: 前端项目脚手架工具；</p></li>
+<li><p>NPM: 作为本地开发过程中使用到的Node.js的管理；</p></li>
+<li><p>Bower:作为前端项目使用到的依赖开的管理工具；之所以选择NPM作为开发包的管理，是因为NPM的整个依赖链是嵌套的，这样每个开发包之间不会相互影响；而Bower在管理包时依赖链是平行的，这样前端加载时无需重复加载被多次引用的依赖，保证了前端数据最小化。</p></li>
+<li><p>Grunt：作为整个项目的自动化构建管理工具；</p></li>
+<li><p>Karma：作为单元测试及集成测试运行工具；</p></li>
+<li><p>Jasmine：单元测试及BDD框架；</p></li>
+<li><p>Protractor: 驱动浏览器的框架，配合Jasmine用于端到端测试。</p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在AWS中创建NAT节点]]></title>
@@ -4117,175 +4161,6 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 
 <p>另外github上还有一些Gradle的插件来帮你实现xml和java对象的转换，但是本质上其实还是使用了jaxb的xjc ant插件实现的，只不过隐藏了实现细节，使用起来更加方便。感兴趣的可以看<a href="https://github.com/jacobono/gradle-jaxb-plugin">https://github.com/jacobono/gradle-jaxb-plugin</a>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Gradle中的buildScript代码块]]></title>
-    <link href="http://www.huangbowen.net/blog/2014/08/27/buildscript-in-gradle/"/>
-    <updated>2014-08-27T22:12:45+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2014/08/27/buildscript-in-gradle</id>
-    <content type="html"><![CDATA[<p>在编写Gradle脚本的时候，在build.gradle文件中经常看到这样的代码：</p>
-
-<!-- more -->
-
-
-
-
-<figure class='code'><figcaption><span>build.gradle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildScript</span> <span class="o">{</span>
-</span><span class='line'>     <span class="n">repositories</span> <span class="o">{</span>
-</span><span class='line'>         <span class="n">mavenCentral</span><span class="o">()</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">repositories</span> <span class="o">{</span>
-</span><span class='line'>     <span class="n">mavenCentral</span><span class="o">()</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样子很容易让人奇怪，为什么repositories要声明两次哪？buildscript代码块中的声明与下半部分声明有什么不同？</p>
-
-<p>其实答案非常简单。buildscript中的声明是gradle脚本自身需要使用的资源。可以声明的资源包括依赖项、第三方插件、maven仓库地址等。而在build.gradle文件中直接声明的依赖项、仓库地址等信息是项目自身需要的资源。</p>
-
-<p>gradle是由groovy语言编写的，支持groovy语法，可以灵活的使用已有的各种ant插件、基于jvm的类库，这也是它比maven、ant等构建脚本强大的原因。虽然gradle支持开箱即用，但是如果你想在脚本中使用一些第三方的插件、类库等，就需要自己手动添加对这些插件、类库的引用。而这些插件、类库又不是直接服务于项目的，而是支持其它build脚本的运行。所以你应当将这部分的引用放置在buildscript代码块中。gradle在执行脚本时，会优先执行buildscript代码块中的内容，然后才会执行剩余的build脚本。</p>
-
-<p>举个例子，假设我们要编写一个task，用于解析csv文件并输出其内容。虽然我们可以使用gradle编写解析csv文件的代码，但其实apache有个库已经实现了一个解析csv文件的库供我们直接使用。我们如果想要使用这个库，需要在gradle.build文件中加入对该库的引用。</p>
-
-<figure class='code'><figcaption><span>build.gradle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildscript</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">repositories</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">mavenLocal</span><span class="o">()</span>
-</span><span class='line'>        <span class="n">mavenCentral</span><span class="o">()</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">dependencies</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">classpath</span> <span class="s1">&#39;org.apache.commons:commons-csv:1.0&#39;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.commons.csv.*</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">task</span> <span class="nf">printCSV</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">doLast</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">def</span> <span class="n">records</span> <span class="o">=</span> <span class="n">CSVFormat</span><span class="o">.</span><span class="na">EXCEL</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="s1">&#39;config/sample.csv&#39;</span><span class="o">))</span>
-</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">item</span> <span class="k">in</span> <span class="n">records</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">print</span> <span class="n">item</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
-</span><span class='line'>            <span class="n">println</span> <span class="n">item</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>buildscript代码块中的repositories和dependencies的使用方式与直接在build.gradle文件中的使用方式几乎完全一样。唯一不同之处是在buildscript代码块中你可以对dependencies使用classpath声明。该classpath声明说明了在执行其余的build脚本时，class loader可以使用这些你提供的依赖项。这也正是我们使用buildscript代码块的目的。</p>
-
-<p>而如果你的项目中需要使用该类库的话，就需要定义在buildscript代码块之外的dependencies代码块中。所以有可能会看到在build.gradle中出现以下代码：</p>
-
-<figure class='code'><figcaption><span>build.gradle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">repositories</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">mavenLocal</span><span class="o">()</span>
-</span><span class='line'>    <span class="n">mavenCentral</span><span class="o">()</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">dependencies</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">compile</span> <span class="s1">&#39;org.springframework.ws:spring-ws-core:2.2.0.RELEASE&#39;</span><span class="o">,</span>
-</span><span class='line'>            <span class="s1">&#39;org.apache.commons:commons-csv:1.0&#39;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">buildscript</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">repositories</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">mavenLocal</span><span class="o">()</span>
-</span><span class='line'>        <span class="n">mavenCentral</span><span class="o">()</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">dependencies</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">classpath</span> <span class="s1">&#39;org.apache.commons:commons-csv:1.0&#39;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.commons.csv.*</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">task</span> <span class="nf">printCSV</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">doLast</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">def</span> <span class="n">records</span> <span class="o">=</span> <span class="n">CSVFormat</span><span class="o">.</span><span class="na">EXCEL</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="s1">&#39;config/sample.csv&#39;</span><span class="o">))</span>
-</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">item</span> <span class="k">in</span> <span class="n">records</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">print</span> <span class="n">item</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
-</span><span class='line'>            <span class="n">println</span> <span class="n">item</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>官方具体解释请参见：<a href="http://chimera.labs.oreilly.com/books/1234000001741/ch04.html#_buildscript_dependencies">http://chimera.labs.oreilly.com/books/1234000001741/ch04.html#_buildscript_dependencies</a></p>
 ]]></content>
   </entry>
   
