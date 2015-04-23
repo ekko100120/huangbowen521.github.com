@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AWS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-21T17:49:50+08:00</updated>
+  <updated>2015-04-23T16:12:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -25,13 +25,13 @@
 
 <p>下图是NAT节点的功能示意图。</p>
 
-<p>{% img /images/natnode.png %}</p>
+<p><img src="/images/natnode.png"></p>
 
 <p>一些路由器或者装有特定软件的主机都可以作为NAT节点。在AWS中如果你想创建一个NAT节点的话那是非常的方便，因为AWS直接提供了预装了NAT软件的AMI，你只需直接使用该AMI在你的公共子网中实例化一台机器，并进行相应的配置即可。</p>
 
 <p>下面的图展示了在AWS中的一个经典的VPC架构。该VPC里面建立了两个子网，一个是公共子网，通过Intenet Geteway和公网连接；一个是私有子网，无法直接访问公网。然后在公共子网中建立了一个EC2机器，使用的是AWS提供的具有NAT功能的AMI，并为它分配了一个弹性IP，这样该EC2就是一个NAT节点。在私有子网的所有机器都具有了通过该NAT节点访问外网的能力。</p>
 
-<p>{% img /images/vpcandnat.png %}</p>
+<p><img src="/images/vpcandnat.png"></p>
 
 <p>为了创建这样一套网络及机器，最简便的方式当然是使用AWS提供的CloudFormation了。如果不了解CloudFormation，可以看我以前写过的一篇文章 <a href="http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation/">《亚马逊云服务之CloudFormation》</a>。下面展示的是创建该整个VPC的CloudFormation脚本。</p>
 
@@ -378,7 +378,7 @@
 
 <p>目前亚马逊推出了Solutions Architect,Developer和SysOps Administrator三个方向的认证。每个方向又分为Associate Level(助理级)，Professional Level（专家级）和Master Level（大师级）。当然目前只有Solutions Architect开放了Professional Level,其他层级会逐步开放中。</p>
 
-<p>{% img /images/cert_roadmap_Q214_EN.png %}</p>
+<p><img src="/images/cert_roadmap_Q214_EN.png"></p>
 
 <p>最近在打算备考AWS的Solutions Architect的Associate Level。关于这个考试AWS出了一个考试样题。下载链接：<a href="http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_blueprint.pdf">http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_blueprint.pdf</a></p>
 
@@ -531,25 +531,25 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 <p>进入AWS Management Console以后，选择Route 53.</p>
 
-<p>{% img /images/route53.png 700 %}</p>
+<p><img src="/images/route53.png" width="700"></p>
 
 <p>在主界面点击<code>Create Hosted Zone</code>，输入Domain name和comments。Domain name是你的域名，comments是描述。</p>
 
-<p>{% img /images/create_hosted_zone.png 800 %}</p>
+<p><img src="/images/create_hosted_zone.png" width="800"></p>
 
 <p>完成以后就会看到有一个条目显示在表格中。双击这条记录。可以看到AWS已经为你创建了NS和SOA两种类型的Record Set。NS类型中的4个地址以后会用到，需要将你的域名提供商的DNS服务器换为这里列出的四个。</p>
 
-<p>{% img /images/hosted_zone_list.png 800 %}</p>
+<p><img src="/images/hosted_zone_list.png" width="800"></p>
 
 <p>我们先为WWW创建一个Rcord Set。点击<code>Create Record Set</code>按钮，在在右侧输入相应的信息。</p>
 
-<p>{% img /images/create_record_set.png 800 %}</p>
+<p><img src="/images/create_record_set.png" width="800"></p>
 
 <p>AWS支持多种类型，由于我想让www.huangbowen.net指向我cloudfront的endpoint，所以选择CNAME，Value为我cloud front中的endpoint。最后点击<code>create</code>按钮。</p>
 
 <p>这样在AWS这边就配置完成了。最后是需要登录到域名提供商的后台中，将域名解析服务器给换掉。</p>
 
-<p>{% img /images/change_DNS.png 800 %}</p>
+<p><img src="/images/change_DNS.png" width="800"></p>
 
 <p>在这里，将DNS换为之前AWS自动生成的NS地址。</p>
 
@@ -576,7 +576,7 @@ degaussed and physically destroyed in accordance with industry-standard practice
 <!-- more -->
 
 
-<p>{% img /images/cloudformation1.png 680 %}</p>
+<p><img src="/images/cloudformation1.png" width="680"></p>
 
 <p>以上的图中S3、EC2等就属于IaaS，RDS、DynamoDB等就属于PaaS。</p>
 
@@ -590,7 +590,7 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 <p>Template是CloudFormation的一个重要概念。Template本质上是一个json格式的文件。该文件定义了你需要使用那些AWS的资源，并且如何初始化这些资源。CloudFormation支持的资源如下图所示。</p>
 
-<p>{% img /images/cloudformation2.png 680 %}</p>
+<p><img src="/images/cloudformation2.png" width="680"></p>
 
 <p>一个Template文件至少包含一下几个属性:</p>
 
@@ -642,37 +642,37 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 <p>首先，需要登录到AWS Management Console，选择EC2服务，点击左侧菜单的Key Pair,创建一个Key Pair。这个Key Pair将在接下来被使用，主要使AWS能够ssh到创建的EC2机器上。当然你也可以使用已有的Key Pair。</p>
 
-<p>{% img /images/cloudformation3.png 680 %}</p>
+<p><img src="/images/cloudformation3.png" width="680"></p>
 
 <p>然后选择CloudFormation服务，点击<code>Create Stack</code>按钮。</p>
 
 <p>然后输入Stack名称，并选择一个Template。由于我们要创建一个WordPress的站点，可以选择<code>use a sample temple</code>,并选择WordPress这个模板。</p>
 
-<p>{% img /images/cloudformation4.png 680 %}</p>
+<p><img src="/images/cloudformation4.png" width="680"></p>
 
-<p>{% img /images/cloudformation5.png 680 %}</p>
+<p><img src="/images/cloudformation5.png" width="680"></p>
 
 <p>然后点击<code>continue</code>按钮，配置相关的参数。注意在KeyName一项中输入我们第一步创建的Key Pair。</p>
 
-<p>{% img /images/cloudformation6.png 680 %}</p>
+<p><img src="/images/cloudformation6.png" width="680"></p>
 
 <p>然后点击<code>continue</code>按钮，配置此Stack的标签，这个是可选项，可以跳过。再点一下<code>continue</code>，将会再次确认想要的创建的资源信息，继续后就可以看到资源正在创建了。</p>
 
-<p>{% img /images/cloudformation7.png 680 %}</p>
+<p><img src="/images/cloudformation7.png" width="680"></p>
 
 <p>页面下半部分有很多标签，你可以随时查看该Stack的描述、资源、事件、参数、输出等各项信息。</p>
 
 <p>等待大约20分钟，Stack就会执行完毕，在Outputs标签中你会看到有一个url。</p>
 
-<p>{% img /images/cloudformation8.png 680 %}</p>
+<p><img src="/images/cloudformation8.png" width="680"></p>
 
 <p>这个就是我们创建的WordPress的入口地址，访问该链接会进入WordPress的初始化设置页面。</p>
 
-<p>{% img /images/cloudformation9.png 680 %}</p>
+<p><img src="/images/cloudformation9.png" width="680"></p>
 
 <p>配置完以后，一个新的WordPress就诞生了，重新访问URL，你会看到你的博客首页。</p>
 
-<p>{% img /images/cloudformation10.png 680 %}</p>
+<p><img src="/images/cloudformation10.png" width="680"></p>
 
 <h2>CloudFormer</h2>
 
@@ -682,19 +682,19 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 <p>首先创建Stack,Template选择use a sample template,并选择CloudFormer。</p>
 
-<p>{% img /images/cloudformation11.png 680 %}</p>
+<p><img src="/images/cloudformation11.png" width="680"></p>
 
 <p>然后点击<code>continue</code>，配置其他参数，直到走完创建Stack这个流程。</p>
 
-<p>{% img /images/cloudformation12.png 680 %}</p>
+<p><img src="/images/cloudformation12.png" width="680"></p>
 
 <p>等待这个Stack创建完毕后，就可以从Outputs标签得到一个URL。这个URL是执行CloudFormer工具的入口地址。</p>
 
-<p>{% img /images/cloudformation13.png 680 %}</p>
+<p><img src="/images/cloudformation13.png" width="680"></p>
 
 <p>点击此URL,即可按照配置一步步配置自己的Template。</p>
 
-<p>{% img /images/cloudformation14.png 680 %}</p>
+<p><img src="/images/cloudformation14.png" width="680"></p>
 
 <p>流程走完后，生成的Template会存放到你的S3 bucket中。</p>
 
@@ -709,7 +709,7 @@ degaussed and physically destroyed in accordance with industry-standard practice
     <link href="http://www.huangbowen.net/blog/2013/10/01/migrate-octopress-to-aws-step-2/"/>
     <updated>2013-10-01T21:54:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/10/01/migrate-octopress-to-aws-step-2</id>
-    <content type="html"><![CDATA[<p>{% img /images/edgelocation.png %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/edgelocation.png"></p>
 
 <p>上篇文章中讲了将我的Octopress博客部署到亚马逊的S3上。而这篇文章则主要讲如何使用亚马逊提供的CloudFront作为内容分发并将自己的独立域名绑定到此CloudFront上。</p>
 
@@ -718,33 +718,33 @@ degaussed and physically destroyed in accordance with industry-standard practice
 
 <p>首先，需要启用亚马逊的CloudFront。我刚开始以为只需要‘sign up’就行。但是当我在'AWS Management Console'中点击‘Services’中的CloudFront时，却得到了‘Account Blocked’错误。</p>
 
-<p>{% img /images/accountblocked.png 780 %}</p>
+<p><img src="/images/accountblocked.png" width="780"></p>
 
 <p>这个问题很奇怪，CloudFront明明已经在' Services You&rsquo;re Signed Up For' list中了，但是咋个无法使用那？我只好使用gmail给Amazon客服中心发了邮件询问，结果客服中心告诉我需要使用一个business email(商业邮箱)来发送激活申请。我只好使用公司邮箱发送了申请，过了几个小时就收到了回信，告诉我已经可以使用了。</p>
 
 <p>登陆'AWS Management Console'后，点击'Services'中的‘CloudFront’，就可以看到控制界面了。</p>
 
-<p>{% img /images/cloudfront.png 780 %}</p>
+<p><img src="/images/cloudfront.png" width="780"></p>
 
 <p>点击'Create Distribution'按钮，Delivery method选择Download。 Download主要针对一些html，css,js等静态文件，而Streaming则主要是一些音视频文件。</p>
 
-<p>{% img /images/deliverymethod.png 780 %}</p>
+<p><img src="/images/deliverymethod.png" width="780"></p>
 
 <p>下一步，要选择Origin,即要进行内容分发的源。虽然亚马逊会自动列出你的S3 bucket，但是千万不要选。而是自己手动输入example.com这个Bucket的Endpoint(Endpoint在S3 Console的Properties标签下的Static Website hosting里看得到)。为什么不直接选S3 bucket那?这是因为当我们访问一个目录时，我们期望能返回默认的object。虽然CouldFront有个Default Root Object设置，只是对根目录起作用，对子目录不起作用。如果使用Bucket的Endpoint，再加上之前已经给该Bucket配置了Default Object，就可以解决这个问题。</p>
 
-<p>{% img /images/originname.png 780 %}</p>
+<p><img src="/images/originname.png" width="780"></p>
 
 <p>在CNAMEs项中输入自己的域名，多个域名以逗号分隔。</p>
 
-<p>{%img /images/alternatedomain.png 780 %}</p>
+<p><img src="/images/alternatedomain.png" width="780"></p>
 
 <p>这样子CoudFront就算配置好了。通过管理页面也可以配置Error page等。</p>
 
-<p>{% img /images/cloudfrontoverview.png 780 %}</p>
+<p><img src="/images/cloudfrontoverview.png" width="780"></p>
 
 <p>接下来，需要登录自己域名的提供商的管理后台，添加一条自己独立域名的转发，转发到这个CloudFront的Domain Name上。</p>
 
-<p>{% img /images/domainnamechange.png 780 %}</p>
+<p><img src="/images/domainnamechange.png" width="780"></p>
 
 <p>一般需要10分钟到2个小时等待新的域名转发设置生效。</p>
 

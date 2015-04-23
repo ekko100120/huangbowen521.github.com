@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: FP | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/fp/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-21T17:49:50+08:00</updated>
+  <updated>2015-04-23T16:12:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/06/28/functional-programming-in-guava/"/>
     <updated>2013-06-28T01:31:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/06/28/functional-programming-in-guava</id>
-    <content type="html"><![CDATA[<p>{% img /images/FP.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/FP.jpg"></p>
 
 <p>如果我要新建一个java的项目，那么有两个类库是必备的，一个是junit，另一个是<a href="https://code.google.com/p/guava-libraries/">Guava</a>。选择junit，因为我喜欢TDD，喜欢自动化测试。而是用<a href="https://code.google.com/p/guava-libraries/">Guava</a>，是因为我喜欢简洁的API。<a href="https://code.google.com/p/guava-libraries/">Guava</a>提供了很多的实用工具函数来弥补java标准库的不足，另外<a href="https://code.google.com/p/guava-libraries/">Guava</a>还引入了函数式编程的概念，在一定程度上缓解了java在JDK1.8之前没有lambda的缺陷，使使用java书写简洁易读的函数式风格的代码成为可能。</p>
 

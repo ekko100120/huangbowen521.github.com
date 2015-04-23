@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: ‘Regular Expression’ | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/-regular-expression-/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-21T17:49:50+08:00</updated>
+  <updated>2015-04-23T16:12:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -22,7 +22,7 @@
 
 <p>我根据这本书画了个Mind Map，来记录自己学到的东西。</p>
 
-<p>{% img /images/RegularExpression.png 700 700 &lsquo;《正则表达式必知必会》Mind Map&rsquo; &lsquo;《正则表达式必知必会》Mind Map&rsquo; %}</p>
+<p><img src="/images/RegularExpression.png" width="700" height="700" title="&lsquo;《正则表达式必知必会》Mind Map&rsquo; &lsquo;《正则表达式必知必会》Mind Map&rsquo;" ></p>
 
 <p>点击<a href="/images/RegularExpression.png">这里</a>查看大图。</p>
 ]]></content>

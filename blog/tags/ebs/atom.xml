@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: EBS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/ebs/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-21T17:49:50+08:00</updated>
+  <updated>2015-04-23T16:12:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -33,7 +33,7 @@
 
 <p>EC2创建完毕后，应该是这个样子。</p>
 
-<p>{% img /images/ec2instance01.png 700 %}</p>
+<p><img src="/images/ec2instance01.png" width="700"></p>
 
 <p>然后远程ssh进去。</p>
 
@@ -57,29 +57,29 @@ tmpfs           499M     0  499M   0% /dev/shm
 
 <p>点击EC2控制面板左侧的<code>Volumes</code>按钮，来到磁盘的控制面板。</p>
 
-<p>{% img /images/volumedb01.png 700 %}</p>
+<p><img src="/images/volumedb01.png" width="700"></p>
 
 <p>这里展示的一块硬盘就是当前ec2实例使用的硬盘。</p>
 
 <p>我们点击上面的<code>Create Volumes</code>来新添加一块硬盘。</p>
 
-<p>{% img /images/createVolume01.png 700 %}</p>
+<p><img src="/images/createVolume01.png" width="700"></p>
 
 <p>硬盘类型就是我上文的说的那几种，IOPS越高，硬盘就越贵，可用区的选择一定要和当前要使用的EC2实例保持一致，要不然会无法跨可用区附加硬盘。如果提供snapshot ID的话，新创建的硬盘会具有该快照的数据。</p>
 
 <p>硬盘创建完毕后如下图所示。</p>
 
-<p>{% img /images/newVolumes01.png 700 %}</p>
+<p><img src="/images/newVolumes01.png" width="700"></p>
 
 <p>目前它的状态是可用的，如果将其附加到EC2实例则会变为in-use。</p>
 
 <p>点击<code>Action</code>按钮并选择<code>Attach Volume</code>命令，可以将该硬盘附加到EC2实例上。</p>
 
-<p>{% img /images/attachvolume01.png 700 %}</p>
+<p><img src="/images/attachvolume01.png" width="700"></p>
 
 <p>在该界面中选择实例名及映射的设备地址，然后附加。</p>
 
-<p>{% img /images/volumesStatus01.png 700 %}</p>
+<p><img src="/images/volumesStatus01.png" width="700"></p>
 
 <p>可以看到该硬盘状态已经发生改变。</p>
 
@@ -168,11 +168,11 @@ xvdf    202:80   0  20G  0 disk /boot2
 
 <p>这是第一个任务，第二任务是给现有硬盘创建快照，非常简单。回到<code>Volumes</code>控制面板，选择<code>Action</code>里的<code>Create Snapshot</code>按钮。</p>
 
-<p>{% img /images/createSnapshot01.png 700 %}</p>
+<p><img src="/images/createSnapshot01.png" width="700"></p>
 
 <p>等一会snapshot就会创建成功。</p>
 
-<p>{% img /images/snapshotStatus01.png 700 %}</p>
+<p><img src="/images/snapshotStatus01.png" width="700"></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cloud | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/cloud/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-21T17:49:50+08:00</updated>
+  <updated>2015-04-23T16:12:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -164,7 +164,7 @@ $ chmod +x stopinstance.sh
 
 <p>目前亚马逊推出了Solutions Architect,Developer和SysOps Administrator三个方向的认证。每个方向又分为Associate Level(助理级)，Professional Level（专家级）和Master Level（大师级）。当然目前只有Solutions Architect开放了Professional Level,其他层级会逐步开放中。</p>
 
-<p>{% img /images/cert_roadmap_Q214_EN.png %}</p>
+<p><img src="/images/cert_roadmap_Q214_EN.png"></p>
 
 <h2>我的AWS使用经验</h2>
 
@@ -241,7 +241,7 @@ $ chmod +x stopinstance.sh
 
 <p>EC2创建完毕后，应该是这个样子。</p>
 
-<p>{% img /images/ec2instance01.png 700 %}</p>
+<p><img src="/images/ec2instance01.png" width="700"></p>
 
 <p>然后远程ssh进去。</p>
 
@@ -265,29 +265,29 @@ tmpfs           499M     0  499M   0% /dev/shm
 
 <p>点击EC2控制面板左侧的<code>Volumes</code>按钮，来到磁盘的控制面板。</p>
 
-<p>{% img /images/volumedb01.png 700 %}</p>
+<p><img src="/images/volumedb01.png" width="700"></p>
 
 <p>这里展示的一块硬盘就是当前ec2实例使用的硬盘。</p>
 
 <p>我们点击上面的<code>Create Volumes</code>来新添加一块硬盘。</p>
 
-<p>{% img /images/createVolume01.png 700 %}</p>
+<p><img src="/images/createVolume01.png" width="700"></p>
 
 <p>硬盘类型就是我上文的说的那几种，IOPS越高，硬盘就越贵，可用区的选择一定要和当前要使用的EC2实例保持一致，要不然会无法跨可用区附加硬盘。如果提供snapshot ID的话，新创建的硬盘会具有该快照的数据。</p>
 
 <p>硬盘创建完毕后如下图所示。</p>
 
-<p>{% img /images/newVolumes01.png 700 %}</p>
+<p><img src="/images/newVolumes01.png" width="700"></p>
 
 <p>目前它的状态是可用的，如果将其附加到EC2实例则会变为in-use。</p>
 
 <p>点击<code>Action</code>按钮并选择<code>Attach Volume</code>命令，可以将该硬盘附加到EC2实例上。</p>
 
-<p>{% img /images/attachvolume01.png 700 %}</p>
+<p><img src="/images/attachvolume01.png" width="700"></p>
 
 <p>在该界面中选择实例名及映射的设备地址，然后附加。</p>
 
-<p>{% img /images/volumesStatus01.png 700 %}</p>
+<p><img src="/images/volumesStatus01.png" width="700"></p>
 
 <p>可以看到该硬盘状态已经发生改变。</p>
 
@@ -376,11 +376,11 @@ xvdf    202:80   0  20G  0 disk /boot2
 
 <p>这是第一个任务，第二任务是给现有硬盘创建快照，非常简单。回到<code>Volumes</code>控制面板，选择<code>Action</code>里的<code>Create Snapshot</code>按钮。</p>
 
-<p>{% img /images/createSnapshot01.png 700 %}</p>
+<p><img src="/images/createSnapshot01.png" width="700"></p>
 
 <p>等一会snapshot就会创建成功。</p>
 
-<p>{% img /images/snapshotStatus01.png 700 %}</p>
+<p><img src="/images/snapshotStatus01.png" width="700"></p>
 ]]></content>
   </entry>
   
@@ -401,45 +401,45 @@ xvdf    202:80   0  20G  0 disk /boot2
 
 <p>登陆到亚马逊的AWS服务的management console后选择EC2服务。</p>
 
-<p>{% img /images/awsdashboard.png 700 %}</p>
+<p><img src="/images/awsdashboard.png" width="700"></p>
 
 <p>然后你就可以到EC2的控制面板了。</p>
 
-<p>{% img /images/ec2dashboard.png 700 %}</p>
+<p><img src="/images/ec2dashboard.png" width="700"></p>
 
 <p>点击上面大大的<code>Launch Instance</code>按钮来开始创建一个新的EC2实例。</p>
 
-<p>{%img /images/imagetype.png 700 %}</p>
+<p><img src="/images/imagetype.png" width="700"></p>
 
 <p>首先要选择机器的镜像文件AMI（Amazon Machine Image）,有各种Linux的发行版，也有Windows系统。在本次实验中我们选取第一个，即Amazon Linux AMI，亚马逊自己的一个Linux发行版。</p>
 
 <p>然后是选择机器类型，不同类型机器性能不同，收费标准也不一样，一切都是根据你的需求来决定。就选第一个吧，最便宜。</p>
 
-<p>{%img /images/instancetype.png 700 %}</p>
+<p><img src="/images/instancetype.png" width="700"></p>
 
 <p>然后你有两个选择，一个是点击<code>Review and Launch</code>直接启动新机器，其余参数都采用默认值，另一个是点击<code>Next:Configure Instance Details</code>自定义其它配置。在这里我们选择第二个按钮，然后直到step6：Configure Security Group。</p>
 
-<p>{% img /images/scrole.png 700 %}</p>
+<p><img src="/images/scrole.png" width="700"></p>
 
 <p>这里是配置安全组的，你可以使用已有的安全组，也可以创建一个全新的安全组。在安全组里可以设置一系列策略来管理该实例与外界的访问情况。</p>
 
 <p>由于我们需要远程登录到该实例，并且需要该实例提供http服务，所以我们需要开放22和80端口。22端口默认是开放的，80端口则需要手动开放。方法是点击<code>Add Role</code>按钮并新加一个role。</p>
 
-<p>{% img /images/httprole.png 700 %}</p>
+<p><img src="/images/httprole.png" width="700"></p>
 
 <p>配置完成后点击<code>Launch</code>按钮，会弹出一个页面让你设置key pair。</p>
 
-<p>{% img /images/keypairconfiguration.png 700 %}</p>
+<p><img src="/images/keypairconfiguration.png" width="700"></p>
 
 <p>这个key pair是用来与该实例建立安全连接。亚马逊会存一个公钥，自己在本地存放一个私钥，当想要连接该实例时，需要提供私钥。这里我们选择新建一个key pair，并取名为awsworkshop，选择保存到本地。稍后会使用它来ssh到该实例。</p>
 
 <p>点击<code>Launch Instances</code>按钮，实例就会被初始化了。</p>
 
-<p>{% img /images/launchstatus.png 700 %}</p>
+<p><img src="/images/launchstatus.png" width="700"></p>
 
 <p>点击<code>View Instances</code>来查看新创建的实例。</p>
 
-<p>{% img /images/ec2information.png 700 %}</p>
+<p><img src="/images/ec2information.png" width="700"></p>
 
 <p>一般需要等待3到5分钟来完成对新实例的初始化。在上图中可以查看该实例的相关信息。亚马逊给该实例分配了一个公共IP和公共DNS域名，稍后需要使用它们。</p>
 
@@ -505,7 +505,7 @@ $: sudo service httpd start
 
 <p>大功告成，从该EC2实例的控制面板中找到其公共DNS，然后粘贴到浏览器中，就可以访问其提供的web服务了。</p>
 
-<p>{%img /images/website.png 700 %}</p>
+<p><img src="/images/website.png" width="700"></p>
 
 <p>好了，这三个任务也就都完成了。希望大家喜欢这次EC2之旅。</p>
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: reading | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/reading/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-21T17:49:50+08:00</updated>
+  <updated>2015-04-23T16:12:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/08/11/only-good-player-has-good-luck/"/>
     <updated>2013-08-11T12:01:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/08/11/only-good-player-has-good-luck</id>
-    <content type="html"><![CDATA[<p>{% img /images/facebook.jpg 600 %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/facebook.jpg" width="600"></p>
 
 <p>王淮的《打造Facebook》一书不厚，花半天时间轻松读完。书中没有大段的说教，只有近乎流水的陈述。正如作者所说，打造Facebook这本书由巴克伯格来写再合适不过。可惜他至少在近几年内没有这个打算。而王淮作为加入Facebook最早的员工之一，以工程师角度描述的视角恐怕更适合我们。</p>
 
