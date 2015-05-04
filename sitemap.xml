@@ -557,16 +557,22 @@
         <lastmod>2015-04-23T16:12:27+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://www.huangbowen.net/blog/2015/05/04/use-protractor-to-manipulate-dom-elements/
+        </loc>
+        <lastmod>2015-05-04T17:06:06+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.huangbowen.net/about/</loc>
         <lastmod>2014-09-17T19:57:59+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.huangbowen.net/blog/archives/</loc>
-        <lastmod>2015-04-23T16:12:27+08:00</lastmod>
+        <lastmod>2015-05-04T17:06:06+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.huangbowen.net/</loc>
-        <lastmod>2015-04-23T16:12:27+08:00</lastmod>
+        <lastmod>2015-05-04T17:06:06+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.huangbowen.net/robots.txt</loc>

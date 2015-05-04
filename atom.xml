@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-04-23T16:12:51+08:00</updated>
+  <updated>2015-05-04T17:08:08+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,177 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用protractor操作页面元素]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/05/04/use-protractor-to-manipulate-dom-elements/"/>
+    <updated>2015-05-04T17:02:05+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/05/04/use-protractor-to-manipulate-dom-elements</id>
+    <content type="html"><![CDATA[<p>Protractor是为Angular JS应用量身打造的端到端测试框架。它可以真实的驱动浏览器，自动完成对web应用的测试。Protractor驱动浏览器使用的是WebDriver标准，所以使用起来与其他语言实现的WebDriver库大体相同。当然，我说大体相同那肯定还是有不同的地方。一旦不注意这些不同的地方就会坑到你（我就被成功坑过，所以才有了这篇文章）。</p>
+
+<!-- more -->
+
+
+<p>Protractor编写测试的核心是查找DOM元素，与其交互，然后查看交互后的状态与你的期望是否一致。所以查找DOM元素并与之交互显的非常重要。Protractor提供了一个全局函数element，其接受一个Locator对象并返回一个ElementFinder对象。该函数会返回单个元素。如果你想返回多个元素，可以使用element.all函数，其接受一个Locator对象并返回ElementArrayFinder对象。ElementFinder对象有一组方法，用于元素交互，比如click()，getText(),sendKeys等。</p>
+
+<p>Locator对象的创建主要使用全局的by对象，其提供一些API来生成Locator对象以供element或element.all函数使用。</p>
+
+<p>比如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//根据class名来查找元素</span>
+</span><span class='line'><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="s1">&#39;)</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">//根据id来查找元素</span>
+</span><span class='line'><span class="s1">by.id(‘myid&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//根据ng-model名来查找元素</span>
+</span><span class='line'><span class="nx">by</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="err">’</span><span class="nx">name</span><span class="s1">&#39;)</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">//查找绑定了指定名的元素</span>
+</span><span class='line'><span class="s1">by.binding(‘bindingname&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//查找指定repeater中的元素</span>
+</span><span class='line'><span class="nx">by</span><span class="p">.</span><span class="nx">repeater</span><span class="p">(</span><span class="err">‘</span><span class="nx">myrepeater</span><span class="err">&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看出前两个Locator的创建方法与其他语言实现的WebDriver的用法基本一样，而后几个则专为AngularJS应用设计的，方便在基于AngualrJS框架下写的web应用中查找页面元素。这是第一处不同。</p>
+
+<p>另一处不同其他语言实现的WebDriver库使用Locator找到的元素类型是WebElement，而Protractor则返回的是ElementFinder对象。两者不同之处是在于ElementFinder对象不会立即与浏览器交互，根据指定的Locator来查找到页面上的元素；而只有当你调用了ElementFinder对象的方法时，它才会真正的与浏览器进行交互。一些常用的方法有以下所示。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//这时不会与浏览器交互获取元素信息</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">element</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">mycss</span><span class="err">’</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//点击元素</span>
+</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//给该元素输入内容</span>
+</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">sendKeys</span><span class="p">(</span><span class="err">’</span><span class="nx">text</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//清空元素内内容</span>
+</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//获取指定属性的值</span>
+</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="err">‘</span><span class="nx">value</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//获取元素的文本值</span>
+</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">getText</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>请注意这些方法都是异步的。所有的方法返回的是一个promise（我就吃过这个亏，以为返回的是值）。所以比如你想输出一个元素的值，应该这么写：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">element</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="err">’</span><span class="p">)).</span><span class="nx">getText</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+</span><span class='line'><span class="p">})</span><span class="o">:</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果你使用expect方法来验证元素的值时，expect方法会帮你取出promise中值，所以你只用这么写:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">expect</span><span class="p">(</span><span class="nx">element</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="err">’</span><span class="p">)).</span><span class="nx">getText</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="err">&#39;确定’</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还有不同的地方在于Protractor支持对元素查找时进行链式调用。这样的功能相当实用。你可以组合element和element.all两个函数来定位元素。并且Protractor还提供了几个辅助方法来更方便你的使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">element</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator1</span><span class="p">).</span><span class="nx">first</span><span class="p">().</span><span class="nx">element</span><span class="p">(</span><span class="nx">locator2</span><span class="p">);</span>
+</span><span class='line'><span class="nx">element</span><span class="p">(</span><span class="nx">locator1</span><span class="p">).</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator2</span><span class="p">);</span>
+</span><span class='line'><span class="nx">element</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator1</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">index</span><span class="p">).</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>element.all函数提供的辅助方法有：</p>
+
+<ul>
+<li>filter： 提供一个过滤器过滤其中的元素。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">element</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="err">’</span><span class="p">)).</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">ele</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="k">return</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">getText</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>     <span class="k">return</span> <span class="nx">text</span> <span class="o">==</span> <span class="err">‘确定&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>get： 根据索引获取指定元素。如 element.all(by.css(‘myclass’)).get(0);</p></li>
+<li><p>first: 获取第一个元素。 element.all(by.css(’myclass’)).first();</p></li>
+<li><p>last: 获取最后一个元素，用法同上。</p></li>
+<li><p>count：获取元素个数。</p></li>
+</ul>
+
+
+<p>此外还提供了each，map,reduce等方法对列表进行各种操作。</p>
+
+<p>element函数提供的辅助方法有：</p>
+
+<ul>
+<li><p>locator: 返回locator对象。</p></li>
+<li><p>getWebElement： 返回该ElementFinder包裹的WebElement对象。</p></li>
+<li><p>all: 查找其一组子元素。</p></li>
+<li><p>element: 查找其子元素。</p></li>
+<li><p>isPresent: 元素是否在页面上展示。</p></li>
+</ul>
+
+
+<p>总结起来，Protractor与其它的WebDriver语言实现的区别如下：</p>
+
+<ol>
+<li><p>Protractor专为AngualrJS应用定制，其自身包含了很多wait操作，保证AngularJS脚本执行完毕后才进行下一步操作，保证了测试的稳定性与健壮性。</p></li>
+<li><p>Protractor设计的By对象针对AngularJS应用提供了很多实用方法，在定义AngularJS应用页面时更加轻松。</p></li>
+<li><p>element函数返回的是ElementFinder对象，其不会立即与浏览器交互，除非调用ElementFinder对象的方法。</p></li>
+<li><p>调用ElementFinder对象的方法返回的是一个promise。（这点很重要）</p></li>
+<li><p>Protractor在定位元素时支持链式调用。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[大连100公里越野赛_心中的痛]]></title>
@@ -1900,50 +2071,6 @@ degaussed and physically destroyed in accordance with industry-standard practice
 <p><a href="http://www.discipinedagiledelivery.com/">规范敏捷交付</a> 讲述了DAA流程框架的更多信息。</p>
 
 <p>Scott Ambler是Dr. Dobb&rsquo;s 的长期撰稿人，也是<a href="http://www.amazon.com/Disciplined-Agile-Delivery-Practitioners-Enterprise/dp/0132810131/?tag=drdos-20">Disciplined Agile Delivery: A Practitioner&rsquo;s Guide to Agile Software Delivery in the Enterprise</a>一书的核心作者。你可以在<a href="http://twitter.com/scottwambler/">Twitter</a>上follow他。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[布里斯班Twilight Bay Run半程马拉松]]></title>
-    <link href="http://www.huangbowen.net/blog/2014/09/21/brisbane-twilight-bay-run/"/>
-    <updated>2014-09-21T11:07:15+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2014/09/21/brisbane-twilight-bay-run</id>
-    <content type="html"><![CDATA[<p>自从8月3日跑了全马以后，又一鼓作气报了11月份的西昌马拉松。与第一次马拉松的只求完赛目标不同，第二次当然想取得一个更好的成绩。所以8月份练的比较猛，基本上是练2、3天休息一天，周么还要拉个长于21公里的LSD。拒不完全统计，8月份总跑量达到了260公里+。并且有一天周末跑了个人最好的半马成绩1小时53分。</p>
-
-<!-- more -->
-
-
-<p>后来从往网上看到在9月20日布里斯班的一个海滨会举行半程马拉松，叫做Twilight Bay Run（黄昏海滨马拉松）,听名字就觉得爽。看了看地图，是在一个海边跑的，沿着海边，吹着海风，痛痛快快的跑上2个小时，还有一群不认识的人给你加油，最后还可以得到一个完赛的奖牌，这样美妙的经历怎么能错过那？所以我立马就报了名。</p>
-
-<p>然而到了9月份，我的身体却出了状况，可能是8月份跑量增加太多的缘故，我的膝盖有点异常。为了避免受伤，这个月就很少跑步了。再加上我开始练insanity，一个健身视频，感觉这个消耗的热量比跑步要多，所以每天都练，跑步的时间久越发少了。随着9月20日的临近，我的心里也泛起了嘀咕。这么长时间没训练，能不能完赛都成问题，更别提打破什么个人记录了。</p>
-
-<p>9月20日这天，睡到11点起来，洗漱完毕，收拾东西，然后去Queen Street吃了最喜欢的日本博多屋拉面，坐上了开往海滨的220路公交车。一个小时后到了海滩。看到大海总是让人如此的心旷神怡，吹着海风，眺望远方，沿着海边漫步，感觉心灵都受到了洗涤。到了签到点，领了跑步包，就自个去逛了。布里斯班这个城市绿化超好的，遍布着各种大大小小的公园。每个公园都有超大的草坪、舒适的座椅、免费的烧烤架供人使用。如果要在成都找到这样的地方那可真是难死了，很难找到可以随意踩踏的草坪。</p>
-
-<p><img src="http://www.huangbowen.net/images/seabay.jpg" width="600"></p>
-
-<p><img src="http://www.huangbowen.net/images/seanice.jpg" width="600"></p>
-
-<p>半程马拉松开始的时间是下午5点。之前有5公里比赛、1公里kids run。5公里跑的最快的是16分钟多，这个成绩太牛了。还有很多10来岁的小孩都跑进了18分，真是让我感叹不已。我有一次测评自己的5公里成绩，也不过25分，自叹不如。随着时间的临近，人越来越多。10公里赛和21公里赛是一起发枪，起点处几千人总是有的。我占到了一个靠前的位置。随着主持人一声令下，浩浩荡荡的队伍开始流动。</p>
-
-<p><img src="http://www.huangbowen.net/images/bibnumber.jpg" width="600"></p>
-
-<p>这次做好了充分的热身，所以前几公里跑的还算可以，在这种气氛带动下，很容易跑出比平时更好的成绩。前3公里时速保持在12.6，这应当是我最好的记录了。我也不敢跑的再快，长跑的人都知道，前面跑的快，后面有你哭的时候。12.6的时速维持了5公里左右，我也超越了1小时45分的领跑员。这么快的速度我自己也感觉不支，但是我知道一般到8公里的时候我会迎来跑步舒适期，那时候会觉的跑步是一种享受，不觉得累。这样的状态一般可以支撑5到7公里。</p>
-
-<p>随着时间的推移，天开始越来越暗，海边涨潮了，海水离岸堤越来越近，我们就跑到离岸堤2，30米的地方。8公里的时候我没有感受到那种轻松的感觉，可能因为之前的确跑太快了，而且当时海风是逆风，增加了难度。速度也从12.6掉到了12.5，12.4&hellip;到10公里记时点时，我跑进了50分钟，这应该是个人最好的10公里记录了吧。身后的1小时45分钟的领跑员也要逐渐赶上我了。其实我很感激这个领跑员，一路上他在不停的给大家鼓劲，有的时候也不时的幽默一把。离终点也剩下一半路程了，如果我能全程保持跑在这个领跑员前面，那么无疑我会创造自己的个人新纪录。这正是激励我一直保持高速前行的动力。</p>
-
-<p>天已经完全黑下来了，有些路段没有路灯，只有漆黑一片。我踏着步点，按照自己的节奏跑着，时不时的听到身后2，30米的领跑员的鼓励声。他的身边有一群跟跑者。每到有人加油的时候，他就说“我们是1小时45分军团，欢呼吧！” 。有一次跑到一个漆黑一片的路段时，他说：“this is not Twilight Bay Run，this is Twinight Bay Run。”把我给笑的，又加紧赶了几步。这个马拉松我采用的补水策略是尽量只挑选有佳得乐的水站补水，每次补水不减速，分三口喝完。</p>
-
-<p>终点越来越近了，只有3，4公里了。跟领跑员20米的距离也被缩减到了2米了。领跑员给我说让我跟着他们后面的人跑，借着他们风。但是我没听懂，还是保持跑在领跑员的前面。只剩下最后1公里多了。我感觉到了自己的极限了。领跑员也要超过我了，再次喊我跟着他们跑。我在他们后面跟了10来秒钟就跟不上了。恰好有个补水点，我喝了点水，休息了几秒钟，又开始上路。这最后一公里是我整个跑步生涯中最艰难的一公里。长时间高强度奔跑，大脑一直处于缺氧状态，思考都变的缓慢，身体每个动作都那么艰难。而且目送着领跑员和他的追随者离开我的视线，想加速身体却完全不听使唤。</p>
-
-<p>快到终点了，听到了人群的欢呼声，我看了一下表，1小时44分，离终点还有200米，我以百米冲刺的速度跑了几十米，想在1分45分前感到。但是我觉得大腿、小腿有强烈的反应，已经到了抽筋的边缘。我不得不降低速度，通过了终点。终点计时牌上是1小时46分多。领跑员在终点等我，恭喜我取得了好成绩。我的心里也充满了喜悦，这是我的个人最佳纪录。我连喝了3杯佳得乐，吃了1个香蕉和3个苹果。由于长时间运动，味觉会消失，佳得乐跟水一样，红彤彤的苹果也不是很香甜。但是我很享受这种超越自己的感觉。看着有个壮汉跑过终点时怒吼一声，我明白他此时心里的感受，那种将不可能变成可能的感觉太美妙了！</p>
-
-<p>这场马拉松比赛太完美了。海滩、海风、热情的人们、美丽的风景、个人新纪录、完赛奖牌&hellip;..我在超越自己的路上越走越远。</p>
-
-<p><img src="http://www.huangbowen.net/images/getmedel.jpg" width="600"></p>
-
-<p><img src="http://www.huangbowen.net/images/roadmapbay.png" width="600"></p>
-
-<p><img src="http://www.huangbowen.net/images/runRecord.png" width="600"></p>
 ]]></content>
   </entry>
   
