@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="即使用octopress写博客又需要同步到其他站点的同学们有福了。本人写了一个octopress下的插件，用于将octopress中的最新的一篇博客同步到支持MetaWeblog API的博客站点中去。（wordpress、博客园、CSDN、51CTO、新浪、网易&hellip;&hellip &hellip;">
+  <meta name="description" content="在我工作的项目中有这样一个需求。当通过自动部署脚本将当前一个CI构建的WAR包部署到指定服务器后，需要验证该WAR包是否被部署成功。 在这个项目中，持续集成服务器使用的是Jenkins，构建脚本使用的是maven，向服务器的部署使用的是Groovy写的部署脚本，调用了Tableuax API。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/">使用MANIFEST.MF文件来track War包做持续部署</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-18T12:40:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在我工作的项目中有这样一个需求。当通过自动部署脚本将当前一个CI构建的WAR包部署到指定服务器后，需要验证该WAR包是否被部署成功。</p>
+
+<p>在这个项目中，持续集成服务器使用的是<a href="http://jenkins-ci.org/">Jenkins</a>，构建脚本使用的是<a href="http://maven.apache.org/">maven</a>，向服务器的部署使用的是Groovy写的部署脚本，调用了<a href="http://www.incanica.com/tour/whytableaux">Tableuax</a> API。</p>
+
+<p>在<a href="http://jenkins-ci.org/">Jenkins</a>上有两个job，一个CI job，一个dev job。
+每次提交代码都会在<a href="http://jenkins-ci.org/">Jenkins</a>上trigger CI ob，这个job会执行配置的<a href="http://maven.apache.org/">maven</a>命令<code>mvn clean install</code>，如果构建成功，会自动trigger dev job。这个job会执行部署脚本，部署脚本负责调用<a href="http://www.incanica.com/tour/whytableaux">Tableuax</a> API将前一个job构建的war包部署到服务器上。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -500,79 +549,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/17/haskell-functional-programming-feature/">Haskell函数式编程之特性篇</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-17T12:46:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/03/17/haskell-functional-programming-feature/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/03/17/haskell-functional-programming-feature/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>函数式编程的定义是：</p>
-
-<p>In computer science, functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions and avoids stateand mutable data.
-即：函数式编程是一种编程模型，他将计算机运算看做是数学中函数的计算，并且避免了引入状态及可变数据。</p>
-
-<p>它更强调函数的应用，而不像命令式编程更强调状态的改变。</p>
-
-<h2>无副作用（side effect）</h2>
-
-<p>命令式函数可能会改变程序的状态，这就会对其产生<strong>副作用</strong>。在命令式编程中，在执行程序不同的状态下同一个函数的返回结果会发生改变。例如，下面是一个使用JavaScript写的函数。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">getVal</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">[</span>
-</span><span class='line'>     <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getVal</span><span class="p">());</span> <span class="c1">//true</span>
-</span><span class='line'><span class="nx">state</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getVal</span><span class="p">());</span> <span class="c1">// false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/17/haskell-functional-programming-feature/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/13/">&larr; Older</a>
@@ -600,6 +576,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/16/how-to-build-self-confidence/">如何培养自信心</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/08/i-hurt-my-knee/">膝盖中了一箭</a>
       </li>
     
@@ -613,10 +593,6 @@
     
       <li class="post">
         <a href="/blog/2015/05/04/use-protractor-to-manipulate-dom-elements/">使用protractor操作页面元素</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/23/dl100/">大连100公里越野赛_心中的痛</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="在做web项目的自动化端到端测试时主要使用的是Selenium WebDriver来驱动浏览器。Selenium WebDriver的优点是支持的语言多，支持的浏览器多。主流的浏览器Chrome、Firefox、IE等都支持，手机上的浏览器Android、IPhone等也支持， &hellip;">
+  <meta name="description" content="如果我要新建一个java的项目，那么有两个类库是必备的，一个是junit，另一个是Guava。选择junit，因为我喜欢TDD，喜欢自动化测试。而是用Guava，是因为我喜欢简洁的API。Guava提供了很多的实用工具函数来弥补java标准库的不足，另外Guava还引入了函数式编程的概念， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/28/functional-programming-in-guava/">Java经典类库-Guava中的函数式编程讲解</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-28T01:31:00+08:00" pubdate data-updated="true">Jun 28<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/28/functional-programming-in-guava/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/06/28/functional-programming-in-guava/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/FP.jpg"></p>
+
+<p>如果我要新建一个java的项目，那么有两个类库是必备的，一个是junit，另一个是<a href="https://code.google.com/p/guava-libraries/">Guava</a>。选择junit，因为我喜欢TDD，喜欢自动化测试。而是用<a href="https://code.google.com/p/guava-libraries/">Guava</a>，是因为我喜欢简洁的API。<a href="https://code.google.com/p/guava-libraries/">Guava</a>提供了很多的实用工具函数来弥补java标准库的不足，另外<a href="https://code.google.com/p/guava-libraries/">Guava</a>还引入了函数式编程的概念，在一定程度上缓解了java在JDK1.8之前没有lambda的缺陷，使使用java书写简洁易读的函数式风格的代码成为可能。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/06/28/functional-programming-in-guava/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -487,55 +533,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/">使用MANIFEST.MF文件来track War包做持续部署</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-18T12:40:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在我工作的项目中有这样一个需求。当通过自动部署脚本将当前一个CI构建的WAR包部署到指定服务器后，需要验证该WAR包是否被部署成功。</p>
-
-<p>在这个项目中，持续集成服务器使用的是<a href="http://jenkins-ci.org/">Jenkins</a>，构建脚本使用的是<a href="http://maven.apache.org/">maven</a>，向服务器的部署使用的是Groovy写的部署脚本，调用了<a href="http://www.incanica.com/tour/whytableaux">Tableuax</a> API。</p>
-
-<p>在<a href="http://jenkins-ci.org/">Jenkins</a>上有两个job，一个CI job，一个dev job。
-每次提交代码都会在<a href="http://jenkins-ci.org/">Jenkins</a>上trigger CI ob，这个job会执行配置的<a href="http://maven.apache.org/">maven</a>命令<code>mvn clean install</code>，如果构建成功，会自动trigger dev job。这个job会执行部署脚本，部署脚本负责调用<a href="http://www.incanica.com/tour/whytableaux">Tableuax</a> API将前一个job构建的war包部署到服务器上。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -563,6 +560,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/16/how-to-build-self-confidence/">如何培养自信心</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/08/i-hurt-my-knee/">膝盖中了一箭</a>
       </li>
     
@@ -576,10 +577,6 @@
     
       <li class="post">
         <a href="/blog/2015/05/04/use-protractor-to-manipulate-dom-elements/">使用protractor操作页面元素</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/23/dl100/">大连100公里越野赛_心中的痛</a>
       </li>
     
   </ul>
