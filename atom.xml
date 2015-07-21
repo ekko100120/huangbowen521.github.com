@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:19+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[翻译-Salt与Ansible全方位比较]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable/"/>
+    <updated>2015-07-21T15:15:47+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable</id>
+    <content type="html"><![CDATA[<p>原文链接：<a href="http://jensrantil.github.io/salt-vs-ansible.html">http://jensrantil.github.io/salt-vs-ansible.html</a></p>
+
+<p>作者： Jens Rantil</p>
+
+<p>之前某些时候我需要评估配置管理系统。结合从他人得到的意见，我认为<a href="https://puppetlabs.com/">Puppet</a>及<a href="http://www.getchef.com/">Chef</a>在配置和运行方面过于复杂。由于我是Python粉，所以我时常关注<a href="http://www.ansible.com/home">Ansible</a>及<a href="http://www.saltstack.com/">Salt</a>。Ruby目前不是我感冒的语言，当然我也不想在这里引起语言之争。</p>
+
+<!-- more -->
+
+
+<p>去年我花了6个月美好的时光用Ansible来配置服务器。从而对这个工具变得很熟悉。在那个项目中Ansible可以说是最佳选择，因为它易于使用，还有完整的文档。我所工作的团队尽量遵循文档中指示的<a href="http://docs.ansible.com/ansible/playbooks_best_practices.html">最佳实践</a>，从而使我们快速上手，而且我们可以借鉴已经被验证过可以工作的结构。</p>
+
+<p>几周前我去日本开始为期10天的休假，在一个完全没人认识我的地方，我有充足的时间来阅读一些电脑杂志和文档。享受了美味的寿司，观赏了东京美景，玩耍了滑雪之余，我发现阅读<a href="https://media.readthedocs.org/pdf/salt/latest/salt.pdf">Salt PDF文档</a>是一个很棒的休闲。</p>
+
+<p>当然我花了一些时间来试用Salt并使用了<a href="http://docs.saltstack.com/en/latest/topics/tutorials/starting_states.html">States</a>系统。现在我认为我对两个系统有了一个粗略的背景，我义无返顾的进行了一个具有个人色彩的测评。</p>
+
+<h2>术语</h2>
+
+<p>Salt及Ansible创建之初都被作为执行引擎。即，它们都可以在一台或多台远程系统中执行命令，并且可以并行执行。</p>
+
+<p>Ansible支持在多个机器上执行任意的命令行命令。它也支持执行模块。一个<a href="http://docs.ansible.com/ansible/modules.html">Ansible模块</a>基本上是以对Ansible友好的方式编写的Python模块。大多数标准的Ansible模块是幂等的。这意味着你只需告诉你的系统想要的状态，那么该模块就会尝试将你的系统调整为该状态。</p>
+
+<p>Unusable也有<a href="http://docs.ansible.com/ansible/playbooks.html">Playbook</a>的概念。一个playbook是为一组主机定义了一系列模块执行顺序的文件。playbook可通过执行模块来改变主机准柜台。这使得我们可以精准控制多台机器，比如在升级一个应用程序之前把机器从负载均衡器中剔除出去。</p>
+
+<p>Salt有两种模块：<a href="http://docs.saltstack.com/en/latest/ref/modules/all/index.html">执行模块</a>和<a href="http://docs.saltstack.com/en/latest/ref/states/all/index.html">状态模块</a>。执行模块可以简单的执行一些命令，比如执行命令行命令，或者下载一个文件。状态模块与Ansible模块更相似，通过参数定义一个状态，而模块则尝试满足该最终状态。通常状态模块调用执行模块来完成工作。</p>
+
+<p>状态模块执行时使用state执行模块。状态模块支持通过文件定义状态，该文件被称为SLS文件。而状态与主机的映射关系被定义在<a href="http://docs.saltstack.com/en/latest/ref/states/top.html">top.sls</a>文件中。</p>
+
+<p>playbook及SLS文件（通常）都是使用YAML格式。</p>
+
+<p>另外，我想指出当任务需要使用inventory,或者需要在多台机器上运行时，使用远程执行引擎是非常有用的。</p>
+
+<h2>架构</h2>
+
+<p>Salt有一个Salt master，而很多Salt minon在初始化时会连接到该master上。通常，命令起始于master的命令行中。master然后将命令分发到minion上。初始化时，minion会交换一个秘钥建立握手，然后建立一个持久的加密的TCP连接。我可以喋喋不休的阐述Salt如何借助<a href="http://zeromq.org/">ZeroMQ</a>库来通讯，但简短的来说，Salt master可以同时连接很多minion而无需担心过载，这归功于ZeroMQ。</p>
+
+<p>由于minion和Salt master之间建立了持久化连接，所以Salt master上的命令能很快的到达minion上。minion也可以缓存多种数据，以便加速执行。</p>
+
+<p>Ansible无需master，它使用SSH作为主要的通讯层。这意味着它比较慢，但无需master意味着它在设置及测试Ansible playbook上更加容易。有人也声称它更安全，因为它不需要额外的服务器程序。你可以在“安全”章节获取更多信息。</p>
+
+<p>Ansible也有支持ZeroMQ的版本，但需要一个初始的SSH连接来设置。我尝试了这个，但说实话我并没感到速度有所提升。我猜如果playbook更大，主机更多时才会感受到速度的提升。</p>
+
+<p>Ansible推荐使用inventory文件来追踪机器。inentory文件基本上包含了一组主机，可以对其分类为组，可以对一组主机或单个主机指定属性。你可以建立多个inventory文件，比如一个作为阶段环境，另一个作为产品环境。</p>
+
+<p>Salt也支持使用SSH替代ZeroMQ，即<a href="http://docs.saltstack.com/en/latest/topics/ssh/">Salt SSH</a>。但请注意目前还是试用版本（而且我还没尝试用过）</p>
+
+<h2>社区</h2>
+
+<p>对于这两个项目我都有使用IRC及邮件列表的经历。我也给它们发过补丁包，包括Python代码及一些文档修正。以下是我的经历的总结：</p>
+
+<p>Ansible：IRC上反馈非常快，并且很友好。但该项目貌似缺少社区影响，更像是一个人在领导，即Michael DeHaan。抱歉我这样说，其实我很喜欢社区，因为对于改进更加开放和友好。Ansible一些改进问题还未修复就关闭了，让我感觉它把问题隐藏了起来。好在所有的问题都有回答。</p>
+
+<p>Salt需要继续证明其欢迎社区贡献。IRC反馈已经变得及时和友好。有时我需要借助于邮件列表。我有一些邮件，直到4天以后才得到响应，但看起来每个邮件最终都会有跟进。</p>
+
+<p>我的印象是Salt有更成熟的社区，更欢迎协作。我说这句话时可能会得罪很多人，当然这是我个人观点！</p>
+
+<h2>速度</h2>
+
+<p>如果你以为你的服务器比较少，速度无所谓时，我相信你是错的。能够快速迭代永远是非常重要的。长期来说，配置缓慢会拖慢你的整个节奏。如果有些东西需要花费30秒以上来编译，我会在编译时去玩Twitter，而这意味着该编译会其实会花掉至少120秒。部署时也会这样。</p>
+
+<p>Ansible始终使用SSH来初始化连接。这很慢。也许Ansible的ZeroMQ实现（之前提到过）会改善这点，但初始化依然会很慢。Salt默认使用ZeroMQ，所以很快。</p>
+
+<p>之前说过，Salt拥有持久的minion进程。这使得Salt可以缓存文件，从而加速执行。</p>
+
+<h2>代码结构</h2>
+
+<p>我最不能忍受的是Ansible模块不能被导入（因为<a href="https://github.com/JensRantil/ansible/blob/devel/library/files/copy#L189">导入就会执行代码</a>）。这意味着测试模块时会引入一些魔法。因为你无法导入任何一个模块。我不喜欢魔法，而喜欢纯粹简单的代码。这更像Salt的风格。</p>
+
+<p>少用魔法意味着给Salt模块写测试更清晰。Salt完全可测。我很高兴Salt关于<a href="http://docs.saltstack.com/en/latest/topics/development/tests/unit.html">测试</a>有三个章节，包括鼓励你mock一些你不具备的基础设施来增加可测性，比如mock一个MySQL实例。</p>
+
+<p>以上说明Ansible通常拥有简洁干净的代码。我在其中可以快速跳转。然而，<a href="https://groups.google.com/forum/#!msg/ansible-project/mpRFULSiIQw/jIIQdOSubnUJ">提升代码结构</a>不是“Ansiable社区”的关注点。</p>
+
+<p>Ansible和Salt都可以通过<a href="https://pypi.python.org/pypi/salt">PyPi</a>来安装。</p>
+
+<h2>Vagrant支持</h2>
+
+<p>当讨论测试时，DevOps人喜欢Vagrant。直到现在我还没用过它。Vagrant可以使用Slat和Ansible提供的模块来初始化机器。这意味着在初始化机器时，Vagrant可以轻而易举的使用master+minion模式，或者执行一个playbook。</p>
+
+<h2>任务编排</h2>
+
+<p>Ansible和Salt都支持编排，我认为Ansible中编排规则更容易理解和使用。基本上，playbook可以分割为多个任务组，每组匹配一组主机（或主机组）。每组按顺序来依次执行。这与任务的执行顺序相同。</p>
+
+<p>Salt支持<a href="http://docs.saltstack.com/en/latest/topics/event/index.html">事件</a>和<a href="http://docs.saltstack.com/en/latest/topics/reactor/">反应器</a>。这意味Salt执行可能会触发另一个机器上的东西。Salt的执行引擎也支持监控。所以未来这块前景比较广阔。你可以使用<a href="http://docs.saltstack.com/en/latest/ref/states/overstate.html">Overstate</a>在集群中以特定顺序设置多种角色来实现基础编排。</p>
+
+<p>Ansible比Salt在编排方面更好，因为它简单。Salt将来会更好，因为在集群变化中它更具持续反应性。</p>
+
+<p>Salt及Ansible都支持通过机器窗口执行任务。这对于保证服务始终可用（比如升级时）是非常有用的。</p>
+
+<h2>安全</h2>
+
+<p>Ansible使用SSH来传输数据。SSH是经历过考验的协议。一旦SSH服务器被正确配置（使用一个良好的随机数生成器），我相信大多数人会认为SSH客户端是安全的。</p>
+
+<p>Ansible也可以轻松的建立多个非root用户与单个主机的连接。如果你非常反对有进程以root权限运行，那么你可以考虑使用Ansible。Ansible支持使用sudo来以root方式执行模块。所以你可以无需使用root来建立SSH连接。</p>
+
+<p>Salt使用“自己”的AES实现及key管理。我想指出这里的“自己”其实是使用<a href="https://www.dlitz.net/software/pycrypto/">PyCrypto</a>包。Salt<a href="http://www.cvedetails.com/vulnerability-list/vendor_id-12943/product_id-26420/version_id-155046/Saltstack-Salt-0.17.0.html">以前</a>有安全问题，但同时我认为Salt架构很简单，所以安全问题可以轻松的维护。</p>
+
+<p>有点需要指出，Salt运行master及minion时默认以root方式。这个配置可以改，但显而易见会导致一些新问题，比如非root模式下很难安装Debian包。在master上你可以配置salt命令为非root模式。我极力推荐这样做。</p>
+
+<h2>敏感数据</h2>
+
+<p>所有敏感数据应当单独存放，然后在需要时存放在配置机器上。如果配置机器是系统管理员的机器（现在通常是笔记本电脑），那么会有数据被盗用的风险。</p>
+
+<p>经过深入的长时间思考后，我认为认证master方式是更好的选择。这意味着敏感数据可以强制存放在一个受保护的地方（当然需要加密的备份）。Salt可以把安全证书存放在”Pillar”里。当然，破解master会是个毁灭性打击，但是同时我们只需要安全保护一台机器。不是所有的开发者电脑都是安全的，尤其在火车上或飞机场时。</p>
+
+<p>显然，Ansible用户可以选择始终通过一个绝对安全的存放敏感数据的电脑上执行playbook。但人们通常会这样做吗？</p>
+
+<h2>审计能力</h2>
+
+<p>当讨论安全时我认为审计是相当重要的。Salt在这方面比Ansible做的要好。Salt的每次执行都会在master上<a href="http://docs.saltstack.com/en/latest/topics/jobs/index.html">存放</a>X天。这样我们更容易调试，也容易发现可疑的事情。</p>
+
+<h2>部署</h2>
+
+<p>Ansible显然更容易些。因为它无需部署。当然，Salt支持SSH，但文档中大多数情况下假设我们使用ZeroMQ的方式。当然，SSH要慢些。</p>
+
+<p>初始化minion的好处是这些minion都会连接到master。这使得我们可以快速初始化很多新机器。如果你想使用类似于亚马逊的自动化弹性扩展功能时，minion-连接架构很有用。每一个自动化弹性扩展的机器将自动变为一个minion。</p>
+
+<p>Salt <a href="https://github.com/saltstack/salt-bootstrap">初始化脚本</a>非常好用，而且执行很快。可以处理不多种分发，文档也很<a href="http://salt.readthedocs.org/en/latest/topics/tutorials/salt_bootstrap.html">丰富</a>。</p>
+
+<h2>学习曲线</h2>
+
+<p>Ansible这方面更好。Ansible更容易学习及提高。因为我们只需拷贝一份Ansible GIT代码库，然后设置一些环境变量就可以执行playbook了。</p>
+
+<p>Salt可以以<a href="http://docs.saltstack.com/en/latest/topics/tutorials/quickstart.html">非master模式</a>运行。这样可以更容易设置和运行salt。然而，对于产品环境（以及阶段环境）我推荐使用master模式来运行Salt。</p>
+
+<p>通体来说，Salt功能更花哨，代价是学习曲线陡峭。Salt<a href="http://docs.saltstack.com/en/latest/topics/development/modular_systems.html">更加模块化</a>。这易于组织代码结构，但是完全精通Salt需要更多学习。</p>
+
+<h2>升级</h2>
+
+<p>升级Salt取决于当时是如何安装Salt的。基于Debian的分发的话，有一个apt代码库来存放最新的Debian包。所以升级的话可以使用apt-getupgrade。对于Ubuntu机器，有PPA。这些代码库的维护很活跃。最新发布的2014.1.0版本一周内（时间有点长）就有了Debian/Ubuntu包。</p>
+
+<p>升级Ansible更简单。你只需简单执行git fetch &amp;&amp; git checkout <tag>即可。</p>
+
+<h2>文档</h2>
+
+<p>两个项目都有详尽的文档供你设置和运行，以及开发模块及配置。过去Ansible比Salt有更好的文档结构。最近Salt花了<a href="https://github.com/saltstack/salt/issues/10526">大力气</a>来重整文档。我也贡献了自己的力量来帮助完善这些文档。</p>
+
+<h2>结语</h2>
+
+<p>对于我来说，Ansible是个极好的工具来自动化服务器配置及自动化部署。设置Ansible并运行起来很简单，而且文档也很丰富。</p>
+
+<p>进一步说，Salt具有可伸缩性，速度快，架构合理。我发现Salt的结构更适合云端部署。将来我会毫不犹豫的使用Salt。</p>
+
+<p>总的来说，你在做出选择之前最好在你的项目中都试用下它们。反正配置及测试Ansible及Salt都非常快。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之手术篇]]></title>
@@ -1860,79 +2010,6 @@ Spring的4.0版本可以说是一个重大的更新，其全面支持Java8，并
 <hr />
 
 <p>题目谈的是健身，其实文章里面更多的讲的是如何减脂，可能大部分人都关心这个。我的目的是拥有一定的肌肉和线条，减脂只是健身的副产品。说白了减脂很简单，就是六个字：”管住嘴，迈开腿“，然后坚持执行这句话6个月，绝对让你拥有你想要的身材。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AWS助理架构师认证考经]]></title>
-    <link href="http://www.huangbowen.net/blog/2014/10/27/how-to-pass-the-aws-certification/"/>
-    <updated>2014-10-27T21:06:36+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2014/10/27/how-to-pass-the-aws-certification</id>
-    <content type="html"><![CDATA[<p>上周考了亚马逊的解决方案架构师-助理级别的认证考试并顺利通过。这也算是对自己AWS服务熟悉程度的一种检验。在准备考试的过程中，把自己学习到的AWS知识都梳理了一遍，也算是收获颇丰。这次特意分享了该认证考经。</p>
-
-<!-- more -->
-
-
-<h2>什么是AWS认证？</h2>
-
-<p>AWS 认证是对其在 AWS 平台上设计、部署和管理应用程序所需的技能和技术知识的一种认可。获得证书有助于证明您使用 AWS 的丰富经验和可信度，同时还能提升您所在的组织熟练使用基于 AWS 云服务应用的整体水平。</p>
-
-<p>目前亚马逊推出了Solutions Architect,Developer和SysOps Administrator三个方向的认证。每个方向又分为Associate Level(助理级)，Professional Level（专家级）和Master Level（大师级）。当然目前只有Solutions Architect开放了Professional Level,其他层级会逐步开放中。</p>
-
-<p><img src="http://www.huangbowen.net/images/cert_roadmap_Q214_EN.png"></p>
-
-<h2>我的AWS使用经验</h2>
-
-<ul>
-<li><p>本人于2013年注册了AWS账号，开始只是做些小实验玩，后来把自己的整个博客都迁移到了AWS上，使用了Route53，S3，CloudFront等服务。</p></li>
-<li><p>在办公室做过Chef，CloudFormation，AWS云服务Overview等session。</p></li>
-<li><p>2014年参加过亚马逊在成都举办的AWSome day活动，也算是对AWS云服务有了一个系统性了解。</p></li>
-<li><p>使用Qwiklabs动手实验室在里面做过所有免费的实验，也借助里面的资源做了一些其它实验。</p></li>
-<li><p>参加了一次亚马逊的在线课堂，内容是Auto Scaling。</p></li>
-</ul>
-
-
-<h2>考前准备</h2>
-
-<ul>
-<li><p>仔细研究了<a href="http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_blueprint.pdf">AWS助理架构师考试大纲</a>，明确了自己和大纲要求的差距。</p></li>
-<li><p>仔细研读了样题，了解了考试体型和方式，并且写了篇文章解析了样题。地址：<a href="http://www.huangbowen.net/blog/2014/10/22/aws-cert-sample-question/">http://www.huangbowen.net/blog/2014/10/22/aws-cert-sample-question/</a></p></li>
-<li><p>进行过两次模拟考试。每次模拟考试20美元，每次有20道题。第一次是考前一周做的，只对了9道，惨败。第二次是考试前一天做的，对了14道，过关。</p></li>
-<li><p>根据模拟考试的薄弱环节进行了补强，深入了解了VPN，IAM，Data Security等方面的知识。</p></li>
-<li><p>大量查阅了<a href="http://aws.amazon.com/cn/documentation/">AWS的文档</a></p></li>
-</ul>
-
-
-<h2>考试</h2>
-
-<p>考试地点还是比较高大上的，在春熙路附近一座写字楼里。考试中心其实地方很小，就一个前台和一个办公室。前台接待我过后，就在会议室电脑上连接上了考试系统，然后她就出去了。也就是说基本算无人监考。正式考试有55道题，考试时间80分钟，全英文。题目都是选择题，有单选与多选，题目会明确告诉你有几个正确选项（如果没说就只有一个）。</p>
-
-<p>可以说这些考题综合性非常强。有些很考察动手经验，有些则会考察具体服务的应用场景。如果只是对AWS云服务有肤浅认识的话，绝对是过不了的。我用了50多分钟时间做完了全部55道题，有25道题不确定答案。这给我留下了20多分钟来对这20多道题再进行斟酌。时间还是挺充裕的。有些题目你不知道就是不知道，除非能查阅相应文档或者动手做一下实验看一下，光想是想不出来的。</p>
-
-<p>80分钟后自动交卷，这次正确率是65%，涉险过关（听别人说拿证的最低正确率就是65%）。我感觉做对的比例要高于65%的，可能还是自己对AWS有些知识点不熟悉。</p>
-
-<p>交卷以后会立马知道成绩，邮箱里也会收到认证证书与可以使用的认证logo。</p>
-
-<h2>一些Tips</h2>
-
-<p>接下来是一些Tips给想要考取该证的人。</p>
-
-<ul>
-<li><p>首先了解AWS认证:<a href="http://aws.amazon.com/certification/">http://aws.amazon.com/certification/</a>，了解助理架构师考试大纲：<a href="http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_blueprint.pdf">http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_blueprint.pdf</a></p></li>
-<li><p>阅读考试常见问题：<a href="http://aws.amazon.com/cn/certification/faqs/">http://aws.amazon.com/cn/certification/faqs/</a></p></li>
-<li><p>必须读AWS白皮书：<a href="http://media.amazonwebservices.com/AWS_Overview.pdf">http://media.amazonwebservices.com/AWS_Overview.pdf</a></p></li>
-<li><p>熟悉考试样题：<a href="http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_examsample.pdf">http://awstrainingandcertification.s3.amazonaws.com/production/AWS_certified_solutions_architect_associate_examsample.pdf</a></p></li>
-<li><p>动手做实验，可以使用动手实验室，免费蹭资源：<a href="https://run.qwiklab.com">https://run.qwiklab.com</a></p></li>
-<li><p>AWS文档中主要的service必须要过一遍，比如EC2，S3，VPC，EBS等。<a href="http://aws.amazon.com/cn/documentation/">http://aws.amazon.com/cn/documentation/</a></p></li>
-<li><p>阅读各种云服务的常见问题：<a href="http://aws.amazon.com/cn/faqs/">http://aws.amazon.com/cn/faqs/</a></p></li>
-<li><p>最好做一次模拟考试，熟悉考试的方式，题目类型，记住不熟悉的知识点然后加强。</p></li>
-<li><p>这是从网上找的一个部分题目，可以了解下。<a href="http://quizlet.com/35935418/detailed-questions-flash-cards/">http://quizlet.com/35935418/detailed-questions-flash-cards/</a></p></li>
-</ul>
-
-
-<hr />
-
-<p>总体来说AWS助理级架构师考试不算很难，但前提是你做好了充分准备的基础了。虽然你有可能长期使用AWS服务，但并不保证你能裸考过关。因为这是架构师认证，有些问题和场景可能你并没有经历过，有些服务你并没有使用过，在考试中这些缺点都会被放大。</p>
 ]]></content>
   </entry>
   

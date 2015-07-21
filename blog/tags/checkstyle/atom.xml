@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: CheckStyle | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/checkstyle/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:49+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/06/21/introduce-checkstyle/"/>
     <updated>2013-06-21T13:53:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/06/21/introduce-checkstyle</id>
-    <content type="html"><![CDATA[<p><img src="/images/CheckStyle.png"></p>
+    <content type="html"><![CDATA[<p>{% img /images/CheckStyle.png %}</p>
 
 <p>如今代码静态检查越来越重要，已经成为构建高质量软件的不可或缺的一个验证步骤。如果你使用的是java语言，那么<a href="http://checkstyle.sourceforge.net/">CheckStyle</a>则是一个利器。
 <a href="http://checkstyle.sourceforge.net/">CheckStyle</a>能够帮助程序员检查代码是否符合制定的规范。通过将<a href="http://checkstyle.sourceforge.net/">CheckStyle</a>的检查引入到项目构建中，可以强制让项目中的所有的开发者遵循制定规范，而不是仅仅停留在纸面上。如果发现代码违反了标准，比如类名未以大写开头、单个方法超过了指定行数、甚至单个方法抛出了3个以上的异常等。这些检查由于是基于源码的，所以不需要编译，执行速度快。</p>

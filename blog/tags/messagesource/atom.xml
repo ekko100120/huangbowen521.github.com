@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: MessageSource | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/messagesource/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:49+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -37,7 +37,7 @@
 
 <p>而在我们的项目中有这样一个需求。假设现在项目中有三个properties文件。</p>
 
-<p><img src="/images/properties.png"></p>
+<p>{% img /images/properties.png %}</p>
 
 <p>其中aami和apia是我们项目需要支持的两个品牌。当一个用户登陆我们的web项目时，会自动将其当前所使用的品牌信息存到session中。而如果是aami用户的话，前端jsp页面显示的message读取的顺序是这样的：如果在aami.properties文件中没找到的话，就在default.properties文件中找。对于apia用户，则先在apia.properties中找，然后查找default.properties。</p>
 

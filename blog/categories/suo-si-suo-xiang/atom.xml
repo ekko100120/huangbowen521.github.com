@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 所思所想 | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/suo-si-suo-xiang/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:49+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/07/21/get-out-of-your-comfort-zone/"/>
     <updated>2013-07-21T00:02:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/07/21/get-out-of-your-comfort-zone</id>
-    <content type="html"><![CDATA[<p><img src="/images/comfortZone.jpeg"></p>
+    <content type="html"><![CDATA[<p>{% img /images/comfortZone.jpeg %}</p>
 
 <p>今天全球CEO来成都office做每月一次的“老郭说事”。在会议的末尾一个应届毕业生问了他一个问题“你是否有每天都需要进步的压力那？”。该毕业生提出这个问题我想很可能是由于她现在处于试用期，感受到了比较大的压力。为了能让毕业生尽快的适应工作节奏，能够独立胜任工作，试用期的员工压力都是很大的。他们要在一定时间内表现出自己，让团队中其他人能够明确看到自己在某段时间内的进步。我们不担心你目前的技术水平，我们关心的是在有限的时间内你能否进步。</p>
 

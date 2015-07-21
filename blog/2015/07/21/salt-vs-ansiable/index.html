@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>翻译-Salt与Ansible全方位比较 - 黄博文的地盘</title>
+  <meta name="author" content="黄博文">
+
+  
+  <meta name="description" content="原文链接：http://jensrantil.github.io/salt-vs-ansible.html 作者： Jens Rantil 之前某些时候我需要评估配置管理系统。结合从他人得到的意见，我认为Puppet及Chef在配置和运行方面过于复杂。由于我是Python粉， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="黄博文的地盘" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<style>#forkongithub a{background:#060;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#A853B2;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/huangbowen521">Fork me on GitHub</a></span>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38174207-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">黄博文的地盘</a></h1>
+  
+    <h2>我是一个程序员.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.huangbowen.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">翻译-Salt与Ansible全方位比较</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-21T15:15:47+08:00" pubdate data-updated="true">Jul 21<span>st</span>, 2015</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>原文链接：<a href="http://jensrantil.github.io/salt-vs-ansible.html">http://jensrantil.github.io/salt-vs-ansible.html</a></p>
+
+<p>作者： Jens Rantil</p>
+
+<p>之前某些时候我需要评估配置管理系统。结合从他人得到的意见，我认为<a href="https://puppetlabs.com/">Puppet</a>及<a href="http://www.getchef.com/">Chef</a>在配置和运行方面过于复杂。由于我是Python粉，所以我时常关注<a href="http://www.ansible.com/home">Ansible</a>及<a href="http://www.saltstack.com/">Salt</a>。Ruby目前不是我感冒的语言，当然我也不想在这里引起语言之争。</p>
+
+<!-- more -->
+
+
+<p>去年我花了6个月美好的时光用Ansible来配置服务器。从而对这个工具变得很熟悉。在那个项目中Ansible可以说是最佳选择，因为它易于使用，还有完整的文档。我所工作的团队尽量遵循文档中指示的<a href="http://docs.ansible.com/ansible/playbooks_best_practices.html">最佳实践</a>，从而使我们快速上手，而且我们可以借鉴已经被验证过可以工作的结构。</p>
+
+<p>几周前我去日本开始为期10天的休假，在一个完全没人认识我的地方，我有充足的时间来阅读一些电脑杂志和文档。享受了美味的寿司，观赏了东京美景，玩耍了滑雪之余，我发现阅读<a href="https://media.readthedocs.org/pdf/salt/latest/salt.pdf">Salt PDF文档</a>是一个很棒的休闲。</p>
+
+<p>当然我花了一些时间来试用Salt并使用了<a href="http://docs.saltstack.com/en/latest/topics/tutorials/starting_states.html">States</a>系统。现在我认为我对两个系统有了一个粗略的背景，我义无返顾的进行了一个具有个人色彩的测评。</p>
+
+<h2>术语</h2>
+
+<p>Salt及Ansible创建之初都被作为执行引擎。即，它们都可以在一台或多台远程系统中执行命令，并且可以并行执行。</p>
+
+<p>Ansible支持在多个机器上执行任意的命令行命令。它也支持执行模块。一个<a href="http://docs.ansible.com/ansible/modules.html">Ansible模块</a>基本上是以对Ansible友好的方式编写的Python模块。大多数标准的Ansible模块是幂等的。这意味着你只需告诉你的系统想要的状态，那么该模块就会尝试将你的系统调整为该状态。</p>
+
+<p>Unusable也有<a href="http://docs.ansible.com/ansible/playbooks.html">Playbook</a>的概念。一个playbook是为一组主机定义了一系列模块执行顺序的文件。playbook可通过执行模块来改变主机准柜台。这使得我们可以精准控制多台机器，比如在升级一个应用程序之前把机器从负载均衡器中剔除出去。</p>
+
+<p>Salt有两种模块：<a href="http://docs.saltstack.com/en/latest/ref/modules/all/index.html">执行模块</a>和<a href="http://docs.saltstack.com/en/latest/ref/states/all/index.html">状态模块</a>。执行模块可以简单的执行一些命令，比如执行命令行命令，或者下载一个文件。状态模块与Ansible模块更相似，通过参数定义一个状态，而模块则尝试满足该最终状态。通常状态模块调用执行模块来完成工作。</p>
+
+<p>状态模块执行时使用state执行模块。状态模块支持通过文件定义状态，该文件被称为SLS文件。而状态与主机的映射关系被定义在<a href="http://docs.saltstack.com/en/latest/ref/states/top.html">top.sls</a>文件中。</p>
+
+<p>playbook及SLS文件（通常）都是使用YAML格式。</p>
+
+<p>另外，我想指出当任务需要使用inventory,或者需要在多台机器上运行时，使用远程执行引擎是非常有用的。</p>
+
+<h2>架构</h2>
+
+<p>Salt有一个Salt master，而很多Salt minon在初始化时会连接到该master上。通常，命令起始于master的命令行中。master然后将命令分发到minion上。初始化时，minion会交换一个秘钥建立握手，然后建立一个持久的加密的TCP连接。我可以喋喋不休的阐述Salt如何借助<a href="http://zeromq.org/">ZeroMQ</a>库来通讯，但简短的来说，Salt master可以同时连接很多minion而无需担心过载，这归功于ZeroMQ。</p>
+
+<p>由于minion和Salt master之间建立了持久化连接，所以Salt master上的命令能很快的到达minion上。minion也可以缓存多种数据，以便加速执行。</p>
+
+<p>Ansible无需master，它使用SSH作为主要的通讯层。这意味着它比较慢，但无需master意味着它在设置及测试Ansible playbook上更加容易。有人也声称它更安全，因为它不需要额外的服务器程序。你可以在“安全”章节获取更多信息。</p>
+
+<p>Ansible也有支持ZeroMQ的版本，但需要一个初始的SSH连接来设置。我尝试了这个，但说实话我并没感到速度有所提升。我猜如果playbook更大，主机更多时才会感受到速度的提升。</p>
+
+<p>Ansible推荐使用inventory文件来追踪机器。inentory文件基本上包含了一组主机，可以对其分类为组，可以对一组主机或单个主机指定属性。你可以建立多个inventory文件，比如一个作为阶段环境，另一个作为产品环境。</p>
+
+<p>Salt也支持使用SSH替代ZeroMQ，即<a href="http://docs.saltstack.com/en/latest/topics/ssh/">Salt SSH</a>。但请注意目前还是试用版本（而且我还没尝试用过）</p>
+
+<h2>社区</h2>
+
+<p>对于这两个项目我都有使用IRC及邮件列表的经历。我也给它们发过补丁包，包括Python代码及一些文档修正。以下是我的经历的总结：</p>
+
+<p>Ansible：IRC上反馈非常快，并且很友好。但该项目貌似缺少社区影响，更像是一个人在领导，即Michael DeHaan。抱歉我这样说，其实我很喜欢社区，因为对于改进更加开放和友好。Ansible一些改进问题还未修复就关闭了，让我感觉它把问题隐藏了起来。好在所有的问题都有回答。</p>
+
+<p>Salt需要继续证明其欢迎社区贡献。IRC反馈已经变得及时和友好。有时我需要借助于邮件列表。我有一些邮件，直到4天以后才得到响应，但看起来每个邮件最终都会有跟进。</p>
+
+<p>我的印象是Salt有更成熟的社区，更欢迎协作。我说这句话时可能会得罪很多人，当然这是我个人观点！</p>
+
+<h2>速度</h2>
+
+<p>如果你以为你的服务器比较少，速度无所谓时，我相信你是错的。能够快速迭代永远是非常重要的。长期来说，配置缓慢会拖慢你的整个节奏。如果有些东西需要花费30秒以上来编译，我会在编译时去玩Twitter，而这意味着该编译会其实会花掉至少120秒。部署时也会这样。</p>
+
+<p>Ansible始终使用SSH来初始化连接。这很慢。也许Ansible的ZeroMQ实现（之前提到过）会改善这点，但初始化依然会很慢。Salt默认使用ZeroMQ，所以很快。</p>
+
+<p>之前说过，Salt拥有持久的minion进程。这使得Salt可以缓存文件，从而加速执行。</p>
+
+<h2>代码结构</h2>
+
+<p>我最不能忍受的是Ansible模块不能被导入（因为<a href="https://github.com/JensRantil/ansible/blob/devel/library/files/copy#L189">导入就会执行代码</a>）。这意味着测试模块时会引入一些魔法。因为你无法导入任何一个模块。我不喜欢魔法，而喜欢纯粹简单的代码。这更像Salt的风格。</p>
+
+<p>少用魔法意味着给Salt模块写测试更清晰。Salt完全可测。我很高兴Salt关于<a href="http://docs.saltstack.com/en/latest/topics/development/tests/unit.html">测试</a>有三个章节，包括鼓励你mock一些你不具备的基础设施来增加可测性，比如mock一个MySQL实例。</p>
+
+<p>以上说明Ansible通常拥有简洁干净的代码。我在其中可以快速跳转。然而，<a href="https://groups.google.com/forum/#!msg/ansible-project/mpRFULSiIQw/jIIQdOSubnUJ">提升代码结构</a>不是“Ansiable社区”的关注点。</p>
+
+<p>Ansible和Salt都可以通过<a href="https://pypi.python.org/pypi/salt">PyPi</a>来安装。</p>
+
+<h2>Vagrant支持</h2>
+
+<p>当讨论测试时，DevOps人喜欢Vagrant。直到现在我还没用过它。Vagrant可以使用Slat和Ansible提供的模块来初始化机器。这意味着在初始化机器时，Vagrant可以轻而易举的使用master+minion模式，或者执行一个playbook。</p>
+
+<h2>任务编排</h2>
+
+<p>Ansible和Salt都支持编排，我认为Ansible中编排规则更容易理解和使用。基本上，playbook可以分割为多个任务组，每组匹配一组主机（或主机组）。每组按顺序来依次执行。这与任务的执行顺序相同。</p>
+
+<p>Salt支持<a href="http://docs.saltstack.com/en/latest/topics/event/index.html">事件</a>和<a href="http://docs.saltstack.com/en/latest/topics/reactor/">反应器</a>。这意味Salt执行可能会触发另一个机器上的东西。Salt的执行引擎也支持监控。所以未来这块前景比较广阔。你可以使用<a href="http://docs.saltstack.com/en/latest/ref/states/overstate.html">Overstate</a>在集群中以特定顺序设置多种角色来实现基础编排。</p>
+
+<p>Ansible比Salt在编排方面更好，因为它简单。Salt将来会更好，因为在集群变化中它更具持续反应性。</p>
+
+<p>Salt及Ansible都支持通过机器窗口执行任务。这对于保证服务始终可用（比如升级时）是非常有用的。</p>
+
+<h2>安全</h2>
+
+<p>Ansible使用SSH来传输数据。SSH是经历过考验的协议。一旦SSH服务器被正确配置（使用一个良好的随机数生成器），我相信大多数人会认为SSH客户端是安全的。</p>
+
+<p>Ansible也可以轻松的建立多个非root用户与单个主机的连接。如果你非常反对有进程以root权限运行，那么你可以考虑使用Ansible。Ansible支持使用sudo来以root方式执行模块。所以你可以无需使用root来建立SSH连接。</p>
+
+<p>Salt使用“自己”的AES实现及key管理。我想指出这里的“自己”其实是使用<a href="https://www.dlitz.net/software/pycrypto/">PyCrypto</a>包。Salt<a href="http://www.cvedetails.com/vulnerability-list/vendor_id-12943/product_id-26420/version_id-155046/Saltstack-Salt-0.17.0.html">以前</a>有安全问题，但同时我认为Salt架构很简单，所以安全问题可以轻松的维护。</p>
+
+<p>有点需要指出，Salt运行master及minion时默认以root方式。这个配置可以改，但显而易见会导致一些新问题，比如非root模式下很难安装Debian包。在master上你可以配置salt命令为非root模式。我极力推荐这样做。</p>
+
+<h2>敏感数据</h2>
+
+<p>所有敏感数据应当单独存放，然后在需要时存放在配置机器上。如果配置机器是系统管理员的机器（现在通常是笔记本电脑），那么会有数据被盗用的风险。</p>
+
+<p>经过深入的长时间思考后，我认为认证master方式是更好的选择。这意味着敏感数据可以强制存放在一个受保护的地方（当然需要加密的备份）。Salt可以把安全证书存放在”Pillar”里。当然，破解master会是个毁灭性打击，但是同时我们只需要安全保护一台机器。不是所有的开发者电脑都是安全的，尤其在火车上或飞机场时。</p>
+
+<p>显然，Ansible用户可以选择始终通过一个绝对安全的存放敏感数据的电脑上执行playbook。但人们通常会这样做吗？</p>
+
+<h2>审计能力</h2>
+
+<p>当讨论安全时我认为审计是相当重要的。Salt在这方面比Ansible做的要好。Salt的每次执行都会在master上<a href="http://docs.saltstack.com/en/latest/topics/jobs/index.html">存放</a>X天。这样我们更容易调试，也容易发现可疑的事情。</p>
+
+<h2>部署</h2>
+
+<p>Ansible显然更容易些。因为它无需部署。当然，Salt支持SSH，但文档中大多数情况下假设我们使用ZeroMQ的方式。当然，SSH要慢些。</p>
+
+<p>初始化minion的好处是这些minion都会连接到master。这使得我们可以快速初始化很多新机器。如果你想使用类似于亚马逊的自动化弹性扩展功能时，minion-连接架构很有用。每一个自动化弹性扩展的机器将自动变为一个minion。</p>
+
+<p>Salt <a href="https://github.com/saltstack/salt-bootstrap">初始化脚本</a>非常好用，而且执行很快。可以处理不多种分发，文档也很<a href="http://salt.readthedocs.org/en/latest/topics/tutorials/salt_bootstrap.html">丰富</a>。</p>
+
+<h2>学习曲线</h2>
+
+<p>Ansible这方面更好。Ansible更容易学习及提高。因为我们只需拷贝一份Ansible GIT代码库，然后设置一些环境变量就可以执行playbook了。</p>
+
+<p>Salt可以以<a href="http://docs.saltstack.com/en/latest/topics/tutorials/quickstart.html">非master模式</a>运行。这样可以更容易设置和运行salt。然而，对于产品环境（以及阶段环境）我推荐使用master模式来运行Salt。</p>
+
+<p>通体来说，Salt功能更花哨，代价是学习曲线陡峭。Salt<a href="http://docs.saltstack.com/en/latest/topics/development/modular_systems.html">更加模块化</a>。这易于组织代码结构，但是完全精通Salt需要更多学习。</p>
+
+<h2>升级</h2>
+
+<p>升级Salt取决于当时是如何安装Salt的。基于Debian的分发的话，有一个apt代码库来存放最新的Debian包。所以升级的话可以使用apt-getupgrade。对于Ubuntu机器，有PPA。这些代码库的维护很活跃。最新发布的2014.1.0版本一周内（时间有点长）就有了Debian/Ubuntu包。</p>
+
+<p>升级Ansible更简单。你只需简单执行git fetch &amp;&amp; git checkout <tag>即可。</p>
+
+<h2>文档</h2>
+
+<p>两个项目都有详尽的文档供你设置和运行，以及开发模块及配置。过去Ansible比Salt有更好的文档结构。最近Salt花了<a href="https://github.com/saltstack/salt/issues/10526">大力气</a>来重整文档。我也贡献了自己的力量来帮助完善这些文档。</p>
+
+<h2>结语</h2>
+
+<p>对于我来说，Ansible是个极好的工具来自动化服务器配置及自动化部署。设置Ansible并运行起来很简单，而且文档也很丰富。</p>
+
+<p>进一步说，Salt具有可伸缩性，速度快，架构合理。我发现Salt的结构更适合云端部署。将来我会毫不犹豫的使用Salt。</p>
+
+<p>总的来说，你在做出选择之前最好在你的项目中都试用下它们。反正配置及测试Ansible及Salt都非常快。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+<span class="byline author vcard">Posted by <span class="fn">黄博文</span></span>
+
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-21T15:15:47+08:00" pubdate data-updated="true">Jul 21<span>st</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/devops/'>DevOps</a>
+  
+</span>
+
+
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/07/08/acl-recovery/" title="Previous Post: 膝盖中了一箭之手术篇">&laquo; 膝盖中了一箭之手术篇</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>攻城狮，程序猿。目前就职于ThoughtWorks。</p>
+</section>
+
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Facl%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EACL%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Factivemq%27+style%3D%27font-size%3A+36.66666666666667%25%27%3EActiveMQ%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EAgile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eagile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fandroid%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EAndroid%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Faws%27+style%3D%27font-size%3A+32.22222222222222%25%27%3EAWS%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fc-%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EC%23%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fci%27+style%3D%27font-size%3A+23.333333333333336%25%27%3ECI%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fcloud%27+style%3D%27font-size%3A+50.0%25%27%3ECloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdatabase%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EDataBase%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdesign%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Edesign%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdevops%27+style%3D%27font-size%3A+27.77777777777778%25%27%3EDevOps%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fefficient%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eefficient%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fenglish%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EEnglish%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffitness%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Efitness%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EFP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgatling%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGatling%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgradle%27+style%3D%27font-size%3A+41.111111111111114%25%27%3EGradle%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgrunt%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGrunt%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhaskell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHaskell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhomebrew%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHomebrew%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EJava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ejava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjavascript%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJavaScript%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%E5%AD%A6%E4%B9%A0%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJava%E5%AD%A6%E4%B9%A0%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flearning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Elearning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+32.22222222222222%25%27%3ELife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+18.88888888888889%25%27%3Elife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmarathon%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EMarathon%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmicroservice%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Emicroservice%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fplugin%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eplugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fpractise%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Epractise%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fprotractor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EProtractor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Freading%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ereading%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frefactor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erefactor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fruby%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frun%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ERun%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frunning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erunning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fshell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eshell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring%27+style%3D%27font-size%3A+27.77777777777778%25%27%3ESpring%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESpring-context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+45.55555555555556%25%27%3ESpring-Context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fstudy%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Estudy%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsvn%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESVN%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ETesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftranslation%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etranslation%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweb%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EWEB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxml%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXML%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fzsh%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EZSH%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%B7%A5%E5%85%B7%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%B7%A5%E5%85%B7%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%80%BB%E7%BB%93%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E6%80%BB%E7%BB%93%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+27.77777777777778%25%27%3E%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%27+style%3D%27font-size%3A+36.66666666666667%25%27%3E%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BF%BB%E8%AF%91%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E7%BF%BB%E8%AF%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E8%AF%BB%E4%B9%A6%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%3C%2Fa%3E+%3C%2Ftags%3E"></span>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/21/salt-vs-ansiable/">翻译-Salt与Ansible全方位比较</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/08/acl-recovery/">膝盖中了一箭之手术篇</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/16/how-to-build-self-confidence/">如何培养自信心</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/08/i-hurt-my-knee/">膝盖中了一箭</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/01/integrate-protracto-to-grunt-task/">在Grunt task中集成Protractor</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/huangbowen521">@huangbowen521</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'huangbowen521',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no"
+        src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2246154347&verifier=149f357d&dpc=1"></iframe>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - 黄博文 -
+  huangbowen521@gmail.com
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bowenhuang';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable/';
+        var disqus_url = 'http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 翻译 | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/fan-yi/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:49+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -37,7 +37,7 @@
     <link href="http://www.huangbowen.net/blog/2013/08/25/preface-of-effective-javascript/"/>
     <updated>2013-08-25T12:17:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/08/25/preface-of-effective-javascript</id>
-    <content type="html"><![CDATA[<p><img class="<a" src="href="http://img3.douban.com/lpic/s24868715.jpg">http://img3.douban.com/lpic/s24868715.jpg</a>"></p>
+    <content type="html"><![CDATA[<p>{% img <a href="http://img3.douban.com/lpic/s24868715.jpg">http://img3.douban.com/lpic/s24868715.jpg</a> %}</p>
 
 <p>虽然JavaScript在诞生之初由于商业原因及规范的缺少，一直饱受人们的诟病。但是随着时间的推移，
 人们已经逐渐走出了对这门语言的偏见和误解，开始领略它那强大的语言特性。当下JavaScript语言大红大紫，研究讨论JavaScript的相关书籍也早已汗牛充屋，但是这本书作为Effective软件开发系列中的一员，却是不可或缺。</p>

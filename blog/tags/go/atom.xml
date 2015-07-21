@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Go | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/go/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:49+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -31,7 +31,7 @@
 
 <p>Go使用了Server-Agent的模式。Server用来展示和配置pipeline的DashBoard，并存放构建出来的Artifacts（存档文件，比如一个war包); Agent则用来执行真正的构建操作，一个Server可以和多个Agent建立连接，Agent支持多个主流的操作系统。</p>
 
-<p><img src="/images/Server-Agent.png"></p>
+<p>{% img /images/Server-Agent.png %}</p>
 
 <p>这样的好处是：</p>
 
@@ -46,7 +46,7 @@
 
 <p>下图是Agent工作的生命周期。</p>
 
-<p><img src="/images/AgentLifeCycle.png"></p>
+<p>{% img /images/AgentLifeCycle.png %}</p>
 
 <p>每一台Go的构建节点机器上都需要安装Go Agent软件（这个名字蛋痛，不是翻墙的那个软件），其用来建立起与Go Server的连接。
 Go Agent会以轮询的方式来询问Go Server是否有当前有构建工作。如果有的话，Go Server会将其分配给处于ready状态的Agent。该Agent会在自己机器目录上创建一个目录，并下载同步最新的材料（比如配置的SVN repo地址）,然后执行指定的task，比如构建项目，运行单元测试或功能性测试等。如果配置了artifacts（比如构建的结果，一个war包），Agent执行完毕后将这个artifacts发布到Go Server上，这样artifacts就会被接下来的stage用到。</p>
@@ -55,7 +55,7 @@ Go Agent会以轮询的方式来询问Go Server是否有当前有构建工作。
 
 <p>Go对复杂的构建和部署活动进行了合理的抽象，并提供了GUI和XML两种方式来配置pipeline。</p>
 
-<p><img src="/images/GoConcepts.png"></p>
+<p>{% img /images/GoConcepts.png %}</p>
 
 <p>在Go的世界中，多个pipeline可以共同组成一个group，这叫做pipeline group。没个pipeline又由多个stage组成。假设一个pipeline需要做如下事情： 构建项目->部署到测试环境->部署到生产环境。那么每一个环节都可以设置为一个stage。而一个stage则由1个或多个job组成。比如构建项目这个stage，可能会分为编译及验证->功能性测试，每一步可以作为一个job。job则由一个或多个task组成。比如功能性测试这个job可以分为两个task来完成，先将artifacts部署到测试机上，再运行功能性测试。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DataBase | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/database/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T09:56:10+08:00</updated>
+  <updated>2015-07-21T15:21:49+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/07/30/concepts-of-sql-statement/"/>
     <updated>2013-07-30T22:31:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/07/30/concepts-of-sql-statement</id>
-    <content type="html"><![CDATA[<p><img src="/images/sql_rebel.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img /images/sql_rebel.jpg %}</p>
 
 <p>好几年没写SQL语句了。现在到了新的team，需要用到数据库。作为QA的话时常需要使用客户端工具连接到数据库中找寻或修改数据。这么长时间没使用，一些SQL的使用技巧都忘得差不多了。晚上看了一些资料，花了1个多小时又捡起了曾经的知识。现在总结一下以方便以后查阅。</p>
 
