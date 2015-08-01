@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: AP | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/ap/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/06/05/programmatically-set-android-phone-ap/"/>
     <updated>2013-06-05T12:04:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/06/05/programmatically-set-android-phone-ap</id>
-    <content type="html"><![CDATA[<p>{% img /images/android.jpeg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/android.jpeg"></p>
 
 <p>最近在做一个小的应用，需要通过程序设置安卓手机的AP（Access point, 即将手机变为一个移动热点，其他机器能够通过wifi连接到此手机）。原以为很简单的一个东西，还是花费了一番周折，最终还是搞定了。</p>
 

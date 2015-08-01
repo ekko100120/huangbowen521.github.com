@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: HermesJMS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/hermesjms/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -29,11 +29,11 @@
 
 <p>下载完成以后，要配置ActiveMQ到provider去。打开Hermes，点击<code>create new session</code>按钮，然后在界面下方选中Providers tab，添加对ActiveMQ的配置。我们以ActiveMQ5.8.0版本为例。首先创建一个名为ActiveMQ5.8.0的group，然后向其添加两个jar包:activemq-all-5.8.0.jar及geronimo-j2ee-management_1.1_spec_1.0.1.jar。这两个jar包都可以在ActiveMQ安装目录下找到。</p>
 
-<p>{% img /images/setupProvider.png 800 %}</p>
+<p><img src="/images/setupProvider.png" width="800"></p>
 
 <p>然后就可以创建一个ActiveMQ的Session了。点击Sessions tab，输入以下配置信息。</p>
 
-<p>{% img /images/setupSession.png 800 %}</p>
+<p><img src="/images/setupSession.png" width="800"></p>
 
 <p>设置Plugin为ActiveMQ是为了能够自动检测当前Provider中的Queue和Topic信息。</p>
 
@@ -45,19 +45,19 @@ $:/usr/local/Cellar/activemq/5.8.0/libexec$ activemq console xbean:./conf/active
 
 <p>这样就可以通过hermesJMS和其进行交互了。双击左侧菜单树中的msgQueue节点，可以查看该Queue中的信息。右键点击该节点选择<code>send message</code>向Queue中发送信息。</p>
 
-<p>{% img /images/sendMessage.png 800 %}</p>
+<p><img src="/images/sendMessage.png" width="800"></p>
 
 <p>然后刷新Queue就可以看到消息已经在Queue里了。</p>
 
-<p>{% img /images/monitorQueue.png 800 %}</p>
+<p><img src="/images/monitorQueue.png" width="800"></p>
 
 <p>我们也可以打开ActiveMQ的Web终端向msgQueue中发送消息。地址:<a href="http://localhost:8161/admin/queues.jsp">http://localhost:8161/admin/queues.jsp</a></p>
 
-<p>{% img /images/webconsole.png 800 %}</p>
+<p><img src="/images/webconsole.png" width="800"></p>
 
 <p>然后在HermesJMS中刷新即可看到新的消息。</p>
 
-<p>{% img /images/msgFromWebConsole.png 800 %}</p>
+<p><img src="/images/msgFromWebConsole.png" width="800"></p>
 
 <p>Hermes JMS还支持将消息存储到一个JDBC数据库中，具体可以查阅官方文档。</p>
 

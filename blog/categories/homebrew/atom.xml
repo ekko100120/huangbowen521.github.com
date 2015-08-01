@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Homebrew | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/homebrew/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/07/01/homebrew-in-mac/"/>
     <updated>2013-07-01T14:33:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/07/01/homebrew-in-mac</id>
-    <content type="html"><![CDATA[<p>{% img /images/lotsOfDogs.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/lotsOfDogs.jpg"></p>
 
 <p>包管理器是神马东西?让我们看看<a href="http://en.wikipedia.org/wiki/Package_management_system">wikipedia</a>上的介绍。</p>
 

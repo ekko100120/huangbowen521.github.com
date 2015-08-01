@@ -4,7 +4,7 @@
   <title><![CDATA[Category: fitness | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/fitness/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -23,9 +23,9 @@
 <!-- more -->
 
 
-<p>{% img /images/onemonth1.jpeg %}</p>
+<p><img src="/images/onemonth1.jpeg"></p>
 
-<p>{% img /images/sixmonth.jpg %}</p>
+<p><img src="/images/sixmonth.jpg"></p>
 
 <p>这是5月份和9月底的对比图。</p>
 
@@ -39,7 +39,7 @@
 
 <p>这是我8月份部分跑步记录。8月份不完全统计跑了260公里+。</p>
 
-<p>{% img /images/runningrecord.png %}</p>
+<p><img src="/images/runningrecord.png"></p>
 
 <h2>遇到瓶颈期怎么办</h2>
 
@@ -47,7 +47,7 @@
 
 <p>这是我记录的5月到7月的体重变化情况。两个月总共瘦了10斤。</p>
 
-<p>{% img /images/weighting.jpg %}</p>
+<p><img src="/images/weighting.jpg"></p>
 
 <h2>力量训练也要跟上</h2>
 

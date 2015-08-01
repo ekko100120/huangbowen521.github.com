@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: CloudFormation | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/cloudformation/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -25,13 +25,13 @@
 
 <p>下图是NAT节点的功能示意图。</p>
 
-<p>{% img /images/natnode.png %}</p>
+<p><img src="/images/natnode.png"></p>
 
 <p>一些路由器或者装有特定软件的主机都可以作为NAT节点。在AWS中如果你想创建一个NAT节点的话那是非常的方便，因为AWS直接提供了预装了NAT软件的AMI，你只需直接使用该AMI在你的公共子网中实例化一台机器，并进行相应的配置即可。</p>
 
 <p>下面的图展示了在AWS中的一个经典的VPC架构。该VPC里面建立了两个子网，一个是公共子网，通过Intenet Geteway和公网连接；一个是私有子网，无法直接访问公网。然后在公共子网中建立了一个EC2机器，使用的是AWS提供的具有NAT功能的AMI，并为它分配了一个弹性IP，这样该EC2就是一个NAT节点。在私有子网的所有机器都具有了通过该NAT节点访问外网的能力。</p>
 
-<p>{% img /images/vpcandnat.png %}</p>
+<p><img src="/images/vpcandnat.png"></p>
 
 <p>为了创建这样一套网络及机器，最简便的方式当然是使用AWS提供的CloudFormation了。如果不了解CloudFormation，可以看我以前写过的一篇文章 <a href="http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation/">《亚马逊云服务之CloudFormation》</a>。下面展示的是创建该整个VPC的CloudFormation脚本。</p>
 
@@ -385,7 +385,7 @@
 <!-- more -->
 
 
-<p>{% img /images/cloudformation1.png 680 %}</p>
+<p><img src="/images/cloudformation1.png" width="680"></p>
 
 <p>以上的图中S3、EC2等就属于IaaS，RDS、DynamoDB等就属于PaaS。</p>
 
@@ -399,7 +399,7 @@
 
 <p>Template是CloudFormation的一个重要概念。Template本质上是一个json格式的文件。该文件定义了你需要使用那些AWS的资源，并且如何初始化这些资源。CloudFormation支持的资源如下图所示。</p>
 
-<p>{% img /images/cloudformation2.png 680 %}</p>
+<p><img src="/images/cloudformation2.png" width="680"></p>
 
 <p>一个Template文件至少包含一下几个属性:</p>
 
@@ -451,37 +451,37 @@
 
 <p>首先，需要登录到AWS Management Console，选择EC2服务，点击左侧菜单的Key Pair,创建一个Key Pair。这个Key Pair将在接下来被使用，主要使AWS能够ssh到创建的EC2机器上。当然你也可以使用已有的Key Pair。</p>
 
-<p>{% img /images/cloudformation3.png 680 %}</p>
+<p><img src="/images/cloudformation3.png" width="680"></p>
 
 <p>然后选择CloudFormation服务，点击<code>Create Stack</code>按钮。</p>
 
 <p>然后输入Stack名称，并选择一个Template。由于我们要创建一个WordPress的站点，可以选择<code>use a sample temple</code>,并选择WordPress这个模板。</p>
 
-<p>{% img /images/cloudformation4.png 680 %}</p>
+<p><img src="/images/cloudformation4.png" width="680"></p>
 
-<p>{% img /images/cloudformation5.png 680 %}</p>
+<p><img src="/images/cloudformation5.png" width="680"></p>
 
 <p>然后点击<code>continue</code>按钮，配置相关的参数。注意在KeyName一项中输入我们第一步创建的Key Pair。</p>
 
-<p>{% img /images/cloudformation6.png 680 %}</p>
+<p><img src="/images/cloudformation6.png" width="680"></p>
 
 <p>然后点击<code>continue</code>按钮，配置此Stack的标签，这个是可选项，可以跳过。再点一下<code>continue</code>，将会再次确认想要的创建的资源信息，继续后就可以看到资源正在创建了。</p>
 
-<p>{% img /images/cloudformation7.png 680 %}</p>
+<p><img src="/images/cloudformation7.png" width="680"></p>
 
 <p>页面下半部分有很多标签，你可以随时查看该Stack的描述、资源、事件、参数、输出等各项信息。</p>
 
 <p>等待大约20分钟，Stack就会执行完毕，在Outputs标签中你会看到有一个url。</p>
 
-<p>{% img /images/cloudformation8.png 680 %}</p>
+<p><img src="/images/cloudformation8.png" width="680"></p>
 
 <p>这个就是我们创建的WordPress的入口地址，访问该链接会进入WordPress的初始化设置页面。</p>
 
-<p>{% img /images/cloudformation9.png 680 %}</p>
+<p><img src="/images/cloudformation9.png" width="680"></p>
 
 <p>配置完以后，一个新的WordPress就诞生了，重新访问URL，你会看到你的博客首页。</p>
 
-<p>{% img /images/cloudformation10.png 680 %}</p>
+<p><img src="/images/cloudformation10.png" width="680"></p>
 
 <h2>CloudFormer</h2>
 
@@ -491,19 +491,19 @@
 
 <p>首先创建Stack,Template选择use a sample template,并选择CloudFormer。</p>
 
-<p>{% img /images/cloudformation11.png 680 %}</p>
+<p><img src="/images/cloudformation11.png" width="680"></p>
 
 <p>然后点击<code>continue</code>，配置其他参数，直到走完创建Stack这个流程。</p>
 
-<p>{% img /images/cloudformation12.png 680 %}</p>
+<p><img src="/images/cloudformation12.png" width="680"></p>
 
 <p>等待这个Stack创建完毕后，就可以从Outputs标签得到一个URL。这个URL是执行CloudFormer工具的入口地址。</p>
 
-<p>{% img /images/cloudformation13.png 680 %}</p>
+<p><img src="/images/cloudformation13.png" width="680"></p>
 
 <p>点击此URL,即可按照配置一步步配置自己的Template。</p>
 
-<p>{% img /images/cloudformation14.png 680 %}</p>
+<p><img src="/images/cloudformation14.png" width="680"></p>
 
 <p>流程走完后，生成的Template会存放到你的S3 bucket中。</p>
 

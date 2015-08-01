@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: aws | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/aws/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -29,7 +29,7 @@
 
 <p>目前亚马逊推出了Solutions Architect,Developer和SysOps Administrator三个方向的认证。每个方向又分为Associate Level(助理级)，Professional Level（专家级）和Master Level（大师级）。当然目前只有Solutions Architect开放了Professional Level,其他层级会逐步开放中。</p>
 
-<p>{% img /images/cert_roadmap_Q214_EN.png %}</p>
+<p><img src="/images/cert_roadmap_Q214_EN.png"></p>
 
 <h2>我的AWS使用经验</h2>
 
@@ -102,17 +102,17 @@
 
 <p>以下是云计算的一个概念图。</p>
 
-<p>{% img /images/cloudComputer.png  800 %}</p>
+<p><img src="/images/cloudComputer.png" width="800"></p>
 
 <p>从该图中可以看出，云计算提供的服务可以分为三层，第一层是基础设施（Infrastructure）,第二层是平台（Platform）,第三层是应用软件（Application）。基础设置的服务包括虚拟或实体计算机、块级存储、网络设施（如负载均衡，内容交付网络，DNS解析）等，平台的服务包括对象存储、认证服务和访问服务、各种程序的运行时、队列服务、数据库服务等，而应用软件的服务则包括的多了，比如邮件服务、代码托管服务等等。用户可以通过台式电脑、手提电脑、手机、平板等各种互联网终端设备访问和使用这些服务。</p>
 
 <p>其实这三层就是我们常说的IaaS（Infrastructure as a Service）、PaaS（Platform as a Service）、SaaS(Software as a Service)。</p>
 
-<p>{% img /images/cloudService.png 800 %}</p>
+<p><img src="/images/cloudService.png" width="800"></p>
 
 <p>亚马逊的云服务提供了多达几十种服务，涵盖了IaaS、PaaS、SaaS这三层。既然是亚马逊云服务，那么为什么通常都叫做Amazon Web Service（AWS）那，为什么不叫Amazon Cloud Service之类的那？这个就不得而知了，估计当时AWS第一个服务出来的时候是2006年，那时候云的概念还没有这么火，而web service则如日中天，所以起了个这个名字。好了不八卦了，先看看亚马逊云计算的架构图。</p>
 
-<p>{% img /images/awsstructure.png 800 %}</p>
+<p><img src="/images/awsstructure.png" width="800"></p>
 
 <p>从该架构图可以看出，亚马逊云服务由7部分组成。接下来对这7部分的主要服务做一个简要的介绍。</p>
 

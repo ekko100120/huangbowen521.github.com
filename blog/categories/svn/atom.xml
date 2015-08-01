@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SVN | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/08/13/branchs-in-svn/"/>
     <updated>2013-08-13T00:59:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/08/13/branchs-in-svn</id>
-    <content type="html"><![CDATA[<p>{% img /images/branch_trunk.jpg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/branch_trunk.jpg"></p>
 
 <p>在使用源代码版本控制工具时，最佳实践是一直保持一个主干版本。但是为了应付实际开发中的各种情况，适时的开辟一些分支也是很有必要的。比如在持续开发新功能的同时，需要发布一个新版本，那么就需要从开发主干中建立一个用于发布的分支，在分支上进行bug fix，维护版本的稳定，并适时的将一些改动合并回主干。目前大红大紫的源代码版本控制工具git很受大家推崇，原因之一就是其在这方面的功能相当强大。其实老牌的SVN也是有这样的功能的，接下来就给大家讲解下。</p>
 

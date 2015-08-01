@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Chef | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/chef/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/09/16/introduction-of-chef/"/>
     <updated>2013-09-16T23:29:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/09/16/introduction-of-chef</id>
-    <content type="html"><![CDATA[<p>{% img /images/migrate_to_cloud.png %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/migrate_to_cloud.png"></p>
 
 <p>云时代的到来势不可挡。尤其作为程序员，我们每天或多或少的直接或间接的使用者各种云服务。云平台有很多种，如云软件（SaaS， Software as a service）、云平台（PaaS, Platform as a service）、云设备(IaaS, Infrastructure as a service)。云计算由于其价格低廉、按需提高、使用方便等特点，越来越受到人们的欢迎。</p>
 
@@ -46,7 +46,7 @@
 
 <p>以下是Chef的架构图。</p>
 
-<p>{% img /images/chef_overview.png 600 %}</p>
+<p><img src="/images/chef_overview.png" width="600"></p>
 
 <h2>Workstation</h2>
 

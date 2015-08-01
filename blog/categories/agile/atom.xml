@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Agile | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -48,7 +48,7 @@
     <link href="http://www.huangbowen.net/blog/2013/08/06/effective-standup-meetings/"/>
     <updated>2013-08-06T06:38:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/08/06/effective-standup-meetings</id>
-    <content type="html"><![CDATA[<p>{% img /images/standup.jpeg %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/standup.jpeg"></p>
 
 <p>Stand up meeting作为敏捷项目开发中的一个重要实践不可或缺。站立会议每天都要发生，在会议上大家可以了解到每个人的工作进展、项目遇到的concern和issue，从而做出适应的资源调整和措施，保证项目交付的顺利进行。如何让站会变得高效，本人总结了一些tips，希望对大家有用。</p>
 
@@ -119,11 +119,11 @@
 
 <p> 设置方法是访问<a href="(https://travis-ci.org/)">Travis CI</a>的<a href="https://travis-ci.org/profile">profile</a>，选择相应的repository打开Service Hook开关。</p>
 
-<p> {% img /images/TravisProfile.png %}</p>
+<p> <img src="/images/TravisProfile.png"></p>
 
 <p> 然后登陆你的github，访问具体的repository的Service Hook页面，确保设置了Travis CI Hook的github name和travis token。</p>
 
-<p> {% img /images/ServiceHook.png %}</p></li>
+<p> <img src="/images/ServiceHook.png"></p></li>
 <li><p>给repository配置.travis.yml文件。该文件需要放置在repository的根目录下。</p>
 
 <p> .travis.yml文件是一个相当重要的文件，里面需要配置你所使用的语言、运行环境、构建工具、构建脚本、通知方式等。最重要的是设置语言，其它的都有相应的默认值。</p>
@@ -147,12 +147,12 @@ jdk:
 <p>只要这三步就完成了配置。现在发起一个push就可以trigger你在<a href="(https://travis-ci.org/)">Travis CI</a>的build。
 这时候登陆<a href="(https://travis-ci.org/)">Travis CI</a>可以看到你的Build的状态和日志。</p>
 
-<p>{% img /images/BuildInfo.png %}</p>
+<p><img src="/images/BuildInfo.png"></p>
 
 <p>你可以在respository的README.md文件中加入build状态图标。方法是在在该文件中加入
 <code>[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])</code>即可。</p>
 
-<p>{% img /images/BuildImage.png %}</p>
+<p><img src="/images/BuildImage.png"></p>
 
 <p>总体来说<a href="(https://travis-ci.org/)">Travis CI</a>是一个轻量级、可高度定制化的免费的持续集成服务。但我觉得还是有几个缺点:</p>
 

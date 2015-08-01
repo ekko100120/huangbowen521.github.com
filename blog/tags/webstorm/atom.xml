@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: WebStorm | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/webstorm/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-07-21T15:21:49+08:00</updated>
+  <updated>2015-08-01T19:55:51+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -33,7 +33,7 @@
 <li><p>菜单栏Run里面选<code>Edit Configurations…</code>项，在弹出的对话框中点击左上角的<code>+</code>按钮,选择<code>Node.js</code>。</p></li>
 <li><p>然后进行如下配置。</p>
 
-<p> {% img /images/run.png %}</p>
+<p> <img src="/images/run.png"></p>
 
 <p> 主要配置参数：</p>
 
@@ -51,7 +51,7 @@
 
 <p>在<a href="http://www.jetbrains.com/webstorm/">WebStorm</a>中运行我们定义的Karma Runner，就能实时的看到测试结果。它能自动监听文件修改。一有风吹草动就会重新运行测试，而且速度奇快。</p>
 
-<p>{% img /images/running.png %}</p>
+<p><img src="/images/running.png"></p>
 
 <h2>配置Karma Debugger.</h2>
 
@@ -61,7 +61,7 @@
 <li><p>菜单栏Run里面选<code>Edit Configurations…</code>项，在弹出的对话框中点击左上角的<code>+</code>按钮,选择<code>JavaScript Debug</code>-><code>Remote</code>。</p></li>
 <li><p>在配置框中输入以下参数。</p>
 
-<p> {% img /images/debug.png %}</p>
+<p> <img src="/images/debug.png"></p>
 
 <p> 主要参数设置：</p>
 
@@ -87,7 +87,7 @@
 
 <p>注意第一次运行时WebStorm会提醒你在浏览器上安装相应的插件。</p>
 
-<p>{% img /images/debugging.png %}</p>
+<p><img src="/images/debugging.png"></p>
 ]]></content>
   </entry>
   
