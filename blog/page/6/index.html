@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="在Spring中定义bean的方式多种多样，即使使用xml的方式来配置也能派生出很多不同的方式。 ">
+  <meta name="description" content="了解到ZSH的强大以后打算将自己目前使用的bash切换到ZSH。具体ZSH比bash强在那里就不多少了，网上的文章一搜一大把。个人主要是被ZSH强大的自动补全吸引过来的。虽然bash装了bash-completaion以后也有了一定的自动补全能力，但是和ZSH比起来还是差距太大。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/29/using-zsh/">切换到ZSH以后遇到的坑</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-29T00:51:00+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/29/using-zsh/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/29/using-zsh/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>了解到ZSH的强大以后打算将自己目前使用的bash切换到ZSH。具体ZSH比bash强在那里就不多少了，网上的文章一搜一大把。个人主要是被ZSH强大的自动补全吸引过来的。虽然bash装了bash-completaion以后也有了一定的自动补全能力，但是和ZSH比起来还是差距太大。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/29/using-zsh/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -474,50 +518,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/10/use-redelivery-in-activemq/">ActiveMQ第五弹:增加ReDelivery功能</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-10T01:17:00+08:00" pubdate data-updated="true">Mar 10<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/03/10/use-redelivery-in-activemq/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/10/use-redelivery-in-activemq/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在使用Message Queue的过程中，总会由于种种原因而导致消息失败。一个经典的场景是一个生成者向Queue中发消息，里面包含了一组邮件地址和邮件内容。而消费者从Queue中将消息一条条读出来，向指定邮件地址发送邮件。消费者在发送消息的过程中由于种种原因会导致失败，比如网络超时、当前邮件服务器不可用等。这样我们就希望建立一种机制，对于未发送成功的邮件再重新发送，也就是重新处理。重新处理超过一定次数还不成功，就放弃对该消息的处理，记录下来，继续对剩余消息进行处理。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/03/10/use-redelivery-in-activemq/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -545,6 +545,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/17/learn-new-technology-quickly/">如何快速掌握一门新技术/语言/框架&#8230;</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/01/recovery-after-acl-surgery/">膝盖中了一箭之康复篇</a>
       </li>
     
@@ -558,10 +562,6 @@
     
       <li class="post">
         <a href="/blog/2015/06/16/how-to-build-self-confidence/">如何培养自信心</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/08/i-hurt-my-knee/">膝盖中了一箭</a>
       </li>
     
   </ul>

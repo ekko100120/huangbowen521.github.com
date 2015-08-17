@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="年后的2、3月份是每年换工作的高峰期。可能很多人在过年以前早都萌生了换工作的想法。过年时在亲朋好友的刺激下，更坚定了这个想法。年终奖既已到手，对前公司的最后一丝留恋也随之逝去。在各大招聘网上更新自己的简历，主动和猎头联系让其帮忙物色，新一轮大潮已经开始。 ">
+  <meta name="description" content="在使用Message Queue的过程中，总会由于种种原因而导致消息失败。一个经典的场景是一个生成者向Queue中发消息，里面包含了一组邮件地址和邮件内容。而消费者从Queue中将消息一条条读出来，向指定邮件地址发送邮件。消费者在发送消息的过程中由于种种原因会导致失败，比如网络超时、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/10/use-redelivery-in-activemq/">ActiveMQ第五弹:增加ReDelivery功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-10T01:17:00+08:00" pubdate data-updated="true">Mar 10<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/10/use-redelivery-in-activemq/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/10/use-redelivery-in-activemq/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在使用Message Queue的过程中，总会由于种种原因而导致消息失败。一个经典的场景是一个生成者向Queue中发消息，里面包含了一组邮件地址和邮件内容。而消费者从Queue中将消息一条条读出来，向指定邮件地址发送邮件。消费者在发送消息的过程中由于种种原因会导致失败，比如网络超时、当前邮件服务器不可用等。这样我们就希望建立一种机制，对于未发送成功的邮件再重新发送，也就是重新处理。重新处理超过一定次数还不成功，就放弃对该消息的处理，记录下来，继续对剩余消息进行处理。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/10/use-redelivery-in-activemq/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -476,50 +520,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/02/set/">Java中的Set, List, Map漫谈</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-02T23:45:00+08:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2014</time>
-        
-           | <a href="/blog/2014/01/02/set/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/01/02/set/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在编程语言中，集合是指代表一组对象的对象。Java平台专门有一个集合框架(Collections Framework)。集合框架是指表示和操作集合的统一架构，隔离了集合的操作和实现细节。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/02/set/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -547,6 +547,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/17/learn-new-technology-quickly/">如何快速掌握一门新技术/语言/框架&#8230;</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/01/recovery-after-acl-surgery/">膝盖中了一箭之康复篇</a>
       </li>
     
@@ -560,10 +564,6 @@
     
       <li class="post">
         <a href="/blog/2015/06/16/how-to-build-self-confidence/">如何培养自信心</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/08/i-hurt-my-knee/">膝盖中了一箭</a>
       </li>
     
   </ul>
