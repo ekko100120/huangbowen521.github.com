@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="坦白的说这本书不太适合我。当我看到大段大段的数学符号时，就两眼发蒙。刚开始还感觉跟得上，到后来完全lost了。 但是这并不妨碍我从另一个角度来重新了解了图灵、数学、计算机….去年的时候曾听过Jeff讲过的一个session:《世界及宇宙的终极答案》。我敢确定至少一半的内容都是来自这本书。 &hellip;">
+  <meta name="description" content="第一次接触Selenium 的WebDriver，是在一个Web项目中。该项目使用它来进行功能性测试。当我看到Firefox中的页面内容被一个个自动填充并且自动跳转的时候，感觉真的很神奇。通过这段时间的学习觉得可以将我学的关于WebDriver的知识进行一个总结。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/11/webdriver/">webDriver入门及提高</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T09:39:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/11/webdriver/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/03/11/webdriver/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>第一次接触Selenium 的WebDriver，是在一个Web项目中。该项目使用它来进行功能性测试。当我看到Firefox中的页面内容被一个个自动填充并且自动跳转的时候，感觉真的很神奇。通过这段时间的学习觉得可以将我学的关于WebDriver的知识进行一个总结。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/11/webdriver/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -534,61 +578,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/">《卓有成效的程序员》读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-11T23:52:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time>
-        
-           | <a href="/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在今年的的ThoughtWorks China away day上，我见到了这本书的作者neal ford, 我们还有过简单的交流，并一起去爬了长城。惭愧的是当时我并没有读过他写的这本书。直到今天我拿到了这本书，并花了大半天的时间通读了一遍。看完以后，我觉得这本书真是太好了，非常值得一读。</p>
-
-<p>但是，我想读这本书的读者，大体会分为两个反应。一种是看了一下前面，觉得没有意思，大概翻了翻，发现作者真是太罗嗦了，就丢到了一边。另一种是爱不释手的从头看到尾，看到有些段落会会心一笑，有些段落则加上重重的标记，并决定马上就要开始实践。</p>
-
-<p>如果换做半年前的我，我是第一种反应，而现在，我当然是第二种反应。主要是这半年在ThoughtWorks的历练，使我变得越来越有成效。列举一个真实的例子。在我的前一个项目中，我们做的产品是一个提交保险单的系统，用户要讲过一个一个的page
- flow直到完成一个保单。如果我要开发的或者测试的feature在第7页上，我每次都需要输入大量的数据，点击大量的按钮从第一页走到第7页。试想每天要重复N次真让人崩溃。后来有人就写了一个JavaScript脚本，可以一次填充一页的数据，并自动跳到下一页。我们把这个脚本保存到一个bookmark上，每次只要点击6下就能到第7页。</p>
-
-<p>也许你们说这样已经简化很多了，但是追求卓越的我们并没有止步。我后来了解了selenium IDE这个在firefox下的插件。这个插件作者在书中有提到过。我用selenium IDE录制了一个脚本，只需要点击一个按键，程序就会自动的走到第7页。这样比手动输入速度至少提高了10倍以上。正如作者所说，我们这样的尽量实现自动化操作节省时间不是第一目标，最重要的目标是不要让程序员在一遍遍的手动操作中变傻，而是让我们精力变的更加集中，focus到更具有价值的地方上去。</p>
-
-<p>我觉得每个程序员都想变得高效，但是面对新的方法，新的工具总是或多或少有点畏惧心理，这是因为他们无法体会到采用一种新方法或者新工具带来的震撼的效果。所以对于我们程序员来说绝对要勇于尝试，勇于突破现状。</p>
-
-<p>回顾了一下作者在书中列举的自己感兴趣的东西，顺便对自己做一个总结。（本人使用的是mac pro，所以tool和plugin只关心mac上的。）</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -608,12 +597,16 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
 
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Facl%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EACL%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Factivemq%27+style%3D%27font-size%3A+36.66666666666667%25%27%3EActiveMQ%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eagile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EAgile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fandroid%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EAndroid%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Faws%27+style%3D%27font-size%3A+32.22222222222222%25%27%3EAWS%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fc-%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EC%23%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fchef%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EChef%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fci%27+style%3D%27font-size%3A+23.333333333333336%25%27%3ECI%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fcloud%27+style%3D%27font-size%3A+50.0%25%27%3ECloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdatabase%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EDataBase%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdesign%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Edesign%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdevops%27+style%3D%27font-size%3A+27.77777777777778%25%27%3EDevOps%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fefficient%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eefficient%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fenglish%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EEnglish%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffitness%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Efitness%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EFP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgatling%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGatling%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgradle%27+style%3D%27font-size%3A+41.111111111111114%25%27%3EGradle%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgrunt%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGrunt%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhaskell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHaskell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhomebrew%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHomebrew%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ejava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EJava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjavascript%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJavaScript%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%E5%AD%A6%E4%B9%A0%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJava%E5%AD%A6%E4%B9%A0%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flearning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Elearning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+18.88888888888889%25%27%3Elife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+36.66666666666667%25%27%3ELife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmarathon%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EMarathon%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmicroservice%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Emicroservice%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fplugin%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eplugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fpractise%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Epractise%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fprotractor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EProtractor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Freading%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ereading%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frefactor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erefactor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fruby%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frun%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ERun%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frunning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erunning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fshell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eshell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring%27+style%3D%27font-size%3A+27.77777777777778%25%27%3ESpring%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+45.55555555555556%25%27%3ESpring-Context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESpring-context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fstudy%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Estudy%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsvn%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESVN%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ETesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftranslation%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etranslation%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweb%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EWEB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxml%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXML%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fzsh%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EZSH%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%B7%A5%E5%85%B7%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%B7%A5%E5%85%B7%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%80%BB%E7%BB%93%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E6%80%BB%E7%BB%93%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+27.77777777777778%25%27%3E%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%27+style%3D%27font-size%3A+36.66666666666667%25%27%3E%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BF%BB%E8%AF%91%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E7%BF%BB%E8%AF%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E8%AF%BB%E4%B9%A6%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%3C%2Fa%3E+%3C%2Ftags%3E"></span>
+    <span id="tag-cloud"><embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Facl%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EACL%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Factivemq%27+style%3D%27font-size%3A+36.66666666666667%25%27%3EActiveMQ%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eagile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EAgile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fandroid%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EAndroid%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Faws%27+style%3D%27font-size%3A+32.22222222222222%25%27%3EAWS%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fc-%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EC%23%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fchef%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EChef%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fci%27+style%3D%27font-size%3A+23.333333333333336%25%27%3ECI%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fcloud%27+style%3D%27font-size%3A+50.0%25%27%3ECloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdatabase%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EDataBase%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdesign%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Edesign%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdevops%27+style%3D%27font-size%3A+27.77777777777778%25%27%3EDevOps%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fefficient%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eefficient%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fenglish%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EEnglish%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffitness%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Efitness%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EFP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgatling%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGatling%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgradle%27+style%3D%27font-size%3A+41.111111111111114%25%27%3EGradle%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgrunt%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGrunt%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhaskell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHaskell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhomebrew%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHomebrew%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ejava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EJava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjavascript%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJavaScript%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%E5%AD%A6%E4%B9%A0%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJava%E5%AD%A6%E4%B9%A0%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flearning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Elearning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+18.88888888888889%25%27%3Elife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+36.66666666666667%25%27%3ELife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmarathon%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EMarathon%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmicroservice%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Emicroservice%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fplugin%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eplugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fpractise%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Epractise%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fprotractor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EProtractor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Freading%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ereading%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frefactor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erefactor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fruby%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frun%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ERun%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frunning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erunning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fshell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eshell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring%27+style%3D%27font-size%3A+27.77777777777778%25%27%3ESpring%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+45.55555555555556%25%27%3ESpring-Context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESpring-context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fstudy%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Estudy%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsvn%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESVN%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ETesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftranslation%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etranslation%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweb%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EWEB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxml%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXML%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fzsh%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EZSH%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%B7%A5%E5%85%B7%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%B7%A5%E5%85%B7%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%80%BB%E7%BB%93%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E6%80%BB%E7%BB%93%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+27.77777777777778%25%27%3E%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%27+style%3D%27font-size%3A+36.66666666666667%25%27%3E%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BF%BB%E8%AF%91%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E7%BF%BB%E8%AF%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E8%AF%BB%E4%B9%A6%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%3C%2Fa%3E+%3C%2Ftags%3E"></span>
 </section>
 
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/30/acl-recovery-part-3/">膝盖中了一箭之康复篇9-12周</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/09/06/use-chef-to-manage-windows-cluster/">使用Chef管理windows集群</a>
@@ -629,10 +622,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
     
       <li class="post">
         <a href="/blog/2015/08/01/recovery-after-acl-surgery/">膝盖中了一箭之康复篇</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/07/21/salt-vs-ansiable/">翻译-Salt与Ansible全方位比较</a>
       </li>
     
   </ul>
