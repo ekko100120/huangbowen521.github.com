@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="Spring框架的核心功能之一就是控制反转（Inversion of Control, IoC），也叫做依赖注入（dependency injection, DI）。关于依赖注入的具体内容可以参见Martin Fowler写的一篇文章《Inversion of Control Containers &hellip;">
+  <meta name="description" content="上一节讲述了如何在XML中定义bean。这些bean都比较简单，基本只是个单一对象。但是在企业级开发中，一个对象或多或少都要跟其他对象发生关联，比如继承、调用、实现接口等。传统的方法中，如果对象A某方法的实现要调用对象B的方法，那么一般由对象A来维护对象B的生命周期，包括创建、调用、销毁等。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/16/constructor-based-injection-in-spring/">Spring-Context之五:基于构造器进行依赖注入</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-16T20:19:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/16/constructor-based-injection-in-spring/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/16/constructor-based-injection-in-spring/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上一节讲述了如何在XML中定义bean。这些bean都比较简单，基本只是个单一对象。但是在企业级开发中，一个对象或多或少都要跟其他对象发生关联，比如继承、调用、实现接口等。传统的方法中，如果对象A某方法的实现要调用对象B的方法，那么一般由对象A来维护对象B的生命周期，包括创建、调用、销毁等。而引入了控制反转（即依赖注入）以后，对象A只管负责对对象B的调用，对象B的整个声明周期都交由IoC容器管理。甚至对象A在实现时基于接口实现，IoC容器可以按需注入实现了指定接口的对象到对象A中，这样无需修改任何代码就可以灵活的实现需求变动。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/16/constructor-based-injection-in-spring/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -476,50 +520,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/20/install-and-run-activemq/">ActiveMQ第一弹:安装与运行</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-20T00:12:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/02/20/install-and-run-activemq/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/02/20/install-and-run-activemq/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ActiveMQ使用java写的，所以天然跨平台，windows，各种类Unix系统都可运行，只需要下载对应的分发包即可。当前AciveMQ的最新版本是5.9.0。我目前在自己机子上安装的版本是5.8.0。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/20/install-and-run-activemq/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -547,6 +547,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/11/what-i-learn-in-thoughtworks/">在ThoughtWorks工作这几年我学到了什么？</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/05/acl-recovery-for-4th-month/">膝盖中了一箭之康复篇第四个月</a>
       </li>
     
@@ -560,10 +564,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/acl-surgery-recovery-phase-two/">膝盖中了一箭之康复篇4-8周</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/17/learn-new-technology-quickly/">如何快速掌握一门新技术/语言/框架&#8230;</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="又是一年过去了，看着周围90后在飞速成长，不得不感叹自己这一年轻的优势已经损失殆尽。唯有快马加鞭，不断努力，才能确保自己在战场上了不落后于别人，保持甚至增加自己的核心竞争力。 ">
+  <meta name="description" content="NAT, Network Address Translation,即网络地址转换。当内部网络的主机想要访问外网，但是又不想直接暴露给公网，可以通过NAT节点来访问外网。这样做有两个好处，第一是内网的主机无需拥有公网IP就可访问网络（NAT节点需要公网IP），节约了公网IP； &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/17/create-nat-node-in-aws/">在AWS中创建NAT节点</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-17T23:23:15+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2015</time>
+        
+           | <a href="/blog/2015/01/17/create-nat-node-in-aws/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2015/01/17/create-nat-node-in-aws/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>NAT, Network Address Translation,即网络地址转换。当内部网络的主机想要访问外网，但是又不想直接暴露给公网，可以通过NAT节点来访问外网。这样做有两个好处，第一是内网的主机无需拥有公网IP就可访问网络（NAT节点需要公网IP），节约了公网IP；第二是内网的主机由于没有公网IP，所以公网的电脑无法访问到它，这样就可以隐藏自己。一个很经典的示例是假如你有一台数据库服务器放置在内网中，为在同一个内网中的web服务器提供数据服务，为了安全性考虑你不会把它直接暴露在公网中。但是数据库服务器有时候自己是需要访问公网的，比如需要升级数据库服务器中的某些软件等。采用NAT方案可以很好的解决这个问题。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/01/17/create-nat-node-in-aws/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -477,52 +521,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/29/geting-devops-right-the-lay-of-the-land/">(翻译)正确实施DevOps-The Lay of the Land</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-29T21:38:28+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/09/29/geting-devops-right-the-lay-of-the-land/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/09/29/geting-devops-right-the-lay-of-the-land/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>原文地址:<a href="http://www.drdobbs.com/architecture-and-design/getting-devops-right-the-lay-of-the-land/240062639">http://www.drdobbs.com/architecture-and-design/getting-devops-right-the-lay-of-the-land/240062639</a>，作者Scott W. Ambler。</p>
-
-<p><strong>对于不同的利益相关人DevOps含义不同，但是基本组成部分是相同的。</strong></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/09/29/geting-devops-right-the-lay-of-the-land/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -550,6 +548,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/11/what-i-learn-in-thoughtworks/">在ThoughtWorks工作这几年我学到了什么？</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/05/acl-recovery-for-4th-month/">膝盖中了一箭之康复篇第四个月</a>
       </li>
     
@@ -563,10 +565,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/acl-surgery-recovery-phase-two/">膝盖中了一箭之康复篇4-8周</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/17/learn-new-technology-quickly/">如何快速掌握一门新技术/语言/框架&#8230;</a>
       </li>
     
   </ul>

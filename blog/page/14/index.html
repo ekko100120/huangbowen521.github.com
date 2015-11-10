@@ -9,18 +9,8 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="Enum是在Java中用来定义枚举类型的关键字。Enum一般用来表示一组相同类型的常量,如性别、日期 、颜色等. 下面是一个最简单的枚举。 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-public enum Color
-{ RED, GREEN, BLUE } ">
+  <meta name="description" content="在Haskell的世界中，没有变量赋值，流程跳转，如果要实现一些简单的功能，比如求一个数组中的最大值，都需要借助递归实现。 递归函数的定义: A function may be partly defined in terms of itself.
+即如果一个函数的定义中使用了其自身， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +78,70 @@ public enum Color
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/14/haskell-recursion/">Haskell函数式编程之递归</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-14T21:46:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/14/haskell-recursion/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/03/14/haskell-recursion/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Haskell的世界中，没有变量赋值，流程跳转，如果要实现一些简单的功能，比如求一个数组中的最大值，都需要借助递归实现。</p>
+
+<p><strong>递归函数的定义:</strong></p>
+
+<p><strong>A function may be partly defined in terms of itself.</strong>
+<strong>即如果一个函数的定义中使用了其自身，这个函数就叫做递归函数。</strong></p>
+
+<h2>普通递归(traditional recursion)</h2>
+
+<p>我们就写一个简单的对数组求和的函数。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sum&#39;</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Num</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+</span><span class='line'><span class="nf">sum&#39;</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="ow">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">sum&#39;</span> <span class="n">xs</span>
+</span><span class='line'><span class="nf">sum&#39;</span> <span class="kt">[]</span> <span class="ow">=</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/14/haskell-recursion/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -560,60 +614,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/19/thoughtworks-immersion-xiao-ji/">ThoughtWorks Immersion 小计</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-19T23:08:00+08:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/01/19/thoughtworks-immersion-xiao-ji/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/01/19/thoughtworks-immersion-xiao-ji/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2012年12月18日，第11期TWI在中国西安举行了。这次参加培训的角色有admin，有hr，有Ux,当然更多的是QA和Dev，估计是最齐全的一届。</p>
-
-<p>虽然TWI已经过去好几天了，但是我还在回味那培训中的一幕幕。</p>
-
-<p>关于这几天的经历，我可以用几个关键字来形容。</p>
-
-<p><strong>吃：</strong></p>
-
-<p>虽然我们来到西安是学习滴，但是也不能委屈了自己的胃。刚到西安就先吃了羊肉泡馍，外加一个肉夹馍才感觉有些饱。第一天中午办公室定的凉皮和肉夹馍，典型的北方特色，符合我的胃口。第二天晚上我们team building，去的小杨烤肉，刚开始打不到车，气氛有些低落，但是到了饭馆气氛慢慢火热起来，最后吃完了大家大摆龙门阵，海量重量级八卦被爆出，气氛异常火热。</p>
-
-<hr />
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/01/19/thoughtworks-immersion-xiao-ji/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -641,6 +641,10 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/11/what-i-learn-in-thoughtworks/">在ThoughtWorks工作这几年我学到了什么？</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/05/acl-recovery-for-4th-month/">膝盖中了一箭之康复篇第四个月</a>
       </li>
     
@@ -654,10 +658,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
     
       <li class="post">
         <a href="/blog/2015/08/29/acl-surgery-recovery-phase-two/">膝盖中了一箭之康复篇4-8周</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/17/learn-new-technology-quickly/">如何快速掌握一门新技术/语言/框架&#8230;</a>
       </li>
     
   </ul>
