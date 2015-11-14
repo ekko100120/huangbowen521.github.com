@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-11-11T00:30:46+08:00</updated>
+  <updated>2015-11-15T01:56:50+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,134 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[学习Scala第一篇-从hello World开始]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/11/15/hello-world-in-scala/"/>
+    <updated>2015-11-15T01:41:24+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/11/15/hello-world-in-scala</id>
+    <content type="html"><![CDATA[<p>最近开始系统性的学习scala。其实之前使用过scala的，比如我在用Gatling这款性能测试工具的时候就接触到了scala了。Gatling本身就是用Scala写的，而且Gatling的性能测试配置文件本身就是一个scala类，可以随意使用scala甚至是Java提供的各种类库。当时觉得用Gatling特别舒服的原因就在于配置文件强大的表现力。而这种表现力就是由Scala语言提供的。</p>
+
+<!-- more -->
+
+
+<p>言归正传，学习Scala还是从最简单的Hello world开始。在Scala官网中显著的标题就是：</p>
+
+<blockquote><blockquote><p>Object-Oriented Meets Functional</p>
+
+<p>Have the best of both worlds. Construct elegant class hierarchies for maximum code reuse and extensibility, implement their behavior using higher-order functions. Or anything in-between.</p></blockquote></blockquote>
+
+<p>从中可以看出Scala结合了面向对象及函数式编程这两种编程范式。在本文中我将会拿Java语言和其比较，看看到底Scala强在那里。</p>
+
+<p>使用Java语言实现一个Hello World的代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello World!&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下是Scala的实现：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">HelloWorld</span>  <span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好吧，如果标点符号不算代码行，Java版本和Scala版本的实现的代码行数是一致的。貌似Scala并没有减少什么。唯一减少的就在于println不用指定类名，以及对main方法不用声明为static。</p>
+
+<p>在这里对Scala实现与Java实现的几个不同之处做个介绍。</p>
+
+<ul>
+<li><p>第一是Scala对HelloWorld的修饰符使用的是object。其实Scala中也有class关键字，那么object关键字和class关键字有什么区别那？简单来说object关键字定义了一个匿名类，并且创建了该匿名类的单个实例（采用单例模式），该实例名为HelloWorld。所以object中定义的方法自动都是static的。我觉得object关键字存在的价值之一就是建立起了面向对象和函数式的桥梁。因为在面向对象的系统中，所有方法都必须存在于类中，而函数式编程中没有类的概念，使用函数无需new类的实例，所以object中的方法都是静态方法，可以直接被调用。进一步解读请到<a href="http://stackoverflow.com/questions/1755345/difference-between-object-and-class-in-scala">这里</a>。</p></li>
+<li><p>第二是Scala中对变量的类型的定义方式是变量名在前，类型在后，中间用冒号相隔。原因之一是代码更可读。因为我们更关心变量名，而类型其次，尤其是你拥有一个超级长的类型的情况下（比如
+HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方式在实现Scala类型时技术上要简单些。进一步解读请到<a href="http://stackoverflow.com/questions/6085576/why-does-scala-choose-to-have-the-types-after-the-variable-names">这里</a>。</p></li>
+<li><p>第三是main函数的返回值是Unit，而不是Java中的Void。为什么是这样那？我想是因为Scala为了实现自己的类型系统，对于无显式返回值的函数直接使用Void是不合适的。在<a href="http://www.scala-lang.org/api/current/index.html#scala.Unit">Scala.Unit文档</a>中是这样定义Unit的：</p></li>
+</ul>
+
+
+<blockquote><blockquote><p>Unit is a subtype of scala.AnyVal. There is only one value of type Unit, (), and it is not represented by any object in the underlying runtime system. A method with return type Unit is analogous to a Java method which is declared void.</p></blockquote></blockquote>
+
+<ul>
+<li>第四是Scala中表达式最后的分号是可选的。原因就是为了契合函数式编程的哲学，即一切尽可能的简单。不写分号程序员一天可以多敲一些代码出来。</li>
+</ul>
+
+
+<p>好吧，其实在Scala中Hello World还有一种写法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">HelloWordV2</span> <span class="k">extends</span> <span class="nc">App</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>代码从三行减少到了两行，Scala终于胜出了。那么App是个什么鬼？<a href="https://github.com/scala/scala/blob/v2.11.7/src/library/scala/App.scala#L1">App</a>是一个trait。trait又是什么鬼？<a href="http://docs.scala-lang.org/tutorials/tour/traits.html">trait</a>是Scala中的一个特殊类型，它与Java中的interface很相似，但比interface强大。HelloWordV2添加了对App的扩展后，就自动成为了一个可以运行的程序，由于App中定义了main方法，所以HelloWorldV2中就无需再定义了，牛逼的地方在于HelloWorldV2的body中的代码都会作为main方法中的代码被执行。以下是App源码中对main方法的定义：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="nd">@deprecatedOverriding</span><span class="o">(</span><span class="s">&quot;main should not be overridden&quot;</span><span class="o">,</span> <span class="s">&quot;2.11.0&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">this</span><span class="o">.</span><span class="nc">_args</span> <span class="k">=</span> <span class="n">args</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="o">(</span><span class="n">proc</span> <span class="k">&lt;-</span> <span class="n">initCode</span><span class="o">)</span> <span class="n">proc</span><span class="o">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">util</span><span class="o">.</span><span class="nc">Properties</span><span class="o">.</span><span class="n">propIsSet</span><span class="o">(</span><span class="s">&quot;scala.time&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">val</span> <span class="n">total</span> <span class="k">=</span> <span class="n">currentTime</span> <span class="o">-</span> <span class="n">executionStart</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">Console</span><span class="o">.</span><span class="n">println</span><span class="o">(</span><span class="s">&quot;[total &quot;</span> <span class="o">+</span> <span class="n">total</span> <span class="o">+</span> <span class="s">&quot;ms]&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看来App在实现main方法时还设置了一个计时器，通过scala.time这个属性来开关。所以没事翻翻源码还是挺好玩的。</p>
+
+<p>不知有没注意到其实main方法是有个叫args的参数的，那么新版HelloWorld中如何使用该参数那？直接使用它就行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">HelloWordV2</span> <span class="k">extends</span> <span class="nc">App</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;Hello, World!&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ok，Scala版的Hello World就到这里吧。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在ThoughtWorks工作这几年我学到了什么？]]></title>
@@ -1308,50 +1436,6 @@ Spring的4.0版本可以说是一个重大的更新，其全面支持Java8，并
 <p>Spring Boot提供的功能还有很多，比如对MVC的支持、外部Properties的注入，日志框架的支持等。这里就不详述了。感兴趣的可以查看其<a href="http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/">文档</a>来获取详细的信息。</p>
 
 <p>如果你想在你的项目中使用Spring，那么最好把Spring Boot设为标配，因为它真的很方面开发，不过你也需要仔细阅读它的文档，避免不知不觉掉入坑中。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[目前在做的一个web应用程序的前端选型]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application/"/>
-    <updated>2015-02-09T10:08:10+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application</id>
-    <content type="html"><![CDATA[<p>最近进入了一个新的项目组，要新起一个项目。这个Web项目是一个企业内部使用的系统，主要用来记录、追踪、管理潜在客户的数据。该系统有以下特点:</p>
-
-<!-- more -->
-
-
-<ol>
-<li>需要支持IE10及以上版本；</li>
-<li>后端采用micro service架构，全部是REST API；</li>
-<li>需要与现有的CRM系统（客户管理管理系统）集成，主要采用iframe嵌入页面的方式；</li>
-<li>系统开发周期为5个月左右，分为三个大的里程碑。</li>
-</ol>
-
-
-<p>经过多方考虑，最终选择AngularJS作为前端主要框架。
-理由：</p>
-
-<ol>
-<li>该系统为WEB应用程序，符合single page application的特点；</li>
-<li>由于后端采用REST API，所以前端使用AngularJS可以与其无缝对接；</li>
-<li>前端页面交互逻辑不复杂，呈现的数据量不会很大，所以不会遇到AngularJS性能问题；</li>
-<li>该技术栈与当前公司的技术策略相契合。</li>
-</ol>
-
-
-<p>当然除了AngularJS框架以外，还需要其它一系列框架来完成整个前端开发、测试、部署的流程。</p>
-
-<ul>
-<li><p>yeoman: 前端项目脚手架工具；</p></li>
-<li><p>NPM: 作为本地开发过程中使用到的Node.js的管理；</p></li>
-<li><p>Bower:作为前端项目使用到的依赖开的管理工具；之所以选择NPM作为开发包的管理，是因为NPM的整个依赖链是嵌套的，这样每个开发包之间不会相互影响；而Bower在管理包时依赖链是平行的，这样前端加载时无需重复加载被多次引用的依赖，保证了前端数据最小化。</p></li>
-<li><p>Grunt：作为整个项目的自动化构建管理工具；</p></li>
-<li><p>Karma：作为单元测试及集成测试运行工具；</p></li>
-<li><p>Jasmine：单元测试及BDD框架；</p></li>
-<li><p>Protractor: 驱动浏览器的框架，配合Jasmine用于端到端测试。</p></li>
-</ul>
-
 ]]></content>
   </entry>
   
