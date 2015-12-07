@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Blog | 黄博文的地盘]]></title>
+  <link href="http://www.huangbowen.net/blog/categories/blog/atom.xml" rel="self"/>
+  <link href="http://www.huangbowen.net/"/>
+  <updated>2015-12-08T02:37:00+08:00</updated>
+  <id>http://www.huangbowen.net/</id>
+  <author>
+    <name><![CDATA[黄博文]]></name>
+    <email><![CDATA[huangbowen521@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[博客即代码]]></title>
+    <link href="http://www.huangbowen.net/blog/2015/12/08/bloging-as-code/"/>
+    <updated>2015-12-08T01:59:35+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2015/12/08/bloging-as-code</id>
+    <content type="html"><![CDATA[<p>之前我写过一篇博客，<a href="http://www.huangbowen.net/blog/2013/04/01/min-jie-de-xie-bo-ke/">敏捷的写博客</a>，借鉴了敏捷看板的思想来管理博客。</p>
+
+<!-- more -->
+
+
+<p>而在DevOps领域有一个很火的技术实践叫做基础设施即代码。Kief对基础设施即代码的解释是这样子的：</p>
+
+<blockquote><p>基础设施即代码是一种使用新的技术来构建和管理动态基础设施的方式。它把基础设施、工具和服务以及对基础设施的管理本身作为一个软件系统，采纳<strong>软件工程实践</strong>以结构化的安全的方式来管理对系统的变更。</p></blockquote>
+
+<p>里面的关键一点是以<strong>软件工程实践</strong>的方式来管理基础设施。那么对于我们的博客可不可以也采纳软件工程实践的方式来管理那？答案是可行的。</p>
+
+<ol>
+<li><p>选取合适的<strong>语法</strong></p>
+
+<p> 既然想写代码一样写博客，那么首先要选择一种语法了，这种语法就是<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>。<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>非常容易上手，包含的tag刚刚够用，尤其展示代码非常方便，自从用了它再也不用和烦人的CSS打交道了。人们不仅用<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>在stackoverflow上发问题、解答问题，还在GITHUB上track issue，甚至现在写邮件也用<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>了。拿它来写技术文章简直不用太爽。</p></li>
+<li><p>选取合适的<strong>框架</strong></p>
+
+<p> 实现基础设施代码需要选择一款基础设施自动化工具，这些工具的特点是全命令行操作，很容易实现自动化。那么建立自己的技术博客站点也需要选择一个博客框架，支持全命令行操作的博客框架有<a href="https://jekyllrb.com/">Jekyll</a>、<a href="http://octopress.org/">Octopress</a>、<a href="https://hexo.io/">Hexo</a>等。它们各自的特点不在本文的讨论范围。但我多说一句，我现在使用的是Octopress，我也用过Hexo，我更喜欢Hexo，原因有二，一是速度快，二是环境简单。</p></li>
+<li><p>选取顺手的<strong>编辑器</strong></p>
+
+<p> 这些博客框架的特点是可以Offline写作，然后一键发布。所以你可以选用任何你喜欢的编辑器来写文章，不用使用在线编辑器和各种样式问题、网络问题抗争了。Atom、Sublime或者专业编辑工具MacDown、Mou等都行。</p></li>
+<li><p><strong>一切纳入版本管理</strong></p>
+
+<p> 这些博客框架创建博客、生成博客、发布博客全部可以命令行操作。而且所有的配置（包括对站点的基本配置、插件的配置、主题的配置）都可以直接修改配置文本，博客也是以MarkDown的格式存储，所以整个站点都可以存放在GIT之类的版本控制库中。比如我的整站博客源码都放置在<a href="https://github.com/huangbowen521/huangbowen521.github.com/commits?author=huangbowen521">GitHub</a>上，从此再也不用更担心博客内容丢失了。</p></li>
+<li><p><strong>灵活的发布策略</strong></p>
+
+<p> 它们通过命令可以生成纯静态的博客，所以无需任何web服务器都可以运行。你可以将其放置到<a href="https://pages.github.com/">GitHub Pages</a>上，或者<a href="https://www.heroku.com/">Heroku</a>上都行，或者自己随便找台免费的云主机装个nignx即可。当然也有更高大上的做法，我把整个博客放置在AWS的S3上。S3是亚马逊推出的对象存储服务，并且我还是用了亚马逊提供的全球CDN加速功能CloudFront，对我的博客进行了全球CDN加速。无论是澳洲海边还是中国内陆，访问速度都是杠杠的。</p></li>
+<li><p><strong>定制开发的能力</strong></p>
+
+<p> 漂亮的主题风格也是选取一个博客框架需要考虑的一个因素。想要更换皮肤就太简单了，也是全命令行操作。拿Octopress举例，网上有很多热心用户制作的皮肤，都托管在github上，相中以后直接通过命令行操作就可以给你的博客换上最In的皮肤。</p>
+
+<p> 另外还有对博客的定制化也是我们关心的。每款博客框架都有丰富的插件，这些插件的代码都放置在GitHub上，完全开源，安装配置插件也非常简单，命令行全部搞定。我自己也写了一些定制化的插件，比如当我发布一个新博客的时候，只需<code>rake deploy</code>一条命令就可以把我的博客推送到我的weibo和linkedin上，也可以把整个博客内容同步到我在博客园的<a href="http://www.cnblogs.com/huang0925/">博客站点</a>上。这些插件也开源在GitHub上，分别是<a href="https://github.com/huangbowen521/octopress-linkedin">octopress-linkedin</a>和<a href="https://github.com/huangbowen521/octopress-syncPost">octopress-syncPost</a>。</p></li>
+</ol>
+
+
+<hr />
+
+<p>这样子，写博客变成了一种享受。进入咨询团队以后，坚持写博客也带来了其它一些好处。比如和客户讨论一个问题时，直接把我文章链接发给他说，说这个东西我之前专门写过博客，你看了就懂了。这样瞬间在客户面前树立了专业的形象。更有甚者，客户当着我的面搜索某个技术名词，第一页第一条赫然就是我写的博客。所以可以少费些口舌，把精力用到其它地方去。</p>
+]]></content>
+  </entry>
+  
+</feed>
