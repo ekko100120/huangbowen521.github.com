@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Gatling | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/gatling/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-12-29T00:01:27+08:00</updated>
+  <updated>2016-01-04T02:03:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -27,7 +27,7 @@
 
 <p>创建一个标准的maven结构的工程目录，如下图所示。</p>
 
-<p><img src="/images/gradle-gatling.png" width="600"></p>
+<p>{% img /images/gradle-gatling.png 600 %}</p>
 
 <p>conf目录存放Gatling的基本配置文件。
 Gatling的脚本文件存放在src/test/scala/simulations包里面。可以自行在此包下对脚本文件再分类。</p>
@@ -259,9 +259,9 @@ Please open the following file : /Users/twer/sourcecode/GatlingWorkShop/gatling-
 
 <p>以下是报表的部分截图。</p>
 
-<p><img src="/images/gatlingReport1.png" width="800"></p>
+<p>{% img /images/gatlingReport1.png 800 %}</p>
 
-<p><img src="/images/gatlingReport2.png" width="800"></p>
+<p>{% img /images/gatlingReport2.png 800 %}</p>
 
 <h2>测试脚本示例</h2>
 

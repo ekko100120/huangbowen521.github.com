@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: page | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/page/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-12-29T00:01:27+08:00</updated>
+  <updated>2016-01-04T02:03:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -25,7 +25,7 @@
 
 <p>当你在为web页面编写测试时，你需要操作该web页面上的元素来点击链接或验证显示的内容。然而，如果你在测试代码中直接操作html元素,那么你的代码是及其脆弱的，因为UI会经常变动。一个page对象可以封装一个html页面或部分页面，你可以通过提供的应用程序特定的API来操作页面元素，而不需要在HTML中四处搜寻。</p>
 
-<p><img src="/images/page_object.png" width="700"></p>
+<p>{% img /images/page_object.png 700 %}</p>
 
 <p>page对象的一个基本经验法则是凡是人类能做的事page对象通过软件客户端都能够做到。它也应当提供一个易于编程的接口并隐藏窗口中低层的部件。所以访问一个文本框应该通过一个访问方法（accessor method）来实现字符串的获取与返回，复选框应当使用布尔值，按钮应当被表示为行为导向的方法名。page对象应当将在GUI控件上所有查询和操作数据的行为封装为方法。一个好的经验法则是，即使改变具体的控制，page对象的接口也不应当发生变化。</p>
 

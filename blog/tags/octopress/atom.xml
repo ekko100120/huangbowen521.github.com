@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Octopress | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/octopress/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-12-29T00:01:27+08:00</updated>
+  <updated>2016-01-04T02:03:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -27,7 +27,7 @@
 
 <p>先给一张图看看效果：</p>
 
-<p><img src="/images/sharesample.png"></p>
+<p>{% img /images/sharesample.png %}</p>
 
 <p>使用这个插件也挺简单。要做这么几步。</p>
 
@@ -67,7 +67,7 @@ end
     <link href="http://www.huangbowen.net/blog/2013/09/30/migrate-octopress-to-aws/"/>
     <updated>2013-09-30T14:09:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/09/30/migrate-octopress-to-aws</id>
-    <content type="html"><![CDATA[<p><img src="/images/cloudcompute.png" width="400"></p>
+    <content type="html"><![CDATA[<p>{% img /images/cloudcompute.png 400 %}</p>
 
 <p><a href="http://octopress.org/">Octopress</a>已经被公认为Geeker的博客框架。它所拥有的特性都很符合Geeker的癖好:强大的命令行操作方式、简洁的MarkDown语法、灵活的插件配置、美轮美奂的theme（自带响应式设计哦）、完全可定义的部署&hellip;&hellip;</p>
 
@@ -96,15 +96,15 @@ end
 
 <p>第三步，在Amazon management console里选择Services -> S3 service，并创建两个bucket。假如你的博客域名为example.com，那么两个bucket的名称分别为example.com,www.example.com。为什么要创建两个那？是因为我们要保证用户无论输入www.example.com还是example.com都可以访问我们的网站。</p>
 
-<p><img src="/images/twobucket.png" width="780"></p>
+<p>{% img /images/twobucket.png 780 %}</p>
 
 <p>第四步，选择www.example.com这个bucket，点击properties标签，在Static Website Hosting中选择Redirect all requests to another host name，并配置‘Redirect all requests to:’为example.com。这样来自www.example.com bucket的访问都会自动转发给example.com这个bucket。我们只需为example.com这个bucket同步我们的博客文件即可。</p>
 
-<p><img src="/images/redirectrequest.png" width="780"></p>
+<p>{% img /images/redirectrequest.png 780 %}</p>
 
 <p>第五步，选择example.com这个bucket，在Static Website Hosting中选择‘Enable Website Hosting’,并配置Index Document，我的是index.html。这个Index Document是默认返回的object名称。比如如果用户直接访问bucket的某个目录，系统会检测该目录下是否存在Index Document中配置的文件名，如果有则会自动返回这个object。</p>
 
-<p><img src="/images/staticwebsitehosting.png" width="780"></p>
+<p>{% img /images/staticwebsitehosting.png 780 %}</p>
 
 <p>第六步，选择'Permissions'标签，点击’add bucket policy‘按钮，加入如下的policy.</p>
 
@@ -127,7 +127,7 @@ end
 
 <p>这个policy其实是给所有匿名用户访问该bucket里面文件的权限。</p>
 
-<p><img src="/images/bucketpolicy.png" width="780"></p>
+<p>{% img /images/bucketpolicy.png 780 %}</p>
 
 <p>第七步，还是在’Permissions‘标签里，点击’Add CORS configuration‘按钮，加入如下的配置：</p>
 
@@ -145,7 +145,7 @@ end
 
 <p>这个是用来配置跨域访问的权限，即是否允许其他网站访问这个bucket上的资源。由于Octopress博客集成了很多插件，比如google analiycis, github等，都需要跨域加载JavaScript文件，执行JavaScript文件，所以要加入这些配置。</p>
 
-<p><img src="/images/corsconfiguration.png" width="780"></p>
+<p>{% img /images/corsconfiguration.png 780 %}</p>
 
 <p>第八步，下载安装<a href="http://s3tools.org/s3cmd">s3cmd</a>。<a href="http://s3tools.org/s3cmd">s3cmd</a>是一款操作AWS S3的命令行工具。通过它可以创建或删除bucket，上传或下载object，我们在部署octopress博客时，主要就是通过它来将博客上传到S3上去。如果是mac系统化可以通过HomeBrew直接安装。</p>
 

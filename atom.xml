@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-12-29T00:01:27+08:00</updated>
+  <updated>2016-01-04T02:02:20+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[膝盖中了一箭之康复篇-第六个月]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/01/04/acl-recovery-for-6th-month/"/>
+    <updated>2016-01-04T00:27:03+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/01/04/acl-recovery-for-6th-month</id>
+    <content type="html"><![CDATA[<p>时间过的很快，已经术后半年了。</p>
+
+<!-- more -->
+
+
+<p>12月份照样出差，不过地点比较固定，就呆在深圳。之前9月份的时候曾经在深圳这边的健身房练过一段时间，所以这次酒店还选择的是上次那家，就为了能在健身房好好恢复一下腿部肌肉。但是不巧的是我去过的那家健身房关门了，不得已找了一家远一点的。</p>
+
+<p>就这样开始了力量训练，一周能去个3到4次。已经有好几个月没做力量训练了，再加上有氧运动做多了，肌肉退化的厉害。卧推以前一边15公斤杠铃能轻松推个3组。现在发现只能推一组就累的不要不要的。其它部分的肌肉也变弱了，尤其是腹肌，坐30个仰卧起坐都要慢慢来。哎，从头练起吧。扔了好久的腹肌撕裂者又开始练了。好在经过这一个月的腹肌特训，腹肌耐力有了明显的提高。</p>
+
+<p>这段时间减肥到了瓶颈期，体重保持在71公斤左右，怎么也下不了70公斤。每天晚上除了和同事有饭局外，其它时间自己都不吃晚饭，就吃点水果，运动完吃10个考生蚝，但是体重就是纹丝不动。这是一场攻坚战。去年为了体重下70公斤，那个月我练的非常苦的。现在吃不了那么多苦，但可以把时间拉长，反正我不着急，离夏天还远着那。</p>
+
+<p>跑步训练也在继续。这个月跑了三场线上半程马拉松，其中两场是背靠背，状态不错。但唯一报名的一场线下马拉松-新川杯慈善马拉松在开跑前一周竟然宣布取消了，太坑爹了。我的报名费都交了，你们也太不靠谱了。12月份共跑步14次，总跑量177公里。其中有一次是越野跑训练，五上五下黄金山，海拔爬升200米。对！黄金山就是个海拔落差40米的小土包子。</p>
+
+<p>本来计划是术后半年挑战一次全马的，照现在恢复的情况来看全马肯定是没有问题的。只不过还没找到一个合适的比赛去达成。全马不像半马。半马我可以不带任何补给就能完成。全马还是需要带补给的，而且4个多小时好无聊，没人陪很难熬得下来。</p>
+
+<p>我在11月的时候拍了核磁共振的片子，但一直没时间拿给主治医生看。我得抽个时间去和主治医生见上一面，就等他批准我可以进行对抗运动了。已经1年没有打球、踢球了，我都忘记了那种感觉了。是时候把这种感觉找回来了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[博客即代码]]></title>
@@ -1207,130 +1231,6 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
 <p>好了，希望大家都能更好的利用第三种驱动力，即内在动机。<strong>这种驱动力不仅要用在工作上，更要用在生活上。有了孩子以后，我认为生活比工作更重要，工作只是为了创造更好的生活。</strong></p>
 
 <p>希望大家都能快乐、开心、充实的过好每一天。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flyway， 数据库Schema管理利器]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/04/08/introduction-of-flyway/"/>
-    <updated>2015-04-08T15:10:43+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/04/08/introduction-of-flyway</id>
-    <content type="html"><![CDATA[<p>整天跟数据库打交道的程序员都知道，当数据库的Schema发生改变时是多么痛苦的事情。尤其是一个在不断开发完善的项目，随着需求变化，数据库的schema也会跟着变化，而追踪记录这些变化一向都是费时费力。如果你拥有多个测试环境，那么保证这些环境下的数据库的一致性的难度会成倍增加。</p>
-
-<!-- more -->
-
-
-<p>Flyway，一款小工具，应用它能够大大简化这方面的工作。</p>
-
-<h2>它的优点：</h2>
-
-<ol>
-<li><p>convention over configuration，配置简单，使用方便；支持Sql及Java配置；</p></li>
-<li><p>支持当前几乎所有的主流数据库；</p></li>
-<li><p>拥有命令行工具、Maven、Gradle插件&hellip;.应用场景广泛。</p></li>
-</ol>
-
-
-<h2>使用它之前先要了解一些概念：</h2>
-
-<ul>
-<li><p>版本：对数据库的每一次变更可称为一个版本。</p></li>
-<li><p>迁移：Flyway把数据库结构从一个版本更新到另一个版本叫做迁移。</p></li>
-<li><p>可用的迁移：Flyway的文件系统识别出来的迁移版本。</p></li>
-<li><p>已经应用的迁移：Flyway已经对数据库执行过的迁移。</p></li>
-</ul>
-
-
-<h2>如何使用：</h2>
-
-<p>以Sql配置举例，建立一个文件夹用来存放所有数据库修改记录。</p>
-
-<p>每次修改以’V版本号__描述.sql’的方式命名。比如V1__initial_version.sql， V2.1__create_table.sql,V2015.01.05__drop_view.sql</p>
-
-<p><img src="http://www.huangbowen.net/images/SqlMigrationBaseDir.png" width="500"></p>
-
-<p>Flyway会根据文件名自动识别版本顺序，并根据这些版本顺序来应用数据库修改。</p>
-
-<h2>配置</h2>
-
-<p>以使用Flyway的命令行工具为例。安装命令行工具后，运行时Flyway会根据以下路径来寻找配置文件。</p>
-
-<ul>
-<li><p>安装目录/conf/flyway.properties</p></li>
-<li><p>用户目录/flyway.properties</p></li>
-<li><p>当前目录/flyway.properties</p></li>
-</ul>
-
-
-<p>或者直接在命令行使用 <code>-configFile=myfile.properties</code>来指定文件。</p>
-
-<p>配置文件的一个示例：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>flyway.driver=org.hsqldb.jdbcDriver
-</span><span class='line'>flyway.url=jdbc:hsqldb:file:/db/flyway_sample
-</span><span class='line'>flyway.user=SA
-</span><span class='line'>flyway.password=mySecretPwd
-</span><span class='line'>flyway.schemas=schema1,schema2,schema3
-</span><span class='line'>flyway.table=schema_history
-</span><span class='line'>flyway.locations=classpath:com.mycomp.migration,database/migrations,filesystem:/sql-migrations
-</span><span class='line'>flyway.sqlMigrationPrefix=Migration-
-</span><span class='line'>flyway.sqlMigrationSeparator=__
-</span><span class='line'>flyway.sqlMigrationSuffix=-OK.sql
-</span><span class='line'>flyway.encoding=ISO-8859-1
-</span><span class='line'>flyway.placeholderReplacement=true
-</span><span class='line'>flyway.placeholders.aplaceholder=value
-</span><span class='line'>flyway.placeholders.otherplaceholder=value123
-</span><span class='line'>flyway.placeholderPrefix=#[
-</span><span class='line'>flyway.placeholderSuffix=]
-</span><span class='line'>flyway.resolvers=com.mycomp.project.CustomResolver,com.mycomp.project.AnotherResolver
-</span><span class='line'>flyway.callbacks=com.mycomp.project.CustomCallback,com.mycomp.project.AnotherCallback
-</span><span class='line'>flyway.target=5.1
-</span><span class='line'>flyway.outOfOrder=false
-</span><span class='line'>flyway.validateOnMigrate=true
-</span><span class='line'>flyway.cleanOnValidationError=false
-</span><span class='line'>flyway.baselineOnMigrate=false
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>命令行工具的几个命令：</h2>
-
-<ul>
-<li><p>Clean： 删除所有创建的数据库对象，包括用户、表、视图等。</p></li>
-<li><p>Migrate： 对数据库依次应用版本更改。</p></li>
-<li><p>Info：获取目前数据库的状态。那些迁移已经完成，那些迁移待完成。所有迁移的执行时间以及结果。</p></li>
-<li><p>Validate：验证数据库结构与迁移脚本的异同。</p></li>
-<li><p>Baseline：根据现有的数据库结构生成一个基准迁移脚本。</p></li>
-</ul>
-
-
-<h2>进阶</h2>
-
-<p>flyway提供sql配置和Java配置两种方式。sql配置可以方便实现对DDL的修改、一些引用数据的修改；而Java的方式则更强大些，可以应用更为复杂的场景，比如对某个数据表中的数据进行一些逻辑处理。具体使用请参见官方文档：(<a href="http://flywaydb.org/documentation/migration/java.html">http://flywaydb.org/documentation/migration/java.html</a>)<a href="http://flywaydb.org/documentation/migration/java.html">http://flywaydb.org/documentation/migration/java.html</a></p>
-
-<p>熟悉Ruby On Rails的程序员都知道Ruby On Rails自带一个数据库迁移工具，这个和那个差不多，可以说下JVM平台的数据库迁移工具，弥补了JVM平台下维护数据库Schema的不足。</p>
 ]]></content>
   </entry>
   

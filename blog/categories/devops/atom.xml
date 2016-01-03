@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DevOps | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2015-12-29T00:01:27+08:00</updated>
+  <updated>2016-01-04T02:03:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -258,7 +258,7 @@
 
 <p>运营团队反而推进变更请求，包括缺陷报告，返回给开发组织。这两个组织一起协作就可以保证这些活动是成功的，但仍有一个明显的地方可以提高。规范DevOps通过增加开发，运营和支持人员之间的协作这一策略来提高这一点。向开发团队引入持续交付实践，向IT引入新的组织级架构；采用商业智能工艺和技术来支持开发智能和运营智能，即支持改进的IT管理。不规范的DevOps和规范的DevOps的不同之处在于，规范的方式以整体视角来考虑所有DevOps利益相关者的渴望，而不仅仅关注于一个视角。</p>
 
-<p><img src="/images/closingdevopsgap.gif">
+<p>{% img /images/closingdevopsgap.gif %}
 图1：缩小DevOps差距</p>
 
 <p>要想成功实践DevOps，你需要在5个方面实现提高：人，准则，实践，产品及流程。这些问题以从高到低的优先级顺序排列。人及他们相互交互的方式是任何IT努力达到成功的决定因素。而规范DevOps清楚的需要人们重新思考他们的技能，如何定义自己的角色，如何一起工作。IT组织采用DevOps需要重新思考他们所做的决定的底层准则。例如，采用与业务更紧密交互的准则将激励他们采用更频繁的发布产品的方式。组织需要采用诸如持续集成，持续部署，运营智能，协作支持等实践。如果他们决定采用DevOps，有更多新鲜的事情需要去做。新的产品，包括开发工具，商业智能工具，以及运营监控工具等需要被采用。最终，流程框架（比如规范敏捷交付，DAD），将DevOps策略变为开发流程，还有ITIL或ITSM的更新版也需要考虑是否使用。</p>
