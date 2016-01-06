@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: xml | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/xml/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-01-04T02:03:04+08:00</updated>
+  <updated>2016-01-07T01:12:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/10/14/xml-knowledge/"/>
     <updated>2013-10-14T00:32:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/10/14/xml-knowledge</id>
-    <content type="html"><![CDATA[<p>{% img /images/xml.png 400 %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/xml.png" width="400"></p>
 
 <p>XML文件格式已经出来很久了。他的风头如今在JSON、YAML等新兴文件格式的冲击下已经显的不那么强劲。但是XML仍然是当今世界上使用最广泛的文件格式。围绕着它也有一大堆的概念和知识点。所以我们还是很有必要全面了解下。</p>
 
@@ -151,7 +151,7 @@
 
 <p>对于本文的示例book.xml,如果我们使用浏览器打开显示效果如下。</p>
 
-<p>{% img /images/bookxml.png 600 %}</p>
+<p><img src="/images/bookxml.png" width="600"></p>
 
 <p>现在我们创建一个XSLT文件将其转换为一个HTML文件。</p>
 
@@ -204,7 +204,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
 
 <p>接下来我们再用浏览器打开book.xml文件，发现显示变成了这样。是不是很神奇？</p>
 
-<p>{% img /images/bookxmlwithxslt.png 600 %}</p>
+<p><img src="/images/bookxmlwithxslt.png" width="600"></p>
 
 <p>注意如果你使用chrome打开该book.xml文件，请设置chrome的<code>--allow-file-access-from-files</code>属性，这样chrome才允许加载本地的xsl文件。解决方案看这里：<a href="http://stackoverflow.com/questions/3828898/can-chrome-be-made-to-perform-an-xsl-transform-on-a-local-file">http://stackoverflow.com/questions/3828898/can-chrome-be-made-to-perform-an-xsl-transform-on-a-local-file</a></p>
 

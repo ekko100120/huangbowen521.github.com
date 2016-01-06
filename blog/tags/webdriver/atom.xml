@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: WebDriver | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/webdriver/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-01-04T02:03:04+08:00</updated>
+  <updated>2016-01-07T01:12:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.huangbowen.net/blog/2013/06/25/practice-of-webdriver/"/>
     <updated>2013-06-25T22:00:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/06/25/practice-of-webdriver</id>
-    <content type="html"><![CDATA[<p>{% img /images/automatedRobot.png %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/automatedRobot.png"></p>
 
 <p>在做web项目的自动化端到端测试时主要使用的是<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium WebDriver</a>来驱动浏览器。<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium WebDriver</a>的优点是支持的语言多，支持的浏览器多。主流的浏览器Chrome、Firefox、IE等都支持，手机上的浏览器Android、IPhone等也支持，甚至还支持<a href="http://phantomjs.org/">PhantomJS</a>（由于PhantomJS跑测试时并不需要渲染元素，所以执行速度快）。</p>
 
