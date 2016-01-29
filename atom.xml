@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-01-07T01:12:04+08:00</updated>
+  <updated>2016-01-29T17:05:30+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[理解Maven中的SNAPSHOT版本和正式版本]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/01/29/understand-official-version-and-snapshot-version-in-maven/"/>
+    <updated>2016-01-29T16:56:44+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/01/29/understand-official-version-and-snapshot-version-in-maven</id>
+    <content type="html"><![CDATA[<p>Maven中建立的依赖管理方式基本已成为Java语言依赖管理的事实标准，Maven的替代者Gradle也基本沿用了Maven的依赖管理机制。在Maven依赖管理中，唯一标识一个依赖项是由该依赖项的三个属性构成的，分别是groupId、artifactId以及version。这三个属性可以唯一确定一个组件（Jar包或者War包）。</p>
+
+<!-- more -->
+
+
+<p>其实在Nexus仓库中，一个仓库一般分为public(Release)仓和SNAPSHOT仓，前者存放正式版本，后者存放快照版本。如果在项目配置文件中（无论是build.gradle还是pom.xml）指定的版本号带有’-SNAPSHOT’后缀，比如版本号为&#8217;Junit-4.10-SNAPSHOT’，那么打出的包就是一个快照版本。</p>
+
+<p>快照版本和正式版本的主要区别在于，本地获取这些依赖的机制有所不同。假设你依赖一个库的正式版本，构建的时候构建工具会先在本次仓库中查找是否已经有了这个依赖库，如果没有的话才会去远程仓库中去拉取。所以假设你发布了Junit-4.10.jar到了远程仓库，有一个项目依赖了这个库，它第一次构建的时候会把该库从远程仓库中下载到本地仓库缓存，以后再次构建都不会去访问远程仓库了。所以如果你修改了代码，向远程仓库中发布了新的软件包，但仍然叫Junit-4.10.jar，那么依赖这个库的项目就无法得到最新更新。你只有在重新发布的时候升级版本，比如叫做Junit-4.11.jar，然后通知依赖该库的项目组也修改依赖版本为Junit-4.11,这样才能使用到你最新添加的功能。</p>
+
+<p>这种方式在团队内部开发的时候会变的特别蛋痛。假设有两个小组负责维护两个组件，example-service和example-ui,其中example-ui项目依赖于example-service。而这两个项目每天都会构建多次，如果每次构建你都要升级example-service的版本，那么你会疯掉。这个时候SNAPSHOT版本就派上用场了。每天日常构建时你可以构建example-service的快照版本，比如example-service-1.0-SNAPSHOT.jar，而example-ui依赖该快照版本。每次example-ui构建时，会优先去远程仓库中查看是否有最新的example-service-1.0-SNAPSHOT.jar，如果有则下载下来使用。即使本地仓库中已经有了example-service-1.0-SNAPSHOT.jar，它也会尝试去远程仓库中查看同名的jar是否是最新的。有的人可能会问，这样不就不能充分利用本地仓库的缓存机制了吗？别着急，Maven比我们想象中的要聪明。在配置Maven的Repository的时候中有个配置项，可以配置对于SNAPSHOT版本向远程仓库中查找的频率。频率共有四种，分别是always、daily、interval、never。当本地仓库中存在需要的依赖项目时，always是每次都去远程仓库查看是否有更新，daily是只在第一次的时候查看是否有更新，当天的其它时候则不会查看；interval允许设置一个分钟为单位的间隔时间，在这个间隔时间内只会去远程仓库中查找一次，never是不会去远程仓库中查找（这种就和正式版本的行为一样了）。</p>
+
+<p>Maven版本的配置方式为：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;repository&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;id&gt;</span>myRepository<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;url&gt;</span>...<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;snapshots&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;updatePolicy&gt;</span>XXX<span class="nt">&lt;/updatePolicy&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/snapshots&gt;</span>
+</span><span class='line'><span class="nt">&lt;/repository&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中updatePolicy就是那4种类型之一。如果配置间隔时间更新，可以写作<code>interval:XX</code>(XX是间隔分钟数)。daily配置是默认值。</p>
+
+<p>而在Gradle，可以设置本地缓存的更新策略。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>configurations.all {
+</span><span class='line'>
+</span><span class='line'>// check for updates every build
+</span><span class='line'>resolutionStrategy.cacheChangingModulesFor  0,&#39;seconds&#39;
+</span><span class='line'>
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然也可以按照分钟或者小时来设置.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>configurations.all {
+</span><span class='line'>
+</span><span class='line'>resolutionStrategy.cacheChangingModulesFor  10, ‘minutes&#39;
+</span><span class='line'>
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>configurations.all {
+</span><span class='line'>
+</span><span class='line'>resolutionStrategy.cacheChangingModulesFor  4, ‘hours&#39;
+</span><span class='line'>
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所以一般在开发模式下，我们可以频繁的发布SNAPSHOT版本，以便让其它项目能实时的使用到最新的功能做联调；当版本趋于稳定时，再发布一个正式版本，供正式使用。当然在做正式发布时，也要确保当前项目的依赖项中不包含对任何SNAPSHOT版本的依赖，保证正式版本的稳定性。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一个程序员的2015年总结]]></title>
@@ -1183,76 +1273,6 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
 <li><p>Protractor在定位元素时支持链式调用。</p></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[大连100公里越野赛_心中的痛]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/04/23/dl100/"/>
-    <updated>2015-04-23T15:57:14+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/04/23/dl100</id>
-    <content type="html"><![CDATA[<p><img src="http://www.huangbowen.net/images/airanshao.jpg" width="600">编号是0365的那个人是我</p>
-
-<p>比赛已经于上周日结束了，但是一想到我的退赛，心中就痛苦万分。有人说，退赛比坚持更难，也许真的如此。有人说，过程比结果重要，但是过程也不完美。有人说，距离是有尊严的，那肯定是我对它不够尊重。</p>
-
-<!-- more -->
-
-
-<p>我于2014年4月份开始跑步，由于经常骑车，耐力比较好，所以一开始就是10公里。跑步的原因很简单，就是想减掉身上的肥肉，把身体练的结实些。2014年8月份尝试了第一次马拉松，9月份又跑了一次半马比赛。在又跑了几次马拉松比赛后，对越野跑开始感兴趣。参加了龙山30公里越野，耗时8小时踩着关门时间完成。但是2014年12月份多踢球的时候不慎右膝扭伤，第二天走路一瘸一拐，差不多了养了1个半月才好。那时候没有重视起来，没去医院检查。这修养的一个半月直接导致我体重增长了10斤。1个半月后感觉伤势已无大碍，就又开始跑步。参加了平乐金鸡谷20公里越野，耗时3个半小时。3月中旬的重庆马拉松原定4小时跑完，但准备不充分再加上赛场上出了状况，第26公里跑崩，接下来的十几公里都是走完的，耗时5小时14分。3月30日爱江山龙山越野赛参加了60公里组，爬到山顶后一路下坡，但是跑不起来，自己技术不行+膝盖痛，只能走着。走到55公里处被关门。</p>
-
-<p>右膝平时走路没问题，但是运动量一超过20公里就有感觉，再多的话就无法跑动了。我以为恢复的不彻底，所以也没太在意。接下来离大连100只剩下18天了。进入4月份以后事情比较多，训练只能利用晚上的时间，大概晚上10点多在小区内开始跑，跑完12公里收工。连续训练了几天，速度虽然没练上来，但是好歹是找回了点状态。</p>
-
-<p>为了防止右膝出状况，我还特意买了副护膝给右膝，好在路跑还行，右膝反应不大。</p>
-
-<p>比赛的日子临近了，4月17号坐上了去大连的飞机，中午达到。入住酒店后领了跑手包，去海边逛了逛。晚上回来把第二天要穿的东西都码好，省的早上起来手忙脚乱。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_1938.JPG" width="600"></p>
-
-<p>这次大连100前50公里我的装备是：</p>
-
-<ul>
-<li><p>2条魔术头巾</p></li>
-<li><p>李宁跑步T恤</p></li>
-<li><p>萨洛蒙跑步背包（包内皮肤风衣一件，能量胶3个，能量棒一个，盐丸三个，泡腾片半盒，手机一部）</p></li>
-<li><p>TomTom运动手表</p></li>
-<li><p>骑行手套</p></li>
-<li><p>迪卡侬紧身7分裤</p></li>
-<li><p>迪卡侬护膝（只是右膝）</p></li>
-<li><p>迪卡侬护腿（两只）</p></li>
-<li><p>泰尼卡闪电2越野跑鞋</p></li>
-</ul>
-
-
-<p>事实证明这套装备还是挺给力的，性价比高（没办法，穷，只能用迪卡侬几十块的东西）。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_1936.JPG" width="600"></p>
-
-<p>第二天早上4点起床，吃完早饭排空后来到起跑点，调整片刻做了热身活动后，比赛正式开始。刚开始我维持平时正常的配速，6分左右，下坡时稍快。跑了几公里公路后即开始上山。山上的路也好跑，也是公路。我感觉状态好，想在前面多争取些时间，所以上坡也是慢跑上去。下坡则利用新学的跑步技巧，飞一般的奔下去。即双手略微张开，身体稍微前倾，小步幅，大步频，又快又稳。没过多久就到了补给点1，没感觉多累。过了补给点1以后路开始野了。有羊肠小道，防火道，台阶等。我感觉状态还维持的不错。很快补给点2也轻松跑过。照这样下去拿银海星都没问题。</p>
-
-<p>但是接下来右膝开始有反应了，不得不调整节奏，变为上坡走，下坡和平路跑的策略。到了补给点3，时间花费的不多，自己很满意。从补给点3向补给点4进发的过程中，发觉下坡跑也快不起来了，只好又开始调整为上坡走，下坡慢跑，平路跑。慢慢的超我的人越来越多。好不容易到了补给点4以后，我在站里休息了40分钟才走，不像前几个补给站总共耽误的时间加起来也没有10分钟。我吃了2桶泡面，2碗粥，若干水果。待身体恢复的差不多了才继续进发。补给站4到补给站5有12.5公里。我原计划2个小时到2个小时半到达。但是膝盖越来越痛，基本只能走了，想跑根本跑步起来，跑几步就只能停下来。</p>
-
-<p>这样花了3个小时10分钟我才到补给站5. 在补给站我没什么胃口，只喝了点粥，然后拿上头灯，穿上外套和裤子。已经下午5点了，大连晚上的日子是非常冷的。补给站5到6只有6.5公里，总爬升才200多米。正常情况下不到1小时就可完成。但是我完全跑不起来，磨磨蹭蹭用了1小时半才搞定。到了补给站6天已经完全黑了。还好在路上遇到了一个北京来的哥们，也是膝盖受伤，我们一起前行。这个哥们上个月刚完成了杭州100，毅力惊人。我们一起从补给站6向7进发，这段路是整个赛道中最难的路，11公里，总爬升860多米。按照我们目前行进的速度，乐观点3个小时搞完，不乐观的话需要4个小时。</p>
-
-<p>前半程我们的速度还可以，虽然一直在走，但走的不算很慢。但是过半后，膝盖痛的都无法伸直了。我捡了一根棍子当做拐杖，减轻些压力。已经晚上10点多了，望着面前黑漆漆的裙身，麻木而机械的走着。内心在思考要不要退赛。不退赛的话，膝盖实在受不了了，即使撑到补给站9，还有8公里近800多爬升的魔鬼路段等着我，以我现在的状态很难完成。退赛的话，这对我来说是个巨大的打击。能够站在100公里赛道上的人，意志力都是非常强大的，而我却被自己打败。</p>
-
-<p>最后还是决定退赛了，我们走到补给站7，给工作人员说明退赛，然后交通车把我们拉回了起点。在路上可以看到很多人还在坚持比赛，等待他们的是还有8个小时战斗。而我却在第72公里处退出了这场战斗。</p>
-
-<p>回到酒店澡都没力气洗就睡了。半夜槟郎哥完赛归来，拿到了银海星。第二天我睡到10点才起来，得知成都来的4个人三个参加百公里的都因伤退赛了，只有参加50公里的米儿完赛，虽然也受伤了。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_1948.JPG" width="600"></p>
-
-<p>这次没有拿到海星，很遗憾。总结原因如下：</p>
-
-<ol>
-<li><p>右膝长距离运动后反应很大，需要去医院检查下，是否是那次受伤有半月板撕裂之类的；</p></li>
-<li><p>长距离LSD拉的少，后半程跑不起来体力不够也是原因之一；</p></li>
-<li><p>前半程冲的过猛，可能也是早早受伤的原因，欲速则不达。</p></li>
-</ol>
-
-
-<p>当在比赛途中，身体在地狱旅行时，我一直在想自己吃饱了撑的来参加这么自虐的比赛，下次绝对不参加了，好好在家里逗孩子多好。但是比赛完毕后，无论是成功或者失败，我又想马上投入另一场战斗中，开始思考下一场比赛是啥时候。</p>
-
-<p>我决定这周先去检查一下膝盖，看看是否膝盖有损伤。根据医生的检查结果，再制定接下来的训练计划。估计至少半年后再挑战百公里了，可以选择大理100或者HK100，难度相对小些。当然，前提是要保证身体无伤痛+大量的训练。</p>
 ]]></content>
   </entry>
   
