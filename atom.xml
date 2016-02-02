@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-02T09:27:08+08:00</updated>
+  <updated>2016-02-02T10:32:01+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,196 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用微博自动记录俯卧撑个数]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/02/02/use-weibo-to-track-workout/"/>
+    <updated>2016-02-02T10:07:42+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/02/02/use-weibo-to-track-workout</id>
+    <content type="html"><![CDATA[<p>根据SMART原则我制定了2016年的目标。每个月都有一个小目标，每个目标都是specific(具体)、Measurable(可度量)、Attainable(可实现)、Relevant(相关性)、Time-bound(时限)的。1月份的目标是跑步200公里，其中包含4个半程马拉松。1月底验收的时候发现这个目标轻松达成，整个1月份我总共跑了220公里+，其中跑了4个半程马拉松。而且第二次的马拉松打破我的个人记录，成绩为1小时43分30秒，把我的个人最好成绩提高了2分钟。</p>
+
+<!-- more -->
+
+
+<p><img src="http://www.huangbowen.net/images/201601_run_record.PNG" width="300"></p>
+
+<p>2月份我的目标的是做4000个俯卧撑+撰写4篇技术博客。跑步的时候我可以使用跑步软件（咕咚或者悦跑圈）来记录我的跑步里程，而记录俯卧撑虽然有一些现成的软件(比如Push-Ups)，但是我感觉太重量级，想要一种轻量的方式来记录。后来我想到了一种方式，只需在命令行终端输入一条简单的命令，比如<code>pushups 30</code>，那么我的微博会自动多出来一条博文，记录我本次做了多少俯卧撑，本月已经完成了多少俯卧撑，距离目标还剩下多少俯卧撑。这样子每做完一组，我只需敲一行命令就可以轻松记录下来，并且还有广大网友进行监督。</p>
+
+<p>这个主意很好，可是怎么实现那？其实整个过程并不复杂，我周末花了两个小时就完成了。新浪微博提供了一个<a href="http://open.weibo.com/wiki/%E9%A6%96%E9%A1%B5">微博开放平台</a>，在微博开放平台上其开放了<a href="http://open.weibo.com/wiki/API%E6%96%87%E6%A1%A3">一系列API</a>，其中发送微博就属于其中一个。我们只需把我们要发送的内容组装好，编写程序调用其发送微博的API即可。</p>
+
+<p>发送微博的API文档<a href="http://open.weibo.com/wiki/Statuses/update">在这里</a>。通过文档可以看出其实只要发送一个http请求，包含相应的内容就好。其中有两个字段比较重要，一个是access token，一个是status。access token是认证令牌，确定是哪个应用向哪个微博发送内容，status是需要推送的微博正文。</p>
+
+<p>获取access_token的过程比较复杂，需要你了解OAuth2.0认证流程,详情请看<a href="http://open.weibo.com/wiki/%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6%E8%AF%B4%E6%98%8E">授权机制说明</a>。简单来说就是用你的微博账号登陆微博开放平台，注册一个应用，然后得到一个应用Id，然后用该应用Id调用相应的API来授权访问你的个人微博，最后得到一个access token。</p>
+
+<p>如果调用这个API那？因为之前曾经写过一个插件向微博推送我的博客信息，所以只需把相关代码拿出来重用即可。相关代码采用Ruby写的。代码如下：</p>
+
+<figure class='code'><figcaption><span>WeiboPoster</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;faraday&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">WeiboPoster</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@weibo_config</span> <span class="o">=</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/weibo-config.yml&#39;</span><span class="p">))</span>
+</span><span class='line'>    <span class="vi">@pushups</span> <span class="o">=</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/pushups.yml&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">post_weibo</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@number</span> <span class="o">=</span> <span class="n">number</span>
+</span><span class='line'>    <span class="n">conn</span> <span class="o">=</span> <span class="no">Faraday</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:url</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://api.weibo.com&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">post</span> <span class="s1">&#39;/2/statuses/update.json&#39;</span><span class="p">,</span>
+</span><span class='line'>                       <span class="ss">:access_token</span> <span class="o">=&gt;</span> <span class="vi">@weibo_config</span><span class="o">[</span><span class="s1">&#39;access_token&#39;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>                       <span class="ss">:status</span> <span class="o">=&gt;</span> <span class="n">generate_post</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">responseJSON</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span> <span class="n">result</span><span class="o">.</span><span class="n">body</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">responseJSON</span><span class="o">[</span><span class="s1">&#39;error_code&#39;</span><span class="o">]</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s1">&#39;post error:&#39;</span> <span class="o">+</span> <span class="n">responseJSON</span><span class="o">[</span><span class="s1">&#39;error&#39;</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;post to weibo successfully&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">generate_post</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">total</span> <span class="o">=</span> <span class="n">get_history</span>
+</span><span class='line'>    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="vi">@number</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>    <span class="n">number_rest</span> <span class="o">=</span> <span class="mi">4000</span> <span class="o">-</span> <span class="n">total</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">save_to_history</span> <span class="n">total</span>
+</span><span class='line'>    <span class="n">post_template</span> <span class="o">=</span> <span class="vi">@weibo_config</span><span class="o">[</span><span class="s1">&#39;post_template&#39;</span><span class="o">].</span><span class="n">force_encoding</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">post_template</span> <span class="o">%</span> <span class="p">{</span><span class="ss">:number_done</span> <span class="o">=&gt;</span> <span class="vi">@number</span><span class="p">,</span> <span class="ss">:total</span> <span class="o">=&gt;</span> <span class="n">total</span><span class="p">,</span><span class="ss">:number_rest</span> <span class="o">=&gt;</span> <span class="n">number_rest</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">get_history</span>
+</span><span class='line'>    <span class="vi">@pushups</span><span class="o">[</span><span class="s1">&#39;total&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">save_to_history</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@pushups</span><span class="o">[</span><span class="s1">&#39;total&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">total</span>
+</span><span class='line'>    <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;pushups.yml&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">h</span><span class="o">.</span><span class="n">write</span> <span class="vi">@pushups</span><span class="o">.</span><span class="n">to_yaml</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">poster</span> <span class="o">=</span> <span class="no">WeiboPoster</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">poster</span><span class="o">.</span><span class="n">post_weibo</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>整个逻辑就是先从一个配置文件中读出当前完成的俯卧撑个数，再配合通过命令行参数传入的当前组做的个数，结合微博模板生成微博内容，再调用API发送HTTP请求。</p>
+
+<p>accecs token和微博模板存放在weibo-config.yml文件中。</p>
+
+<figure class='code'><figcaption><span>weibo-config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># Sina Weibo Post</span>
+</span><span class='line'><span class="l-Scalar-Plain">access_token</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YOUR_ACCESS_TOKEN</span>
+</span><span class='line'><span class="l-Scalar-Plain">post_template</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">刚才做了%{number_done}个俯卧撑，2月份总共完成了%{total}个俯卧撑，距离4000个俯卧撑目标还差%{number_rest}个</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后我在Rakefile中配置了一个任务，用于调用WeiboPoster类。</p>
+
+<figure class='code'><figcaption><span>Rakefile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;rubygems&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;bundler/setup&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;stringex&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">desc</span> <span class="s2">&quot;post pushups to weibo&quot;</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:pushups</span><span class="p">,</span> <span class="ss">:number</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">args</span><span class="o">.</span><span class="n">with_defaults</span><span class="p">(</span><span class="ss">:number</span> <span class="o">=&gt;</span> <span class="mi">50</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">number</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">number</span>
+</span><span class='line'>    <span class="nb">system</span> <span class="s2">&quot;ruby post_weibo.rb &quot;</span> <span class="o">+</span> <span class="n">number</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后再用一个shell脚本封装一下，支持shell调用。</p>
+
+<figure class='code'><figcaption><span>pushups</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'>rake pushups<span class="o">[</span><span class="nv">$1</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OK这样就齐活了。做完一组俯卧撑之后，只需在命令行输入<code>pushups 35</code>,然后就可以看到我的微博多了一篇推文。</p>
+
+<p>最终效果如下。</p>
+
+<p><img src="http://www.huangbowen.net/images/weibo_pushups.png" width="600"></p>
+
+<p>我的微博地址：<a href="http://www.weibo.com/hbw0925">@无敌北瓜</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[理解Maven中的SNAPSHOT版本和正式版本]]></title>
@@ -1100,177 +1290,6 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
 <li><p>自动化部署。之前对.NET下的网站的部署都是手动的，将编译生成后的文件复制到服务器上，暂停IIS，重载文件，重新启动IIS。其实这些都是可以自动化完成的，自己没花时间研究，所以也未实现。</p></li>
 <li><p>使用成熟的log框架给系统关键逻辑打上log。这个纯粹是自己懒，不想做。因为加log方便自己以后排查错误，对客户来说没有任何影响，自己就懒得弄了。</p></li>
 <li><p>没有引入自动化测试。还是时间成本的原因，编写web的自动化测试太花时间了，所以只能舍弃。</p></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用protractor操作页面元素]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/05/04/use-protractor-to-manipulate-dom-elements/"/>
-    <updated>2015-05-04T17:02:05+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/05/04/use-protractor-to-manipulate-dom-elements</id>
-    <content type="html"><![CDATA[<p>Protractor是为Angular JS应用量身打造的端到端测试框架。它可以真实的驱动浏览器，自动完成对web应用的测试。Protractor驱动浏览器使用的是WebDriver标准，所以使用起来与其他语言实现的WebDriver库大体相同。当然，我说大体相同那肯定还是有不同的地方。一旦不注意这些不同的地方就会坑到你（我就被成功坑过，所以才有了这篇文章）。</p>
-
-<!-- more -->
-
-
-<p>Protractor编写测试的核心是查找DOM元素，与其交互，然后查看交互后的状态与你的期望是否一致。所以查找DOM元素并与之交互显的非常重要。Protractor提供了一个全局函数element，其接受一个Locator对象并返回一个ElementFinder对象。该函数会返回单个元素。如果你想返回多个元素，可以使用element.all函数，其接受一个Locator对象并返回ElementArrayFinder对象。ElementFinder对象有一组方法，用于元素交互，比如click()，getText(),sendKeys等。</p>
-
-<p>Locator对象的创建主要使用全局的by对象，其提供一些API来生成Locator对象以供element或element.all函数使用。</p>
-
-<p>比如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//根据class名来查找元素</span>
-</span><span class='line'><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="s1">&#39;)</span>
-</span><span class='line'>
-</span><span class='line'><span class="s1">//根据id来查找元素</span>
-</span><span class='line'><span class="s1">by.id(‘myid&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//根据ng-model名来查找元素</span>
-</span><span class='line'><span class="nx">by</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="err">’</span><span class="nx">name</span><span class="s1">&#39;)</span>
-</span><span class='line'>
-</span><span class='line'><span class="s1">//查找绑定了指定名的元素</span>
-</span><span class='line'><span class="s1">by.binding(‘bindingname&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//查找指定repeater中的元素</span>
-</span><span class='line'><span class="nx">by</span><span class="p">.</span><span class="nx">repeater</span><span class="p">(</span><span class="err">‘</span><span class="nx">myrepeater</span><span class="err">&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以看出前两个Locator的创建方法与其他语言实现的WebDriver的用法基本一样，而后几个则专为AngularJS应用设计的，方便在基于AngualrJS框架下写的web应用中查找页面元素。这是第一处不同。</p>
-
-<p>另一处不同其他语言实现的WebDriver库使用Locator找到的元素类型是WebElement，而Protractor则返回的是ElementFinder对象。两者不同之处是在于ElementFinder对象不会立即与浏览器交互，根据指定的Locator来查找到页面上的元素；而只有当你调用了ElementFinder对象的方法时，它才会真正的与浏览器进行交互。一些常用的方法有以下所示。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//这时不会与浏览器交互获取元素信息</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">element</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">mycss</span><span class="err">’</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//点击元素</span>
-</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//给该元素输入内容</span>
-</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">sendKeys</span><span class="p">(</span><span class="err">’</span><span class="nx">text</span><span class="err">’</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//清空元素内内容</span>
-</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//获取指定属性的值</span>
-</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="err">‘</span><span class="nx">value</span><span class="err">’</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//获取元素的文本值</span>
-</span><span class='line'><span class="nx">el</span><span class="p">.</span><span class="nx">getText</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>请注意这些方法都是异步的。所有的方法返回的是一个promise（我就吃过这个亏，以为返回的是值）。所以比如你想输出一个元素的值，应该这么写：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">element</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="err">’</span><span class="p">)).</span><span class="nx">getText</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
-</span><span class='line'><span class="p">})</span><span class="o">:</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果你使用expect方法来验证元素的值时，expect方法会帮你取出promise中值，所以你只用这么写:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">expect</span><span class="p">(</span><span class="nx">element</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="err">’</span><span class="p">)).</span><span class="nx">getText</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="err">&#39;确定’</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>还有不同的地方在于Protractor支持对元素查找时进行链式调用。这样的功能相当实用。你可以组合element和element.all两个函数来定位元素。并且Protractor还提供了几个辅助方法来更方便你的使用。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">element</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator1</span><span class="p">).</span><span class="nx">first</span><span class="p">().</span><span class="nx">element</span><span class="p">(</span><span class="nx">locator2</span><span class="p">);</span>
-</span><span class='line'><span class="nx">element</span><span class="p">(</span><span class="nx">locator1</span><span class="p">).</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator2</span><span class="p">);</span>
-</span><span class='line'><span class="nx">element</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator1</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">index</span><span class="p">).</span><span class="nx">all</span><span class="p">(</span><span class="nx">locator2</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>element.all函数提供的辅助方法有：</p>
-
-<ul>
-<li>filter： 提供一个过滤器过滤其中的元素。</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">element</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">by</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="err">‘</span><span class="nx">myclass</span><span class="err">’</span><span class="p">)).</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">ele</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="k">return</span> <span class="nx">ele</span><span class="p">.</span><span class="nx">getText</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>     <span class="k">return</span> <span class="nx">text</span> <span class="o">==</span> <span class="err">‘确定&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li><p>get： 根据索引获取指定元素。如 element.all(by.css(‘myclass’)).get(0);</p></li>
-<li><p>first: 获取第一个元素。 element.all(by.css(’myclass’)).first();</p></li>
-<li><p>last: 获取最后一个元素，用法同上。</p></li>
-<li><p>count：获取元素个数。</p></li>
-</ul>
-
-
-<p>此外还提供了each，map,reduce等方法对列表进行各种操作。</p>
-
-<p>element函数提供的辅助方法有：</p>
-
-<ul>
-<li><p>locator: 返回locator对象。</p></li>
-<li><p>getWebElement： 返回该ElementFinder包裹的WebElement对象。</p></li>
-<li><p>all: 查找其一组子元素。</p></li>
-<li><p>element: 查找其子元素。</p></li>
-<li><p>isPresent: 元素是否在页面上展示。</p></li>
-</ul>
-
-
-<p>总结起来，Protractor与其它的WebDriver语言实现的区别如下：</p>
-
-<ol>
-<li><p>Protractor专为AngualrJS应用定制，其自身包含了很多wait操作，保证AngularJS脚本执行完毕后才进行下一步操作，保证了测试的稳定性与健壮性。</p></li>
-<li><p>Protractor设计的By对象针对AngularJS应用提供了很多实用方法，在定义AngularJS应用页面时更加轻松。</p></li>
-<li><p>element函数返回的是ElementFinder对象，其不会立即与浏览器交互，除非调用ElementFinder对象的方法。</p></li>
-<li><p>调用ElementFinder对象的方法返回的是一个promise。（这点很重要）</p></li>
-<li><p>Protractor在定位元素时支持链式调用。</p></li>
 </ol>
 
 ]]></content>
