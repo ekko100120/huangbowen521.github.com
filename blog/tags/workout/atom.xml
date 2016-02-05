@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: workout | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/workout/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-02T10:32:01+08:00</updated>
+  <updated>2016-02-05T11:15:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -23,7 +23,7 @@
 <!-- more -->
 
 
-<p><img src="/images/201601_run_record.PNG" width="300"></p>
+<p><img src="/images/201601_run_record.jpg" width="300"></p>
 
 <p>2月份我的目标的是做4000个俯卧撑+撰写4篇技术博客。跑步的时候我可以使用跑步软件（咕咚或者悦跑圈）来记录我的跑步里程，而记录俯卧撑虽然有一些现成的软件(比如Push-Ups)，但是我感觉太重量级，想要一种轻量的方式来记录。后来我想到了一种方式，只需在命令行终端输入一条简单的命令，比如<code>pushups 30</code>，那么我的微博会自动多出来一条博文，记录我本次做了多少俯卧撑，本月已经完成了多少俯卧撑，距离目标还剩下多少俯卧撑。这样子每做完一组，我只需敲一行命令就可以轻松记录下来，并且还有广大网友进行监督。</p>
 
