@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Gradle | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/gradle/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-05T11:15:04+08:00</updated>
+  <updated>2016-02-23T11:50:58+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,158 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Maven和Gradle对比]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven/"/>
+    <updated>2016-02-23T11:30:27+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven</id>
+    <content type="html"><![CDATA[<p>Java世界中主要有三大构建工具：Ant、Maven和Gradle。经过几年的发展，Ant几乎销声匿迹、Maven也日薄西山，而Gradle的发展则如日中天。笔者有幸见证了Maven的没落和Gradle的兴起。Maven的主要功能主要分为5点，分别是依赖管理系统、多模块构建、一致的项目结构、一致的构建模型和插件机制。我们可以从这五个方面来分析一下Gradle比起Maven的先进之处。</p>
+
+<!-- more -->
+
+
+<h2>依赖管理系统</h2>
+
+<p>Maven为Java世界引入了一个新的依赖管理系统。在Java世界中，可以用groupId、artifactId、version组成的Coordination（坐标）唯一标识一个依赖。任何基于Maven构建的项目自身也必须定义这三项属性，生成的包可以是Jar包，也可以是war包或者ear包。一个典型的依赖引用如下所示：</p>
+
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>从上面可以看出当引用一个依赖时，version可以省略掉，这样在获取依赖时会选择最新的版本。而存储这些组件的仓库有远程仓库和本地仓库之分。远程仓库可以使用世界公用的central仓库，也可以使用Apache Nexus自建私有仓库；本地仓库则在本地计算机上。通过Maven安装目录下的settings.xml文件可以配置本地仓库的路径，以及采用的远程仓库的地址。</p>
+
+<p>Gradle在设计的时候基本沿用了Maven的这套依赖管理体系。不过它在引用依赖时还是进行了一些改进。首先引用依赖方面变得非常简洁。</p>
+
+<pre><code class="groovy">
+dependencies {
+    compile 'org.hibernate:hibernate-core:3.6.7.Final'
+    testCompile ‘junit:junit:4.+'
+}
+</code></pre>
+
+<p>第二，Maven和Gradle对依赖项的scope有所不同。在Maven世界中，一个依赖项有6种scope，分别是complie(默认)、provided、runtime、test、system、import。而grade将其简化为了4种，compile、runtime、testCompile、testRuntime。那么如果想在gradle使用类似于provided的scope怎么办？别着急，由于gradle语言的强大表现力，我们可以轻松编写代码来实现类似于provided scope的概念（例如<a href="http://stackoverflow.com/questions/18738888/how-to-use-provided-scope-for-jar-file-in-gradle-build">How to use provided scope for jar file in Gradle build?</a>）。</p>
+
+<p>第三点是Gradle支持动态的版本依赖。在版本号后面使用+号的方式可以实现动态的版本管理。</p>
+
+<p>第四点是在解决依赖冲突方面Gradle的实现机制更加明确。使用Maven和Gradle进行依赖管理时都采用的是传递性依赖；而如果多个依赖项指向同一个依赖项的不同版本时就会引起依赖冲突。而Maven处理这种依赖关系往往是噩梦一般的存在。而Gradle在解决依赖冲突方面相对来说比较明确。在<a href="https://docs.gradle.org/current/userguide/dependency_management.html">Chapter 23. Dependency Management
+</a>中的23.2.3章节详细解读了gradle是如何处理版本冲突的。</p>
+
+<h2>多模块构建</h2>
+
+<p>在SOA和微服务的浪潮下，将一个项目分解为多个模块已经是很通用的一种方式。在Maven中需要定义个parent POM作为一组module的聚合POM。在该POM中可以使用<code>&lt;modules&gt;</code>标签来定义一组子模块。parent POM不会有什么实际构建产出。而parent POM中的build配置以及依赖配置都会自动继承给子module。</p>
+
+<p>而Gradle也支持多模块构建。而在parent的build.gradle中可以使用allprojects和subprojects代码块来分别定义里面的配置是应用于所有项目还是子项目。对于子模块的定义是放置在setttings.gradle文件中的。在gradle的设计当中，每个模块都是Project的对象实例。而在parent build.gradle中通过allprojects或subprojects可以对这些对象进行各种操作。这无疑比Maven要灵活的多。</p>
+
+<p>比如在parent的build.gradle中有以下代码：</p>
+
+<pre><code class="groovy">
+allprojects {
+    task hello &lt;&lt; { task -&gt; println "I'm $task.project.name" }
+}
+</code></pre>
+
+<p>执行命令<code>gradle -q hello</code>会依次打印出父module以及各个submodule的项目名称。这种强大的能力能让gradle对各个模块具有更强的定制化。</p>
+
+<h2>一致的项目结构</h2>
+
+<p>在Ant时代大家创建Java项目目录时比较随意，然后通过Ant配置指定哪些属于source，那些属于testSource等。而Maven在设计之初的理念就是Conversion over configuration（约定大于配置）。其制定了一套项目目录结构作为标准的Java项目结构。一个典型的Maven项目结构如下：</p>
+
+<p><img src="/images/project_structure.png" width="400"></p>
+
+<p>Gradle也沿用了这一标准的目录结构。如果你在Gradle项目中使用了标准的Maven项目结构的话，那么在Gradle中也无需进行多余的配置,只需在文件中包含<code>apply plugin:'java'</code>,系统会自动识别source、resource、test srouce、 test resource等相应资源。不过Gradle作为JVM上的构建工具，也同时支持groovy、scala等源代码的构建，甚至支持Java、groovy、scala语言的混合构建。虽然Maven通过一些插件（比如<a href="http://scala-tools.org/mvnsites/maven-scala-plugin/">maven-scala-plugin</a>）也能达到相同目的，但配置方面显然Gradle要更优雅一些。</p>
+
+<h2>一致的构建模型</h2>
+
+<p>为了解决Ant中对项目构建活动缺乏标准化的问题，Maven特意设置了标准的项目构建周期，其默认的构建周期如下所示：</p>
+
+<pre><code class="xml">
+&lt;phases&gt;
+  &lt;phase&gt;validate&lt;/phase&gt;
+  &lt;phase&gt;initialize&lt;/phase&gt;
+  &lt;phase&gt;generate-sources&lt;/phase&gt;
+  &lt;phase&gt;process-sources&lt;/phase&gt;
+  &lt;phase&gt;generate-resources&lt;/phase&gt;
+  &lt;phase&gt;process-resources&lt;/phase&gt;
+  &lt;phase&gt;compile&lt;/phase&gt;
+  &lt;phase&gt;process-classes&lt;/phase&gt;
+  &lt;phase&gt;generate-test-sources&lt;/phase&gt;
+  &lt;phase&gt;process-test-sources&lt;/phase&gt;
+  &lt;phase&gt;generate-test-resources&lt;/phase&gt;
+  &lt;phase&gt;process-test-resources&lt;/phase&gt;
+  &lt;phase&gt;test-compile&lt;/phase&gt;
+  &lt;phase&gt;process-test-classes&lt;/phase&gt;
+  &lt;phase&gt;test&lt;/phase&gt;
+  &lt;phase&gt;prepare-package&lt;/phase&gt;
+  &lt;phase&gt;package&lt;/phase&gt;
+  &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+  &lt;phase&gt;integration-test&lt;/phase&gt;
+  &lt;phase&gt;post-integration-test&lt;/phase&gt;
+  &lt;phase&gt;verify&lt;/phase&gt;
+  &lt;phase&gt;install&lt;/phase&gt;
+  &lt;phase&gt;deploy&lt;/phase&gt;
+&lt;/phases&gt;
+</code></pre>
+
+<p>而这种构建周期也是Maven最为人诟病的地方。因为Maven将项目的构建周期限制的太死，你无法在构建周期中添加新的phase，只能将插件绑定到已有的phase上。而现在项目的构建过程变得越来越复杂，而且多样化，显然Maven对这种复杂度缺少足够的应变能力。比如你想在项目构建过程中进行一项压缩所有javascript的任务，那么就要绑定到Maven的现有的某个phase上，而显然貌似放在哪个phase都不太合适。而且这些phase都是串行的，整个执行下来是一条线，这也限制了Maven的构建效率。而Gradle在构建模型上则非常灵活。在Gradle世界里可以轻松创建一个task，并随时通过<code>depends</code>语法建立与已有task的依赖关系。甚至对于Java项目的构建来说，Gradle是通过名为<code>java</code>的插件来包含了一个对Java项目的构建周期，这等于Gradle本身直接与项目构建周期是解耦的。</p>
+
+<h2>插件机制</h2>
+
+<p>Maven和Gradle设计时都采用了插件机制。但显然Gradle更胜一筹。主要原因在于Maven是基于XML进行配置。所以其配置语法太受限于XML。即使实现很小的功能都需要设计一个插件，建立其与XML配置的关联。比如想在Maven中执行一条shell命令，其配置如下：</p>
+
+<pre><code class="xml">
+&lt;plugin&gt;
+  &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+  &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.2&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;id&gt;drop DB =&gt; db_name&lt;/id&gt;
+      &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;exec&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+        &lt;executable&gt;curl&lt;/executable&gt;
+        &lt;arguments&gt;
+          &lt;argument&gt;-s&lt;/argument&gt;
+          &lt;argument&gt;-S&lt;/argument&gt;
+          &lt;argument&gt;-X&lt;/argument&gt;
+          &lt;argument&gt;DELETE&lt;/argument&gt;
+          &lt;argument&gt;http://${db.server}:${db.port}/db_name&lt;/argument&gt;
+        &lt;/arguments&gt;
+      &lt;/configuration&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+
+<p>而在Gradle中则一切变得非常简单。</p>
+
+<pre><code class="groovy">task dropDB(type: Exec) {
+ commandLine ‘curl’,’-s’,’s’,’-x’,’DELETE’,"http://${db.server}:{db.port}/db_name"
+}
+</code></pre>
+
+<p>在创建自定义插件方面，Maven和Gradle的机制都差不多，都是继承自插件基类，然后实现要求的方法。这里就不展开说明。</p>
+
+<hr />
+
+<p>从以上五个方面可以看出Maven和Gradle的主要差异。Maven的设计核心<code>Convention Over Configuration</code>被Gradle更加发扬光大，而Gradle的<code>配置即代码</code>又超越了Maven。在Gradle中任何配置都可以作为代码被执行的，我们也可以随时使用已有的Ant脚本（Ant task是Gradle中的一等公民）、Java类库、Groovy类库来辅助完成构建任务的编写。</p>
+
+<p>这种采用本身语言实现的DSL对本身语言项目进行构建管理的例子比比皆是。比如Rake和Ruby、Grunt和JavaScript、Sbt和Ruby&hellip;..而Gradle之所以使用Groovy语言实现，是因为Groovy比Java语言更具表现力，其语法特性更丰富，又兼具函数式的特点。这几年兴起的语言（比如Scala、Go、Swift）都属于强类型的语言，兼具面向对象和函数式的特点。</p>
+
+<p>最后想说的Gradle的命令行比Maven的要强大的多。以前写过一篇文章专门讲述了Gradle的命令行操作，详情请见<a href="http://www.huangbowen.net/blog/2013/09/01/command-line-of-gradle/">Gradle命令行黑魔法</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[理解Maven中的SNAPSHOT版本和正式版本]]></title>
@@ -318,139 +470,6 @@ idea.project {
 </code></pre>
 
 <p>通过这种方式可以最大限度的实现对Intellij项目文件的定制化。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Gradle的属性设置大全]]></title>
-    <link href="http://www.huangbowen.net/blog/2013/09/12/setup-properties-in-gradle/"/>
-    <updated>2013-09-12T22:41:00+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2013/09/12/setup-properties-in-gradle</id>
-    <content type="html"><![CDATA[<p>Gradle作为一款项目构建工具，由于其强大、灵活、快速、完全兼容Ant等特性，越来越受到人们欢迎。Gradle的灵活有时候也会引起人们的困惑。比如在Gradle中设置变量和属性就有N种办法。由于Gradle的理念是Convention over configruation(约定优于配置),所以如果了解了这些约定，那么在使用Gradle的属性配置时一定会如鱼得水。</p>
-
-<!-- more -->
-
-
-<hr />
-
-<p><strong>在项目根目录下建立名为gradle.properties文件，在该文件中定义需要的属性。这些属性在Gradle构建Gradle领域对象（即project对象实例）时会被自动加到project对象实例中作为其属性被直接调用。</strong></p>
-
-<pre><code class="xml gradle.properties">
-guestName= Bowen 
-</code></pre>
-
-<pre><code class="groovy build.gradle">
-task hello &lt;&lt; {
-     println $guestName
-     println "hello, $guestName"
-}
-</code></pre>
-
-<pre><code class="bash">
-$ gradle hello -q
-Bowen
-hello, Bowen
-
-$ gradle properties | grep guestName
-guestName: Bowen
-</code></pre>
-
-<hr />
-
-<p><strong>定义在build.gradle中的ext块中。ext准确的说是Gradle领域对象的一个属性，我们可以将自定义的属性添加到ext对象上，Build.gradle中的其它代码片段可以使用。</strong></p>
-
-<pre><code class="groovy build.gradle">
-ext {
-     guestName='Bowen'
-}
-
-task hello &lt;&lt; {
-     println guestName
-     println "hello, $guestName"
-}
-</code></pre>
-
-<pre><code class="bash">
-$ gradle hello -q
-Bowen
-hello, Bowen
-
-$ gradle properties | grep guestName
-guestName: Bowen
-$ gradle properties | grep ext
-ext: org.gradle.api.internal.plugins.DefaultExtraPropertiesExtension@10ef5fa0
-</code></pre>
-
-<p>从上述可以看到ext对象其实是DefaultExtraPropertiesExtension对象的一个实例。</p>
-
-<hr />
-
-<p><strong>在命令行中通过<code>-D</code>或者<code>-P</code>给Gradle实时创建属性。</strong>
-<code>-D</code>属性会被传送给启动Gradle的jvm，作为一个系统属性被jvm使用。</p>
-
-<pre><code class="groovy build.gradle">
-task hello &lt;&lt; {
-     println System.properties['guestName']
-}
-</code></pre>
-
-<pre><code class="bash">
-$ gradle hello -DguestName='Bowen' -q
-Bowen
-</code></pre>
-
-<p><code>-P</code>属性则会被直接加载到Gradle领域对象上。</p>
-
-<pre><code class="groovy build.gradle">
-task hello &lt;&lt; {
-      println "hello, $guestName"
-}
-</code></pre>
-
-<pre><code class="bash">
-$ gradle hello -PguestName='Bowen' -q
-hello, Bowen
-</code></pre>
-
-<hr />
-
-<p><strong>在Gradle配置文件中创建系统属性。刚讲过在gradle.properties文件可以创建属性，同时我们也可以创建系统属性。如果有<code>systemProp.</code>前缀的属性会被识别为系统属性。</strong></p>
-
-<pre><code class="xml gradle.properties">
-systemProp.guestName = 'Bowen' 
-</code></pre>
-
-<pre><code class="groovy build.gradle">
-task hello &lt;&lt; {
-      println "hello, " + System.properties['guestName']
-}
-</code></pre>
-
-<pre><code class="bash">
-$ gradle hello -q
-hello, Bowen
-</code></pre>
-
-<hr />
-
-<p><strong>将特殊前缀的系统属性或环境变量自动加入到Gradle领域对象中。</strong></p>
-
-<p>如果有环境变量以<code>ORG_GRADLE_PROJECT.</code>为前缀，那么该变量会被自动添加到Gradle领域对象中。同样，如果有系统属性以<code>org.gradle.project.</code>为前缀，那么也会被自动加入到Gradl领域对象中。这一特性的目的之一是为了隐藏一些敏感的信息。比如在执行Gradle脚本时需要传入密码信息，如果以<code>-P</code>的方式传送会被别人看到。而把该属性保存为环境变量，只有系统管理员才有权访问和修改。在运行Gralde的时候该环境变量会被自动加入到Gradle对象中被使用，隔离了明暗数据，又不行影响其他用户使用。（其他用户可以通过<code>-P</code>方式是设置该属性）。</p>
-
-<pre><code class="groovy build.gradle">
-task hello &lt;&lt; {
-      println "hello, " + guestName 
-}
-</code></pre>
-
-<pre><code class="bash">
-$ gradle hello -Dorg.gradle.project.guestName=Bowen -q
-hello, Bowen
-
-$ export ORG_GRADLE_PROJECT_guestName=Bob
-$ gradle hello -q
-hello, Bob
-</code></pre>
 ]]></content>
   </entry>
   

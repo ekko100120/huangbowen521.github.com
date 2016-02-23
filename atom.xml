@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-05T11:15:04+08:00</updated>
+  <updated>2016-02-23T11:50:58+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,229 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Maven和Gradle对比]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven/"/>
+    <updated>2016-02-23T11:30:27+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven</id>
+    <content type="html"><![CDATA[<p>Java世界中主要有三大构建工具：Ant、Maven和Gradle。经过几年的发展，Ant几乎销声匿迹、Maven也日薄西山，而Gradle的发展则如日中天。笔者有幸见证了Maven的没落和Gradle的兴起。Maven的主要功能主要分为5点，分别是依赖管理系统、多模块构建、一致的项目结构、一致的构建模型和插件机制。我们可以从这五个方面来分析一下Gradle比起Maven的先进之处。</p>
+
+<!-- more -->
+
+
+<h2>依赖管理系统</h2>
+
+<p>Maven为Java世界引入了一个新的依赖管理系统。在Java世界中，可以用groupId、artifactId、version组成的Coordination（坐标）唯一标识一个依赖。任何基于Maven构建的项目自身也必须定义这三项属性，生成的包可以是Jar包，也可以是war包或者ear包。一个典型的依赖引用如下所示：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-test<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从上面可以看出当引用一个依赖时，version可以省略掉，这样在获取依赖时会选择最新的版本。而存储这些组件的仓库有远程仓库和本地仓库之分。远程仓库可以使用世界公用的central仓库，也可以使用Apache Nexus自建私有仓库；本地仓库则在本地计算机上。通过Maven安装目录下的settings.xml文件可以配置本地仓库的路径，以及采用的远程仓库的地址。</p>
+
+<p>Gradle在设计的时候基本沿用了Maven的这套依赖管理体系。不过它在引用依赖时还是进行了一些改进。首先引用依赖方面变得非常简洁。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">dependencies</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">compile</span> <span class="s1">&#39;org.hibernate:hibernate-core:3.6.7.Final&#39;</span>
+</span><span class='line'>    <span class="n">testCompile</span> <span class="err">‘</span><span class="nl">junit:junit:</span><span class="mi">4</span><span class="o">.+</span><span class="err">&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第二，Maven和Gradle对依赖项的scope有所不同。在Maven世界中，一个依赖项有6种scope，分别是complie(默认)、provided、runtime、test、system、import。而grade将其简化为了4种，compile、runtime、testCompile、testRuntime。那么如果想在gradle使用类似于provided的scope怎么办？别着急，由于gradle语言的强大表现力，我们可以轻松编写代码来实现类似于provided scope的概念（例如<a href="http://stackoverflow.com/questions/18738888/how-to-use-provided-scope-for-jar-file-in-gradle-build">How to use provided scope for jar file in Gradle build?</a>）。</p>
+
+<p>第三点是Gradle支持动态的版本依赖。在版本号后面使用+号的方式可以实现动态的版本管理。</p>
+
+<p>第四点是在解决依赖冲突方面Gradle的实现机制更加明确。使用Maven和Gradle进行依赖管理时都采用的是传递性依赖；而如果多个依赖项指向同一个依赖项的不同版本时就会引起依赖冲突。而Maven处理这种依赖关系往往是噩梦一般的存在。而Gradle在解决依赖冲突方面相对来说比较明确。在<a href="https://docs.gradle.org/current/userguide/dependency_management.html">Chapter 23. Dependency Management
+</a>中的23.2.3章节详细解读了gradle是如何处理版本冲突的。</p>
+
+<h2>多模块构建</h2>
+
+<p>在SOA和微服务的浪潮下，将一个项目分解为多个模块已经是很通用的一种方式。在Maven中需要定义个parent POM作为一组module的聚合POM。在该POM中可以使用<code>&lt;modules&gt;</code>标签来定义一组子模块。parent POM不会有什么实际构建产出。而parent POM中的build配置以及依赖配置都会自动继承给子module。</p>
+
+<p>而Gradle也支持多模块构建。而在parent的build.gradle中可以使用allprojects和subprojects代码块来分别定义里面的配置是应用于所有项目还是子项目。对于子模块的定义是放置在setttings.gradle文件中的。在gradle的设计当中，每个模块都是Project的对象实例。而在parent build.gradle中通过allprojects或subprojects可以对这些对象进行各种操作。这无疑比Maven要灵活的多。</p>
+
+<p>比如在parent的build.gradle中有以下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">allprojects</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">task</span> <span class="n">hello</span> <span class="o">&lt;&lt;</span> <span class="o">{</span> <span class="n">task</span> <span class="o">-&gt;</span> <span class="n">println</span> <span class="s2">&quot;I&#39;m $task.project.name&quot;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>执行命令<code>gradle -q hello</code>会依次打印出父module以及各个submodule的项目名称。这种强大的能力能让gradle对各个模块具有更强的定制化。</p>
+
+<h2>一致的项目结构</h2>
+
+<p>在Ant时代大家创建Java项目目录时比较随意，然后通过Ant配置指定哪些属于source，那些属于testSource等。而Maven在设计之初的理念就是Conversion over configuration（约定大于配置）。其制定了一套项目目录结构作为标准的Java项目结构。一个典型的Maven项目结构如下：</p>
+
+<p><img src="http://www.huangbowen.net/images/project_structure.png" width="400"></p>
+
+<p>Gradle也沿用了这一标准的目录结构。如果你在Gradle项目中使用了标准的Maven项目结构的话，那么在Gradle中也无需进行多余的配置,只需在文件中包含<code>apply plugin:'java'</code>,系统会自动识别source、resource、test srouce、 test resource等相应资源。不过Gradle作为JVM上的构建工具，也同时支持groovy、scala等源代码的构建，甚至支持Java、groovy、scala语言的混合构建。虽然Maven通过一些插件（比如<a href="http://scala-tools.org/mvnsites/maven-scala-plugin/">maven-scala-plugin</a>）也能达到相同目的，但配置方面显然Gradle要更优雅一些。</p>
+
+<h2>一致的构建模型</h2>
+
+<p>为了解决Ant中对项目构建活动缺乏标准化的问题，Maven特意设置了标准的项目构建周期，其默认的构建周期如下所示：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;phases&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>initialize<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-sources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>compile<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-classes<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-test-sources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-test-sources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-test-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-test-resources<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>test-compile<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-test-classes<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>prepare-package<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>integration-test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>post-integration-test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>install<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>deploy<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'><span class="nt">&lt;/phases&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而这种构建周期也是Maven最为人诟病的地方。因为Maven将项目的构建周期限制的太死，你无法在构建周期中添加新的phase，只能将插件绑定到已有的phase上。而现在项目的构建过程变得越来越复杂，而且多样化，显然Maven对这种复杂度缺少足够的应变能力。比如你想在项目构建过程中进行一项压缩所有javascript的任务，那么就要绑定到Maven的现有的某个phase上，而显然貌似放在哪个phase都不太合适。而且这些phase都是串行的，整个执行下来是一条线，这也限制了Maven的构建效率。而Gradle在构建模型上则非常灵活。在Gradle世界里可以轻松创建一个task，并随时通过<code>depends</code>语法建立与已有task的依赖关系。甚至对于Java项目的构建来说，Gradle是通过名为<code>java</code>的插件来包含了一个对Java项目的构建周期，这等于Gradle本身直接与项目构建周期是解耦的。</p>
+
+<h2>插件机制</h2>
+
+<p>Maven和Gradle设计时都采用了插件机制。但显然Gradle更胜一筹。主要原因在于Maven是基于XML进行配置。所以其配置语法太受限于XML。即使实现很小的功能都需要设计一个插件，建立其与XML配置的关联。比如想在Maven中执行一条shell命令，其配置如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;id&gt;</span>drop DB =&gt; db_name<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;goal&gt;</span>exec<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;executable&gt;</span>curl<span class="nt">&lt;/executable&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;arguments&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>-s<span class="nt">&lt;/argument&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>-S<span class="nt">&lt;/argument&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>-X<span class="nt">&lt;/argument&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>DELETE<span class="nt">&lt;/argument&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>http://${db.server}:${db.port}/db_name<span class="nt">&lt;/argument&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/arguments&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而在Gradle中则一切变得非常简单。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">task</span> <span class="nf">dropDB</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Exec</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'> <span class="n">commandLine</span> <span class="err">‘</span><span class="n">curl</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="o">-</span><span class="n">s</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="n">s</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="o">-</span><span class="n">x</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="n">DELETE</span><span class="err">’</span><span class="o">,</span><span class="s2">&quot;http://${db.server}:{db.port}/db_name&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在创建自定义插件方面，Maven和Gradle的机制都差不多，都是继承自插件基类，然后实现要求的方法。这里就不展开说明。</p>
+
+<hr />
+
+<p>从以上五个方面可以看出Maven和Gradle的主要差异。Maven的设计核心<code>Convention Over Configuration</code>被Gradle更加发扬光大，而Gradle的<code>配置即代码</code>又超越了Maven。在Gradle中任何配置都可以作为代码被执行的，我们也可以随时使用已有的Ant脚本（Ant task是Gradle中的一等公民）、Java类库、Groovy类库来辅助完成构建任务的编写。</p>
+
+<p>这种采用本身语言实现的DSL对本身语言项目进行构建管理的例子比比皆是。比如Rake和Ruby、Grunt和JavaScript、Sbt和Ruby&hellip;..而Gradle之所以使用Groovy语言实现，是因为Groovy比Java语言更具表现力，其语法特性更丰富，又兼具函数式的特点。这几年兴起的语言（比如Scala、Go、Swift）都属于强类型的语言，兼具面向对象和函数式的特点。</p>
+
+<p>最后想说的Gradle的命令行比Maven的要强大的多。以前写过一篇文章专门讲述了Gradle的命令行操作，详情请见<a href="http://www.huangbowen.net/blog/2013/09/01/command-line-of-gradle/">Gradle命令行黑魔法</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇-第七个月暨1月份目标总结]]></title>
@@ -1214,87 +1437,6 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
 <p>这次预计要休息1个月左右，这可是自从2008年开始实习以来能够休息的最长时间了。就当这是一次调整的机会吧，好好的调整下，陪陪家人，想想之后的事情。最近股市有一句话说：“深蹲是为了跳得更高！”。而这次休息是为了下次跑的更远。</p>
 
 <p>无论什么时候，都用积极的心态去迎接挑战，迎接一切。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在Grunt task中集成Protractor]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/06/01/integrate-protracto-to-grunt-task/"/>
-    <updated>2015-06-01T12:18:57+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/06/01/integrate-protracto-to-grunt-task</id>
-    <content type="html"><![CDATA[<p>Protractor是专为AngularJS应用程序编写的UI自动化测试框架。前端构建有很多构建工具，比如Grunt、Gulp等。一般我们会把这些构建工具作为集成集成的脚本执行工具。所以如果把Protractor的执行也集成进去，则可以达到自动验证UI功能的效果。</p>
-
-<!-- more -->
-
-
-<p>本文将介绍如何将Protractor命令集成到Grunt task中。</p>
-
-<p>首先需要为Grunt安装一个插件，<code>grunt-protractor-runner</code>。这个插件会帮你在Grunt中运行Protractor。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>npm install grunt-protractor-runner —save-dev
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在Gruntfile.js文件中引入该插件(如果你没有package.json文件)。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>grunt.loadNpmTasks<span class="o">(</span><span class="s1">&#39;grunt-protractor-runner&#39;</span><span class="o">)</span>;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接着在Gruntfile.js中配置protractor运行参数。需要指定protractor的配置文件路径。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>protractor: <span class="o">{</span>
-</span><span class='line'>  e2e: <span class="o">{</span>
-</span><span class='line'>      options: <span class="o">{</span>
-</span><span class='line'>      keepAlive: <span class="nb">true</span>,
-</span><span class='line'>      configFile: <span class="s2">&quot;protractor.conf.js&quot;</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后在Gruntfile.js中新注册一个名为<code>e2e</code>的task，用于运行Protractor。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>grunt.registerTask<span class="o">(</span>‘e2e’,’run e2e tests’, <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>  grunt.task.run<span class="o">([</span>
-</span><span class='line'>       <span class="s1">&#39;connect:test&#39;</span>,
-</span><span class='line'>       <span class="s1">&#39;protractor:e2e&#39;</span>
-</span><span class='line'>  <span class="o">])</span>;
-</span><span class='line'>
-</span><span class='line'><span class="o">})</span>;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此外为了不忘记自动更新webdriver的版本，可以在package.json中加入以下代码块：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="s2">&quot;scripts&quot;</span>: <span class="o">{</span>
-</span><span class='line'>  <span class="s2">&quot;install&quot;</span>: <span class="s2">&quot;node node_modules/protractor/bin/webdriver-manager update&quot;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样每次运行<code>npm install</code>时会自动更新webdriver版本。</p>
 ]]></content>
   </entry>
   
