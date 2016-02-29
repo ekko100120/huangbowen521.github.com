@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: AngularJS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/angularjs/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[目前在做的一个web应用程序的前端选型]]></title>
     <link href="http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application/"/>
-    <updated>2015-02-09T10:08:10+08:00</updated>
+    <updated>2015-02-09T07:38:10+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application</id>
     <content type="html"><![CDATA[<p>最近进入了一个新的项目组，要新起一个项目。这个Web项目是一个企业内部使用的系统，主要用来记录、追踪、管理潜在客户的数据。该系统有以下特点:</p>
 
@@ -60,7 +60,7 @@
   <entry>
     <title type="html"><![CDATA[将AngularJS的单元测试和端到端测试集成到gradle构建脚本中]]></title>
     <link href="http://www.huangbowen.net/blog/2013/05/07/integrate-javascript-tests-to-gradle/"/>
-    <updated>2013-05-07T15:55:00+08:00</updated>
+    <updated>2013-05-07T15:55:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/05/07/integrate-javascript-tests-to-gradle</id>
     <content type="html"><![CDATA[<p>我目前工作的一个项目后端使用java和spring建立了一个restful service,前端使用<a href="http://angularjs.org/">AngularJS</a>来渲染页面，提供用户接口。在前端的<a href="http://angularjs.org/">AngularJS</a>项目中，我们使用<a href="http://pivotal.github.io/jasmine/">Jasmine</a>来写单元测试，使用<a href="http://angularjs.org/">AngularJS</a>自带的Angular_scenario来写端到端测试。运行这些测试则使用的是<a href="http://karma-runner.github.io/">Karma</a>。</p>
 

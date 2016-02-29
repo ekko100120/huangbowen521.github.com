@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: blog | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/blog/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[博客即代码]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/12/08/bloging-as-code/"/>
-    <updated>2015-12-08T01:59:35+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/12/08/bloging-as-code</id>
+    <link href="http://www.huangbowen.net/blog/2015/12/07/bloging-as-code/"/>
+    <updated>2015-12-07T23:29:35+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2015/12/07/bloging-as-code</id>
     <content type="html"><![CDATA[<p>之前我写过一篇博客，<a href="http://www.huangbowen.net/blog/2013/04/01/min-jie-de-xie-bo-ke/">敏捷的写博客</a>，借鉴了敏捷看板的思想来管理博客。</p>
 
 <!-- more -->
@@ -62,7 +62,7 @@
   <entry>
     <title type="html"><![CDATA[敏捷的写博客]]></title>
     <link href="http://www.huangbowen.net/blog/2013/04/01/min-jie-de-xie-bo-ke/"/>
-    <updated>2013-04-01T12:49:00+08:00</updated>
+    <updated>2013-04-01T12:49:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/04/01/min-jie-de-xie-bo-ke</id>
     <content type="html"><![CDATA[<h2>为什么写博客</h2>
 

@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>博客即代码 - 黄博文的地盘</title>
+  <meta name="author" content="黄博文">
+
+  
+  <meta name="description" content="之前我写过一篇博客，敏捷的写博客，借鉴了敏捷看板的思想来管理博客。 而在DevOps领域有一个很火的技术实践叫做基础设施即代码。Kief对基础设施即代码的解释是这样子的： 基础设施即代码是一种使用新的技术来构建和管理动态基础设施的方式。它把基础设施、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.huangbowen.net/blog/2015/12/07/bloging-as-code">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="黄博文的地盘" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<style>#forkongithub a{background:#060;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#A853B2;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/huangbowen521">Fork me on GitHub</a></span>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38174207-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">黄博文的地盘</a></h1>
+  
+    <h2>我是一个程序员.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.huangbowen.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">博客即代码</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-07T23:29:35+05:30" pubdate data-updated="true">Dec 7<span>th</span>, 2015</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>之前我写过一篇博客，<a href="http://www.huangbowen.net/blog/2013/04/01/min-jie-de-xie-bo-ke/">敏捷的写博客</a>，借鉴了敏捷看板的思想来管理博客。</p>
+
+<!-- more -->
+
+
+<p>而在DevOps领域有一个很火的技术实践叫做基础设施即代码。Kief对基础设施即代码的解释是这样子的：</p>
+
+<blockquote><p>基础设施即代码是一种使用新的技术来构建和管理动态基础设施的方式。它把基础设施、工具和服务以及对基础设施的管理本身作为一个软件系统，采纳<strong>软件工程实践</strong>以结构化的安全的方式来管理对系统的变更。</p></blockquote>
+
+<p>里面的关键一点是以<strong>软件工程实践</strong>的方式来管理基础设施。那么对于我们的博客可不可以也采纳软件工程实践的方式来管理那？答案是可行的。</p>
+
+<ol>
+<li><p>选取合适的<strong>语法</strong></p>
+
+<p> 既然想写代码一样写博客，那么首先要选择一种语法了，这种语法就是<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>。<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>非常容易上手，包含的tag刚刚够用，尤其展示代码非常方便，自从用了它再也不用和烦人的CSS打交道了。人们不仅用<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>在stackoverflow上发问题、解答问题，还在GITHUB上track issue，甚至现在写邮件也用<a href="(https://en.wikipedia.org/wiki/Markdown)">Markdown</a>了。拿它来写技术文章简直不用太爽。</p></li>
+<li><p>选取合适的<strong>框架</strong></p>
+
+<p> 实现基础设施代码需要选择一款基础设施自动化工具，这些工具的特点是全命令行操作，很容易实现自动化。那么建立自己的技术博客站点也需要选择一个博客框架，支持全命令行操作的博客框架有<a href="https://jekyllrb.com/">Jekyll</a>、<a href="http://octopress.org/">Octopress</a>、<a href="https://hexo.io/">Hexo</a>等。它们各自的特点不在本文的讨论范围。但我多说一句，我现在使用的是Octopress，我也用过Hexo，我更喜欢Hexo，原因有二，一是速度快，二是环境简单。</p></li>
+<li><p>选取顺手的<strong>编辑器</strong></p>
+
+<p> 这些博客框架的特点是可以Offline写作，然后一键发布。所以你可以选用任何你喜欢的编辑器来写文章，不用使用在线编辑器和各种样式问题、网络问题抗争了。Atom、Sublime或者专业编辑工具MacDown、Mou等都行。</p></li>
+<li><p><strong>一切纳入版本管理</strong></p>
+
+<p> 这些博客框架创建博客、生成博客、发布博客全部可以命令行操作。而且所有的配置（包括对站点的基本配置、插件的配置、主题的配置）都可以直接修改配置文本，博客也是以MarkDown的格式存储，所以整个站点都可以存放在GIT之类的版本控制库中。比如我的整站博客源码都放置在<a href="https://github.com/huangbowen521/huangbowen521.github.com/commits?author=huangbowen521">GitHub</a>上，从此再也不用更担心博客内容丢失了。</p></li>
+<li><p><strong>灵活的发布策略</strong></p>
+
+<p> 它们通过命令可以生成纯静态的博客，所以无需任何web服务器都可以运行。你可以将其放置到<a href="https://pages.github.com/">GitHub Pages</a>上，或者<a href="https://www.heroku.com/">Heroku</a>上都行，或者自己随便找台免费的云主机装个nignx即可。当然也有更高大上的做法，我把整个博客放置在AWS的S3上。S3是亚马逊推出的对象存储服务，并且我还是用了亚马逊提供的全球CDN加速功能CloudFront，对我的博客进行了全球CDN加速。无论是澳洲海边还是中国内陆，访问速度都是杠杠的。</p></li>
+<li><p><strong>定制开发的能力</strong></p>
+
+<p> 漂亮的主题风格也是选取一个博客框架需要考虑的一个因素。想要更换皮肤就太简单了，也是全命令行操作。拿Octopress举例，网上有很多热心用户制作的皮肤，都托管在github上，相中以后直接通过命令行操作就可以给你的博客换上最In的皮肤。</p>
+
+<p> 另外还有对博客的定制化也是我们关心的。每款博客框架都有丰富的插件，这些插件的代码都放置在GitHub上，完全开源，安装配置插件也非常简单，命令行全部搞定。我自己也写了一些定制化的插件，比如当我发布一个新博客的时候，只需<code>rake deploy</code>一条命令就可以把我的博客推送到我的weibo和linkedin上，也可以把整个博客内容同步到我在博客园的<a href="http://www.cnblogs.com/huang0925/">博客站点</a>上。这些插件也开源在GitHub上，分别是<a href="https://github.com/huangbowen521/octopress-linkedin">octopress-linkedin</a>和<a href="https://github.com/huangbowen521/octopress-syncPost">octopress-syncPost</a>。</p></li>
+</ol>
+
+
+<hr />
+
+<p>这样子，写博客变成了一种享受。进入咨询团队以后，坚持写博客也带来了其它一些好处。比如和客户讨论一个问题时，直接把我文章链接发给他说，说这个东西我之前专门写过博客，你看了就懂了。这样瞬间在客户面前树立了专业的形象。更有甚者，客户当着我的面搜索某个技术名词，第一页第一条赫然就是我写的博客。所以可以少费些口舌，把精力用到其它地方去。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+<span class="byline author vcard">Posted by <span class="fn">黄博文</span></span>
+
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-07T23:29:35+05:30" pubdate data-updated="true">Dec 7<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blog/'>Blog</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/blog/'>blog</a>, <a class='tag' href='/blog/tags/code/'>code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/12/01/recovery-after-acl-5th-month/" title="Previous Post: 膝盖中了一箭之康复篇-第五个月">&laquo; 膝盖中了一箭之康复篇-第五个月</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/01/03/acl-recovery-for-6th-month/" title="Next Post: 膝盖中了一箭之康复篇-第六个月">膝盖中了一箭之康复篇-第六个月 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>攻城狮，程序猿。目前就职于ThoughtWorks。</p>
+</section>
+
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Facl%27+style%3D%27font-size%3A+36.66666666666667%25%27%3EACL%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Factivemq%27+style%3D%27font-size%3A+36.66666666666667%25%27%3EActiveMQ%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EAgile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eagile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fandroid%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EAndroid%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Faws%27+style%3D%27font-size%3A+32.22222222222222%25%27%3EAWS%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fblog%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EBlog%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fc-%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EC%23%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fchef%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EChef%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fci%27+style%3D%27font-size%3A+23.333333333333336%25%27%3ECI%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fcloud%27+style%3D%27font-size%3A+50.0%25%27%3ECloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdatabase%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EDataBase%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdesign%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Edesign%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdevops%27+style%3D%27font-size%3A+27.77777777777778%25%27%3EDevOps%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fefficient%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eefficient%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fenglish%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EEnglish%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffitness%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Efitness%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EFP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgatling%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGatling%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgradle%27+style%3D%27font-size%3A+45.55555555555556%25%27%3EGradle%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgrunt%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EGrunt%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhaskell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHaskell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhomebrew%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EHomebrew%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ejava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EJava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjavascript%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJavaScript%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%E5%AD%A6%E4%B9%A0%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EJava%E5%AD%A6%E4%B9%A0%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flearning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Elearning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+36.66666666666667%25%27%3ELife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+18.88888888888889%25%27%3Elife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ELIFE%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmarathon%27+style%3D%27font-size%3A+18.88888888888889%25%27%3EMarathon%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmicroservice%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Emicroservice%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fplugin%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eplugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fpractise%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Epractise%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fprotractor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EProtractor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fratpack%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ERatpack%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Freading%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Ereading%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frefactor%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erefactor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fruby%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frun%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ERun%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frunning%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Erunning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fscala%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EScala%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fshell%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Eshell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsocks5%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESOCKS5%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring%27+style%3D%27font-size%3A+27.77777777777778%25%27%3ESpring%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESpring-context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+45.55555555555556%25%27%3ESpring-Context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fstudy%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Estudy%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsummary%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESummary%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsvn%27+style%3D%27font-size%3A+14.444444444444445%25%27%3ESVN%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+18.88888888888889%25%27%3ETesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftranslation%27+style%3D%27font-size%3A+14.444444444444445%25%27%3Etranslation%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweb%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EWEB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweibo%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EWeibo%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxml%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXML%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxp%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EXP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fzsh%27+style%3D%27font-size%3A+14.444444444444445%25%27%3EZSH%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%B7%A5%E5%85%B7%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%B7%A5%E5%85%B7%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%80%BB%E7%BB%93%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E6%80%BB%E7%BB%93%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+27.77777777777778%25%27%3E%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%27+style%3D%27font-size%3A+36.66666666666667%25%27%3E%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BF%BB%E8%AF%91%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E7%BF%BB%E8%AF%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%27+style%3D%27font-size%3A+14.444444444444445%25%27%3E%E8%AF%BB%E4%B9%A6%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%27+style%3D%27font-size%3A+18.88888888888889%25%27%3E%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%3C%2Fa%3E+%3C%2Ftags%3E"></span>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/02/29/use-socks5-to-access-website/">使用SOCKS5翻墙</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/23/ratpack-and-spring-boot/">翻译-使用Ratpack和Spring Boot打造高性能的JVM微服务应用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/23/gradle-vs-maven/">Maven和Gradle对比</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/05/acl-recovery-for-7th-month/">膝盖中了一箭之康复篇-第七个月暨1月份目标总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/02/use-weibo-to-track-workout/">使用微博自动记录俯卧撑个数</a>
+      </li>
+    
+  </ul>
+</section>
+
+<iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no"
+        src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2246154347&verifier=149f357d&dpc=1"></iframe>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - 黄博文 -
+  huangbowen521@gmail.com
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bowenhuang';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.huangbowen.net/blog/2015/12/07/bloging-as-code/';
+        var disqus_url = 'http://www.huangbowen.net/blog/2015/12/07/bloging-as-code/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

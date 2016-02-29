@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Gradle | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/gradle/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Maven和Gradle对比]]></title>
     <link href="http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven/"/>
-    <updated>2016-02-23T11:30:27+08:00</updated>
+    <updated>2016-02-23T09:00:27+05:30</updated>
     <id>http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven</id>
     <content type="html"><![CDATA[<p>Java世界中主要有三大构建工具：Ant、Maven和Gradle。经过几年的发展，Ant几乎销声匿迹、Maven也日薄西山，而Gradle的发展则如日中天。笔者有幸见证了Maven的没落和Gradle的兴起。Maven的主要功能主要分为5点，分别是依赖管理系统、多模块构建、一致的项目结构、一致的构建模型和插件机制。我们可以从这五个方面来分析一下Gradle比起Maven的先进之处。</p>
 
@@ -168,7 +168,7 @@ allprojects {
   <entry>
     <title type="html"><![CDATA[在Gradle中使用jaxb的xjc插件]]></title>
     <link href="http://www.huangbowen.net/blog/2014/08/30/use-jaxb-in-gradle/"/>
-    <updated>2014-08-30T20:25:45+08:00</updated>
+    <updated>2014-08-30T17:55:45+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/08/30/use-jaxb-in-gradle</id>
     <content type="html"><![CDATA[<p>jaxb，全称为Java Architecture for Xml Binding,是一种将java对象与xml建立起映射的技术。其主要提供两个功能，一是将java对象映射为xml，二是将xml映射为java对象。JAXB有1.0版和2.0版。2.0版对应的JSR（Java specification request, java规格要求）是JSR 222。jaxb中的xjc工具能够将XML Schema转换为对应的java类。支持的XML类型包括XML DTD，XSD以及WSDL。而schemagen工具则可以将具有相应annotation标记的java类转换为XML结构。</p>
 
@@ -480,7 +480,7 @@ clean {
   <entry>
     <title type="html"><![CDATA[Gradle中的buildScript代码块]]></title>
     <link href="http://www.huangbowen.net/blog/2014/08/27/buildscript-in-gradle/"/>
-    <updated>2014-08-27T22:12:45+08:00</updated>
+    <updated>2014-08-27T19:42:45+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/08/27/buildscript-in-gradle</id>
     <content type="html"><![CDATA[<p>在编写Gradle脚本的时候，在build.gradle文件中经常看到这样的代码：</p>
 
@@ -582,7 +582,7 @@ task printCSV() {
   <entry>
     <title type="html"><![CDATA[使用Gradle运行集成测试]]></title>
     <link href="http://www.huangbowen.net/blog/2013/12/10/integration-test-in-gradle/"/>
-    <updated>2013-12-10T13:17:00+08:00</updated>
+    <updated>2013-12-10T13:17:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/12/10/integration-test-in-gradle</id>
     <content type="html"><![CDATA[<p>如果Gradle构建的项目是一个web项目的话，里面可能包含一些集成测试和功能性测试。这些测试和单元测试不同之处是在运行之前要先在本地将web服务启动起来，并且跑完测试后能够自动的关闭web服务。</p>
 
@@ -652,7 +652,7 @@ build.dependsOn intTest
   <entry>
     <title type="html"><![CDATA[Gradle中使用idea插件的一些实践]]></title>
     <link href="http://www.huangbowen.net/blog/2013/12/04/use-idea-plugin-in-gradle/"/>
-    <updated>2013-12-04T22:19:00+08:00</updated>
+    <updated>2013-12-04T22:19:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/12/04/use-idea-plugin-in-gradle</id>
     <content type="html"><![CDATA[<p>如果你的项目使用了Gradle作为构建工具，那么你一定要使用Gradle来自动生成IDE的项目文件，无需再手动的将源代码导入到你的IDE中去了。</p>
 

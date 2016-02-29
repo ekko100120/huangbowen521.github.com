@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: MANIFEST.MF | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/manifest-mf/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[使用MANIFEST.MF文件来track war包做持续部署]]></title>
     <link href="http://www.huangbowen.net/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file/"/>
-    <updated>2013-04-18T12:40:00+08:00</updated>
+    <updated>2013-04-18T12:40:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/04/18/use-manifest-dot-mf-to-track-war-file</id>
     <content type="html"><![CDATA[<p>在我工作的项目中有这样一个需求。当通过自动部署脚本将当前一个CI构建的WAR包部署到指定服务器后，需要验证该WAR包是否被部署成功。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DevOps | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[翻译-Salt与Ansible全方位比较]]></title>
     <link href="http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable/"/>
-    <updated>2015-07-21T15:15:47+08:00</updated>
+    <updated>2015-07-21T12:45:47+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable</id>
     <content type="html"><![CDATA[<p>原文链接：<a href="http://jensrantil.github.io/salt-vs-ansible.html">http://jensrantil.github.io/salt-vs-ansible.html</a></p>
 
@@ -166,7 +166,7 @@
   <entry>
     <title type="html"><![CDATA[翻译-DevOps究竟是什么？]]></title>
     <link href="http://www.huangbowen.net/blog/2014/10/03/what-exactly-is-devops/"/>
-    <updated>2014-10-03T21:34:43+08:00</updated>
+    <updated>2014-10-03T19:04:43+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/10/03/what-exactly-is-devops</id>
     <content type="html"><![CDATA[<p>原文地址:<a href="http://www.drdobbs.com/architecture-and-design/what-exactly-is-devops/240009147">http://www.drdobbs.com/architecture-and-design/what-exactly-is-devops/240009147</a>
 作者:Neil Garnichaud</p>
@@ -227,7 +227,7 @@
   <entry>
     <title type="html"><![CDATA[(翻译)正确实施DevOps-The Lay of the Land]]></title>
     <link href="http://www.huangbowen.net/blog/2014/09/29/geting-devops-right-the-lay-of-the-land/"/>
-    <updated>2014-09-29T21:38:28+08:00</updated>
+    <updated>2014-09-29T19:08:28+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/09/29/geting-devops-right-the-lay-of-the-land</id>
     <content type="html"><![CDATA[<p>原文地址:<a href="http://www.drdobbs.com/architecture-and-design/getting-devops-right-the-lay-of-the-land/240062639">http://www.drdobbs.com/architecture-and-design/getting-devops-right-the-lay-of-the-land/240062639</a>，作者Scott W. Ambler。</p>
 
@@ -278,7 +278,7 @@
   <entry>
     <title type="html"><![CDATA[翻译-高效DevOps的10项实践]]></title>
     <link href="http://www.huangbowen.net/blog/2014/09/22/ten-practices-for-effective-devops/"/>
-    <updated>2014-09-22T18:29:44+08:00</updated>
+    <updated>2014-09-22T15:59:44+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/09/22/ten-practices-for-effective-devops</id>
     <content type="html"><![CDATA[<p>原文链接： <a href="http://www.drdobbs.com/architecture-and-design/top-10-practices-for-effective-devops/240149363?pgno=1">http://www.drdobbs.com/architecture-and-design/top-10-practices-for-effective-devops/240149363?pgno=1</a>, 作者Scott W. Ambler。</p>
 

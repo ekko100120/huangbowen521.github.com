@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Node | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/node/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[目前在做的一个web应用程序的前端选型]]></title>
     <link href="http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application/"/>
-    <updated>2015-02-09T10:08:10+08:00</updated>
+    <updated>2015-02-09T07:38:10+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/02/09/tech-stack-of-my-new-web-application</id>
     <content type="html"><![CDATA[<p>最近进入了一个新的项目组，要新起一个项目。这个Web项目是一个企业内部使用的系统，主要用来记录、追踪、管理潜在客户的数据。该系统有以下特点:</p>
 

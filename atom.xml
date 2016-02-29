@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -14,9 +14,49 @@
 
   
   <entry>
+    <title type="html"><![CDATA[使用SOCKS5翻墙]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/02/29/use-socks5-to-access-website/"/>
+    <updated>2016-02-29T22:53:29+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2016/02/29/use-socks5-to-access-website</id>
+    <content type="html"><![CDATA[<p>程序员离开了Google很难存活，尤其是现在被墙的网站越来越多，一批优秀的IT网站也深受影响。如果哪天GIHUB和StackOverFlow网站都被墙了，我估计整个中国的IT人员开发效率至少降低10个百分点吧。</p>
+
+<!-- more -->
+
+
+<p>之前一直使用的是公司提供的VPN来访问Google等站点。使用公司提供的VPN好处是不用交钱，不限流量，免费使用。坏处有两点：1是登录麻烦，每次都要输入冗长的密码，还要配合输入动态秘钥，这使得完全自动化变得异常困难；2是使用公司的VPN也不是任何网站都可以访问的，比如<a href="http://www.slideshare.net/">http://www.slideshare.net/</a>这个站点通过公司VPN死活访问不了。</p>
+
+<p>之前使用过免费的翻墙工具goAgent，通过google提供的GAE服务器作为中转站，流量是够了，但是速度稍感吃力。后来由于众所周知的原因GoAgent不再进行更新，功能也无法正常使用。</p>
+
+<p>在同事的推荐下，我决定尝试一些收费的Proxy服务。同事向我介绍了使用SOCKS5进行翻墙的技术。并推荐了收费的Proxy服务器。我试用了一下觉得不错，现在把配置方式讲述一下。</p>
+
+<ol>
+<li><p>首先是在<a href="https://www.fyzhuji.com/">枫叶主机</a>上购买Shadowsocks代理服务。</p>
+
+<p> <a href="https://www.fyzhuji.com/shadow.html">这里</a>可以选择你的计划。Shaowsocks是基于SOCKS5开发的程序组件，分为客户端和服务器端。其实枫叶主机就是找了一批机器安装了Shadowsocks服务器端，作为服务器，然后我们购买了服务以后就可以通过给定的密码和端口连接到这些服务器上去。</p>
+
+<p> 购买了以后可以查看自己可以使用服务器列表以及密码、端口等信息。</p>
+
+<p> <img src="http://www.huangbowen.net/images/fyzhuji.png" width="500"></p>
+
+<p> 我买的是季度用户，40元三个月，60G的流量。</p></li>
+<li><p>然后去<a href="https://shadowsocks.org/en/download/clients.html">shadowsocks</a>官网下载合适的客户端。</p>
+
+<p> 不幸的是官网已经被封了，所以无法直接访问。想要下载翻墙工具，但翻墙工具的下载老巢被墙了，这真是个蛋痛的问题。不过我想聪明的你一定可以想到其它的下载方式的。ShadowSocks支持几乎所有主流的操作系统，也包括移动操作系统。不过比较蛋痛的是我在App Store没有找到它的IOS版客户端，可能被苹果下架了。整个安装过程非常简单，这里就不详述了。</p></li>
+<li><p>然后就是配置客户端，主要是将购买的服务器地址以及密码、端口等配置到客户端中。</p>
+
+<p> 这个过程也不难，教程非常多。这里是枫叶主机提供的Windows上的配置教程：
+ <a href="https://www.fyzhuji.com/knowledgebase-12.html">https://www.fyzhuji.com/knowledgebase-12.html</a>。以下是OSX系统上的配置教程：<a href="https://www.fyzhuji.com/knowledgebase-14.html">https://www.fyzhuji.com/knowledgebase-14.html</a>。主要注意的是ShadowSocks可以开启全局代理模式，它比普通的HTTP代理要强大的多。如果想要在Chrome下使用Shadowsocks的话，一种方式是讲Chrome的代理设置为默认使用系统代理；另一种方式就如Windows上配置教程一样使用SwitchySharp，并进行相应配置。</p></li>
+</ol>
+
+
+<p>你可以将ShadowSocks客户端设置为开机自启动。这样以后打开电脑就可以直接无拘无束的网上冲浪了，不亦快哉。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[翻译-使用Ratpack和Spring Boot打造高性能的JVM微服务应用]]></title>
     <link href="http://www.huangbowen.net/blog/2016/02/23/ratpack-and-spring-boot/"/>
-    <updated>2016-02-23T16:47:48+08:00</updated>
+    <updated>2016-02-23T14:17:48+05:30</updated>
     <id>http://www.huangbowen.net/blog/2016/02/23/ratpack-and-spring-boot</id>
     <content type="html"><![CDATA[<p>这是我为InfoQ翻译的文章，原文地址:<a href="http://www.infoq.com/articles/Ratpack-and-Spring-Boot">Build High Performance JVM Microservices with Ratpack &amp; Spring Boot</a>,InfoQ上的中文地址:<a href="http://www.infoq.com/cn/articles/Ratpack-and-Spring-Boot">使用Ratpack与Spring Boot构建高性能JVM微服务</a>。</p>
 
@@ -276,9 +316,9 @@
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#97;&#x6e;&#x69;&#101;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x70;&#119;&#x6f;&#x6f;&#100;&#115;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#100;&#x61;&#110;&#105;&#101;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#112;&#119;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#100;&#97;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#97;&#110;&#x69;&#101;&#108;&#x70;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#112;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#97;&#110;&#x69;&#101;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#x69;&#101;&#108;&#x2e;&#x70;&#x2e;&#x77;&#111;&#x6f;&#100;&#x73;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#46;&#112;&#46;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#111;&#111;&#100;&#115;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#46;&#x70;&#x2e;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#46;&#x77;&#111;&#x6f;&#100;&#115;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#100;&#x61;&#110;&#105;&#101;&#108;&#46;&#112;&#46;&#119;&#111;&#111;&#100;&#115;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -916,10 +956,10 @@
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#x70;&#x77;&#111;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#x70;&#x77;&#x6f;&#111;&#100;&#x73;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#100;&#97;&#110;&#x69;&#101;&#108;&#112;&#x77;&#111;&#111;&#100;&#x73;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#100;&#97;&#110;&#105;&#x65;&#x6c;&#x70;&#x77;&#111;&#111;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x64;&#97;&#110;&#x69;&#101;&#x6c;&#112;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#58;&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#46;&#112;&#x2e;&#119;&#x6f;&#x6f;&#100;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#x64;&#97;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#x2e;&#x77;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#100;&#x61;&#110;&#105;&#x65;&#x6c;&#46;&#x70;&#46;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#x64;&#97;&#110;&#x69;&#x65;&#x6c;&#46;&#x70;&#46;&#119;&#x6f;&#111;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#x69;&#101;&#108;&#46;&#x70;&#x2e;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x64;&#97;&#x6e;&#x69;&#x65;&#x6c;&#112;&#119;&#x6f;&#x6f;&#x64;&#115;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#100;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x70;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x61;&#110;&#105;&#101;&#108;&#x70;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#112;&#119;&#111;&#x6f;&#x64;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#x61;&#110;&#105;&#x65;&#x6c;&#46;&#112;&#x2e;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#97;&#110;&#x69;&#x65;&#108;&#x2e;&#112;&#x2e;&#x77;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#46;&#112;&#46;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#97;&#110;&#x69;&#x65;&#108;&#46;&#112;&#46;&#x77;&#111;&#111;&#100;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
@@ -942,7 +982,7 @@
   <entry>
     <title type="html"><![CDATA[Maven和Gradle对比]]></title>
     <link href="http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven/"/>
-    <updated>2016-02-23T11:30:27+08:00</updated>
+    <updated>2016-02-23T09:00:27+05:30</updated>
     <id>http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven</id>
     <content type="html"><![CDATA[<p>Java世界中主要有三大构建工具：Ant、Maven和Gradle。经过几年的发展，Ant几乎销声匿迹、Maven也日薄西山，而Gradle的发展则如日中天。笔者有幸见证了Maven的没落和Gradle的兴起。Maven的主要功能主要分为5点，分别是依赖管理系统、多模块构建、一致的项目结构、一致的构建模型和插件机制。我们可以从这五个方面来分析一下Gradle比起Maven的先进之处。</p>
 
@@ -1165,7 +1205,7 @@
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇-第七个月暨1月份目标总结]]></title>
     <link href="http://www.huangbowen.net/blog/2016/02/05/acl-recovery-for-7th-month/"/>
-    <updated>2016-02-05T10:50:19+08:00</updated>
+    <updated>2016-02-05T08:20:19+05:30</updated>
     <id>http://www.huangbowen.net/blog/2016/02/05/acl-recovery-for-7th-month</id>
     <content type="html"><![CDATA[<p>前交叉韧带术后已经7个月。</p>
 
@@ -1206,7 +1246,7 @@
   <entry>
     <title type="html"><![CDATA[使用微博自动记录俯卧撑个数]]></title>
     <link href="http://www.huangbowen.net/blog/2016/02/02/use-weibo-to-track-workout/"/>
-    <updated>2016-02-02T10:07:42+08:00</updated>
+    <updated>2016-02-02T07:37:42+05:30</updated>
     <id>http://www.huangbowen.net/blog/2016/02/02/use-weibo-to-track-workout</id>
     <content type="html"><![CDATA[<p>根据SMART原则我制定了2016年的目标。每个月都有一个小目标，每个目标都是specific(具体)、Measurable(可度量)、Attainable(可实现)、Relevant(相关性)、Time-bound(时限)的。1月份的目标是跑步200公里，其中包含4个半程马拉松。1月底验收的时候发现这个目标轻松达成，整个1月份我总共跑了220公里+，其中跑了4个半程马拉松。而且第二次的马拉松打破我的个人记录，成绩为1小时43分30秒，把我的个人最好成绩提高了2分钟。</p>
 
@@ -1396,7 +1436,7 @@
   <entry>
     <title type="html"><![CDATA[理解Maven中的SNAPSHOT版本和正式版本]]></title>
     <link href="http://www.huangbowen.net/blog/2016/01/29/understand-official-version-and-snapshot-version-in-maven/"/>
-    <updated>2016-01-29T16:56:44+08:00</updated>
+    <updated>2016-01-29T14:26:44+05:30</updated>
     <id>http://www.huangbowen.net/blog/2016/01/29/understand-official-version-and-snapshot-version-in-maven</id>
     <content type="html"><![CDATA[<p>Maven中建立的依赖管理方式基本已成为Java语言依赖管理的事实标准，Maven的替代者Gradle也基本沿用了Maven的依赖管理机制。在Maven依赖管理中，唯一标识一个依赖项是由该依赖项的三个属性构成的，分别是groupId、artifactId以及version。这三个属性可以唯一确定一个组件（Jar包或者War包）。</p>
 
@@ -1485,9 +1525,9 @@
   
   <entry>
     <title type="html"><![CDATA[一个程序员的2015年总结]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/01/07/summary-of-2015/"/>
-    <updated>2016-01-07T01:08:58+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/01/07/summary-of-2015</id>
+    <link href="http://www.huangbowen.net/blog/2016/01/06/summary-of-2015/"/>
+    <updated>2016-01-06T22:38:58+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2016/01/06/summary-of-2015</id>
     <content type="html"><![CDATA[<p>又到了年末写总结的时候。每年写总结时的心情都不一样，有的时候收获满满，有的时候诚惶诚恐，有的时候有些许遗憾&hellip;.今年写年终总结，心情则特别复杂，这一年经历的事情不可谓不多，自己的成长也不可谓不大，但自己却时不时被一种焦虑的情绪烦扰。奈何你做再多的事情，它也会时不时的冒出来。难道这是传说中的三十而立前的磨练？我不得而知。</p>
 
 <!-- more -->
@@ -1541,9 +1581,9 @@
   
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇-第六个月]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/01/04/acl-recovery-for-6th-month/"/>
-    <updated>2016-01-04T00:27:03+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/01/04/acl-recovery-for-6th-month</id>
+    <link href="http://www.huangbowen.net/blog/2016/01/03/acl-recovery-for-6th-month/"/>
+    <updated>2016-01-03T21:57:03+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2016/01/03/acl-recovery-for-6th-month</id>
     <content type="html"><![CDATA[<p>时间过的很快，已经术后半年了。</p>
 
 <!-- more -->
@@ -1565,9 +1605,9 @@
   
   <entry>
     <title type="html"><![CDATA[博客即代码]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/12/08/bloging-as-code/"/>
-    <updated>2015-12-08T01:59:35+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/12/08/bloging-as-code</id>
+    <link href="http://www.huangbowen.net/blog/2015/12/07/bloging-as-code/"/>
+    <updated>2015-12-07T23:29:35+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2015/12/07/bloging-as-code</id>
     <content type="html"><![CDATA[<p>之前我写过一篇博客，<a href="http://www.huangbowen.net/blog/2013/04/01/min-jie-de-xie-bo-ke/">敏捷的写博客</a>，借鉴了敏捷看板的思想来管理博客。</p>
 
 <!-- more -->
@@ -1612,7 +1652,7 @@
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇-第五个月]]></title>
     <link href="http://www.huangbowen.net/blog/2015/12/01/recovery-after-acl-5th-month/"/>
-    <updated>2015-12-01T17:23:25+08:00</updated>
+    <updated>2015-12-01T14:53:25+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/12/01/recovery-after-acl-5th-month</id>
     <content type="html"><![CDATA[<p>7月1日的右膝前叉韧带重建手术，到现在已经术后满5个月了。</p>
 
@@ -1659,9 +1699,9 @@
   
   <entry>
     <title type="html"><![CDATA[学习Scala第一篇-从hello World开始]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/11/15/hello-world-in-scala/"/>
-    <updated>2015-11-15T01:41:24+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/11/15/hello-world-in-scala</id>
+    <link href="http://www.huangbowen.net/blog/2015/11/14/hello-world-in-scala/"/>
+    <updated>2015-11-14T23:11:24+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2015/11/14/hello-world-in-scala</id>
     <content type="html"><![CDATA[<p>最近开始系统性的学习scala。其实之前使用过scala的，比如我在用Gatling这款性能测试工具的时候就接触到了scala了。Gatling本身就是用Scala写的，而且Gatling的性能测试配置文件本身就是一个scala类，可以随意使用scala甚至是Java提供的各种类库。当时觉得用Gatling特别舒服的原因就在于配置文件强大的表现力。而这种表现力就是由Scala语言提供的。</p>
 
 <!-- more -->
@@ -1787,9 +1827,9 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   
   <entry>
     <title type="html"><![CDATA[在ThoughtWorks工作这几年我学到了什么？]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/11/11/what-i-learn-in-thoughtworks/"/>
-    <updated>2015-11-11T00:24:39+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/11/11/what-i-learn-in-thoughtworks</id>
+    <link href="http://www.huangbowen.net/blog/2015/11/10/what-i-learn-in-thoughtworks/"/>
+    <updated>2015-11-10T21:54:39+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2015/11/10/what-i-learn-in-thoughtworks</id>
     <content type="html"><![CDATA[<p>不知不觉，从2012年5月1日加入ThoughtWorks到现在，已经3年有余了。时间过得很快，这三年多我干了很多事情，但仔细想想也没有什么特别值得一提的。在一个公司呆久了总觉得很多事情是理所当然的，直到今年进入了咨询团队，走马观花般见识了很多其他公司的团队和项目，才发现在ThoughtWorks的准则和其它公司的玩法是完全不同的。</p>
 
 <!-- more -->
@@ -1813,7 +1853,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇第四个月]]></title>
     <link href="http://www.huangbowen.net/blog/2015/11/05/acl-recovery-for-4th-month/"/>
-    <updated>2015-11-05T23:51:19+08:00</updated>
+    <updated>2015-11-05T21:21:19+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/11/05/acl-recovery-for-4th-month</id>
     <content type="html"><![CDATA[<p>7月1日的右膝前叉韧带重建手术，到现在已经是4个月了。</p>
 
@@ -1848,9 +1888,9 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇9-12周]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/09/30/acl-recovery-part-3/"/>
-    <updated>2015-09-30T01:00:33+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/09/30/acl-recovery-part-3</id>
+    <link href="http://www.huangbowen.net/blog/2015/09/29/acl-recovery-part-3/"/>
+    <updated>2015-09-29T22:30:33+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2015/09/29/acl-recovery-part-3</id>
     <content type="html"><![CDATA[<p>2015年7月1日做的ACL手术，上一篇写到了4-8周的恢复情况，也就是8月份的恢复情况。当时情况是走路稍微有点瘸，速度和正常人无异，弯腿角度140度左右。训练情况是每周去健身房3次左右，每次椭圆机20分钟，固定自行车30分钟，另外加上一些力量训练。</p>
 
 <!-- more -->
@@ -1883,7 +1923,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[使用Chef管理windows集群]]></title>
     <link href="http://www.huangbowen.net/blog/2015/09/06/use-chef-to-manage-windows-cluster/"/>
-    <updated>2015-09-06T12:06:23+08:00</updated>
+    <updated>2015-09-06T09:36:23+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/09/06/use-chef-to-manage-windows-cluster</id>
     <content type="html"><![CDATA[<p>但凡服务器上了一定规模（百台以上），普通的ssh登录管理的模式就越来越举步维艰。试想Linux发布了一个高危漏洞的补丁，你要把手下成百上千台机器都更新该补丁，如果没有一种自动化方式，那么至少要耗上大半天时间。虽然你编写了大量的shell（或python，perl）脚本来实现各种自动化场景，但最后会发现你又陷入了脚本的汪洋大海之中，管理和维护这么多的脚本的成本也不小。你需要一款基础设施自动化工具，希望它能具有以下功能。</p>
 
@@ -1972,7 +2012,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇4-8周]]></title>
     <link href="http://www.huangbowen.net/blog/2015/08/29/acl-surgery-recovery-phase-two/"/>
-    <updated>2015-08-29T15:54:49+08:00</updated>
+    <updated>2015-08-29T13:24:49+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/08/29/acl-surgery-recovery-phase-two</id>
     <content type="html"><![CDATA[<p>7月1日做的手术，经过一个月的康复，走路已经可以完全不用拐杖了，护具也只是在办公室的时候带着，下班回到家里一般就不带了。前4周的恢复情况请参加我前一篇文章。</p>
 
@@ -2002,7 +2042,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[如何快速掌握一门新技术/语言/框架...]]></title>
     <link href="http://www.huangbowen.net/blog/2015/08/17/learn-new-technology-quickly/"/>
-    <updated>2015-08-17T09:20:36+08:00</updated>
+    <updated>2015-08-17T06:50:36+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/08/17/learn-new-technology-quickly</id>
     <content type="html"><![CDATA[<p>IT行业中的企业特点是都属于知识密集型企业。这种企业的核心竞争力与员工的知识和技能密切相关。而如果你在企业中扮演的是工程师的角色的话，那么你的核心竞争力就是IT相关的知识与技能的储备情况。而众所周知，IT行业是一个大量产生新知识的地方，就拿Web前端举例，短短的5，6年时间，Web前端已经经历了数次变革，就目前来看变革还将继续下去。从以前的div+css网格化布局到JavaScript的方兴未艾，然后是各种JavaScript框架的百家争鸣，HTML5和CSS3的落地，移动web冲击下带来的响应式设计，jQuery,AngularJs,ReactJs等操作DOM元素截然不同的理念和方式，web component的标准化进程&hellip;&hellip;为什么现在企业到处都在招前端工程师？好像突然之间，前端工程师成了稀缺资源。这里的原因之一就是很多前端工程师跟不上行业变化，无法达到目前市场上对前端工程师的能力和要求。在这种大环境下，工程师能够掌握快速学习的能力就变的至关重要。</p>
 
@@ -2046,7 +2086,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之康复篇]]></title>
     <link href="http://www.huangbowen.net/blog/2015/08/01/recovery-after-acl-surgery/"/>
-    <updated>2015-08-01T19:54:17+08:00</updated>
+    <updated>2015-08-01T17:24:17+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/08/01/recovery-after-acl-surgery</id>
     <content type="html"><![CDATA[<p>7月1日手术。手术完后即按照护士要求做踝泵及伸腿运动，次数多少记不得了，反正300次应该是有的。护士说不能下地，但我坐床上实在无法撒尿，最后还是站在床边撒的。</p>
 
@@ -2098,7 +2138,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[翻译-Salt与Ansible全方位比较]]></title>
     <link href="http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable/"/>
-    <updated>2015-07-21T15:15:47+08:00</updated>
+    <updated>2015-07-21T12:45:47+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/07/21/salt-vs-ansiable</id>
     <content type="html"><![CDATA[<p>原文链接：<a href="http://jensrantil.github.io/salt-vs-ansible.html">http://jensrantil.github.io/salt-vs-ansible.html</a></p>
 
@@ -2248,7 +2288,7 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
   <entry>
     <title type="html"><![CDATA[膝盖中了一箭之手术篇]]></title>
     <link href="http://www.huangbowen.net/blog/2015/07/08/acl-recovery/"/>
-    <updated>2015-07-08T13:43:42+08:00</updated>
+    <updated>2015-07-08T11:13:42+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/07/08/acl-recovery</id>
     <content type="html"><![CDATA[<p>虽然5月份已经确诊了前十字韧带断裂，但由于公司项目一时走不开，无法立即手术。几番协商以后，终于确认手术时间定于6月底。期间专门挂了胡勇的6月17日的门诊，让他给看了看。胡主任让助手给我做了各项检查，结合MRI结果，得出了我的前交叉韧带肯定断裂了的结论。所幸我的半月板没有任何问题。顺便我也去了住院部，想预约6月27日住院。但护士告诉我只有提前两天打电话才行。</p>
 
@@ -2272,65 +2312,6 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
 <p>7月7日住院医生蒋医生通知第二天可以办理出院了。我当天又偷偷溜回家休息。7月8日早上回到医院，办理了出院手续。住院期间总共花费31000元不到，社保报销了16000多，自费了14000多。伤不起。</p>
 
 <p>接下来就是漫漫的自我康复之路。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[如何培养自信心]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/06/16/how-to-build-self-confidence/"/>
-    <updated>2015-06-16T17:58:46+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/06/16/how-to-build-self-confidence</id>
-    <content type="html"><![CDATA[<p>self-confidence（自信心）——是一种反映个体对自己是否有能力成功地完成某项活动的信任程度的心理特性，是一种积极、有效地表达自我价值、自我尊重、自我理解的意识特征和心理状态，也称为信心。自信心的个体差异不同程度地影响着学习、竞赛、就业、成就等多方面的个体心理和行为。</p>
-
-<!-- more -->
-
-
-<p>当你被指派一个任务时，你会基于你目前所拥有的资源和能力做出一个评估，结果得出自己是否能胜任这个任务。自己目前能力&lt;该任务所需能力，你却得出能胜任的结论，那就是你对自我认知不足，盲目乐观，这就是自负的表现。自己目前能力 >=该任务所需能力，而你却认为无法胜任，那就是过于贬低自己，这就是自卑。</p>
-
-<p>从自负被打回原形比较容易，因为你多自负几次，多栽几个跟头，那么你就老实了。而从自卑上升到自信则难多了，因为由于自卑，你根本不会去领取任务，这意味着你不会完成该任务，从而无法提升自信，有新任务来时又主动退缩，陷入死循环。</p>
-
-<p>所以大家可能看出来了，培养自信心的关键在于，多做事，做没做过的事。不断的检验自己，校正自己对自己的认知。但是大家在面临工作中的挑战时，报的都是比较谨慎的态度，因为事情没做成，轻则挨顿骂，重则丢了饭碗，所以又陷入一个死循环，谨慎接任务->无法突破自身->自信心（能力）无法提升->谨慎接任务。</p>
-
-<p>所以培养自信心可以从生活中的事情开始。有一个很好的任务就是跑一个马拉松。如果你之前没有跑过马拉松，那么你肯定有很多问题想知道。</p>
-
-<ol>
-<li>马拉松距离有多长？</li>
-<li>跑马拉松需要什么样的装备？</li>
-<li>从现在开始训练，需要多长时间能够完成马拉松?</li>
-<li>需要什么样的训练计划？</li>
-<li>如何安排自己的训练时间？</li>
-</ol>
-
-
-<p>这么多的问题要把你淹没，自己完成一个马拉松似乎变成了一个不可能的任务。如果这时你退缩，那么我可以告诉你，你自卑了。因为据科学家研究，一个普通人，只要你没某些不适合跑步的疾病（比如心脏病等）以及肢体残疾（有些残疾人也能完成马拉松），通过训练都可以完成42公里的跑步。我说你行，你缺少的就是干劲。</p>
-
-<p>虽然有这么多问题，你还是决定试试。那么首先要解决这些问题。如何解决不需要我教了吧？网上一查，资料一大把。多去跑步圣经、跑步吧里逛逛，买几本关于跑步的书，找几个身边的长跑健将聊聊天，大多数的问题都迎刃而解。小部分的问题可能会使你纠结，比如有人说跑步需要3呼3吸，有人说2呼2吸，有人说亚索800方法好，有人说MAF有奇效。不用纠结，你要进入下个环节了，实战训练，从训练中感知这些理论方法，从而找到更适合自己的方式。</p>
-
-<p>刚开始训练感觉新奇，时间久了似乎各种问题又来了。最近太忙，训练时间很难保证；跑了这么久，距离还是无法突破；到底是先练距离还是先练速度那？&hellip;&hellip;.说时间紧的那我劝你不练了。因为咱们的任务就是跑一个全程马拉松，你没时间训练，那就别干了。这就好像老板喊你7天搭一个网站出来，你说对不起最近LOL正在冲击排位，没时间做。跑马拉松这件事本来就是你自己给自己定的任务，老板就是你自己，所以时间问题你看着办。其它问题好说，搞IT这行的最不缺的技能就是利用资源。多看书、多逛跑步论坛、多找过来人交流….(怎么还是老三样)再加上自己在训练中融会贯通，我就不信你不长进。</p>
-
-<p>好了，经过一段时间训练了，感觉自己进步很大，但还是拿不准啥时候能跑个全马。如果你想达到“万事俱备，只欠东风”，那么对不起，你不是诸葛亮，东风啥时候来你是不会知道的。这就需要你设置个deadline了。先报名一个几个月后的全马比赛（一般马拉松比赛都是提前几个月报名），然后你的训练会更加鸡血。而且你会找到一群志同道合的基友（没找到？不知道咋找？我膝盖前叉断裂，都轻松找到了一群病友，你到底用心没？），一起集训，相互鼓励。</p>
-
-<p>比赛的日子越来越近了。回想这几个月来，你为了这一目标付出了这么多实打实的汗水，肯定感慨良多。你认识了一群基友，熟悉了周边没逛过几次的公园，看到了早晨7点钟的城市，学会了跑步中对自我反思&hellip;.恭喜你，这些都是跑马拉松给你带来的从来没有的体验。虽然在迎接这天的过程中，你激动的内心有些忐忑，但是你似乎已经得到了很多意想不到的东西。</p>
-
-<p>比赛这天终于到来了，站在起点前，和好几万人一起打算度过数小时的地狱旅行。这时你的心里除了激动还是激动。比赛结果其实已经不重要了，当你站在跑道上的时候，你就比以前的你强了。如果能顺利完赛，你已经不是以前的你。如果因故未完赛，放心，这绝不是你最后一场马拉松，相信你已经谋划下一次冒险了。</p>
-
-<p>好了，你已经完成了生活中的一个任务了。有没有收获？自信心有没有提升？你试一下你就知道了。可以放心的告诉你，这种感觉绝对比你考试得了全班第一的感觉还要美好。另外，跑完马拉松不是你这个任务的终点。它就像给你打开了一个潘多拉魔盒，你会发现有更多的事情你可以去做，比如铁人三项，比如越野跑&hellip;&hellip;</p>
-
-<p>好吧，可能有点标题党。明明讲如何提升自信心，但通篇却在讲如何完成个人首马。其实很多事情都是相通的。因为你已经发现了如何做一件没做过的事情。</p>
-
-<p>首先，先答应下来。这个最关键。</p>
-
-<p>然后，发动所有的资源，了解这个事情。</p>
-
-<p>接下来，做吧。别忘了边做边验证，吸收过来人的经验。</p>
-
-<p>最后，接受检验吧。检验结果不用担心，因为无论通过与否，你整个过程已经有了大量的收获。</p>
-
-<p>看完以后是不是有种自信心爆棚的错觉？别忘了关键两点：
-1. 坚定决心要做；
-2. 努力想如何做。</p>
-
-<p>最后，尽情享受事情做成后带来的成功感和喜悦吧。</p>
 ]]></content>
   </entry>
   

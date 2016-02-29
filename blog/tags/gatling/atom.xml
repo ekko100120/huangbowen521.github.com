@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Gatling | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/gatling/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Gradle与Gatling脚本集成]]></title>
     <link href="http://www.huangbowen.net/blog/2014/07/23/integrate-gatling-with-gradle/"/>
-    <updated>2014-07-23T14:12:23+08:00</updated>
+    <updated>2014-07-23T11:42:23+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/07/23/integrate-gatling-with-gradle</id>
     <content type="html"><![CDATA[<p>Gatling作为次时代的性能测试工具，由于其API简洁明了、性能出众，越来越受欢迎。但是运行Gatling脚本却有诸多不便，其提供的默认方式不是很方便。考虑到Gatling脚本本质上是Scala类，运行的时候还是使用的是java虚拟机，我们可以将其脚本的运行与Gradle结合起来。这样子就可以通过Gradle来运行Gatling脚本了。</p>
 
@@ -126,7 +126,7 @@ Gatling can be started with several options listed below:</p></blockquote>
   <entry>
     <title type="html"><![CDATA[Gatling->次时代性能测试利器]]></title>
     <link href="http://www.huangbowen.net/blog/2013/12/23/the-power-of-gatling/"/>
-    <updated>2013-12-23T23:07:00+08:00</updated>
+    <updated>2013-12-23T23:07:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/12/23/the-power-of-gatling</id>
     <content type="html"><![CDATA[<p>Gatling作为一款开源免费的性能测试工具越来越受到广大程序员的欢迎。免费当然是好的，最缺钱的就是程序员了;开源更好啊，缺啥功能、想做定制化的可以自己动手，丰衣足食。其实我最喜欢的原因是其提供了简洁强大的API，原生支持命令行运行，不像JMeter那样需要在界面上点来点去。另外其出色的扩展API和轻量级的HTML报表都值得让人称道。</p>
 

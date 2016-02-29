@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AWS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[在AWS中创建NAT节点]]></title>
     <link href="http://www.huangbowen.net/blog/2015/01/17/create-nat-node-in-aws/"/>
-    <updated>2015-01-17T23:23:15+08:00</updated>
+    <updated>2015-01-17T20:53:15+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/01/17/create-nat-node-in-aws</id>
     <content type="html"><![CDATA[<p>NAT, Network Address Translation,即网络地址转换。当内部网络的主机想要访问外网，但是又不想直接暴露给公网，可以通过NAT节点来访问外网。这样做有两个好处，第一是内网的主机无需拥有公网IP就可访问网络（NAT节点需要公网IP），节约了公网IP；第二是内网的主机由于没有公网IP，所以公网的电脑无法访问到它，这样就可以隐藏自己。一个很经典的示例是假如你有一台数据库服务器放置在内网中，为在同一个内网中的web服务器提供数据服务，为了安全性考虑你不会把它直接暴露在公网中。但是数据库服务器有时候自己是需要访问公网的，比如需要升级数据库服务器中的某些软件等。采用NAT方案可以很好的解决这个问题。</p>
 
@@ -369,7 +369,7 @@
   <entry>
     <title type="html"><![CDATA[AWS助理架构师样题解析]]></title>
     <link href="http://www.huangbowen.net/blog/2014/10/22/aws-cert-sample-question/"/>
-    <updated>2014-10-22T20:33:42+08:00</updated>
+    <updated>2014-10-22T18:03:42+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/10/22/aws-cert-sample-question</id>
     <content type="html"><![CDATA[<p>AWS 认证是对其在 AWS 平台上设计、部署和管理应用程序所需的技能和技术知识的一种认可。获得证书有助于证明您使用 AWS 的丰富经验和可信度，同时还能提升您所在的组织熟练使用基于 AWS 云服务应用的整体水平。</p>
 
@@ -518,7 +518,7 @@ degaussed and physically destroyed in accordance with industry-standard practice
   <entry>
     <title type="html"><![CDATA[使用亚马逊的Route53服务]]></title>
     <link href="http://www.huangbowen.net/blog/2014/04/23/use-aws-route53/"/>
-    <updated>2014-04-23T23:36:22+08:00</updated>
+    <updated>2014-04-23T21:06:22+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/04/23/use-aws-route53</id>
     <content type="html"><![CDATA[<p>自从自己的博客从github迁移到AWS以上，再也不用担心Github被墙了。再加上CloudFront的CDN功能，那访问速度真是杠杆的，无论是在中国内陆，还是澳洲海边，秒开无压力。</p>
 
@@ -560,7 +560,7 @@ degaussed and physically destroyed in accordance with industry-standard practice
   <entry>
     <title type="html"><![CDATA[亚马逊云服务之CloudFormation]]></title>
     <link href="http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation/"/>
-    <updated>2013-10-23T16:07:00+08:00</updated>
+    <updated>2013-10-23T16:07:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation</id>
     <content type="html"><![CDATA[<p>亚马逊的Web Service其实包含了一套云服务。云服务主要分为三种:</p>
 
@@ -707,7 +707,7 @@ degaussed and physically destroyed in accordance with industry-standard practice
   <entry>
     <title type="html"><![CDATA[将我的博客迁移到亚马逊云端（2）]]></title>
     <link href="http://www.huangbowen.net/blog/2013/10/01/migrate-octopress-to-aws-step-2/"/>
-    <updated>2013-10-01T21:54:00+08:00</updated>
+    <updated>2013-10-01T21:54:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/10/01/migrate-octopress-to-aws-step-2</id>
     <content type="html"><![CDATA[<p><img src="/images/edgelocation.png"></p>
 

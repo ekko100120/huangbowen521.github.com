@@ -4,7 +4,7 @@
   <title><![CDATA[Category: practise | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/practise/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-02-23T17:18:02+08:00</updated>
+  <updated>2016-02-29T22:59:19+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[如果让我完善几年前的一个项目，我会做哪些改进?]]></title>
     <link href="http://www.huangbowen.net/blog/2014/02/17/how-to-improve-a-legacy-project/"/>
-    <updated>2014-02-17T00:18:00+08:00</updated>
+    <updated>2014-02-17T00:18:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/02/17/how-to-improve-a-legacy-project</id>
     <content type="html"><![CDATA[<p>在08年的时候，我还没有大学毕业，当时在一家公司实习。那时候老板接了一个项目，是一个给中石油某下属公司做的一个web版本的管理系统，我和一个同学硬着头皮接下来做完了。这个系统后端用的是c#的web form,前端普通的html+css+javascript，数据库使用的是sql server2005，部署服务器使用的是Microsoft Server 2008。现在回顾这个系统，虽然代码写的烂，架构写的烂，但是能够正常运行，这是偶尔有一些莫名其妙难以解决的小bug。毕竟是自己5年前的代码嘛，那时候自己太嫩了，好多东西都不知道，没有多少经验。</p>
 
