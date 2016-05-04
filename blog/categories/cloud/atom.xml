@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cloud | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/cloud/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-04-04T00:14:06+05:30</updated>
+  <updated>2016-05-04T23:21:56+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[定时关闭AWS上的EC2机器实例]]></title>
     <link href="http://www.huangbowen.net/blog/2014/12/26/shudown-ec2-at-certain-time/"/>
-    <updated>2014-12-26T11:49:34+05:30</updated>
+    <updated>2014-12-26T14:19:34+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/12/26/shudown-ec2-at-certain-time</id>
     <content type="html"><![CDATA[<p>最近一段时间在做一个产品从阿里云向亚马逊云中国区迁移的前期试验。亚马逊中国区并没有开放免费体验账号，使用的每一份资源都要实打实的掏钱。而为了实验我们使用时一般要启动好几台EC2实例。为了不浪费辛辛苦苦赚的钱，特写了一个脚本，在每天晚上6点将所有的EC2实例自动关闭。由于在亚马逊云中关闭的EC2实例是不收费的，只收取少量的存储费用，所以这样节省不少钱。</p>
 
@@ -79,7 +79,7 @@ $ chmod +x stopinstance.sh
   <entry>
     <title type="html"><![CDATA[AWS re:Invent 2014回顾]]></title>
     <link href="http://www.huangbowen.net/blog/2014/11/25/aws-reinvent-conference/"/>
-    <updated>2014-11-25T09:08:26+05:30</updated>
+    <updated>2014-11-25T11:38:26+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/11/25/aws-reinvent-conference</id>
     <content type="html"><![CDATA[<p>亚马逊在2014年11月11-14日的拉斯维加斯举行了一年一度的re:Invent大会。在今年的大会上，亚马逊一股脑发布和更新了很多服务。现在就由我来带领大家了解一下这些新服务。</p>
 
@@ -151,7 +151,7 @@ $ chmod +x stopinstance.sh
   <entry>
     <title type="html"><![CDATA[AWS助理架构师认证考经]]></title>
     <link href="http://www.huangbowen.net/blog/2014/10/27/how-to-pass-the-aws-certification/"/>
-    <updated>2014-10-27T18:36:36+05:30</updated>
+    <updated>2014-10-27T21:06:36+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/10/27/how-to-pass-the-aws-certification</id>
     <content type="html"><![CDATA[<p>上周考了亚马逊的解决方案架构师-助理级别的认证考试并顺利通过。这也算是对自己AWS服务熟悉程度的一种检验。在准备考试的过程中，把自己学习到的AWS知识都梳理了一遍，也算是收获颇丰。这次特意分享了该认证考经。</p>
 
@@ -224,7 +224,7 @@ $ chmod +x stopinstance.sh
   <entry>
     <title type="html"><![CDATA[AWS系列之三 使用EBS]]></title>
     <link href="http://www.huangbowen.net/blog/2014/07/30/use-ebs/"/>
-    <updated>2014-07-30T20:40:32+05:30</updated>
+    <updated>2014-07-30T23:10:32+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/07/30/use-ebs</id>
     <content type="html"><![CDATA[<p>Amazon Elastic Block Store（EBS）可作为EC2实例的持久性数据块级存储。其具有高可用性和持久性的特点，可用性高达99.999%。给现有的EC2实例扩展新的存储块只需要几分钟的时间，省时省力。每个EBS块都被放置在一个特定的可用区内，并且会自动维护一个副本，随时保护数据安全。</p>
 
@@ -387,7 +387,7 @@ xvdf    202:80   0  20G  0 disk /boot2
   <entry>
     <title type="html"><![CDATA[AWS系列之二  使用EC2]]></title>
     <link href="http://www.huangbowen.net/blog/2014/07/26/using-ec2/"/>
-    <updated>2014-07-26T13:57:22+05:30</updated>
+    <updated>2014-07-26T16:27:22+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/07/26/using-ec2</id>
     <content type="html"><![CDATA[<p>在本文中我们有三个任务。
 第一：使用Amazon management console创建一个EC2实例。

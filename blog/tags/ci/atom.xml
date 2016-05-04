@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: CI | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/ci/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-04-04T00:14:06+05:30</updated>
+  <updated>2016-05-04T23:21:56+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[持续集成之道：在你的开源项目中使用Travis CI]]></title>
     <link href="http://www.huangbowen.net/blog/2013/05/30/use-travis-ci-to-your-open-source-project/"/>
-    <updated>2013-05-30T14:58:00+05:30</updated>
+    <updated>2013-05-30T14:58:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/05/30/use-travis-ci-to-your-open-source-project</id>
     <content type="html"><![CDATA[<p>自从接触并践行了敏捷的一些实践之后，便深深的喜欢上了敏捷。尤其是测试自动化和持续集成这两个实践，可以显著的提高软件的质量和集成效率，实时检测项目健康度，使团队成员对项目保持充足的信心。</p>
 
