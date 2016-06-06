@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-05-27T13:58:33+08:00</updated>
+  <updated>2016-06-06T18:02:17+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[谈谈命名]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/06/06/talk-abount-naming-issue/"/>
+    <updated>2016-06-06T17:46:38+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/06/06/talk-abount-naming-issue</id>
+    <content type="html"><![CDATA[<p>Martin Fowler曾经在<a href="http://martinfowler.com/bliki/TwoHardThings.html">一篇文章</a>中曾经引用过Phil Karlton的话：</p>
+
+<blockquote><blockquote><p>There are only two hard things in Computer Science: cache invalidation and naming things.</p></blockquote></blockquote>
+
+<!-- more -->
+
+
+<p>他说这句话在很长的一段时间内都是他最喜欢的话。可见命名对于广大的程序员来说的确是个大问题。</p>
+
+<p>对于我们中国人来说，问题可能出在两个方面：</p>
+
+<ul>
+<li><p><strong>自打学编程开始就没被教育过要重视命名。</strong></p>
+
+<p>  这可以在谭浩强的《C语言入门》一书中可见一斑。《C语言入门》可以说是很多程序员在大学时学习的第一门编程语言使用的教材。而本书通篇都是各种a,b,c，x,y,z的命名方式。这种poor naming的方式被广大程序员纷纷效仿，导致如今在很多项目代码中随处可见。</p></li>
+<li><p><strong>命名需要一定的英文功底，而国内程序员的英文水平参差不齐。</strong></p></li>
+</ul>
+
+
+<p>很多程序员被教育后开始逐渐重视命名，但是受限于英文水平，不知道使用什么合适的英文词汇来命名。有的甚至直接把中文直译为英文的方式命名，或者直接用拼音来命名，反而得不偿失。</p>
+
+<p>命名的重要性我想不需要过于强调。如今的软件开发早已不是求伯君那种单枪匹马的时代。你写下的每一行代码都会在不久的以后被团队的其他人甚至你自己多次查看。如果是个开源项目，那么更会被全球各地的人查看源代码。所以代码的可读性就变得尤为重要。如果读者能够轻松读出你的代码的意图，那么就说明你的命名功底相当扎实。</p>
+
+<p>比如在一个管理系统中，你使用这样的代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">c</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>很容易让人摸不着头脑，虽然程序能够正常运作，但恐怕没人敢轻易修改这行他们不了解的代码。而如果修改成为这样：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">weekly_pay</span> <span class="o">=</span> <span class="n">hours_worked</span> <span class="o">*</span> <span class="n">pay_rate</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>那恐怕极少有人不懂这行代码的意图。</p>
+
+<p>糟糕的命名也会导致大量无谓的注释，这是一个很容易跳进去的陷阱。下一段代码怕别人不明白你的意图，那么就加上注释。这貌似是一个很精妙的想法，实际上却南辕北辙。比如以下的注释：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">int</span> <span class="n">d</span><span class="o">;</span> <span class="c1">// elapsed time in days</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>貌似很容易让人读懂，但是问题还是很多。首先注释不能跟着所有的引用，在定义处了解了d的含义，继续往下看的话却很容易忘记；其次代码更新了，很可能会忘记修改注释，反而给把读者带入歧途。</p>
+
+<p>与其用这样的注释，还不如直接重命名：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">int</span> <span class="n">elapsedTimeInDays</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样清晰易懂，还不用维护注释，何乐而不为？</p>
+
+<p>那么如何着手来提高的自己的命名技巧那？</p>
+
+<p><strong>首先寻找一份公认的代码规范，并严格按照这样的标准执行。</strong>比如google开源了自己内部使用的语言编码规范，我们可以直接拿来使用。比如请看<a href="https://google.github.io/styleguide/javaguide.html">Google Java的style guide</a>，相当详实。除此之外还有<a href="https://google.github.io/styleguide/cppguide.html">C++</a>等。<a href="https://github.com/google/styleguide">这里</a>收集了Google对各种语言的编码规范，非常具有参考价值。</p>
+
+<p>标准的代码规范中的每一条都是有胜出的理由，值得我们遵从。但某些命名问题不一定只有一种最好的解决方式，这就需要团队自己建立起约定。比如对于Java单元测试类的命名方式，不同的团队可能不一样。比如有的团队喜欢以should开头，有的喜欢test开头，有的喜欢骆驼命名法，有些喜欢下划线命名法，每种方式有各自的利弊，没有一种能完全脱颖而出，所以需要团队自行制定。一旦确定使用某一种，那么一定要保持一致。</p>
+
+<p><strong>某些命名规范其实是可以进行自动化检查的</strong>，比如在Java应用的构建过程中可以引用checkStyle这款插件，对命名进行一些基本的检查，比如方法名、变量名是否遵循了一定模式等。这样在一定程度上可以强制大家遵守某些约定。自己以前曾经写过一篇文章，请参见<a href="http://www.huangbowen.net/blog/2013/06/21/introduce-checkstyle/">http://www.huangbowen.net/blog/2013/06/21/introduce-checkstyle/</a>。</p>
+
+<p><strong>最后要在团队中建立起code review的机制，通过code review来相互监督纠正命名问题</strong>，并且这样更容易达成一致的命名约定，方便协作开发。code review可以采取非正式会议评审的方式。最简单的方式就是每天找个固定时间大家一起聚在一个显示器前review每个人的代码，现场提出问题，当事人记录下来会后更改。这种方式非常高效。另外有的团队在嵌入代码时可能会引入一些代码评审机制，比如pull request， cherry pick等。这种review方式比较重量级，反馈周期也较长，好处是可以保证最终迁入的代码是没有问题的。</p>
+
+<hr />
+
+<p>很多语言和框架为了更加可读，都把命名玩出花来了。比如JavaScript生态圈中重要的单元测试工具Jasmine把测试函数以it命名，这样可以与参数连接起来成为一种表意的自然语言：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;A suite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;contains spec with an expectation&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">expect</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>总之，命名问题只是整个编码规范中的一小部分，但是起的作用举足轻重，它是判断一个程序员是否专业的必要标准。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[熊猫热土-环汶川50公里越野赛赛记]]></title>
@@ -587,9 +680,9 @@
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#100;&#x61;&#110;&#x69;&#101;&#x6c;&#112;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#97;&#110;&#105;&#x65;&#x6c;&#112;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#x70;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x61;&#110;&#x69;&#x65;&#108;&#112;&#119;&#x6f;&#111;&#100;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#100;&#x61;&#x6e;&#105;&#101;&#108;&#112;&#119;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#x61;&#110;&#x69;&#101;&#x6c;&#x70;&#x77;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#100;&#97;&#x6e;&#105;&#101;&#108;&#112;&#119;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#97;&#x6e;&#x69;&#101;&#108;&#x2e;&#x70;&#46;&#119;&#x6f;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#115;&#x40;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x61;&#110;&#x69;&#101;&#108;&#x2e;&#112;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#100;&#x61;&#110;&#x69;&#101;&#108;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#111;&#100;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x64;&#97;&#x6e;&#x69;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#x70;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#100;&#97;&#110;&#105;&#x65;&#x6c;&#x2e;&#112;&#x2e;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#x65;&#x6c;&#x2e;&#x70;&#46;&#x77;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -1227,10 +1320,10 @@
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#101;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x64;&#97;&#x6e;&#x69;&#101;&#108;&#x70;&#119;&#x6f;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x64;&#97;&#110;&#105;&#101;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#101;&#108;&#112;&#119;&#x6f;&#x6f;&#100;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#97;&#110;&#105;&#x65;&#x6c;&#46;&#x70;&#x2e;&#119;&#111;&#111;&#x64;&#115;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#x6f;&#111;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#100;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#46;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x64;&#97;&#110;&#105;&#x65;&#108;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x64;&#97;&#110;&#x69;&#x65;&#108;&#112;&#119;&#111;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#108;&#x70;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#97;&#110;&#x69;&#101;&#108;&#x70;&#119;&#111;&#111;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#112;&#x77;&#111;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#100;&#97;&#110;&#105;&#101;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x64;&#97;&#110;&#x69;&#x65;&#108;&#x70;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#x2e;&#x70;&#46;&#119;&#111;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#110;&#x69;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#46;&#119;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#46;&#x70;&#46;&#119;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#x64;&#97;&#x6e;&#x69;&#101;&#108;&#x2e;&#x70;&#46;&#x77;&#x6f;&#111;&#x64;&#x73;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#110;&#105;&#101;&#x6c;&#46;&#x70;&#x2e;&#x77;&#111;&#x6f;&#100;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
@@ -2188,95 +2281,6 @@ HashMap&lt;Shape, Pair&lt;String, String>>)；原因之二据说是这样的方�
 <p>接下来是继续持续性的腿部康复训练，另外把跑步训练、减脂及力量训练都再搞起来。我报名了今年广州马拉松的半马比赛，时间是11月份多，所以还要抓紧时间恢复，继续开始我的拿牌之旅。惭愧的是一直没找到一个室内游泳馆，不能进行游泳训练，铁三也无从谈起。</p>
 
 <p>心里计划术后半年左右就开始参加全马比赛，以便赚取越野赛的参赛资格。现在跑越野右膝还是不行，希望半年后能开始越野跑训练，以便伺机找个轻松点的比赛赚取百公里越野的资格。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用Chef管理windows集群]]></title>
-    <link href="http://www.huangbowen.net/blog/2015/09/06/use-chef-to-manage-windows-cluster/"/>
-    <updated>2015-09-06T12:06:23+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2015/09/06/use-chef-to-manage-windows-cluster</id>
-    <content type="html"><![CDATA[<p>但凡服务器上了一定规模（百台以上），普通的ssh登录管理的模式就越来越举步维艰。试想Linux发布了一个高危漏洞的补丁，你要把手下成百上千台机器都更新该补丁，如果没有一种自动化方式，那么至少要耗上大半天时间。虽然你编写了大量的shell（或python，perl）脚本来实现各种自动化场景，但最后会发现你又陷入了脚本的汪洋大海之中，管理和维护这么多的脚本的成本也不小。你需要一款基础设施自动化工具，希望它能具有以下功能。</p>
-
-<!-- more -->
-
-
-<ol>
-<li><p><strong>批量执行。</strong>这个不多说了吧，试想要为每一台机器打补丁的情形吧。</p></li>
-<li><p><strong>任务编排。</strong>现在稍微复杂点的应用都需要N台服务器来部署，而部署的过程中肯定有个先后的依赖顺序。那么由此看来任务编排肯定必不可少。</p></li>
-<li><p><strong>对业务场景的抽象，也就是DSL化。</strong>之所以抛弃自己用shell(或其它语言的)脚本来实现各种自动化的原因之一就是这些脚本很难懂，除了你以外其他人几乎无法修改。而作为一个成熟的工具，自然对咱们复杂的应用场景要做抽象，比如对服务器节点、角色的抽象，对服务器上的各种安装、配置操作的抽象，对不同环境的抽象等。通过抽象出来的DSL，大家很容易达成一致，协同工作。</p></li>
-<li><p><strong>安全机制。</strong>既然是基础设施自动化工具，免不了包含各种敏感信息，如何去敏也是挺重要的。而且既然能控制整个服务器集群，控制方式也要绝对安全。</p></li>
-</ol>
-
-
-<p>除了这几个基本功能以外，当然我们还希望有更多功能，比如脚本重用、审计功能、完善的文档等。这里就不多说了。</p>
-
-<p>类似的工具肯定已经有了，现在市场上比较流行的开源软件有Puppet、Chef、Ansible、SaltStack等。关于它们的优劣不是这篇文章的重点。</p>
-
-<p>而谈起集群管理，大家似乎默认的都是对Linux系统集群的管理，对于Windows集群则很少涉及。我想这大抵有两方面的原因，一方面是大部分公司中机器集群类型大都是Linux系统，另一方面是Windows机器在批量化管理方面天然有缺陷，比如缺乏各种方便的脚本命令、很难对机器配置完全脚本化等。但对Windows集群的管理问题无法回避，因为在企业中Windows集群的确存在。微软也在致力改善这些问题，比如Window PowerShell就是为了解决校本化的问题。</p>
-
-<p>而笔者的上一个项目就涉及对数百台Windows和Linux集群的管理。Windows集群的主要操作系统是Windows Server 2008，Linux集群的主要操作系统是Ubuntu 12.04。要实现对这样的集群的自动化配置和管理，笔者积累了一些经验，特意分享给大家。</p>
-
-<h2>自动化工具的选型</h2>
-
-<p>凡是牵扯到工具选型的时候，如果你发现你处于一个非常纠结的地位，那可能是因为竞品工具没有一个能突出重围，导致你在它们各自的优缺点之间难以取舍。我也理解，工具选型要考虑的因素太多。这个项目的选型其实没经过太大波折，很快就决定使用Chef。原因我可以简单说一下，Puppet的API太不友好，ansible和salt对windows的支持程度未知，而根据我以前的经验，Chef对windows的支持还是比较成熟的。所以我们就快刀斩乱麻选择了Chef。</p>
-
-<h2>搭建Chef生态环境</h2>
-
-<p>既然决定了Chef，那么接下来很多问题都不得不考虑。</p>
-
-<h3>使用自建的Chef Server</h3>
-
-<p>原因很简单，因为客户不会把自己的node暴露在公共的chef server之上。所以我们在企业内网搭建了一个Chef server，放置在一台ubuntu机器上。</p>
-
-<h3>workstation选择windows机器(windows 7)</h3>
-
-<p>考虑到我们要同时管理Linux集群和Windows集群，所以workstation的选择也很重要。在bootstrap一个node的时候，workstation和linux node的通讯方式是ssh，而和windows node的通讯方式是通过WinRM。如果使用Linux通过WinRM和Windows系统通讯，理论上是可行的，我们可以借助一些第三方工具实现，但过程肯定比较曲折。而如果使用Windows机器和Linux及Windows系统通讯，则没有太大问题。</p>
-
-<h3>搭建自己的软件仓库</h3>
-
-<p>对于Linux系统而言有很多成熟的包管理工具，想要安装什么软件基本上一条命令即可。而对于Windows系统而言，虽然有<a href="https://chocolatey.org/">chocolatey</a>之类的工具，但在分发一些企业内部的软件方面仍捉襟见肘。所以我们选择搭建自己的软件仓库。刚开始为了简便起见就搭建了一个ftp服务器作为软件仓库。后期会考虑迁移到<a href="http://www.sonatype.com/nexus/product-overview">Sonatype Nexus</a>之类能提供更多功能的包管理服务器上去。</p>
-
-<p>创建Chef repo并纳入源代码管理之类的事情由于没有太多特殊性，所以这里就不展开了。</p>
-
-<h2>应用Chef管理windows集群</h2>
-
-<p>使用Chef来管理windows集群肯定没有像管理Linux集群那么容易，以下是几个需要注意的点。</p>
-
-<h3>配置Windows node开启WinRM服务</h3>
-
-<p>WinRM服务是微软提供的用于进行远程通讯的服务（Windows 7及以后的系统内置支持），你可以简单理解为Windows版的SSH。在Windows server 2008 R2操作系统中，WinRM服务默认是关闭的，我们需要启用它。首先需要修改两个组策略。在组策略的计算机配置->策略->Windows组件->Windows远程管理(WinRM)->WinRM服务中，选择“允许自动配置监听器”，把该策略选为启用，并修改IPv4和IPv6过滤器为*。然后在控制面板中选择windows防火墙，单击例外选项卡，选择Windows 远程管理复选框。如果看不到该复选框，请单击添加程序以添加 Windows 远程管理。
-（具体请参见<a href="http://www.briantist.com/how-to/powershell-remoting-group-policy/">http://www.briantist.com/how-to/powershell-remoting-group-policy/</a>）</p>
-
-<p>这两项的配置也可以通过PowerShell脚本来实现。想要了解的可以参见这篇文章<a href="https://powertoe.wordpress.com/2011/05/16/enable-winrm-with-group-policy-but-use-powershell-to-create-the-policy/">https://powertoe.wordpress.com/2011/05/16/enable-winrm-with-group-policy-but-use-powershell-to-create-the-policy/</a>。</p>
-
-<p>然后就可以启用和配置WinRM了。只需要在PowerShell终端输入<code>winrm quickconfig -q</code>即可。另外Chef还推荐对WinRM进行一些进阶配置，具体请参见<a href="https://github.com/Chef/knife-windows#requirementssetup">https://github.com/Chef/knife-windows#requirementssetup</a>。</p>
-
-<h3>使用windows cookbook</h3>
-
-<p><a href="https://github.com/opscode-cookbooks/windows">windows</a> cookbook是Chef专为windows平台写的cookbook。里面包含了非常多的针对windows平台特性的功能，是操纵windows平台不可或缺的利器。比如解压缩文件、执行batch(PowerShell)命令、安装认证、安装卸载windows包、配置执行计划任务&hellip;&hellip;</p>
-
-<p>使用方式也很简单，安装可以通过chef的supermarket执行，具体参见<a href="https://supermarket.chef.io/cookbooks/windows#knife">https://supermarket.chef.io/cookbooks/windows#knife</a>。如果在其它cookbook需要使用该cookbook的模块，只需在其它cookbook的metadata.rb中加入<code>depends ‘windows’</code>即可。</p>
-
-<h3>升级Windows node上的PowerShell版本</h3>
-
-<p>PowerShell之于Windows就相当于shell之于Linux。Windows Server 2008 R2上的PowerShell默认版本是3.0，最好能够升级到高级版本。而<a href="https://github.com/opscode-cookbooks/powershell">https://github.com/opscode-cookbooks/powershell</a>中的cookbook则可以方便的对Windows node的PowerShell进行升级和配置,以及安装各种PowerShell module，执行PowerShell脚本等。</p>
-
-<h3>实现对软件的静默安装</h3>
-
-<p>Linux上的每种软件基本都有通过命令行静默安装的方式。而Windows下的软件却不尽然。如果软件是以.msi方式打包的，那么可以使用Windows Installer来实现静默安装。如果是以.exe的方式来打包的，倒也不被惊慌，可以仔细分析其是否是以inno、NSIS、installshield等方式打包的，然后根据各自方式的静默方式实现自动化安装。如果以上皆不适用，则可以分析该软件是否为绿色软件，尝试把安装后的整个文件夹打包放置于软件仓库之上，以后安装只需要解压缩即可。如果软件既没有规范的打包方式，也不是绿色软件，那么就比较麻烦了，需要分析安装后创建了那些文件，以及执行了那些脚本，然后尝试把这些操作命令行化（不过这样的软件非常少，不必过于担心）。</p>
-
-<h3>使用push jobs功能</h3>
-
-<p>通常我们需要对节点进行批量化操作，而通过chef-client的方式功能有限。chef提供了push jobs这样的扩展功能，允许我们对节点进行随心所欲的批量操作。详情请参见<a href="https://docs.chef.io/push_jobs.html">https://docs.chef.io/push_jobs.html</a>。</p>
-
-<h3>熟练使用PowerShell脚本</h3>
-
-<p>之前我说过，PowerShell在Windows上的地位就如同Shell在Linux上的地位。Windows PowerShell提供了对COM组建和WMI组件的完全访问，而且可以轻松调用.net framework框架中的功能，而且也包含强大的文档。如果你想配置一个DHCP服务器，或者配置一个IIS网站服务，抑或修改注册表，使用PowerShell能轻松让你达到目标，彻底摆脱图形化界面。</p>
-
-<hr />
-
-<p>总体来说，Chef对于Windows平台的支持力度还是相当完善的，如果你想实现对Windows集群的自动化管理，那么Chef不失为一种可行的方案。至于其它几种自动化工具，笔者有时间也会进行深入调研，再出具报告。</p>
 ]]></content>
   </entry>
   

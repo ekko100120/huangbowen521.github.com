@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="上周五的时候我对某个项目做了一个更改，将里面的构建脚本由maven换成了gradle。原因之一是因为maven的配置太繁琐，由于其引入了lifecycle的机制，导致其不够灵活，而gradle作为用groovy写的DSL，代码清爽、简单、灵活。原因之二是我们所有的项目构建都换成了gradle， &hellip;">
+  <meta name="description" content="如果你的项目使用了Gradle作为构建工具，那么你一定要使用Gradle来自动生成IDE的项目文件，无需再手动的将源代码导入到你的IDE中去了。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/04/use-idea-plugin-in-gradle/">Gradle中使用idea插件的一些实践</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-04T22:19:00+08:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/12/04/use-idea-plugin-in-gradle/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/12/04/use-idea-plugin-in-gradle/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>如果你的项目使用了Gradle作为构建工具，那么你一定要使用Gradle来自动生成IDE的项目文件，无需再手动的将源代码导入到你的IDE中去了。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/12/04/use-idea-plugin-in-gradle/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -456,7 +500,7 @@ categories: 编程开发</p>
   <id><a href="http://www.huangbowen.net/">http://www.huangbowen.net/</a></id>
   <author>
     <name>&lt;![CDATA[黄博文]]></name>
-    <email>&lt;![CDATA[<a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#104;&#117;&#x61;&#x6e;&#x67;&#x62;&#x6f;&#x77;&#101;&#110;&#x35;&#x32;&#x31;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#104;&#x75;&#x61;&#x6e;&#x67;&#98;&#x6f;&#119;&#101;&#110;&#x35;&#x32;&#x31;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>]]></email>
+    <email>&lt;![CDATA[<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x68;&#117;&#x61;&#110;&#103;&#x62;&#x6f;&#119;&#x65;&#x6e;&#53;&#50;&#x31;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x68;&#x75;&#97;&#110;&#103;&#98;&#x6f;&#x77;&#101;&#x6e;&#53;&#50;&#49;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator></p>
 
@@ -527,50 +571,6 @@ categories: 编程开发</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/17/page-object/">翻译-page对象</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-17T02:14:00+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/09/17/page-object/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/09/17/page-object/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>译者注：这篇文章翻译自马丁·福勒（Martin Flower，对，没错，就是软件教父）官网的一篇文章，原文出处在文底。如果你正在做WEB自动化测试，那么我强烈推荐你看这篇文章。另外透露Martin Flower将于10月份左右来成都ThoughtWorks办公室，大家有机会一睹他的风采。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/09/17/page-object/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -598,6 +598,10 @@ categories: 编程开发</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/06/06/talk-abount-naming-issue/">谈谈命名</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/05/27/wenchuan-trail-run/">熊猫热土-环汶川50公里越野赛赛记</a>
       </li>
     
@@ -611,10 +615,6 @@ categories: 编程开发</p>
     
       <li class="post">
         <a href="/blog/2016/03/27/living-in-pune-three-weeks-so-far/">印度浦那三周感受</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/03/09/recovery-for-8th-month/">膝盖中了一箭之康复篇-第八个月暨2月份目标总结</a>
       </li>
     
   </ul>

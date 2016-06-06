@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="很久之前就想系统的学习和掌握Spring框架，但是拖了很久都没有行动。现在趁着在外出差杂事不多，就花时间来由浅入深的研究下Spring框架。Spring框架这几年来已经发展成为一个巨无霸产品。从最初的只是用来作为依赖注入到现在已经是无法不包。其涉及的领域有依赖注入、MVC、JMS、Web flow &hellip;">
+  <meta name="description" content="Spring框架是无侵入性的，所以你的代码可以完全是POJO（plain old java object），直接使用Junit就可以完成大部分的单元测试。但是在集成测试方面就比较吃力了。单元测试层面你可以mock一些依赖对象，但是集成测试时需要真实的依赖对象， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/12/use-spring-test/">Spring-Context之二:使用Spring提供的测试框架进行测试</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-12T01:01:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/12/use-spring-test/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/12/use-spring-test/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Spring框架是无侵入性的，所以你的代码可以完全是POJO（plain old java object），直接使用Junit就可以完成大部分的单元测试。但是在集成测试方面就比较吃力了。单元测试层面你可以mock一些依赖对象，但是集成测试时需要真实的依赖对象，而这些对象都是在Spring容器的控制之下。那么如何在引入了Spring的情况下进行集成测试那？别着急，Spring框架早为我们想到了这点，本身提供了集成测试的功能。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/12/use-spring-test/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -476,50 +520,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/27/introduction-of-go/">持续集成及部署利器:Go</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-27T18:39:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/01/27/introduction-of-go/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/01/27/introduction-of-go/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Go是一款先进的持续集成和发布管理系统,由ThoughtWorks开发。（不要和Google的编程语言Go混淆了！）其前身为Cruise,是ThoughtWorks在做咨询和交付交付项目时自己开发的一款开源的持续集成工具。后来随着持续集成及持续部署的火热，ThoughtWorks专门成立了一个项目组，基于Cruise开发除了Go这款工具。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/01/27/introduction-of-go/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -547,6 +547,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/06/06/talk-abount-naming-issue/">谈谈命名</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/05/27/wenchuan-trail-run/">熊猫热土-环汶川50公里越野赛赛记</a>
       </li>
     
@@ -560,10 +564,6 @@
     
       <li class="post">
         <a href="/blog/2016/03/27/living-in-pune-three-weeks-so-far/">印度浦那三周感受</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/03/09/recovery-for-8th-month/">膝盖中了一箭之康复篇-第八个月暨2月份目标总结</a>
       </li>
     
   </ul>
