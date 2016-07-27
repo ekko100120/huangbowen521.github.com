@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AWS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-07-20T00:46:42+08:00</updated>
+  <updated>2016-07-27T11:48:53+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,223 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AWS开发人员认证考试样题解析]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/07/27/aws-developer-exam-sample-questions/"/>
+    <updated>2016-07-27T11:40:02+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/07/27/aws-developer-exam-sample-questions</id>
+    <content type="html"><![CDATA[<p>最近在准备AWS的开发人员考试认证。所以特意做了一下考试样题。每道题尽量给出了文档出处以及解析。</p>
+
+<!-- more -->
+
+
+<hr />
+
+<p>Which of the following statements about SQS is true?</p>
+
+<ol type="a">
+<li><p>Messages will be delivered exactly once and messages will be delivered in First in, First out order</p></li>
+<li><p>Messages will be delivered exactly once and message delivery order is indeterminate</p></li>
+<li><p>Messages will be delivered one or more times and messages will be delivered in First in, First out order</p></li>
+<li><p>Messages will be delivered one or more times and message delivery order is indeterminate</p></li>
+</ol>
+
+
+<p>答案：D</p>
+
+<p>参考文档：<a href="https://aws.amazon.com/sqs/faqs/">https://aws.amazon.com/sqs/faqs/</a></p>
+
+<p>解析：SQS为了保持高可用，会在多个服务器间duplicate消息，所以消息可能会被delivery多次，但会保证至少被delivery一次；另外由于分布式的特性，所以消息的delivery顺序无法得到保证</p>
+
+<hr />
+
+<p>EC2 instances are launched from Amazon Machine Images (AMIs). A given public AMI:</p>
+
+<ol type="a">
+<li><p>can be used to launch EC2 instances in any AWS region</p></li>
+<li><p>can only be used to launch EC2 instances in the same country as the AMI is stored</p></li>
+<li><p>can only be used to launch EC2 instances in the same AWS region as the AMI is stored</p></li>
+<li><p>can only be used to launch EC2 instances in the same AWS availability zone as the AMI is stored</p></li>
+</ol>
+
+
+<p>答案：C</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html</a></p>
+
+<p>解析：AMI只在当前region可用（不过AMI的ID是global范围内唯一的）；如果想跨region的话需要copy到其它region。</p>
+
+<hr />
+
+<p>Company B provides an online image recognition service and utilizes SQS to decouple system
+components for scalability. The SQS consumers poll the imaging queue as often as possible to keep endto-end
+throughput as high as possible. However, Company B is realizing that polling in tight loops is
+burning CPU cycles and increasing costs with empty responses. How can Company B reduce the number
+of empty responses?</p>
+
+<ol type="a">
+<li><p>Set the imaging queue VisibilityTimeout attribute to 20 seconds</p></li>
+<li><p>Set the imaging queue ReceiveMessageWaitTimeSeconds attribute to 20 seconds</p></li>
+<li><p>Set the imaging queue MessageRetentionPeriod attribute to 20 seconds</p></li>
+<li><p>Set the DelaySeconds parameter of a message to 20 seconds</p></li>
+</ol>
+
+
+<p>答案：B</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html">http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html</a></p>
+
+<p>解析：这个需要使用SQS的long pulling；方式之一就是设置queue的ReceiveMessageWaitTimeSeconds属性</p>
+
+<hr />
+
+<p>You attempt to store an object in the US-STANDARD region in Amazon S3, and receive a confirmation
+that it has been successfully stored. You then immediately make another API call and attempt to read
+this object. S3 tells you that the object does not exist. What could explain this behavior?</p>
+
+<ol type="a">
+<li><p>US-STANDARD uses eventual consistency and it can take time for an object to be readable in a bucket.</p></li>
+<li><p>Objects in Amazon S3 do not become visible until they are replicated to a second region.</p></li>
+<li><p>US-STANDARD imposes a 1 second delay before new objects are readable</p></li>
+<li><p>You exceeded the bucket object limit, and once this limit is raised the object will be visible.</p></li>
+</ol>
+
+
+<p>答案：A</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html</a></p>
+
+<p>解析：这道题有点过时了，当时US-STANDARD不支持read-after-write，使用的是eventual consistency，所以当写入一个object以后，不一定会立即读到。现在已经没有US-STANDARD region了（被重命名了）。而且所有region都支持read-after-write了。</p>
+
+<hr />
+
+<p>You have reached your account limit for the number of CloudFormation stacks in a region. How do you
+increase your limit?</p>
+
+<ol type="a">
+<li><p>Make an API call</p></li>
+<li><p>Contact AWS</p></li>
+<li><p>Use the console</p></li>
+<li><p>You cannot increase your limit</p></li>
+</ol>
+
+
+<p>答案：B</p>
+
+<p>参考文档： <a href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_cloudformation">http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_cloudformation</a></p>
+
+<p><a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html</a></p>
+
+<p>解析：stack数量的限制只是一个软限制，所以可以通过向AWS发请求来放宽限制。</p>
+
+<hr />
+
+<p>Which statements about DynamoDB are true? (Pick 2 correct answers)</p>
+
+<ol type="a">
+<li><p>DynamoDB uses a pessimistic locking model</p></li>
+<li><p>DynamoDB uses optimistic concurrency control</p></li>
+<li><p>DynamoDB uses conditional writes for consistency</p></li>
+<li><p>DynamoDB restricts item access during reads</p></li>
+<li><p>DynamoDB restricts item access during writes</p></li>
+</ol>
+
+
+<p>答案：BC</p>
+
+<p>参考文档： <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html">http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html</a>
+解析：这个题目需要对DynamoDB有深入了解，具体可以查看相关文档</p>
+
+<hr />
+
+<p>What is one key difference between an Amazon EBS-backed and an instance-store backed instance?</p>
+
+<ol type="a">
+<li><p>Instance-store backed instances can be stopped and restarted</p></li>
+<li><p>Auto scaling requires using Amazon EBS-backed instances</p></li>
+<li><p>Amazon EBS-backed instances can be stopped and restarted</p></li>
+<li><p>Virtual Private Cloud requires EBS backed instances</p></li>
+</ol>
+
+
+<p>答案：C</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html</a></p>
+
+<hr />
+
+<p>A corporate web application is deployed within an Amazon VPC, and is connected to the corporate data
+center via IPSec VPN. The application must authenticate against the on-premise LDAP server. Once
+authenticated, logged-in users can only access an S3 keyspace specific to the user.
+Which two approaches can satisfy the objectives?</p>
+
+<ol type="a">
+<li><p>The application authenticates against LDAP. The application then calls the IAM Security Service to login
+to IAM using the LDAP credentials. The application can use the IAM temporary credentials to access the
+appropriate S3 bucket.</p></li>
+<li><p>The application authenticates against LDAP, and retrieves the name of an IAM role associated with the
+user. The application then calls the IAM Security Token Service to assume that IAM Role. The application
+can use the temporary credentials to access the appropriate S3 bucket.</p></li>
+<li><p>The application authenticates against IAM Security Token Service using the LDAP credentials. The
+application uses those temporary AWS security credentials to access the appropriate S3 bucket.</p></li>
+<li><p>Develop an identity broker which authenticates against LDAP, and then calls IAM Security Token Service
+to get IAM federated user credentials. The application calls the identity broker to get IAM federated user
+credentials with access to the appropriate S3 bucket.</p></li>
+<li><p>Develop an identity broker which authenticates against IAM Security Token Service to assume an IAM
+Role to get temporary AWS security credentials. The application calls the identity broker to get AWS
+temporary security credentials with access to the appropriate S3 bucket.</p></li>
+</ol>
+
+
+<p>答案：BD</p>
+
+<p>参考文档：<a href="https://aws.amazon.com/blogs/aws/aws-identity-and-access-management-now-with-identity-federation/">https://aws.amazon.com/blogs/aws/aws-identity-and-access-management-now-with-identity-federation/</a></p>
+
+<p>解析：IAM认证一向是考察的重点。B采用的是assume role的方式，D采用的是federated user的方式。
+A错误在于没有login to IAM这个功能；C、E错误在于认证应该通过LDAP，而不是STS。</p>
+
+<hr />
+
+<p>You run an ad-supported photo sharing website using S3 to serve photos to visitors of your site. At some
+point you find out that other sites have been linking to the photos on your site, causing loss to your
+business. What is an effective method to mitigate this?</p>
+
+<ol type="a">
+<li><p>Use CloudFront distributions for static content.</p></li>
+<li><p>Remove public read access and use signed URLs with expiry dates.</p></li>
+<li><p>Block the IPs of the offending websites in Security Groups.</p></li>
+<li><p>Store photos on an EBS volume of the web server.</p></li>
+</ol>
+
+
+<p>答案：B</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html</a></p>
+
+<p>解析：使用signed URL或者创建bucket policy都可以防止盗链。</p>
+
+<hr />
+
+<p>Your application is trying to upload a 6 GB file to Simple Storage Service and receive a &ldquo;Your proposed
+upload exceeds the maximum allowed object size.&rdquo; error message. What is a possible solution for this?</p>
+
+<ol type="a">
+<li><p>None, Simple Storage Service objects are limited to 5 GB</p></li>
+<li><p>Use the multi-part upload API for this object</p></li>
+<li><p>Use the large object upload API for this object</p></li>
+<li><p>Contact support to increase your object size limit</p></li>
+<li><p>Upload to a different region</p></li>
+</ol>
+
+
+<p>答案:B</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/UploadingObjects.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/UploadingObjects.html</a></p>
+
+<p>解析：所以S3能存放的最大对象是5T，但单个put操作支持的最大对象只有5G，超过5G的需要使用multi-part upload API上传。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在AWS中创建NAT节点]]></title>
@@ -701,69 +918,6 @@ degaussed and physically destroyed in accordance with industry-standard practice
 <hr />
 
 <p>由于CloudFormation支持对几乎所有的AWS资源进行创建和配置，并且能够按照指定顺序创建，其Template简洁易懂、容易配置、可重用，所以是你使用AWS的不可多得的好帮手。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[将我的博客迁移到亚马逊云端（2）]]></title>
-    <link href="http://www.huangbowen.net/blog/2013/10/01/migrate-octopress-to-aws-step-2/"/>
-    <updated>2013-10-01T21:54:00+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2013/10/01/migrate-octopress-to-aws-step-2</id>
-    <content type="html"><![CDATA[<p><img src="/images/edgelocation.png"></p>
-
-<p>上篇文章中讲了将我的Octopress博客部署到亚马逊的S3上。而这篇文章则主要讲如何使用亚马逊提供的CloudFront作为内容分发并将自己的独立域名绑定到此CloudFront上。</p>
-
-<!-- more -->
-
-
-<p>首先，需要启用亚马逊的CloudFront。我刚开始以为只需要‘sign up’就行。但是当我在'AWS Management Console'中点击‘Services’中的CloudFront时，却得到了‘Account Blocked’错误。</p>
-
-<p><img src="/images/accountblocked.png" width="780"></p>
-
-<p>这个问题很奇怪，CloudFront明明已经在' Services You&rsquo;re Signed Up For' list中了，但是咋个无法使用那？我只好使用gmail给Amazon客服中心发了邮件询问，结果客服中心告诉我需要使用一个business email(商业邮箱)来发送激活申请。我只好使用公司邮箱发送了申请，过了几个小时就收到了回信，告诉我已经可以使用了。</p>
-
-<p>登陆'AWS Management Console'后，点击'Services'中的‘CloudFront’，就可以看到控制界面了。</p>
-
-<p><img src="/images/cloudfront.png" width="780"></p>
-
-<p>点击'Create Distribution'按钮，Delivery method选择Download。 Download主要针对一些html，css,js等静态文件，而Streaming则主要是一些音视频文件。</p>
-
-<p><img src="/images/deliverymethod.png" width="780"></p>
-
-<p>下一步，要选择Origin,即要进行内容分发的源。虽然亚马逊会自动列出你的S3 bucket，但是千万不要选。而是自己手动输入example.com这个Bucket的Endpoint(Endpoint在S3 Console的Properties标签下的Static Website hosting里看得到)。为什么不直接选S3 bucket那?这是因为当我们访问一个目录时，我们期望能返回默认的object。虽然CouldFront有个Default Root Object设置，只是对根目录起作用，对子目录不起作用。如果使用Bucket的Endpoint，再加上之前已经给该Bucket配置了Default Object，就可以解决这个问题。</p>
-
-<p><img src="/images/originname.png" width="780"></p>
-
-<p>在CNAMEs项中输入自己的域名，多个域名以逗号分隔。</p>
-
-<p><img src="/images/alternatedomain.png" width="780"></p>
-
-<p>这样子CoudFront就算配置好了。通过管理页面也可以配置Error page等。</p>
-
-<p><img src="/images/cloudfrontoverview.png" width="780"></p>
-
-<p>接下来，需要登录自己域名的提供商的管理后台，添加一条自己独立域名的转发，转发到这个CloudFront的Domain Name上。</p>
-
-<p><img src="/images/domainnamechange.png" width="780"></p>
-
-<p>一般需要10分钟到2个小时等待新的域名转发设置生效。</p>
-
-<p>另外要专门提一下CloudFront的cache机制。CloudFront主要通过检测Origin中的http header中的cache-control属性。根据cache-control的值来设置cache时间。但是CloudFront最长只保留24小时的cache，过后就会清空并重新cache。对于我的小博客来说24小时太长了，那如何给Octopress注入cache-control这个http header那？其实在上篇文章已经提过了。S3支持给每个object设置 http header，我们可以通过s3cmd来自动设置，这就是为什么在S3 task中要加入这个参数。</p>
-
-<pre><code class="ruby">
-
-desc "Deploy website via s3cmd"
-task :s3 do
-  puts "## Deploying website via s3cmd"
-  ok_failed system("s3cmd sync --acl-public --reduced-redundancy --add-header \"Cache-Control: max-age=#{s3_cache_secs}\"  public/* s3://#{s3_bucket}/")
-end
-</code></pre>
-
-<p>其中S3_cache_secs就是设置cache时间，我把它设置为3600,也就是一个小时。</p>
-
-<p>至此，我的Octopress博客已经在云端了。感觉访问速度比以前快不少。以前我是部署在github pages，服务器放置在美国。现在使用了CloudFront，亚马逊会自动将请求转发到最近的CloudFront edge location。接下来我再研究下 Amazon Route 53,看看有什么好玩的。</p>
-
-<p>我的博客地址: <a href="http://www.huangbowen.net">http://www.huangbowen.net</a></p>
 ]]></content>
   </entry>
   
