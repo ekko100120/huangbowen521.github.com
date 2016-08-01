@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AWS的SysOps认证考试样题解析 - 黄博文的地盘</title>
+  <meta name="author" content="黄博文">
+
+  
+  <meta name="description" content="刚考过了AWS的developer认证，顺手做了一下SysOps的样题。以下是题目和答案。 When working with Amazon RDS, by default AWS is responsible for implementing which two
+management- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="黄博文的地盘" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<style>#forkongithub a{background:#060;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#A853B2;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/huangbowen521">Fork me on GitHub</a></span>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38174207-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">黄博文的地盘</a></h1>
+  
+    <h2>我是一个程序员.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.huangbowen.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AWS的SysOps认证考试样题解析</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-08-01T17:47:01+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2016</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>刚考过了AWS的developer认证，顺手做了一下SysOps的样题。以下是题目和答案。</p>
+
+<!-- more -->
+
+
+<hr />
+
+<p>When working with Amazon RDS, by default AWS is responsible for implementing which two
+management-related activities? (Pick 2 correct answers)
+A. Importing data and optimizing queries
+B. Installing and periodically patching the database software
+C. Creating and maintaining automated database backups with a point-in-time recovery of up to five minutes
+D. Creating and maintaining automated database backups in compliance with regulatory long-term retention
+requirements</p>
+
+<p>答案：B C</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.html">http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.html</a></p>
+
+<hr />
+
+<p>You maintain an application on AWS to provide development and test platforms for your developers.
+Currently both environments consist of an m1.small EC2 instance. Your developers notice performance
+degradation as they increase network load in the test environment.
+How would you mitigate these performance issues in the test environment?
+A. Upgrade the m1.small to a larger instance type
+B. Add an additional ENI to the test instance
+C. Use the EBS optimized option to offload EBS traffic
+D. Configure Amazon Cloudwatch to provision more network bandwidth when network utilization
+exceeds 80%</p>
+
+<p>答案：A</p>
+
+<p>解析：添加ENI并不会增加带宽；m1.small机器类型没有EBS optimized option;network utilisation与机器类型相关，无法对m1.small provision更多的带宽</p>
+
+<hr />
+
+<p>Per the AWS Acceptable Use Policy, penetration testing of EC2 instances:
+A. may be performed by the customer against their own instances, only if performed from EC2
+instances.
+B. may be performed by AWS, and is periodically performed by AWS.
+C. may be performed by AWS, and will be performed by AWS upon customer request.
+D. are expressly prohibited under all circumstances.
+E. may be performed by the customer against their own instances with prior authorization from AWS.</p>
+
+<p>答案：E</p>
+
+<p>参考文档：<a href="https://aws.amazon.com/security/penetration-testing/">https://aws.amazon.com/security/penetration-testing/</a></p>
+
+<hr />
+
+<p>You have been tasked with identifying an appropriate storage solution for a NoSQL database that
+requires random I/O reads of greater than 100,000 4kB IOPS.
+Which EC2 option will meet this requirement?
+A. EBS provisioned IOPS
+B. SSD instance store
+C. EBS optimized instances
+D. High Storage instance configured in RAID 10</p>
+
+<p>答案：B</p>
+
+<p>解析：这道题只有SSD instance store能提供10万的IOPS</p>
+
+<hr />
+
+<p>Instance A and instance B are running in two different subnets A and B of a VPC. Instance A is not able to
+ping instance B.
+What are two possible reasons for this? (Pick 2 correct answers)
+A. The routing table of subnet A has no target route to subnet B
+B. The security group attached to instance B does not allow inbound ICMP traffic
+C. The policy linked to the IAM role on instance A is not configured correctly
+D. The NACL on subnet B does not allow outbound ICMP traffic</p>
+
+<p>答案：B D</p>
+
+<p>解析：同一个VPC下的所有subnet默认可以相互连接，所以A不对；ping连接不需要什么AWS权限，所以C也不对。而控制机器访问有两层，一层是给subnet指定的ACL，另一层是给机器指定的SG。</p>
+
+<hr />
+
+<p>Your web site is hosted on 10 EC2 instances in 5 regions around the globe with 2 instances per region.
+How could you configure your site to maintain site availability with minimum downtime if one of the 5
+regions was to lose network connectivity for an extended period of time?
+A. Create an Elastic Load Balancer to place in front of the EC2 instances. Set an appropriate health
+check on each ELB.
+B. Establish VPN Connections between the instances in each region. Rely on BGP to failover in the
+case of a region wide connectivity outage
+C. Create a Route 53 Latency Based Routing Record Set that resolves to an Elastic Load Balancer in
+each region. Set an appropriate health check on each ELB.
+D. Create a Route 53 Latency Based Routing Record Set that resolves to Elastic Load Balancers in
+each region and has the Evaluate Target Health flag set to true.</p>
+
+<p>答案：D</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html">http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html</a></p>
+
+<p>解析：只有开启了Evaluate Target Health flag，Route53才会根据健康情况进行路由</p>
+
+<hr />
+
+<p>You run a stateless web application with the following components: Elastic Load Balancer (ELB), 3
+Web/Application servers on EC2, and 1 MySQL RDS database with 5000 Provisioned IOPS. Average
+response time for users is increasing. Looking at CloudWatch, you observe 95% CPU usage on the
+Web/Application servers and 20% CPU usage on the database. The average number of database disk
+operations varies between 2000 and 2500.
+Which two options could improve response times? (Pick 2 correct answers)
+A. Choose a different EC2 instance type for the Web/Application servers with a more appropriate
+CPU/memory ratio
+B. Use Auto Scaling to add additional Web/Application servers based on a CPU load threshold
+C. Increase the number of open TCP connections allowed per web/application EC2 instance
+D. Use Auto Scaling to add additional Web/Application servers based on a memory usage threshold</p>
+
+<p>答案：A B</p>
+
+<p>解析：这里是application机器CPU过载，解决方式是要不加强application机器性能，要不增加更多的application机器，C没有用，D是基于内存门槛，所以都不对</p>
+
+<hr />
+
+<p>Which features can be used to restrict access to data in S3? (Pick 2 correct answers)
+A. Create a CloudFront distribution for the bucket.
+B. Set an S3 bucket policy.
+C. Use S3 Virtual Hosting.
+D. Set an S3 ACL on the bucket or the object.
+E. Enable IAM Identity Federation.</p>
+
+<p>答案：B D</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html</a>
+<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html</a></p>
+
+<hr />
+
+<p>You need to establish a backup and archiving strategy for your company using AWS. Documents should
+be immediately accessible for 3 months and available for 5 years for compliance reasons.
+Which AWS service fulfills these requirements in the most cost effective way?
+A. Use StorageGateway to store data to S3 and use life-cycle policies to move the data into Redshift for
+long-time archiving
+B. Use DirectConnect to upload data to S3 and use IAM policies to move the data into Glacier for longtime
+archiving
+C. Upload the data on EBS, use life-cycle policies to move EBS snapshots into S3 and later into Glacier
+for long-time archiving
+D. Upload data to S3 and use life-cycle policies to move the data into Glacier for long-time archiving</p>
+
+<p>答案：D</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html</a></p>
+
+<p>解析：S3可以存放经常使用的文档，然后存档文件可以使用life-cycle policies放置到Glacier上</p>
+
+<hr />
+
+<p>Given the following IAM policy:
+{
+&ldquo;Version&rdquo;: &ldquo;2012-10-17&rdquo;,
+&ldquo;Statement&rdquo;: [
+{
+&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
+&ldquo;Action&rdquo;: [
+&ldquo;s3:Get<em>&rdquo;, &ldquo;s3:List</em>&rdquo;
+],
+&ldquo;Resource&rdquo;: &ldquo;<em>&rdquo;
+},
+{
+&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
+&ldquo;Action&rdquo;: &ldquo;s3:PutObject&rdquo;,
+&ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::corporate_bucket/</em>&rdquo;
+}
+]
+}
+What does the IAM policy allow? (Pick 3 correct answers)
+A. The user is allowed to read objects from all S3 buckets owned by the account
+B. The user is allowed to write objects into the bucket named &lsquo;corporate_bucket&rsquo;
+C. The user is allowed to change access rights for the bucket named &lsquo;corporate_bucket&rsquo;
+D. The user is allowed to read objects in the bucket named &lsquo;corporate_bucket&rsquo; but not allowed to list the objects
+in the bucket
+E. The user is allowed to read objects from the bucket named &lsquo;corporate_bucket&rsquo;</p>
+
+<p>答案：A B E</p>
+
+<p>解析：AWS的权限认证遵循最小化原则。即：默认情况都是deny的；显式allow会覆盖默认deny；显式deny会覆盖显式allow。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+<span class="byline author vcard">Posted by <span class="fn">黄博文</span></span>
+
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-08-01T17:47:01+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aws/'>AWS</a>
+  
+</span>
+
+
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/07/27/zhangye-trail-running/" title="Previous Post: 张掖百公里，再次折戟">&laquo; 张掖百公里，再次折戟</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>攻城狮，程序猿。目前就职于ThoughtWorks。</p>
+</section>
+
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Facl%27+style%3D%27font-size%3A+50.0%25%27%3EACL%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Factivemq%27+style%3D%27font-size%3A+31.818181818181817%25%27%3EActiveMQ%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+20.909090909090907%25%27%3EAgile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fagile%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Eagile%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fandroid%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EAndroid%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Faws%27+style%3D%27font-size%3A+35.45454545454545%25%27%3EAWS%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fblog%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EBlog%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fc-%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EC%23%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fchef%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EChef%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fci%27+style%3D%27font-size%3A+20.909090909090907%25%27%3ECI%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fcloud%27+style%3D%27font-size%3A+42.72727272727273%25%27%3ECloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fcoding%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ECoding%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdatabase%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EDataBase%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdesign%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Edesign%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fdevops%27+style%3D%27font-size%3A+24.545454545454547%25%27%3EDevOps%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fefficient%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Eefficient%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fenglish%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EEnglish%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffitness%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Efitness%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ffp%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EFP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgatling%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EGatling%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgradle%27+style%3D%27font-size%3A+39.09090909090909%25%27%3EGradle%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fgrunt%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EGrunt%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhaskell%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EHaskell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fhomebrew%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EHomebrew%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+20.909090909090907%25%27%3EJava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Ejava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjavascript%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EJavaScript%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fjava%E5%AD%A6%E4%B9%A0%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EJava%E5%AD%A6%E4%B9%A0%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flearning%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Elearning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+35.45454545454545%25%27%3ELife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+17.272727272727273%25%27%3Elife%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Flife%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ELIFE%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmarathon%27+style%3D%27font-size%3A+17.272727272727273%25%27%3EMarathon%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fmicroservice%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Emicroservice%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fplugin%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Eplugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fpractise%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Epractise%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fprotractor%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EProtractor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fratpack%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ERatpack%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Freading%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Ereading%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frefactor%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Erefactor%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fruby%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frun%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Erun%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frun%27+style%3D%27font-size%3A+17.272727272727273%25%27%3ERun%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Frunning%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Erunning%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fscala%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EScala%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fshell%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Eshell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsocks5%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ESOCKS5%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring%27+style%3D%27font-size%3A+24.545454545454547%25%27%3ESpring%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+39.09090909090909%25%27%3ESpring-Context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fspring-context%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ESpring-context%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fstudy%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Estudy%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsummary%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ESummary%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fsvn%27+style%3D%27font-size%3A+13.636363636363637%25%27%3ESVN%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Etesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftesting%27+style%3D%27font-size%3A+17.272727272727273%25%27%3ETesting%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Ftranslation%27+style%3D%27font-size%3A+13.636363636363637%25%27%3Etranslation%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweb%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EWEB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fweibo%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EWeibo%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxml%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EXML%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fxp%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EXP%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2Fzsh%27+style%3D%27font-size%3A+13.636363636363637%25%27%3EZSH%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%B7%A5%E5%85%B7%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E5%B7%A5%E5%85%B7%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%80%BB%E7%BB%93%27+style%3D%27font-size%3A+17.272727272727273%25%27%3E%E6%80%BB%E7%BB%93%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E5%BE%97%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E7%94%9F%E6%B4%BB%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%27+style%3D%27font-size%3A+24.545454545454547%25%27%3E%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%27+style%3D%27font-size%3A+31.818181818181817%25%27%3E%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E7%BF%BB%E8%AF%91%27+style%3D%27font-size%3A+17.272727272727273%25%27%3E%E7%BF%BB%E8%AF%91%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%27+style%3D%27font-size%3A+13.636363636363637%25%27%3E%E8%AF%BB%E4%B9%A6%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fwww.huangbowen.net%2Fblog%2Fcategories%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%27+style%3D%27font-size%3A+17.272727272727273%25%27%3E%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%3C%2Fa%3E+%3C%2Ftags%3E"></span>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/08/01/aws-sysops-exam-sample/">AWS的SysOps认证考试样题解析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/07/27/zhangye-trail-running/">张掖百公里，再次折戟</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/07/27/aws-developer-exam-sample-questions/">AWS开发人员认证考试样题解析</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/07/20/acl-for-one-year/">膝盖中了一箭之康复篇-一周年纪念</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/07/01/review-of-the-half-year/">每月一个目标，过好这一年</a>
+      </li>
+    
+  </ul>
+</section>
+
+<iframe width="100%" height="550" class="share_self" frameborder="0" scrolling="no"
+        src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2246154347&verifier=149f357d&dpc=1"></iframe>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - 黄博文 -
+  huangbowen521@gmail.com
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bowenhuang';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample/';
+        var disqus_url = 'http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

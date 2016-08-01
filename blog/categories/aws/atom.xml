@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AWS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-07-29T15:00:22+08:00</updated>
+  <updated>2016-08-01T17:50:52+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,193 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AWS的SysOps认证考试样题解析]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample/"/>
+    <updated>2016-08-01T17:47:01+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample</id>
+    <content type="html"><![CDATA[<p>刚考过了AWS的developer认证，顺手做了一下SysOps的样题。以下是题目和答案。</p>
+
+<!-- more -->
+
+
+<hr />
+
+<p>When working with Amazon RDS, by default AWS is responsible for implementing which two
+management-related activities? (Pick 2 correct answers)
+A. Importing data and optimizing queries
+B. Installing and periodically patching the database software
+C. Creating and maintaining automated database backups with a point-in-time recovery of up to five minutes
+D. Creating and maintaining automated database backups in compliance with regulatory long-term retention
+requirements</p>
+
+<p>答案：B C</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.html">http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.html</a></p>
+
+<hr />
+
+<p>You maintain an application on AWS to provide development and test platforms for your developers.
+Currently both environments consist of an m1.small EC2 instance. Your developers notice performance
+degradation as they increase network load in the test environment.
+How would you mitigate these performance issues in the test environment?
+A. Upgrade the m1.small to a larger instance type
+B. Add an additional ENI to the test instance
+C. Use the EBS optimized option to offload EBS traffic
+D. Configure Amazon Cloudwatch to provision more network bandwidth when network utilization
+exceeds 80%</p>
+
+<p>答案：A</p>
+
+<p>解析：添加ENI并不会增加带宽；m1.small机器类型没有EBS optimized option;network utilisation与机器类型相关，无法对m1.small provision更多的带宽</p>
+
+<hr />
+
+<p>Per the AWS Acceptable Use Policy, penetration testing of EC2 instances:
+A. may be performed by the customer against their own instances, only if performed from EC2
+instances.
+B. may be performed by AWS, and is periodically performed by AWS.
+C. may be performed by AWS, and will be performed by AWS upon customer request.
+D. are expressly prohibited under all circumstances.
+E. may be performed by the customer against their own instances with prior authorization from AWS.</p>
+
+<p>答案：E</p>
+
+<p>参考文档：<a href="https://aws.amazon.com/security/penetration-testing/">https://aws.amazon.com/security/penetration-testing/</a></p>
+
+<hr />
+
+<p>You have been tasked with identifying an appropriate storage solution for a NoSQL database that
+requires random I/O reads of greater than 100,000 4kB IOPS.
+Which EC2 option will meet this requirement?
+A. EBS provisioned IOPS
+B. SSD instance store
+C. EBS optimized instances
+D. High Storage instance configured in RAID 10</p>
+
+<p>答案：B</p>
+
+<p>解析：这道题只有SSD instance store能提供10万的IOPS</p>
+
+<hr />
+
+<p>Instance A and instance B are running in two different subnets A and B of a VPC. Instance A is not able to
+ping instance B.
+What are two possible reasons for this? (Pick 2 correct answers)
+A. The routing table of subnet A has no target route to subnet B
+B. The security group attached to instance B does not allow inbound ICMP traffic
+C. The policy linked to the IAM role on instance A is not configured correctly
+D. The NACL on subnet B does not allow outbound ICMP traffic</p>
+
+<p>答案：B D</p>
+
+<p>解析：同一个VPC下的所有subnet默认可以相互连接，所以A不对；ping连接不需要什么AWS权限，所以C也不对。而控制机器访问有两层，一层是给subnet指定的ACL，另一层是给机器指定的SG。</p>
+
+<hr />
+
+<p>Your web site is hosted on 10 EC2 instances in 5 regions around the globe with 2 instances per region.
+How could you configure your site to maintain site availability with minimum downtime if one of the 5
+regions was to lose network connectivity for an extended period of time?
+A. Create an Elastic Load Balancer to place in front of the EC2 instances. Set an appropriate health
+check on each ELB.
+B. Establish VPN Connections between the instances in each region. Rely on BGP to failover in the
+case of a region wide connectivity outage
+C. Create a Route 53 Latency Based Routing Record Set that resolves to an Elastic Load Balancer in
+each region. Set an appropriate health check on each ELB.
+D. Create a Route 53 Latency Based Routing Record Set that resolves to Elastic Load Balancers in
+each region and has the Evaluate Target Health flag set to true.</p>
+
+<p>答案：D</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html">http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html</a></p>
+
+<p>解析：只有开启了Evaluate Target Health flag，Route53才会根据健康情况进行路由</p>
+
+<hr />
+
+<p>You run a stateless web application with the following components: Elastic Load Balancer (ELB), 3
+Web/Application servers on EC2, and 1 MySQL RDS database with 5000 Provisioned IOPS. Average
+response time for users is increasing. Looking at CloudWatch, you observe 95% CPU usage on the
+Web/Application servers and 20% CPU usage on the database. The average number of database disk
+operations varies between 2000 and 2500.
+Which two options could improve response times? (Pick 2 correct answers)
+A. Choose a different EC2 instance type for the Web/Application servers with a more appropriate
+CPU/memory ratio
+B. Use Auto Scaling to add additional Web/Application servers based on a CPU load threshold
+C. Increase the number of open TCP connections allowed per web/application EC2 instance
+D. Use Auto Scaling to add additional Web/Application servers based on a memory usage threshold</p>
+
+<p>答案：A B</p>
+
+<p>解析：这里是application机器CPU过载，解决方式是要不加强application机器性能，要不增加更多的application机器，C没有用，D是基于内存门槛，所以都不对</p>
+
+<hr />
+
+<p>Which features can be used to restrict access to data in S3? (Pick 2 correct answers)
+A. Create a CloudFront distribution for the bucket.
+B. Set an S3 bucket policy.
+C. Use S3 Virtual Hosting.
+D. Set an S3 ACL on the bucket or the object.
+E. Enable IAM Identity Federation.</p>
+
+<p>答案：B D</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html</a>
+<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html</a></p>
+
+<hr />
+
+<p>You need to establish a backup and archiving strategy for your company using AWS. Documents should
+be immediately accessible for 3 months and available for 5 years for compliance reasons.
+Which AWS service fulfills these requirements in the most cost effective way?
+A. Use StorageGateway to store data to S3 and use life-cycle policies to move the data into Redshift for
+long-time archiving
+B. Use DirectConnect to upload data to S3 and use IAM policies to move the data into Glacier for longtime
+archiving
+C. Upload the data on EBS, use life-cycle policies to move EBS snapshots into S3 and later into Glacier
+for long-time archiving
+D. Upload data to S3 and use life-cycle policies to move the data into Glacier for long-time archiving</p>
+
+<p>答案：D</p>
+
+<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html</a></p>
+
+<p>解析：S3可以存放经常使用的文档，然后存档文件可以使用life-cycle policies放置到Glacier上</p>
+
+<hr />
+
+<p>Given the following IAM policy:
+{
+&ldquo;Version&rdquo;: &ldquo;2012-10-17&rdquo;,
+&ldquo;Statement&rdquo;: [
+{
+&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
+&ldquo;Action&rdquo;: [
+&ldquo;s3:Get<em>&rdquo;, &ldquo;s3:List</em>&rdquo;
+],
+&ldquo;Resource&rdquo;: &ldquo;<em>&rdquo;
+},
+{
+&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
+&ldquo;Action&rdquo;: &ldquo;s3:PutObject&rdquo;,
+&ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::corporate_bucket/</em>&rdquo;
+}
+]
+}
+What does the IAM policy allow? (Pick 3 correct answers)
+A. The user is allowed to read objects from all S3 buckets owned by the account
+B. The user is allowed to write objects into the bucket named &lsquo;corporate_bucket&rsquo;
+C. The user is allowed to change access rights for the bucket named &lsquo;corporate_bucket&rsquo;
+D. The user is allowed to read objects in the bucket named &lsquo;corporate_bucket&rsquo; but not allowed to list the objects
+in the bucket
+E. The user is allowed to read objects from the bucket named &lsquo;corporate_bucket&rsquo;</p>
+
+<p>答案：A B E</p>
+
+<p>解析：AWS的权限认证遵循最小化原则。即：默认情况都是deny的；显式allow会覆盖默认deny；显式deny会覆盖显式allow。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AWS开发人员认证考试样题解析]]></title>
@@ -771,153 +958,6 @@ degaussed and physically destroyed in accordance with industry-standard practice
 <p>在这里，将DNS换为之前AWS自动生成的NS地址。</p>
 
 <p>这样就大功告成了，要等待2小时到1天来让新的解析方式生效。这下可以达到全年99.99%可访问率了吧。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[亚马逊云服务之CloudFormation]]></title>
-    <link href="http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation/"/>
-    <updated>2013-10-23T16:07:00+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2013/10/23/aws-cloudformation</id>
-    <content type="html"><![CDATA[<p>亚马逊的Web Service其实包含了一套云服务。云服务主要分为三种:</p>
-
-<ul>
-<li><p>IaaS: Infrastructure as a service,基础设施即服务。</p></li>
-<li><p>PaaS: Platform as a service, 平台即服务。</p></li>
-<li><p>SaaS: Software as a service, 软件即服务。</p></li>
-</ul>
-
-
-<p>而亚马逊提供的云服务至少涵盖了前面两种。以下是亚马逊提供的各种服务。</p>
-
-<!-- more -->
-
-
-<p><img src="/images/cloudformation1.png" width="680"></p>
-
-<p>以上的图中S3、EC2等就属于IaaS，RDS、DynamoDB等就属于PaaS。</p>
-
-<p>今天分享的是亚马逊的CloudFormation，亚马逊将其归类为Deployment&amp;Management（部署及管理类别）。为什么亚马逊要推出这项服务那？我们可以假设一个场景。如果你要将一个WordPress网站部署到亚马逊上，你需要以下几步:创建一个EC2实例->在此EC2实例上配置WordPress->创建RDS数据库实例->在WordPress中配置与该RDS的连接。整个过程耗时耗力，需要在亚马逊不同的云服务间跳转。这些操作关联性很强，不具备自动化。如果你使用了CloudFormation以后，只需要在页面上点几个按钮，输入一些参数，就可以创建一个博客，省时省力,甚至完全不用任何UI，直接通过命令行完成。</p>
-
-<p><strong>CloudFormation给予了用户一种简单的方法来创建和管理一系列有关联的AWS的资源,可以有序的及可预见的初始化和更新这些资源。</strong></p>
-
-<p>要了解CloudFomation之前，先要了解几个概念。</p>
-
-<h3>Template - 模板</h3>
-
-<p>Template是CloudFormation的一个重要概念。Template本质上是一个json格式的文件。该文件定义了你需要使用那些AWS的资源，并且如何初始化这些资源。CloudFormation支持的资源如下图所示。</p>
-
-<p><img src="/images/cloudformation2.png" width="680"></p>
-
-<p>一个Template文件至少包含一下几个属性:</p>
-
-<pre><code class="json">
-{
-    "AWSTemplateFormatVersion" : "2010-09-09",  //Template版本
-
-    "Description" : "描述该Template的用途",
-
-    "Parameters": {        // 应用该Template需要配置的参数
-    },
-
-    "Resources" : {        // 使用到的AWS的资源及它们之间的关系
-    },
-
-    "Outputs" : {        // stack创建完毕后的一系列返回值
-    }
-}
-</code></pre>
-
-<p>这个Template就是用来创建一个EC2的虚拟机。</p>
-
-<pre><code class="json">
-{ "AWSTemplateFormatVersion" : "2010-09-09",
-  "Description" : "Create an EC2 instance running the Amazon Linux 32 bit AMI.",
-  "Outputs" : { "InstanceId" : { "Description" : "The InstanceId of the newly created EC2 instance",
-          "Value" : { "Ref" : "Ec2Instance" }
-        } },
-  "Parameters" : { "KeyPair" : { "Description" : "The EC2 Key Pair to allow SSH access to the instance",
-          "Type" : "String"
-        } },
-  "Resources" : { "Ec2Instance" : { "Properties" : { "ImageId" : "ami-3b355a52",
-              "KeyName" : { "Ref" : "KeyPair" }
-            },
-          "Type" : "AWS::EC2::Instance"
-        } }
-}
-</code></pre>
-
-<p>AWS官方提供了很多Template的资源，我们可以直接使用，当然也可以按需修改，甚至自己手动编写自己的Template。&lt;<a href="http://aws.amazon.com/cloudformation/aws-cloudformation-templates/">http://aws.amazon.com/cloudformation/aws-cloudformation-templates/</a> >列出了一系列可供使用的Template。</p>
-
-<h3>Stack - 堆</h3>
-
-<p>Template只是一个json格式的文件，如果想要使用它的话，需要创建一个Stack,在Stack中指定你要使用的Template,然后亚马逊才会按照Template中的定义来创建及初始化资源。可以在AWS Management Console中或通过命令行调用API的方式来创建Stack。</p>
-
-<h2>实战</h2>
-
-<p>接下来，我们就通过AWS Management Console，使用CloudFormation来创建一个部署在EC2上、使用RDS作为数据库的WordPress网站。</p>
-
-<p>首先，需要登录到AWS Management Console，选择EC2服务，点击左侧菜单的Key Pair,创建一个Key Pair。这个Key Pair将在接下来被使用，主要使AWS能够ssh到创建的EC2机器上。当然你也可以使用已有的Key Pair。</p>
-
-<p><img src="/images/cloudformation3.png" width="680"></p>
-
-<p>然后选择CloudFormation服务，点击<code>Create Stack</code>按钮。</p>
-
-<p>然后输入Stack名称，并选择一个Template。由于我们要创建一个WordPress的站点，可以选择<code>use a sample temple</code>,并选择WordPress这个模板。</p>
-
-<p><img src="/images/cloudformation4.png" width="680"></p>
-
-<p><img src="/images/cloudformation5.png" width="680"></p>
-
-<p>然后点击<code>continue</code>按钮，配置相关的参数。注意在KeyName一项中输入我们第一步创建的Key Pair。</p>
-
-<p><img src="/images/cloudformation6.png" width="680"></p>
-
-<p>然后点击<code>continue</code>按钮，配置此Stack的标签，这个是可选项，可以跳过。再点一下<code>continue</code>，将会再次确认想要的创建的资源信息，继续后就可以看到资源正在创建了。</p>
-
-<p><img src="/images/cloudformation7.png" width="680"></p>
-
-<p>页面下半部分有很多标签，你可以随时查看该Stack的描述、资源、事件、参数、输出等各项信息。</p>
-
-<p>等待大约20分钟，Stack就会执行完毕，在Outputs标签中你会看到有一个url。</p>
-
-<p><img src="/images/cloudformation8.png" width="680"></p>
-
-<p>这个就是我们创建的WordPress的入口地址，访问该链接会进入WordPress的初始化设置页面。</p>
-
-<p><img src="/images/cloudformation9.png" width="680"></p>
-
-<p>配置完以后，一个新的WordPress就诞生了，重新访问URL，你会看到你的博客首页。</p>
-
-<p><img src="/images/cloudformation10.png" width="680"></p>
-
-<h2>CloudFormer</h2>
-
-<p>提到CloudFormation就不得不说CloudFormer。CloudFormer是亚马逊提供的一个工具，用来给已有的AWS资源创建CloudFormation Template。这样你在以后创建相同的AWS资源时就可以直接使用这个Template了。</p>
-
-<p>要使用CloudFormer首先要创建一个Stack，CloudFormer就被部署到一台EC2机器上，通过这个Stack返回的Outputs的URL我们可以一步步勾选使用到的资源，最终生成一个Template，该Template会自动放置到你的S3中。</p>
-
-<p>首先创建Stack,Template选择use a sample template,并选择CloudFormer。</p>
-
-<p><img src="/images/cloudformation11.png" width="680"></p>
-
-<p>然后点击<code>continue</code>，配置其他参数，直到走完创建Stack这个流程。</p>
-
-<p><img src="/images/cloudformation12.png" width="680"></p>
-
-<p>等待这个Stack创建完毕后，就可以从Outputs标签得到一个URL。这个URL是执行CloudFormer工具的入口地址。</p>
-
-<p><img src="/images/cloudformation13.png" width="680"></p>
-
-<p>点击此URL,即可按照配置一步步配置自己的Template。</p>
-
-<p><img src="/images/cloudformation14.png" width="680"></p>
-
-<p>流程走完后，生成的Template会存放到你的S3 bucket中。</p>
-
-<hr />
-
-<p>由于CloudFormation支持对几乎所有的AWS资源进行创建和配置，并且能够按照指定顺序创建，其Template简洁易懂、容易配置、可重用，所以是你使用AWS的不可多得的好帮手。</p>
 ]]></content>
   </entry>
   
