@@ -257,25 +257,46 @@ D. Upload data to S3 and use life-cycle policies to move the data into Glacier f
 
 <hr />
 
-<p>Given the following IAM policy:
-{
-&ldquo;Version&rdquo;: &ldquo;2012-10-17&rdquo;,
-&ldquo;Statement&rdquo;: [
-{
-&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-&ldquo;Action&rdquo;: [
-&ldquo;s3:Get<em>&rdquo;, &ldquo;s3:List</em>&rdquo;
-],
-&ldquo;Resource&rdquo;: &ldquo;<em>&rdquo;
-},
-{
-&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-&ldquo;Action&rdquo;: &ldquo;s3:PutObject&rdquo;,
-&ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::corporate_bucket/</em>&rdquo;
-}
-]
-}
-What does the IAM policy allow? (Pick 3 correct answers)
+<p>Given the following IAM policy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="s2">&quot;Version&quot;</span><span class="o">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Statement&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="s2">&quot;Effect&quot;</span><span class="o">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Action&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'><span class="s2">&quot;s3:Get*&quot;</span><span class="p">,</span> <span class="s2">&quot;s3:List*&quot;</span>
+</span><span class='line'><span class="p">],</span>
+</span><span class='line'><span class="s2">&quot;Resource&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="s2">&quot;Effect&quot;</span><span class="o">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Action&quot;</span><span class="o">:</span> <span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Resource&quot;</span><span class="o">:</span> <span class="s2">&quot;arn:aws:s3:::corporate_bucket/*&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What does the IAM policy allow? (Pick 3 correct answers)
 A. The user is allowed to read objects from all S3 buckets owned by the account
 B. The user is allowed to write objects into the bucket named &lsquo;corporate_bucket&rsquo;
 C. The user is allowed to change access rights for the bucket named &lsquo;corporate_bucket&rsquo;

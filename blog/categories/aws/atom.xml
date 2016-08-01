@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AWS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T17:50:52+08:00</updated>
+  <updated>2016-08-01T18:02:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -168,25 +168,29 @@ D. Upload data to S3 and use life-cycle policies to move the data into Glacier f
 
 <hr />
 
-<p>Given the following IAM policy:
+<p>Given the following IAM policy:</p>
+
+<pre><code class="javascript">
 {
-&ldquo;Version&rdquo;: &ldquo;2012-10-17&rdquo;,
-&ldquo;Statement&rdquo;: [
+"Version": "2012-10-17",
+"Statement": [
 {
-&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-&ldquo;Action&rdquo;: [
-&ldquo;s3:Get<em>&rdquo;, &ldquo;s3:List</em>&rdquo;
+"Effect": "Allow",
+"Action": [
+"s3:Get*", "s3:List*"
 ],
-&ldquo;Resource&rdquo;: &ldquo;<em>&rdquo;
+"Resource": "*"
 },
 {
-&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-&ldquo;Action&rdquo;: &ldquo;s3:PutObject&rdquo;,
-&ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::corporate_bucket/</em>&rdquo;
+"Effect": "Allow",
+"Action": "s3:PutObject",
+"Resource": "arn:aws:s3:::corporate_bucket/*"
 }
 ]
 }
-What does the IAM policy allow? (Pick 3 correct answers)
+</code></pre>
+
+<p>What does the IAM policy allow? (Pick 3 correct answers)
 A. The user is allowed to read objects from all S3 buckets owned by the account
 B. The user is allowed to write objects into the bucket named &lsquo;corporate_bucket&rsquo;
 C. The user is allowed to change access rights for the bucket named &lsquo;corporate_bucket&rsquo;

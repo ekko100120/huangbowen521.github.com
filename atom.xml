@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T17:50:52+08:00</updated>
+  <updated>2016-08-01T18:02:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -168,25 +168,46 @@ D. Upload data to S3 and use life-cycle policies to move the data into Glacier f
 
 <hr />
 
-<p>Given the following IAM policy:
-{
-&ldquo;Version&rdquo;: &ldquo;2012-10-17&rdquo;,
-&ldquo;Statement&rdquo;: [
-{
-&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-&ldquo;Action&rdquo;: [
-&ldquo;s3:Get<em>&rdquo;, &ldquo;s3:List</em>&rdquo;
-],
-&ldquo;Resource&rdquo;: &ldquo;<em>&rdquo;
-},
-{
-&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
-&ldquo;Action&rdquo;: &ldquo;s3:PutObject&rdquo;,
-&ldquo;Resource&rdquo;: &ldquo;arn:aws:s3:::corporate_bucket/</em>&rdquo;
-}
-]
-}
-What does the IAM policy allow? (Pick 3 correct answers)
+<p>Given the following IAM policy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="s2">&quot;Version&quot;</span><span class="o">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Statement&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="s2">&quot;Effect&quot;</span><span class="o">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Action&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'><span class="s2">&quot;s3:Get*&quot;</span><span class="p">,</span> <span class="s2">&quot;s3:List*&quot;</span>
+</span><span class='line'><span class="p">],</span>
+</span><span class='line'><span class="s2">&quot;Resource&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="s2">&quot;Effect&quot;</span><span class="o">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Action&quot;</span><span class="o">:</span> <span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;Resource&quot;</span><span class="o">:</span> <span class="s2">&quot;arn:aws:s3:::corporate_bucket/*&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What does the IAM policy allow? (Pick 3 correct answers)
 A. The user is allowed to read objects from all S3 buckets owned by the account
 B. The user is allowed to write objects into the bucket named &lsquo;corporate_bucket&rsquo;
 C. The user is allowed to change access rights for the bucket named &lsquo;corporate_bucket&rsquo;
@@ -1305,9 +1326,9 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#100;&#97;&#x6e;&#105;&#101;&#108;&#112;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#112;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#x61;&#x6e;&#105;&#101;&#108;&#x70;&#119;&#111;&#111;&#100;&#x73;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#100;&#x61;&#110;&#x69;&#x65;&#108;&#112;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#100;&#97;&#110;&#x69;&#101;&#x6c;&#x70;&#x77;&#111;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#100;&#97;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#111;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#100;&#97;&#x6e;&#x69;&#101;&#108;&#x70;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#100;&#97;&#x6e;&#x69;&#101;&#108;&#46;&#112;&#46;&#x77;&#x6f;&#111;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#x65;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#46;&#x70;&#x2e;&#x77;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#105;&#101;&#108;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#101;&#108;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#x61;&#110;&#105;&#101;&#108;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x64;&#97;&#110;&#x69;&#101;&#x6c;&#46;&#112;&#46;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -1945,10 +1966,10 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x61;&#x6e;&#105;&#x65;&#x6c;&#x70;&#x77;&#111;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#105;&#101;&#x6c;&#x70;&#119;&#x6f;&#x6f;&#x64;&#115;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#58;&#100;&#97;&#110;&#x69;&#x65;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#101;&#108;&#112;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#100;&#97;&#110;&#x69;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#101;&#108;&#112;&#119;&#x6f;&#111;&#100;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#x2e;&#x70;&#46;&#x77;&#111;&#111;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#46;&#112;&#x2e;&#x77;&#x6f;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#97;&#x6e;&#105;&#101;&#108;&#x2e;&#112;&#x2e;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#100;&#x61;&#x6e;&#105;&#101;&#108;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x2e;&#x70;&#46;&#119;&#111;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#111;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#100;&#x61;&#x6e;&#x69;&#101;&#108;&#112;&#x77;&#x6f;&#111;&#100;&#115;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#112;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#112;&#119;&#111;&#111;&#100;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#110;&#x69;&#101;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#100;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#x70;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#100;&#97;&#110;&#105;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#x61;&#110;&#x69;&#x65;&#108;&#46;&#112;&#x2e;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#100;&#97;&#x6e;&#105;&#101;&#108;&#x2e;&#x70;&#x2e;&#x77;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x64;&#97;&#x6e;&#x69;&#101;&#x6c;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#100;&#x73;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#97;&#110;&#x69;&#x65;&#108;&#x2e;&#112;&#46;&#119;&#111;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x64;&#97;&#110;&#105;&#x65;&#108;&#46;&#x70;&#46;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#108;&#46;&#x70;&#46;&#119;&#111;&#x6f;&#100;&#115;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
