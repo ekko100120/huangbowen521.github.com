@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[值得使用的Spring Boot]]></title>
     <link href="http://www.huangbowen.net/blog/2015/03/18/introduction-of-spring-boot/"/>
-    <updated>2015-03-18T16:42:34+08:00</updated>
+    <updated>2015-03-18T14:12:34+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/03/18/introduction-of-spring-boot</id>
     <content type="html"><![CDATA[<p>2013年12月12日，Spring发布了4.0版本。这个本来只是作为Java平台上的控制反转容器的库，经过将近10年的发展已经成为了一个巨无霸产品。不过其依靠良好的分层设计，每个功能模块都能保持较好的独立性，是Java平台不可多得的好用的开源应用程序框架。
 Spring的4.0版本可以说是一个重大的更新，其全面支持Java8，并且对Groovy语言也有良好的支持。另外引入了非常多的新项目，比如Spring boot，Spring Cloud，Spring WebSocket等。</p>
@@ -125,7 +125,7 @@ class WebApplication {
   <entry>
     <title type="html"><![CDATA[翻译-使用Spring调用SOAP web service]]></title>
     <link href="http://www.huangbowen.net/blog/2014/09/10/consuming-web-service/"/>
-    <updated>2014-09-10T21:02:41+08:00</updated>
+    <updated>2014-09-10T18:32:41+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/09/10/consuming-web-service</id>
     <content type="html"><![CDATA[<p>原文链接: <a href="http://spring.io/guides/gs/consuming-web-service/">http://spring.io/guides/gs/consuming-web-service/</a></p>
 
@@ -696,7 +696,7 @@ Forecast for Saint Cloud, FL
   <entry>
     <title type="html"><![CDATA[翻译-使用Spring WebService生成SOAP web service]]></title>
     <link href="http://www.huangbowen.net/blog/2014/09/05/producing-web-service-using-spring/"/>
-    <updated>2014-09-05T17:50:02+08:00</updated>
+    <updated>2014-09-05T15:20:02+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/09/05/producing-web-service-using-spring</id>
     <content type="html"><![CDATA[<p>原文链接：<a href="http://spring.io/guides/gs/producing-web-service/">http://spring.io/guides/gs/producing-web-service/</a></p>
 
@@ -1344,7 +1344,7 @@ $ curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/w
   <entry>
     <title type="html"><![CDATA[使用自定义的MessageSource实现对properties的复用]]></title>
     <link href="http://www.huangbowen.net/blog/2013/05/29/using-spring-message-source/"/>
-    <updated>2013-05-29T14:48:00+08:00</updated>
+    <updated>2013-05-29T14:48:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/05/29/using-spring-message-source</id>
     <content type="html"><![CDATA[<p>Spring框架的Web项目中可以使用properties文件来存储需要显示在jsp页面的一些值，比如label值或者error messages。然后通过Spring提供的ResourceBundleMessageSource将这些properties文件注入进来使用。一个简单的配置如下。</p>
 

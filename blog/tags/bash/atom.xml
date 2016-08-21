@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: bash | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/bash/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[gtShell - 为你常用的目录建立标签并快速跳转]]></title>
     <link href="http://www.huangbowen.net/blog/2013/02/16/gtshell/"/>
-    <updated>2013-02-16T17:18:00+08:00</updated>
+    <updated>2013-02-16T17:18:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/02/16/gtshell</id>
     <content type="html"><![CDATA[<p>使用场景：
 如果你有很多工作目录，需要每天在这些目录中跳来跳去。那么你就应该试试goShell. 一个使用简单、功能恰到好处的terminal下的小工具。

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: EBS | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/ebs/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[AWS系列之三 使用EBS]]></title>
     <link href="http://www.huangbowen.net/blog/2014/07/30/use-ebs/"/>
-    <updated>2014-07-30T23:10:32+08:00</updated>
+    <updated>2014-07-30T20:40:32+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/07/30/use-ebs</id>
     <content type="html"><![CDATA[<p>Amazon Elastic Block Store（EBS）可作为EC2实例的持久性数据块级存储。其具有高可用性和持久性的特点，可用性高达99.999%。给现有的EC2实例扩展新的存储块只需要几分钟的时间，省时省力。每个EBS块都被放置在一个特定的可用区内，并且会自动维护一个副本，随时保护数据安全。</p>
 

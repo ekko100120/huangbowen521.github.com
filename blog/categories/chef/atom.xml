@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chef | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/chef/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[使用Chef管理windows集群]]></title>
     <link href="http://www.huangbowen.net/blog/2015/09/06/use-chef-to-manage-windows-cluster/"/>
-    <updated>2015-09-06T12:06:23+08:00</updated>
+    <updated>2015-09-06T09:36:23+05:30</updated>
     <id>http://www.huangbowen.net/blog/2015/09/06/use-chef-to-manage-windows-cluster</id>
     <content type="html"><![CDATA[<p>但凡服务器上了一定规模（百台以上），普通的ssh登录管理的模式就越来越举步维艰。试想Linux发布了一个高危漏洞的补丁，你要把手下成百上千台机器都更新该补丁，如果没有一种自动化方式，那么至少要耗上大半天时间。虽然你编写了大量的shell（或python，perl）脚本来实现各种自动化场景，但最后会发现你又陷入了脚本的汪洋大海之中，管理和维护这么多的脚本的成本也不小。你需要一款基础设施自动化工具，希望它能具有以下功能。</p>
 

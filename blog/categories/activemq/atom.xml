@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ActiveMQ | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/activemq/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[ActiveMQ第六弹:设置多个并行的消费者]]></title>
     <link href="http://www.huangbowen.net/blog/2014/03/23/use-multiple-consumers-in-activemq/"/>
-    <updated>2014-03-23T01:52:00+08:00</updated>
+    <updated>2014-03-23T01:52:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/03/23/use-multiple-consumers-in-activemq</id>
     <content type="html"><![CDATA[<p>消息队列本来就是一种经典的生产者与消费者模式。生产者向消息队列中发送消息，消费者从消息队列中获取消息来消费。</p>
 
@@ -92,7 +92,7 @@ Received: message 9
   <entry>
     <title type="html"><![CDATA[ActiveMQ第五弹:增加ReDelivery功能]]></title>
     <link href="http://www.huangbowen.net/blog/2014/03/10/use-redelivery-in-activemq/"/>
-    <updated>2014-03-10T01:17:00+08:00</updated>
+    <updated>2014-03-10T01:17:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/03/10/use-redelivery-in-activemq</id>
     <content type="html"><![CDATA[<p>在使用Message Queue的过程中，总会由于种种原因而导致消息失败。一个经典的场景是一个生成者向Queue中发消息，里面包含了一组邮件地址和邮件内容。而消费者从Queue中将消息一条条读出来，向指定邮件地址发送邮件。消费者在发送消息的过程中由于种种原因会导致失败，比如网络超时、当前邮件服务器不可用等。这样我们就希望建立一种机制，对于未发送成功的邮件再重新发送，也就是重新处理。重新处理超过一定次数还不成功，就放弃对该消息的处理，记录下来，继续对剩余消息进行处理。</p>
 
@@ -282,7 +282,7 @@ Process finished with exit code 0
   <entry>
     <title type="html"><![CDATA[ActiveMQ第四弹:在HermesJMS中创建ActiveMQ session]]></title>
     <link href="http://www.huangbowen.net/blog/2014/02/23/configure-activemq-session-in-hermesjms/"/>
-    <updated>2014-02-23T15:03:00+08:00</updated>
+    <updated>2014-02-23T15:03:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/02/23/configure-activemq-session-in-hermesjms</id>
     <content type="html"><![CDATA[<p>Hermes JMS是一个开源免费的跨平台的JMS消息监听工具。它可以很方便和各种JMS框架集成和交互，可以用来监听、发送、接收、修改、存储消息等。这篇文章将讲解HermesJMS如何集成ActiveMQ并与其交互。</p>
 
@@ -334,7 +334,7 @@ $:/usr/local/Cellar/activemq/5.8.0/libexec$ activemq console xbean:./conf/active
   <entry>
     <title type="html"><![CDATA[ActiveMQ第三弹:在Spring中使用内置的Message Broker]]></title>
     <link href="http://www.huangbowen.net/blog/2014/02/22/using-embeded-broker-in-spring/"/>
-    <updated>2014-02-22T19:16:00+08:00</updated>
+    <updated>2014-02-22T19:16:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/02/22/using-embeded-broker-in-spring</id>
     <content type="html"><![CDATA[<p>在上个例子中我们演示了如何使用Spring JMS来向ActiveMQ发送消息和接收消息。但是这个例子需要先从控制台使用ActiveMQ提供的命令行功能启动一个Message Broker,然后才能运行示例。这个Message Broker就相当于一个server，无论是发送方还是接收方都可以连接到这个Server进行消息的处理。在某些情况下，让Message Broker和consumer启动在同一个JVM里面，通信效率肯定会高不少。</p>
 
@@ -470,7 +470,7 @@ $:/usr/local/Cellar/activemq/5.8.0/libexec$ activemq console xbean:./conf/active
   <entry>
     <title type="html"><![CDATA[ActiveMQ第二弹:使用Spring JMS与ActiveMQ通讯]]></title>
     <link href="http://www.huangbowen.net/blog/2014/02/20/spring-jms-and-activemq-sample/"/>
-    <updated>2014-02-20T23:18:00+08:00</updated>
+    <updated>2014-02-20T23:18:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/02/20/spring-jms-and-activemq-sample</id>
     <content type="html"><![CDATA[<p>本文章的完整代码可从我的github中下载：<a href="https://github.com/huangbowen521/SpringJMSSample.git">https://github.com/huangbowen521/SpringJMSSample.git</a></p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: fold | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/fold/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Haskell函数式编程之List操作]]></title>
     <link href="http://www.huangbowen.net/blog/2013/04/05/haskell-list-processing/"/>
-    <updated>2013-04-05T01:20:00+08:00</updated>
+    <updated>2013-04-05T01:20:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/04/05/haskell-list-processing</id>
     <content type="html"><![CDATA[<p>List在函数式语言中是一个重要的抽象，很多事情离了它就很难做到。函数式语言的鼻祖Lisp名称就来自List processing。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Language | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/language/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Haskell-函数式编程语言之初体验]]></title>
     <link href="http://www.huangbowen.net/blog/2013/03/02/haskell-programming-language-first-touch/"/>
-    <updated>2013-03-02T14:55:00+08:00</updated>
+    <updated>2013-03-02T14:55:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/03/02/haskell-programming-language-first-touch</id>
     <content type="html"><![CDATA[<p>如果你是使用面向对像语言进行编程的程序员，那么你应该去了解掌握一门动态语言。而动态语言的魔力之一就是函数式编程。而要学习了解函数式编程，那么haskell是一个不错的选择。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: C# | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/c-/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[C#中的ThenBy是如何实现的]]></title>
     <link href="http://www.huangbowen.net/blog/2013/12/26/how-to-implement-thenby-in-c-number/"/>
-    <updated>2013-12-26T23:14:00+08:00</updated>
+    <updated>2013-12-26T23:14:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/12/26/how-to-implement-thenby-in-c-number</id>
     <content type="html"><![CDATA[<p>C#中给继承自IEnumerable的对象（最熟知的就是List了）提供了很丰富的扩展方法，涉及列表操作的方方面面。而扩展方法ThenBy就是很有意思的一个，它的实现也很巧妙。</p>
 

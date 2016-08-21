@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 帮助文档 | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/帮助文档/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[在本地安装git的HTML帮助文档]]></title>
     <link href="http://www.huangbowen.net/blog/2012/08/08/zai-ben-di-an-zhuang-gitde-htmlbang-zhu-wen-dang/"/>
-    <updated>2012-08-08T00:48:00+08:00</updated>
+    <updated>2012-08-08T00:48:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2012/08/08/zai-ben-di-an-zhuang-gitde-htmlbang-zhu-wen-dang</id>
     <content type="html"><![CDATA[<p>当我们想查询git某条指令如何使用时，<a href="http://git-scm.com/documentation">git</a>官网有详尽的文档供我们查看。在命令行下我们也可以随时通过 git &ndash;help的方法查看某条命令的详细帮助。</p>
 

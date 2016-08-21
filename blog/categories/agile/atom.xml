@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Agile | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-01T18:13:04+08:00</updated>
+  <updated>2016-08-21T22:36:04+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[做一张故事卡时的感悟]]></title>
     <link href="http://www.huangbowen.net/blog/2014/02/11/thoughts-when-doing-user-story/"/>
-    <updated>2014-02-11T17:36:00+08:00</updated>
+    <updated>2014-02-11T17:36:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2014/02/11/thoughts-when-doing-user-story</id>
     <content type="html"><![CDATA[<p>今天和同事一起领了一个故事卡来做。看完用户故事卡中的描述和验收准则后一头雾水，不知道从哪里下手。由于卡中提到了几个模块都属于遗留系统中的功能，以前没有触及这些模块，对业务、对代码都不太了解。而且还要对这些模块进行修改，而这部分代码都是陈旧的EJB代码，复杂冗长，配置繁琐，修改点无法确定，影响范围无法预估。</p>
 
@@ -46,7 +46,7 @@
   <entry>
     <title type="html"><![CDATA[如何让站会变得高效]]></title>
     <link href="http://www.huangbowen.net/blog/2013/08/06/effective-standup-meetings/"/>
-    <updated>2013-08-06T06:38:00+08:00</updated>
+    <updated>2013-08-06T06:38:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/08/06/effective-standup-meetings</id>
     <content type="html"><![CDATA[<p><img src="/images/standup.jpeg"></p>
 
@@ -92,7 +92,7 @@
   <entry>
     <title type="html"><![CDATA[持续集成之道：在你的开源项目中使用Travis CI]]></title>
     <link href="http://www.huangbowen.net/blog/2013/05/30/use-travis-ci-to-your-open-source-project/"/>
-    <updated>2013-05-30T14:58:00+08:00</updated>
+    <updated>2013-05-30T14:58:00+05:30</updated>
     <id>http://www.huangbowen.net/blog/2013/05/30/use-travis-ci-to-your-open-source-project</id>
     <content type="html"><![CDATA[<p>自从接触并践行了敏捷的一些实践之后，便深深的喜欢上了敏捷。尤其是测试自动化和持续集成这两个实践，可以显著的提高软件的质量和集成效率，实时检测项目健康度，使团队成员对项目保持充足的信心。</p>
 
