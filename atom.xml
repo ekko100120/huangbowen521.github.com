@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-08-24T18:24:18+05:30</updated>
+  <updated>2016-09-09T10:52:15+05:30</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2016年8月份]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/09/05/summary-for-2016-august/"/>
+    <updated>2016-09-05T01:41:46+05:30</updated>
+    <id>http://www.huangbowen.net/blog/2016/09/05/summary-for-2016-august</id>
+    <content type="html"><![CDATA[<p>8月份又一次来到了印度Pune，作为TWU第51期的讲师会在这里呆上2个月左右。</p>
+
+<!-- more -->
+
+
+<p>由于在3月份已经来过一次，所以一切都很熟悉，甚至住的房间和上次都差不多。再一次和来自全球各地的Trainer一起合作，共同服务有史以来TWU学生最多的一期，我很荣幸。每次来TWU都是带着学习的态度来的。现在呆了一个月，感觉不错。</p>
+
+<p>这一个月跑步训练5次，总距离40公里，达到了历史新低。一部分原因是TWU前三周很忙，抽不出时间训练，另一部分原因是张掖比赛的失利使得自己有所懈怠。当然自己也要尽快从这种情绪中脱离出来，恢复状态。因为10月15日的大理100以及11月6日的四姑娘山越野赛都是硬仗。这个月一次半马拉练都没有，所以身体素质达到了历史新低。</p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_4638.PNG" width="300"></p>
+
+<p>这次又参加了Pune当地的跑步活动，名字叫做Midnight marathone。其实是晚上8点半起跑，组别有5公里、10公里和21公里。我和两个同事报名了10公里并且顺利完赛。</p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_4580.JPG" width="400"></p>
+
+<p>另外利用了一个周末和同事一起出游，去爬了当地最高的一座山峰。攀爬的过程中一会儿下雨、一会儿出太阳，还真是一段奇妙的经历。这也算一次越野拉练吧。</p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_4535.jpg" width="400"></p>
+
+<p>由于还住在上次的小区，所以又可以使用这个小区的健身房了。与上次不同的是现在健身房有了一个教练。健身房人气和上次差不多，每次我去只有稀稀拉拉2、3个人锻炼。由于7月份几乎没去过健身房，所以这个月主要是唤醒身上的肌肉，锻炼时没怎么上量。8月份健身房出勤率可能也就30%左右吧。</p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_4587.jpg" width="400"></p>
+
+<p>好事情是我又回归篮球场和足球场了。小区里面就有个篮球场，所以下班早的话就和同事一块去打球。有的时候也和小区里的其他孩子过过招。当然为了保护自己，基本不会有什么身体对抗。足球基本每周一次，也是和同事一起踢5V5的小场子。由于这次没有带球鞋，所以每次踢球都是赤脚。</p>
+
+<p>8月份没有定什么计划，9月份计划就定为完成Infrastructure as Code一书的合译吧。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2016年7月份的总结]]></title>
@@ -27,7 +61,7 @@
 
 <p>基本上我也没怎么训练，这样间接导致了张掖的失利。整个7月份只可怜的跑了3次，总距离80多公里。</p>
 
-<p><img src="http://www.huangbowen.net/images/IMG_4561.PNG" width="600"></p>
+<p><img src="http://www.huangbowen.net/images/IMG_4561.PNG" width="300"></p>
 
 <p>健身房也基本没咋去过。停训了一个月，恢复肯定又要花大量的时间。</p>
 
@@ -1380,9 +1414,9 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#x69;&#101;&#x6c;&#112;&#x77;&#x6f;&#111;&#100;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#100;&#97;&#110;&#105;&#101;&#108;&#x70;&#119;&#x6f;&#x6f;&#x64;&#115;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#97;&#x6e;&#x69;&#101;&#x6c;&#x70;&#119;&#111;&#111;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#x65;&#108;&#112;&#x77;&#x6f;&#111;&#x64;&#115;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#x70;&#119;&#x6f;&#x6f;&#100;&#115;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#x64;&#115;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#x69;&#x65;&#108;&#112;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#100;&#97;&#x6e;&#x69;&#101;&#108;&#x70;&#119;&#111;&#111;&#x64;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#97;&#110;&#x69;&#x65;&#108;&#46;&#x70;&#46;&#x77;&#111;&#111;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x64;&#97;&#110;&#x69;&#x65;&#x6c;&#46;&#x70;&#x2e;&#119;&#111;&#111;&#100;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x64;&#97;&#x6e;&#105;&#x65;&#x6c;&#46;&#112;&#46;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#x70;&#46;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#46;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#46;&#112;&#46;&#119;&#111;&#x6f;&#100;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#112;&#46;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -2020,10 +2054,10 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#111;&#111;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#111;&#111;&#100;&#x73;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#100;&#97;&#110;&#105;&#101;&#108;&#x70;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#100;&#97;&#110;&#105;&#101;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#97;&#110;&#105;&#x65;&#108;&#x70;&#x77;&#111;&#111;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#46;&#112;&#x2e;&#x77;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#101;&#108;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#100;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#x2e;&#112;&#46;&#119;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#46;&#x77;&#111;&#111;&#100;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#46;&#x70;&#46;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#100;&#97;&#x6e;&#105;&#101;&#108;&#x2e;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x64;&#97;&#110;&#x69;&#101;&#x6c;&#112;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x64;&#x61;&#110;&#x69;&#x65;&#108;&#x70;&#x77;&#111;&#111;&#x64;&#115;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x64;&#97;&#x6e;&#105;&#101;&#108;&#x70;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#97;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#97;&#110;&#105;&#x65;&#108;&#112;&#x77;&#x6f;&#x6f;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#97;&#110;&#x69;&#x65;&#108;&#46;&#x70;&#x2e;&#x77;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#97;&#110;&#x69;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#111;&#111;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#x69;&#x65;&#108;&#46;&#x70;&#x2e;&#x77;&#x6f;&#111;&#x64;&#115;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x64;&#97;&#x6e;&#x69;&#101;&#108;&#46;&#112;&#x2e;&#x77;&#x6f;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x64;&#x61;&#110;&#105;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#105;&#x65;&#x6c;&#x2e;&#112;&#x2e;&#x77;&#111;&#111;&#x64;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
@@ -2584,62 +2618,6 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 
 <p>所以一般在开发模式下，我们可以频繁的发布SNAPSHOT版本，以便让其它项目能实时的使用到最新的功能做联调；当版本趋于稳定时，再发布一个正式版本，供正式使用。当然在做正式发布时，也要确保当前项目的依赖项中不包含对任何SNAPSHOT版本的依赖，保证正式版本的稳定性。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一个程序员的2015年总结]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/01/06/summary-of-2015/"/>
-    <updated>2016-01-06T22:38:58+05:30</updated>
-    <id>http://www.huangbowen.net/blog/2016/01/06/summary-of-2015</id>
-    <content type="html"><![CDATA[<p>又到了年末写总结的时候。每年写总结时的心情都不一样，有的时候收获满满，有的时候诚惶诚恐，有的时候有些许遗憾&hellip;.今年写年终总结，心情则特别复杂，这一年经历的事情不可谓不多，自己的成长也不可谓不大，但自己却时不时被一种焦虑的情绪烦扰。奈何你做再多的事情，它也会时不时的冒出来。难道这是传说中的三十而立前的磨练？我不得而知。</p>
-
-<!-- more -->
-
-
-<p>言归正传，还是从几个方面来总结一下吧。</p>
-
-<h2>工作</h2>
-
-<p>今年的工作大体分两部分，前半年呆在办公室的项目上。3月份的时候换到了一个新的小组，采用一些最新的技术栈开发一个小项目。我在里面也学到了很多东西，了解并尝试了Spring 4.0，使用了Spring Boot，使用Grunt实现对前端项目的完整构建，前端项目的包管理，用Protractor+PhantomJS实现端到端自动化测试，并且在这种纯JS框架中使用了Page Object模式。</p>
-
-<p>后半年就跑到了咨询项目上，开始了疯狂的出差，前后呆了好多个城市。这是我又一次跳出了自己的舒适区，个人成长是巨大的，咨询团队的每个人都是非常优秀的，都有自己的闪光点，我趁和他们pair时偷师不少。当然压力也是非常大的，为了准备材料，为了做出成果，通宵过好几次，第二天一早又强打精神上班。最惨的时候被客户指着鼻子骂。这种成长是蜕变式的，只要自己不退缩，万事可解决。在与客户工作中种种机缘下我也结识了很多志趣相同的朋友，只要你用心做事，总会被人认可。</p>
-
-<h2>社区活动</h2>
-
-<p>2015年前半年负责DevOps社区的工作，并组织举办了几次公开的DevOps活动。每次举办活动前都有一帮小伙伴们利用业余时间准备材料，中午利用午饭时间catch up，过计划，预演练。后半年虽不在办公室，但DevOps小组依然正常运作，还在成都首次举办了CDConf。很感谢大家的付出啊。</p>
-
-<p>自己在组织活动之余，也作为Speaker参加了Open Party、TID、CDConf等会议，贡献了一些Session。这些都是对自己平时工作中内容的思考与升华，并且也锻炼了自己的演讲能力。</p>
-
-<p>还有自己在极客学院上开设了一门关于AWS的课程，并录制了几集在线课程。</p>
-
-<h2>博客</h2>
-
-<p>2015年只写了20多篇博客。实话说产量不高，并没有达成一周一篇的要求。主要是工作太忙，事情太多，虽然有很多可以写的，但就是没时间静下心来仔细梳理。自己的一些博客想法也一直没有付诸实施。这里要自我检讨一下。</p>
-
-<h2>健身/跑步</h2>
-
-<p>2014年迷上了健身与跑步。这一习惯也延续到了2015年。2015年跑了一次重庆马拉松，不幸跑崩，花了5个多小时才完成；龙山60公里越野赛也在55公里处被惨遭关门；打击最大的是大连100越野赛在72公里处由于伤痛无奈退赛。之后去医院检查得知右膝前十字韧带在2014年12月份一次日常踢球时早已断裂。确诊后我消沉了一阵子，健身房也不去了，跑步也没法跑了，胡吃海喝。直到7月份我做了手术，重新接上了一根韧带，开始了康复之旅。为了早日回到越野跑道和绿茵场，我采用了激进的康复方式，8天脱拐，10天出差，20天后正式上班，2个月开始跑步训练，当月就跑了最长15公里，4个月时挑战半马成功，5个多月时完成背靠背半马。我这恢复速度成为了叉友群中的传奇。虽然状态比负伤前差远了，但好歹是在缓慢恢复。随着膝盖的恢复，我也逐渐开始了力量训练，并控制体重，争取把涨的肉再减回去。</p>
-
-<h2>翻译</h2>
-
-<p>去年轻轻松松翻译了2本书。今年一本书一整年才翻译了不到一半。主要是这本书我不是很喜欢，感觉废话太多，所以翻译的断断续续，跟这本的编辑都换了好几个了。这本书都成了我的心病，必须想办法尽快解决掉。</p>
-
-<p>另外自己成为了InfoQ的绿色译者，平时翻译一些小文章也可以拿到稿酬了。</p>
-
-<p>还有机缘巧合下，我作为Ansible文档的核心译者，翻译了Ansible的官方文档，放置在<a href="http://www.ansible.com.cn/">http://www.ansible.com.cn/</a>。</p>
-
-<h2>读书</h2>
-
-<p>今年读的技术书不多，只有几本。小说之类的倒读的不少，比如《三体》三部曲等科幻小说、东野圭吾的几本悬疑小说等。读这些书大都是利用等飞机和坐飞机时候用kindle看的。我发现现在可以利用的读书时间非常至少，可能主要还是自己的心静不下来。</p>
-
-<h2>家庭</h2>
-
-<p>2014年出差了5个月，2015年有过之而无不及。以前出差觉得没什么，可以开阔自己的视野，快速成长。现在出差则时不时感到痛苦。儿子在逐渐长大，长期不在他身边，每次见到他都会发现他学会了一些新本领，也感觉自己错过了什么。为了弥补母子俩，我每到一个城市出差，都会争取把她们接过来利用周末时间玩几天。感谢老婆对我工作的大力支持。</p>
-
-<hr />
-
-<p>2016年是我的而立之年，出差也少不了。这一年我希望能做更多没做过的事情，更多想做的事情。</p>
 ]]></content>
   </entry>
   
