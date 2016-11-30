@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-11-30T23:46:12+08:00</updated>
+  <updated>2016-12-01T00:07:10+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -450,6 +450,8 @@
 
 <p>看到这路况我知道80公里的目标肯定是完成不了了。跑步过程中碰到一个赤脚大叔说他今天的目标是跑8个来回。我想8个来回也就是64公里左右，我也跑8个来回吧。看来到哪里都是赤脚的跑神，在开挂的印度也不例外。</p>
 
+<p><img src="http://www.huangbowen.net/images/IMG_0006_2.jpg" width="400"></p>
+
 <p>虽然线路起伏很大，我感觉状态还好，上坡能跑，维持在9分多的配速，下坡也能冲到5分多。我知道长路漫漫，所以刚开始一定不能太猛了，免得后劲乏力。跑的过程中膝盖没有出现弹响，这让我很高兴。这边比赛的补给还挺好的，有瓶装水、饮料、饼干、香蕉、橘子、花生，还有盐。盐是那种一小包的包装，就像咖啡店里装糖的那种包装。这可是防止抽筋的利器，我直接撕一包到嘴里，然后合着矿泉水吞下。我在想以后比赛也别买盐丸了，直接装包盐，经济又划算。</p>
 
 <p>不知不觉我就刷了两圈了。第一圈用时52分钟，在山地环境下跑出这样的成绩我很满意。第二圈用时一个小时，速度有所下降，但也在接受的范围之内。第三圈1小时10分钟，因为上坡基本跑不动了，只能快走了，平路和下坡还是能跑。第三圈完了以后喝了些咖啡，觉得这个咖啡真是太美味了。在补给站呆了6分钟后，又重新向第四圈发起冲锋。</p>
@@ -462,13 +464,21 @@
 
 <p>跑完第7圈，这时候已经将近6点了。时间过的好快，我还没有任何瞌睡的感觉，只是腿部肌肉实在是非常僵硬。只有一个小时的时间，跑完一圈时间应该不够了，除非能拿出刚开始跑的那种装填。但这个时候整个人已经非常疲惫，只有慢慢走了，能走多少是多少。天也慢慢亮了，我突然发现路上跑的人变多了，而且各个竟然上坡还能跑。后来才知道原来有些人跑到凌晨就找钻进补给点的帐篷休息了，现在马上要到7点了，所以都出来完成赛事。他们由于休息了几个小时，所以精力自然比我要好的多。</p>
 
+<p><img src="http://www.huangbowen.net/images/IMG_0020_2.jpg" width="400"></p>
+
 <p>果然我第8圈没有跑完就已经7点了，差1.5公里完成整整8圈，这也算是一点小遗憾吧。到了终点领了完赛T恤，还收获了一个完赛奖杯。跑步这么久，这可是我跑步以来收获的第一个奖杯，之前收到的都是完赛奖牌。我还和赛事主办者合了影。主办者也参加了比赛，跑了貌似不下10圈，尤其是最后上坡还能冲着跑，实力不一般。他说11月份要来中国参加100公里越野赛，当时太匆忙没有问他参加的是哪个比赛。</p>
 
 <p><img src="http://www.huangbowen.net/images/IMG_4688.jpg" width="400"></p>
 
 <p>第一次12小时超级马拉松就这样跑完了。整个过程其实不是很累，没有那种让人绝望的感觉，也没有想过要放弃。可能是因为没有距离限制，即使跑不动了也可以走，所以心里比较淡定。总共跑了66公里，爬升2000米，下降2000米，这个成绩自己也比较满意。这个比赛我也见识了很多很牛的印度跑友。其中有个女的刚参加完新加坡的一个比赛，完成了168公里，她是这次比赛的女子组冠军。印度跑友超级热情，不止一个跑友问我知不知道Great Wall Marathon。我说知道，其实我心里在想，挂名长城马拉松的比赛中国一年没有10个也有5个，谁知道你们说的是哪一个。他们问我参加了Great Wall Marathon没，我说没有。他们问为什么，我说离我生活的城市太远了。</p>
 
+<p><img src="http://www.huangbowen.net/images/IMG_0023_2.jpg" width="400"></p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_0024_2.jpg" width="400"></p>
+
 <p>第一个马拉松是在布里斯班跑的，而第一个12小时超级马拉松是在Pune跑的。看来国外才是我的福地。希望这次膝盖的伤痛能尽快康复，待我完成百公里超马后，就正式收山, 转战铁三！</p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_0017_2.jpg" width="400"></p>
 ]]></content>
   </entry>
   
@@ -1873,9 +1883,9 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#97;&#x6e;&#105;&#x65;&#x6c;&#x70;&#119;&#x6f;&#111;&#x64;&#x73;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#x61;&#110;&#x69;&#101;&#x6c;&#x70;&#x77;&#111;&#111;&#x64;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#97;&#110;&#x69;&#101;&#x6c;&#x70;&#x77;&#111;&#111;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x64;&#97;&#110;&#105;&#x65;&#x6c;&#x70;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#x70;&#119;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#101;&#x6c;&#x70;&#119;&#x6f;&#111;&#100;&#115;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#x61;&#x6e;&#x69;&#101;&#108;&#112;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#97;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#100;&#x73;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x64;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#46;&#x70;&#46;&#119;&#111;&#111;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#97;&#x6e;&#x69;&#101;&#108;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#x61;&#110;&#x69;&#101;&#108;&#x2e;&#x70;&#x2e;&#x77;&#111;&#111;&#x64;&#115;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#100;&#97;&#x6e;&#x69;&#101;&#108;&#46;&#112;&#46;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#x61;&#110;&#105;&#101;&#x6c;&#x2e;&#112;&#46;&#x77;&#x6f;&#111;&#100;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#x2e;&#112;&#46;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -2513,10 +2523,10 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x64;&#97;&#x6e;&#x69;&#101;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x70;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x64;&#97;&#x6e;&#105;&#101;&#x6c;&#112;&#x77;&#111;&#111;&#100;&#x73;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#x70;&#x77;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#x61;&#110;&#x69;&#x65;&#108;&#x70;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#105;&#101;&#x6c;&#112;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#100;&#97;&#x6e;&#105;&#101;&#108;&#46;&#x70;&#46;&#119;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#46;&#x70;&#x2e;&#119;&#x6f;&#111;&#100;&#115;&#x40;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#100;&#x61;&#110;&#x69;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#x6f;&#x6f;&#100;&#x73;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#46;&#x70;&#46;&#x77;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#x2e;&#112;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#46;&#x70;&#x2e;&#x77;&#111;&#x6f;&#100;&#115;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#100;&#x61;&#110;&#105;&#101;&#108;&#112;&#119;&#x6f;&#x6f;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#x69;&#x65;&#108;&#112;&#x77;&#x6f;&#x6f;&#100;&#115;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#115;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#100;&#97;&#110;&#x69;&#101;&#x6c;&#112;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#x70;&#x77;&#111;&#111;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#100;&#x61;&#110;&#105;&#x65;&#x6c;&#x70;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x64;&#97;&#110;&#x69;&#101;&#108;&#46;&#x70;&#x2e;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#101;&#x6c;&#x2e;&#112;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#46;&#112;&#x2e;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#97;&#110;&#105;&#x65;&#x6c;&#46;&#112;&#46;&#x77;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#46;&#112;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x2e;&#112;&#x2e;&#x77;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
