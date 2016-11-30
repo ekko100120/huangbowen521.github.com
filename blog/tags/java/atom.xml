@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/java/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-09-09T10:52:15+05:30</updated>
+  <updated>2016-11-30T23:29:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[理解Maven中的SNAPSHOT版本和正式版本]]></title>
     <link href="http://www.huangbowen.net/blog/2016/01/29/understand-official-version-and-snapshot-version-in-maven/"/>
-    <updated>2016-01-29T14:26:44+05:30</updated>
+    <updated>2016-01-29T16:56:44+08:00</updated>
     <id>http://www.huangbowen.net/blog/2016/01/29/understand-official-version-and-snapshot-version-in-maven</id>
     <content type="html"><![CDATA[<p>Maven中建立的依赖管理方式基本已成为Java语言依赖管理的事实标准，Maven的替代者Gradle也基本沿用了Maven的依赖管理机制。在Maven依赖管理中，唯一标识一个依赖项是由该依赖项的三个属性构成的，分别是groupId、artifactId以及version。这三个属性可以唯一确定一个组件（Jar包或者War包）。</p>
 
@@ -80,7 +80,7 @@ resolutionStrategy.cacheChangingModulesFor  4, ‘hours'
   <entry>
     <title type="html"><![CDATA[Java基础知识之Annotation]]></title>
     <link href="http://www.huangbowen.net/blog/2013/03/28/java-annotation/"/>
-    <updated>2013-03-28T01:01:00+05:30</updated>
+    <updated>2013-03-28T01:01:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/03/28/java-annotation</id>
     <content type="html"><![CDATA[<h2>什么是Annotation?</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-09-09T10:52:15+05:30</updated>
+  <updated>2016-11-30T23:29:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[分享最新的博客到LinkedIn Timeline]]></title>
     <link href="http://www.huangbowen.net/blog/2014/09/07/share-latest-post-to-linkedin/"/>
-    <updated>2014-09-07T13:44:16+05:30</updated>
+    <updated>2014-09-07T16:14:16+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/09/07/share-latest-post-to-linkedin</id>
     <content type="html"><![CDATA[<p>使用Octopress作为我的博客框架有两年了。使用起来一直很顺手，这个工具真正的把博客跟写代码等同起来，非常酷炫。再加上各种各样的定制化，简直是随心所欲。我针对自己的需求对Octopress框架进行了一些定制化，比如编写了一些插件自动将博客同步到博客园，以及部署时将博客部署到亚马逊云的S3上等。这个周末闲着无事，写了一个插件将最新的博客信息推送到LinkedIn的timeline上去。</p>
 

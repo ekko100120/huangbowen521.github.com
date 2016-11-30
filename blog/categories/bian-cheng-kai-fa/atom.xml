@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 编程开发 | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/bian-cheng-kai-fa/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-09-09T10:52:15+05:30</updated>
+  <updated>2016-11-30T23:29:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Haskell函数式编程之特性篇]]></title>
     <link href="http://www.huangbowen.net/blog/2013/03/17/haskell-functional-programming-feature/"/>
-    <updated>2013-03-17T12:46:00+05:30</updated>
+    <updated>2013-03-17T12:46:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/03/17/haskell-functional-programming-feature</id>
     <content type="html"><![CDATA[<p>函数式编程的定义是：</p>
 
@@ -172,7 +172,7 @@ doubleMe ary = map' (\x-&gt; x * x) ary
   <entry>
     <title type="html"><![CDATA[Haskell函数式编程之递归]]></title>
     <link href="http://www.huangbowen.net/blog/2013/03/14/haskell-recursion/"/>
-    <updated>2013-03-14T21:46:00+05:30</updated>
+    <updated>2013-03-14T21:46:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/03/14/haskell-recursion</id>
     <content type="html"><![CDATA[<p>在Haskell的世界中，没有变量赋值，流程跳转，如果要实现一些简单的功能，比如求一个数组中的最大值，都需要借助递归实现。</p>
 
@@ -311,7 +311,7 @@ isEven x
   <entry>
     <title type="html"><![CDATA[Java基础学习之Enum]]></title>
     <link href="http://www.huangbowen.net/blog/2013/03/12/enum-in-java/"/>
-    <updated>2013-03-12T22:17:00+05:30</updated>
+    <updated>2013-03-12T22:17:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/03/12/enum-in-java</id>
     <content type="html"><![CDATA[<p>Enum是在Java中用来定义枚举类型的关键字。Enum一般用来表示一组相同类型的常量,如性别、日期 、颜色等.</p>
 
@@ -622,7 +622,7 @@ Color color = (Color)num;
   <entry>
     <title type="html"><![CDATA[Haskell-函数式编程语言之初体验]]></title>
     <link href="http://www.huangbowen.net/blog/2013/03/02/haskell-programming-language-first-touch/"/>
-    <updated>2013-03-02T14:55:00+05:30</updated>
+    <updated>2013-03-02T14:55:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/03/02/haskell-programming-language-first-touch</id>
     <content type="html"><![CDATA[<p>如果你是使用面向对像语言进行编程的程序员，那么你应该去了解掌握一门动态语言。而动态语言的魔力之一就是函数式编程。而要学习了解函数式编程，那么haskell是一个不错的选择。</p>
 
@@ -769,7 +769,7 @@ isHello x = case x of
   <entry>
     <title type="html"><![CDATA[避免每次输入bundler exec命令]]></title>
     <link href="http://www.huangbowen.net/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling/"/>
-    <updated>2013-02-04T00:24:00+05:30</updated>
+    <updated>2013-02-04T00:24:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling</id>
     <content type="html"><![CDATA[<p>bundle在ruby的世界里是个好东西，它可以用来管理应用程序的依赖库。它能自动的下载和安装指定的gem，也可以随时更新指定的gem。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 持续集成 | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/chi-xu-ji-cheng/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-09-09T10:52:15+05:30</updated>
+  <updated>2016-11-30T23:29:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,9 +16,9 @@
   <entry>
     <title type="html"><![CDATA[持续集成及部署利器:Go]]></title>
     <link href="http://www.huangbowen.net/blog/2014/01/27/introduction-of-go/"/>
-    <updated>2014-01-27T18:39:00+05:30</updated>
+    <updated>2014-01-27T18:39:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2014/01/27/introduction-of-go</id>
-    <content type="html"><![CDATA[<p>Go是一款先进的持续集成和发布管理系统,由ThoughtWorks开发。（不要和Google的编程语言Go混淆了！）其前身为Cruise,是ThoughtWorks在做咨询和交付交付项目时自己开发的一款开源的持续集成工具。后来随着持续集成及持续部署的火热，ThoughtWorks专门成立了一个项目组，基于Cruise开发除了Go这款工具。</p>
+    <content type="html"><![CDATA[<p>Go是一款先进的持续集成和发布管理系统,由ThoughtWorks开发。（不要和Google的编程语言Go混淆了！）其前身为Cruise,是ThoughtWorks在做咨询和交付交付项目时自己开发的一款开源的持续集成工具。后来随着持续集成及持续部署的火热，ThoughtWorks专门成立了一个项目组，基于Cruise开发出了Go这款工具。</p>
 
 <!-- more -->
 

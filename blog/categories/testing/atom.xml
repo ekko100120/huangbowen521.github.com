@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-09-09T10:52:15+05:30</updated>
+  <updated>2016-11-30T23:29:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[翻译-page对象]]></title>
     <link href="http://www.huangbowen.net/blog/2013/09/17/page-object/"/>
-    <updated>2013-09-17T02:14:00+05:30</updated>
+    <updated>2013-09-17T02:14:00+08:00</updated>
     <id>http://www.huangbowen.net/blog/2013/09/17/page-object</id>
     <content type="html"><![CDATA[<p>译者注：这篇文章翻译自马丁·福勒（Martin Flower，对，没错，就是软件教父）官网的一篇文章，原文出处在文底。如果你正在做WEB自动化测试，那么我强烈推荐你看这篇文章。另外透露Martin Flower将于10月份左右来成都ThoughtWorks办公室，大家有机会一睹他的风采。</p>
 

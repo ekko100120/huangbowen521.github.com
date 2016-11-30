@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SOCKS5 | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/categories/socks5/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-09-09T10:52:15+05:30</updated>
+  <updated>2016-11-30T23:29:04+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用SOCKS5翻墙]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/02/29/use-socks5-to-access-website/"/>
-    <updated>2016-02-29T22:53:29+05:30</updated>
-    <id>http://www.huangbowen.net/blog/2016/02/29/use-socks5-to-access-website</id>
+    <link href="http://www.huangbowen.net/blog/2016/03/01/use-socks5-to-access-website/"/>
+    <updated>2016-03-01T01:23:29+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/03/01/use-socks5-to-access-website</id>
     <content type="html"><![CDATA[<p>程序员离开了Google很难存活，尤其是现在被墙的网站越来越多，一批优秀的IT网站也深受影响。如果哪天GIHUB和StackOverFlow网站都被墙了，我估计整个中国的IT人员开发效率至少降低10个百分点吧。</p>
 
 <!-- more -->
