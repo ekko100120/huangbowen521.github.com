@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: blog | 黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/blog/tags/blog/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-12-01T00:07:10+08:00</updated>
+  <updated>2016-12-05T16:32:03+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -98,7 +98,7 @@
 
 <p>在一个敏捷团队中，一个典型的用户故事的声明周期是这样的。</p>
 
-<p><img src="http://images.cnblogs.com/cnblogs_com/huang0925/462982/o_storyLifeCycle.png" alt="story lifecycle" /></p>
+<p><img src="/images/t_storyLifeCycle.png" width="400"></p>
 
 <p>其实我们可以将一篇博客看做一个用户故事。你既是IM(迭代经理),又是BA(业务分析师)，DEV（开发者）,QA(质量保证)，而阅读你博客的人就是你的产品的最终用户。你的目标是让你的产品大卖（有越来越多的人关注你的博客）。</p>
 
@@ -116,6 +116,8 @@
 <p>我的同事<a href="http://www.weibo.com/illusionking">@IM_ZhangYve</a>使用<a href="https://evernote.com/">evernote</a>来管理自己的文章。他将category建成了这个样子。</p>
 
 <p><img src="http://images.cnblogs.com/cnblogs_com/huang0925/462982/o_evernote.jpg" alt="evernote category" /></p>
+
+<p><img src="/images/t_evernote.jpg" width="400"></p>
 
 <p>这样<a href="https://evernote.com/">evernote</a>就成了一个故事墙，每个用户故事就是一篇博客，当前那些处于backlog，那些处于WIP,一目了然。你所需要做的就是尽量把用户故事往done里面挪。</p>
 
