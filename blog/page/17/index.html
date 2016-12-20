@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="坦白的说这本书不太适合我。当我看到大段大段的数学符号时，就两眼发蒙。刚开始还感觉跟得上，到后来完全lost了。 但是这并不妨碍我从另一个角度来重新了解了图灵、数学、计算机….去年的时候曾听过Jeff讲过的一个session:《世界及宇宙的终极答案》。我敢确定至少一半的内容都是来自这本书。 &hellip;">
+  <meta name="description" content="第一次接触Selenium 的WebDriver，是在一个Web项目中。该项目使用它来进行功能性测试。当我看到Firefox中的页面内容被一个个自动填充并且自动跳转的时候，感觉真的很神奇。通过这段时间的学习觉得可以将我学的关于WebDriver的知识进行一个总结。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/11/webdriver/">webDriver入门及提高</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T09:39:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/11/webdriver/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/03/11/webdriver/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>第一次接触Selenium 的WebDriver，是在一个Web项目中。该项目使用它来进行功能性测试。当我看到Firefox中的页面内容被一个个自动填充并且自动跳转的时候，感觉真的很神奇。通过这段时间的学习觉得可以将我学的关于WebDriver的知识进行一个总结。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/11/webdriver/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -534,61 +578,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/">《卓有成效的程序员》读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-11T23:52:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time>
-        
-           | <a href="/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在今年的的ThoughtWorks China away day上，我见到了这本书的作者neal ford, 我们还有过简单的交流，并一起去爬了长城。惭愧的是当时我并没有读过他写的这本书。直到今天我拿到了这本书，并花了大半天的时间通读了一遍。看完以后，我觉得这本书真是太好了，非常值得一读。</p>
-
-<p>但是，我想读这本书的读者，大体会分为两个反应。一种是看了一下前面，觉得没有意思，大概翻了翻，发现作者真是太罗嗦了，就丢到了一边。另一种是爱不释手的从头看到尾，看到有些段落会会心一笑，有些段落则加上重重的标记，并决定马上就要开始实践。</p>
-
-<p>如果换做半年前的我，我是第一种反应，而现在，我当然是第二种反应。主要是这半年在ThoughtWorks的历练，使我变得越来越有成效。列举一个真实的例子。在我的前一个项目中，我们做的产品是一个提交保险单的系统，用户要讲过一个一个的page
- flow直到完成一个保单。如果我要开发的或者测试的feature在第7页上，我每次都需要输入大量的数据，点击大量的按钮从第一页走到第7页。试想每天要重复N次真让人崩溃。后来有人就写了一个JavaScript脚本，可以一次填充一页的数据，并自动跳到下一页。我们把这个脚本保存到一个bookmark上，每次只要点击6下就能到第7页。</p>
-
-<p>也许你们说这样已经简化很多了，但是追求卓越的我们并没有止步。我后来了解了selenium IDE这个在firefox下的插件。这个插件作者在书中有提到过。我用selenium IDE录制了一个脚本，只需要点击一个按键，程序就会自动的走到第7页。这样比手动输入速度至少提高了10倍以上。正如作者所说，我们这样的尽量实现自动化操作节省时间不是第一目标，最重要的目标是不要让程序员在一遍遍的手动操作中变傻，而是让我们精力变的更加集中，focus到更具有价值的地方上去。</p>
-
-<p>我觉得每个程序员都想变得高效，但是面对新的方法，新的工具总是或多或少有点畏惧心理，这是因为他们无法体会到采用一种新方法或者新工具带来的震撼的效果。所以对于我们程序员来说绝对要勇于尝试，勇于突破现状。</p>
-
-<p>回顾了一下作者在书中列举的自己感兴趣的东西，顺便对自己做一个总结。（本人使用的是mac pro，所以tool和plugin只关心mac上的。）</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/11/11/%3C%3Czhuo-you-cheng-xiao-de-cheng-xu-yuan-%3E%3E-du-shu-bi-ji/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/18/">&larr; Older</a>
@@ -616,6 +605,10 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/12/20/qa-in-agile-team/">敏捷团队中的QA由来</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/11/30/spring-batch-best-practices/">Spring Batch在大型企业中的最佳实践</a>
       </li>
     
@@ -629,10 +622,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
     
       <li class="post">
         <a href="/blog/2016/08/22/target-about-july/">2016年7月份的总结</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/08/01/aws-sysops-exam-sample/">AWS的SysOps认证考试样题解析</a>
       </li>
     
   </ul>

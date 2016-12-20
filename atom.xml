@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-12-05T16:32:03+08:00</updated>
+  <updated>2016-12-20T22:39:39+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[敏捷团队中的QA由来]]></title>
+    <link href="http://www.huangbowen.net/blog/2016/12/20/qa-in-agile-team/"/>
+    <updated>2016-12-20T22:32:43+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2016/12/20/qa-in-agile-team</id>
+    <content type="html"><![CDATA[<p>QA,全称为Quality Analyst，即质量分析师(有些称为Quality Assurance,即质量保证师)。为什么它总跟质量扯在一块？感觉这个角色明明做的都是测试的事情，为什么不直接叫做tester那？敏捷项目中的QA日常都做什么事情那？可能一大推问题都会冒出来。别急，跟着我这篇文章来一步步的回答这些问题。</p>
+
+<!-- more -->
+
+
+<p>假设现在有一个保险公司，他想找一个软件公司做一个在线卖保险的系统。那么这个系统从开始到完成至少需要三个角色。</p>
+
+<p>Business owner -> developer -> end user</p>
+
+<ul>
+<li>Business owner即保险公司的人，也是我们的需求来源，由他来提出业务需求。</li>
+<li>developer即软件开发工程师，根据客户的需求做出客户期望的产品，最终交付给客户。</li>
+<li>end user即产品的最终用户，在本例子中即有意愿在网上买保险的人。这个系统到底好不好用，他们最有发言权。（有的时候end user和business owner有可能是同一批人，比如开发的是一个内部公司使用的OA系统）。</li>
+</ul>
+
+
+<p>只有这些角色能够顺利、成功的完成一个产品吗？实际操作中肯定会遇到很多问题。这些问题会集中在两个地方。</p>
+
+<p>第一个问题出在Business owner和developer。在沟通需求的时候他们彼此会发现太费劲了。Business owner张口就来的quote、premium、policy这些名词软件开发工程师不懂什么意思，因为他们没有保险行业的背景知识，而软件工程师喜欢说的MVC、BDD、Java之类的，Business owner也搞不懂，并且人家对这也不感兴趣。那么软件开发工程师想，如果有人能即懂得保险行业知识，又具有IT背景，那么分析需求肯定会顺利不少。这样的人在敏捷团队中就叫做BA（Business Anslyst,业务分析师）。BA会理解并挖掘客户的需求，然后将需求转变为具体的AC(验收条件,Acceptance critirial)，再交由开发工程师来实现。同时他也可以将业务知识最大化的传递给开发工程师，保证开发工程师能够准确的理解需求（为什么不让Business owner直接将业务知识传递给开发工程师那？原因很简单，人家可是一秒钟几十万上下的主，那里有这么多闲工夫。）</p>
+
+<p>所以系统从开始到完成变成了这个样子。</p>
+
+<p>Business owner -> BA -> developer -> end user</p>
+
+<p>另一个问题就出现在了developer和end user之间。开发工程师完成的系统能够直接拿给最终用户用吗？如果你说能，要么你是对自己的产品信心十足，要么就是盲目乐观。我想大多数情况是后者。因为开发工程师在将业务需求转换为编码实现时，一方面由于理解的问题，实现或多或少可能会与需求有所偏差。另一方面由于自身思维的局限性，会导致系统隐含了一些缺陷。假如最终用户在使用系统时，发现在线支付有问题，或者页面在自己所用的浏览器下不能正常显示，你觉得他们还有兴趣使用你的系统吗？这就相当于把最终用户当做系统的测试者，人家不收钱还帮助我们发现bug，那里有这好事？系统的问题要尽可能的避免暴露给最终用户。那么在软件开发工程师和最终用户之间应该再加一个角色，就是tester。tester的主要职责就是按照AC，对系统进行功能性测试，确保功能的正确性，另一方面是针对一些非功能性测试（比如安全性测试，性能测试），保证系统的健壮性。</p>
+
+<p>Business owner -> BA -> developer -> tester -> end user</p>
+
+<p>做到这些的tester还不能称之为QA，因为它的角色更像是软件质量的看门人，最终把关者，还达不到测试分析的要求。</p>
+
+<p>现在新的问题来了，到底tester什么时候该开始对软件的测试那？</p>
+
+<p>一个极端情况是等developer把所有的功能完成以后，再交给tester来测。这样会造成很多问题。</p>
+
+<ol>
+<li>如果开发者需求理解有偏差，需要重新返工。</li>
+<li>软件中发现了bug，该功能是很久以前开发完成的，developer定位和修复要花很长时间。</li>
+<li>有太多的功能需要测试，tester要花很长时间，developer又要修复发现的bug，这段时间不可预估，虽然是属于项目上线的最后时刻，但是整个系统始终处于一个不稳定的状态。</li>
+</ol>
+
+
+<p>大家都知道在软件工程中，需求变更发生的越晚，bug发现的越晚，会软件开发的影响会越大。这种极端情况的做法是不可取的。</p>
+
+<p>那么应该怎么做那？我们可以将整个系统的功能细分成很多小功能点，每一个小功能点都是独立可测的，那么一旦开发工程师完成此功能点，tester立马就可以拿去测试。每一个小功能点就是敏捷中所说的用户故事（user story）。</p>
+
+<p>一个user story的典型的生命周期是这样子的。</p>
+
+<ul>
+<li>backlog -> BA将刚建好的story卡放置在backlog list里</li>
+<li>Analyse -> BA细化story卡，完成验收条件等内容的编写</li>
+<li>development -> 开发人员进行开发工作</li>
+<li>testing -> 测试人员进行测试</li>
+<li>UAT -> 用户验收测试，Business owner会对功能进行确认</li>
+<li>Production -> Business owner准许后，将功能发布到生产环境</li>
+</ul>
+
+
+<p>如果只是实现这样的流程，那么这个团队还不算是真正的敏捷团队，这里的tester也不算是真正的QA。因为业务需求通过Business owner到BA再到DEV到tester，是一个衰减的过程。小时候我们玩过一个游戏，老师让一群人排成一排，他会给第一个人说一句悄悄话，然后让第一个人偷偷讲给第二个人，第二个人再原封不动的讲给第三个人..直到最后一个人把这个悄悄话讲出来和老师的原话比较，我们往往发现最后一个人的话很难和老师的原话保持一致，甚至意思会大相径庭。那么这就意味着tester在做测试的时候他不一定能够真正了解业务的实际需求，所以在测试时难免会出现纰漏。这样的卡最后让business owner确认时，很难避免给business owner “惊喜”。</p>
+
+<p>所以为了解决需求衰减的问题，tester要尽早的介入到的story的前期工作。在BA分析故事卡的时候，tester就可以根据卡的内容准备测试策略、测试环境，甚至准备测试数据。在开发人员领取卡的时候，tester可以从测试的角度给开发人员提供一些建议。而在开发人员开发卡的时候，tester可以和开发人员一起pair编写自动化的测试用例。开发人员开发完毕后，tester可以在开发人员的本地环境中快速验证其是否满足所有验收条件，必要的自动化测试是否已经完成等。在UAT环节，tester又可以帮助business owner进行sign off。</p>
+
+<p>这个时候需求的传递已经不是一个简单的链式的行为，测试人员作为连接器把需求良好地串联了起来。测试人员的职责范围已经超出了我们通常所理解的范围。这个时候再用tester这个称呼已经无法涵盖该角色的职责了。所以就有了QA（质量分析师）这一角色。可以看出在敏捷团队中QA并不是质量的最终把关者，而是在项目开始就参与到了质量的控制当中，一直贯穿到所有环节。</p>
+
+<p>如果想了解敏捷团队中QA的具体职责，可以参见我司的同事的文章<a href="http://www.infoq.com/cn/articles/agility-of-qa">《敏捷中的QA》</a>.
+如果你想知道自己适不适合QA，请参见我司另一位同事的文章<a href="http://insights.thoughtworkers.org/agile-qa/">《敏捷QA，从入门到放弃》</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring Batch在大型企业中的最佳实践]]></title>
@@ -1883,9 +1956,9 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#97;&#110;&#105;&#x65;&#x6c;&#112;&#x77;&#111;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#x73;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#x64;&#97;&#110;&#105;&#x65;&#x6c;&#112;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#97;&#x6e;&#105;&#101;&#108;&#x70;&#x77;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#x64;&#x61;&#110;&#x69;&#101;&#108;&#112;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x70;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#100;&#97;&#110;&#105;&#x65;&#x6c;&#112;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#100;&#x61;&#x6e;&#105;&#101;&#108;&#x2e;&#x70;&#46;&#119;&#111;&#x6f;&#100;&#115;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#x61;&#110;&#x69;&#101;&#108;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#100;&#x73;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#100;&#x61;&#110;&#x69;&#x65;&#108;&#46;&#x70;&#x2e;&#119;&#111;&#x6f;&#x64;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#x2e;&#112;&#46;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#x2e;&#x70;&#46;&#119;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#100;&#97;&#x6e;&#x69;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#46;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#105;&#x65;&#x6c;&#46;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -2523,10 +2596,10 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#97;&#x6e;&#x69;&#101;&#108;&#x70;&#119;&#111;&#111;&#x64;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#100;&#97;&#110;&#105;&#x65;&#108;&#x70;&#x77;&#111;&#x6f;&#x64;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x70;&#x77;&#111;&#111;&#100;&#115;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#100;&#97;&#110;&#105;&#x65;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#x73;&#64;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#100;&#97;&#110;&#105;&#101;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#x65;&#x6c;&#x70;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#100;&#x61;&#x6e;&#x69;&#101;&#x6c;&#x2e;&#112;&#46;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#x2e;&#x77;&#x6f;&#x6f;&#100;&#115;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#100;&#97;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#46;&#x77;&#111;&#x6f;&#100;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#46;&#x70;&#x2e;&#x77;&#111;&#111;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#46;&#x70;&#46;&#x77;&#111;&#x6f;&#x64;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#x70;&#119;&#111;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#112;&#119;&#111;&#111;&#100;&#x73;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#110;&#x69;&#101;&#108;&#112;&#119;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#112;&#x77;&#111;&#111;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x64;&#x61;&#110;&#105;&#101;&#108;&#x70;&#x77;&#111;&#111;&#100;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#112;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#46;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#100;&#x61;&#110;&#105;&#x65;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#97;&#110;&#105;&#x65;&#x6c;&#46;&#112;&#x2e;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#97;&#x6e;&#105;&#101;&#108;&#46;&#x70;&#46;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x2e;&#112;&#46;&#119;&#111;&#111;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
@@ -2766,47 +2839,6 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>这种采用本身语言实现的DSL对本身语言项目进行构建管理的例子比比皆是。比如Rake和Ruby、Grunt和JavaScript、Sbt和Ruby&hellip;..而Gradle之所以使用Groovy语言实现，是因为Groovy比Java语言更具表现力，其语法特性更丰富，又兼具函数式的特点。这几年兴起的语言（比如Scala、Go、Swift）都属于强类型的语言，兼具面向对象和函数式的特点。</p>
 
 <p>最后想说的Gradle的命令行比Maven的要强大的多。以前写过一篇文章专门讲述了Gradle的命令行操作，详情请见<a href="http://www.huangbowen.net/blog/2013/09/01/command-line-of-gradle/">Gradle命令行黑魔法</a>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[膝盖中了一箭之康复篇-第七个月暨1月份目标总结]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/02/05/acl-recovery-for-7th-month/"/>
-    <updated>2016-02-05T10:50:19+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/02/05/acl-recovery-for-7th-month</id>
-    <content type="html"><![CDATA[<p>前交叉韧带术后已经7个月。</p>
-
-<!-- more -->
-
-
-<p>上一次见主治医生还是2015年11月初的时候。按理说术后复查时间表应该是1个月、2个月、3个月、半年。但由于长期出差，再加上主治医生只有每周二坐诊，而且挂他的号都要提前一周预约，时间实在不好把握。所以我只在2个多月的时候和4个多月的时候去复查过。而4月份复查时拍的MRI底片还没有拿给他看。</p>
-
-<p>2016年新年伊始我改革了做新一年计划的方式，以前笼统的按年计划的方式变为按月进行。1月份的计划为跑步200公里，其中包括4个半程马拉松。由于2015年11月份、12月份跑量都在180公里左右，所以这样的计划也不算太冒进。再加上自我感觉膝盖恢复的还可以，所以还是相当自信的。</p>
-
-<p>以下是咕咚记录的1月份跑步情况。</p>
-
-<p><img src="http://www.huangbowen.net/images/201601_run_record.jpg" width="300"></p>
-
-<ul>
-<li>一月份总跑量220公里+，有10公里是在跑步机上跑的</li>
-<li>一月份共31天，出勤了19天</li>
-<li>一月份完成半程马拉松4个，其中一次半程马拉松耗时1小时43分13秒，将个人半程马拉松记录提高了2分钟30秒</li>
-</ul>
-
-
-<p>这样的成绩总体来说还是比较满意的。基本上每次训练都是堆量为主，以自己最适应的配速跑完就行。之所以没上速度训练是考虑到伤腿肌肉力量还未完全恢复，怕再次受伤。就这样慢悠悠的拉拉耐力也好，不过2月份还是要多搞点速度训练，彻底把速度提上去，这样全马400大关甚至330大关才有可能突破。</p>
-
-<p>1月10日公司举办away day的时候我也趁机踢了场足球。5对5的小场子，最后10多分钟作为替补踢了一会儿。已经1年没有踢球了，能够重新踢球的感觉真好。当然为了保险起见，没有太多的身体对抗。</p>
-
-<p>力量训练在1月份也在开展当中。在酒店附近换了个健身房，晚上时不时过去练一练。卧推现在只能推50公斤了，60公斤没保护心里还真没底，有氧训练太多感觉自己的力量也在流失。再加上为了减脂，蛋白质摄入也不够。2月份蛋白粉喝起，还不知道家里的那罐蛋白粉过期了没有。</p>
-
-<p>体重自11月底降至70公斤以后就再没动过，直到现在还未降到70公斤以下。这次的平台期可真够长的，虽然这个月对自己挺狠的，但就是达不到效果。2月份过年，避免不了胡吃海喝，看来辛苦降下来的体重又要有所回升。</p>
-
-<p>12月初恢复腹肌撕裂者训练，到现在已经2个月。感觉腹肌状态已经超过了2014年9月份的时候，但还是由于腹部脂肪太多，只能隐约看到四块。现在腹肌撕裂者整套动作可以完全跟完了，中间不需要休息。腹肌撕裂者再练一段时间估计就要加负重动作来练腹肌了。</p>
-
-<p>现在正是国内上半年各大越野赛报名的时刻，但由于自己早已安排好去印度，6月中旬才回国，所以华丽丽的错过了上半年所有的越野赛。2016年暂定大理100越野赛作为自己第二次向百公里发起冲击。不过在此之前必须先拿到报名资格，所以还需要完成一个短纪录的越野赛或者一个全马赛事来达到报名要求。这也挺让我头痛的，需要在7月份左右为自己安排一场赛事，时间还是挺赶的。</p>
-
-<p>2月份的目标是4000个俯卧撑和4篇技术博客。待到月底再看完成情况吧。</p>
 ]]></content>
   </entry>
   

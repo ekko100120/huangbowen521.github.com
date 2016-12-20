@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="Spring框架是无侵入性的，所以你的代码可以完全是POJO（plain old java object），直接使用Junit就可以完成大部分的单元测试。但是在集成测试方面就比较吃力了。单元测试层面你可以mock一些依赖对象，但是集成测试时需要真实的依赖对象， &hellip;">
+  <meta name="description" content="在第一讲中显示了如何使用注解配置bean，其实这是Spring3引进的特性,Spring2使用的是XML的方式来配置Bean，那时候漫天的XML文件使得Spring有着配置地狱的称号。Spring也一直在力求改变这一缺陷。Spring3引入的注解方式确实使配置精简不少， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/13/use-groovy-dsl-in-spring/">Spring-Context之三:使用XML和Groovy DSL配置Bean</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-13T02:13:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/13/use-groovy-dsl-in-spring/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/13/use-groovy-dsl-in-spring/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在第一讲中显示了如何使用注解配置bean，其实这是Spring3引进的特性,Spring2使用的是XML的方式来配置Bean，那时候漫天的XML文件使得Spring有着<code>配置地狱</code>的称号。Spring也一直在力求改变这一缺陷。Spring3引入的注解方式确实使配置精简不少，而Spring4则引入了Groovy DSL来配置，其语法比XML要简单很多，而且Groovy本身是门语言，其配置文件就相当于代码，可以用来实现复杂的配置。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/13/use-groovy-dsl-in-spring/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -476,50 +520,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/11/thoughts-when-doing-user-story/">做一张故事卡时的感悟</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-11T17:36:00+08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/02/11/thoughts-when-doing-user-story/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/02/11/thoughts-when-doing-user-story/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天和同事一起领了一个故事卡来做。看完用户故事卡中的描述和验收准则后一头雾水，不知道从哪里下手。由于卡中提到了几个模块都属于遗留系统中的功能，以前没有触及这些模块，对业务、对代码都不太了解。而且还要对这些模块进行修改，而这部分代码都是陈旧的EJB代码，复杂冗长，配置繁琐，修改点无法确定，影响范围无法预估。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/11/thoughts-when-doing-user-story/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -547,6 +547,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/12/20/qa-in-agile-team/">敏捷团队中的QA由来</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/11/30/spring-batch-best-practices/">Spring Batch在大型企业中的最佳实践</a>
       </li>
     
@@ -560,10 +564,6 @@
     
       <li class="post">
         <a href="/blog/2016/08/22/target-about-july/">2016年7月份的总结</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/08/01/aws-sysops-exam-sample/">AWS的SysOps认证考试样题解析</a>
       </li>
     
   </ul>
