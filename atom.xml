@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2017-01-11T20:44:27+08:00</updated>
+  <updated>2017-01-11T21:05:36+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[以敏捷的方式运作一所大学]]></title>
+    <link href="http://www.huangbowen.net/blog/2017/01/11/operate-the-university-using-agile/"/>
+    <updated>2017-01-11T20:54:32+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2017/01/11/operate-the-university-using-agile</id>
+    <content type="html"><![CDATA[<p>2001年，敏捷宣言在美国犹他州瓦萨奇山雪鸟滑雪胜地横空出世。时至今日，敏捷软件开发流程早已经深入人心。ThoughtWorks作为敏捷实践的翘楚，一直不遗余力的向行业推广敏捷。而ThoughtWorks自身不仅在所有项目中都使用敏捷，甚至对毕业生的培养都是敏捷的。</p>
+
+<!-- more -->
+
+
+<p><img src="http://www.huangbowen.net/images/1-agile-manifesto.jpg" width="400"></p>
+
+<p>在印度浦那有着一所很神秘的大学，叫做ThoughtWorks Univesity，简称“TWU”。每个加入ThoughtWorks的毕业生，都要接受在TWU为期5周的洗礼。笔者于2016年以讲师的身份，参加了两期ThoughtWorks University。整个经历真的是一趟奇妙的旅程，收获颇丰。在这个教授敏捷的大学，我领略到了如何以敏捷的方式来运作一所大学。</p>
+
+<h2>敏捷的两个先决条件</h2>
+
+<p>《Practices of An Agile Developer》一书讲到，一个项目适不适合敏捷有两个先决条件：第一点是项目是否以价值为导向，第二点是团队是否能够达到高度协作。</p>
+
+<p><img src="http://www.huangbowen.net/images/2-team.jpg" width="400"></p>
+
+<p>第一点也就是说整个团队有一个总体一致的目标。TWU拥有明确的目标，一切都是围绕着培养毕业生的四个方面：Customer Serivce Mindset &amp; Skills（客户服务意识和技能）, Business Understanding（ThoughtWorks业务理解）, Culture/Way of Life（文化及生活方式）, Global &amp; Social Experience（国际经验及社会责任）。</p>
+
+<p>只有打造一个相对扁平的组织，给予充分的信任和自由度，才有利于敏捷的实施。这反过来又要求团队中的每个人有高度的自律性。</p>
+
+<p>TWU的团队主要分为核心团队和讲师团队。核心团队统筹管理所有的TWU活动，确保所有的课程和活动都是围绕着TWU的目标开展。而讲师团队则是由全球各个办公室的员工抽调而来，负责具体实施这些活动。整个TWU团队都是完全扁平的架构，没有上下级的关系。</p>
+
+<p>第二点是说必须能够保证团队中的成员能够流畅的交流。我们那期的讲师来自8个国家：中国、马来西亚、澳洲、美国、印度、巴西、英国、德国。这样的国际化战队能够在组建之后立马投入运作的最大原因就是每个人在ThoughtWorks学到的深入骨髓的合作理念。TWU的核心团队和讲师团队每周都有固定的时间碰头，讨论遇到的问题并商讨解决之道。每天早上TWU的讲师也有固定时间站会，更新各自的状态。下午也有碰头会，讨论当天的工作内容、遇到的问题，并提出行动来解决。</p>
+
+<p>这两个先决条件在TWU完全符合。</p>
+
+<h2>敏捷的基础是反馈</h2>
+
+<p>《Practices of An Agile Developer》中讲到敏捷的基础就是反馈。如果别人能及时指出你走错了路，那么你就会少走点弯路。只有不断的接受反馈并付出行动，才会不断的提高。反馈也是双向的，不仅自己要接受反馈，也需要主动给同事反馈。</p>
+
+<p><img src="http://www.huangbowen.net/images/3-feedback.jpg" width="400"></p>
+
+<p>在TWU，首当其冲要接受来自核心团队和讲师的反馈。每周我们有个很独特的活动，叫做Speedback Session。在这个活动上所有的讲师会进行一对一的4分钟的谈话，相互给予反馈。这种开诚布公的行为把大家都团结到了一起。</p>
+
+<p>而在每期TWU的前两周，新讲师会对课程进行试讲，这是获取其他讲师反馈的好时机。笔者本人收到了很多反馈，比如说我的语速很合适、声音洪亮等，也有鞭策我提高的反馈，比如我的引导力能力不强，有的时候课堂感染力不够等。</p>
+
+<p>讲师要给学生讲课，及时收集学生的反馈也相当重要。TWU团队在每个教室都专门制作了一面反馈墙，每次讲师讲完课后都会提醒学生通过贴纸的方式留下对本堂课的反馈。从这些反馈中我找到了自己的一些问题，比如有的学生说我的口音有点重，对一些技术词汇解释的不是很清楚。这会促使我下次讲课时注意解决这些问题。同时我也收到了很多鼓舞，因为很多同学都留言说学到了很多有用的新东西，很感谢我的付出。</p>
+
+<p>正是这种良好的反馈文化让我在短时间内意识到了很多不足之处，也明确了改进的方向。它能使你每天都正面面对工作和生活，每天都能保持提升自己。</p>
+
+<h2>敏捷的精髓是拥抱变化</h2>
+
+<p>《Practices of An Agile Developer》一书中讲到敏捷的精髓就是拥抱变化。TWU每一期的学生来自不同的国家和地区，各自拥有完全不同的经历。这就要求我们在短短几天内充分了解团队中的学生，并且对课程进行相应的调整。</p>
+
+<p><img src="http://www.huangbowen.net/images/4-change.jpg" width="400"></p>
+
+<p>比如有一次我们要求学生团队进行一次软件发布活动，而当时他们还没有学习功能开关（Feature Toggle），正在思考如何实现只发布想要的功能，而屏蔽掉其他正在开发中的功能。为了能让他们自行思考发布策略，我们特意把介绍发布策略的课程往后挪了一天。</p>
+
+<p>我们不仅会调整课程的安排，对于课程的内容我们也会经常更新。比如有一节教授HTML和CSS的课程，我们对课程进行了大幅改动，删除了一些过时的内容，加上了一些通用的最佳实践。这样的改动能够保证TWU所有教授的内容都能赶得上IT领域日新月异的变化。相比起国内大学有些课程还在使用几十年前的教材，而我们的有些课程可能每半年就会全部更新一次。</p>
+
+<p>一些重大的改动会被放到一年一度的TWU年度升级中进行处理。在年度升级中我们有两个月的时间对TWU的关键活动做升级。比如今年就将TWU使用的整个技术栈全部迁移到了AWS平台，实现能够一键式创建和删除整个学期需要的资源。</p>
+
+<p>TWU在课程的设置方面一直紧跟市场的变化。ThoughtWorks最近不断接收一些关于UX和XD的业务，而TWU当时并没有专门针对UX和XD的培训内容。但是短短三个月的时间TWU一群卓越的同事就创建了相关的课程，并迎来了第一批UX和XD的毕业生。</p>
+
+<h2>最后</h2>
+
+<p>在TWU当讲师的几个月，笔者一直感觉这个大学是一个充满活力的大学。在这个大学里面，没有权威，没有各种条条框框，整个团队有一股极强的凝聚力，每个人是TWU的主人。运作一所大学不易，但如果能坚持做到持续反馈、拥抱变化的话，这所大学将始终是一所紧追时代步伐的大学。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[敏捷团队中的QA由来]]></title>
@@ -1970,9 +2034,9 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x61;&#x6e;&#x69;&#x65;&#108;&#x70;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#97;&#110;&#105;&#x65;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#100;&#97;&#110;&#x69;&#x65;&#108;&#112;&#x77;&#111;&#x6f;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#x61;&#x6e;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#100;&#97;&#110;&#105;&#101;&#108;&#x70;&#119;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#100;&#x61;&#110;&#105;&#x65;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#x61;&#x6e;&#x69;&#x65;&#108;&#x70;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#97;&#x6e;&#105;&#101;&#x6c;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#46;&#x70;&#46;&#x77;&#111;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#x2e;&#x70;&#x2e;&#x77;&#111;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#x2e;&#x70;&#46;&#x77;&#x6f;&#x6f;&#100;&#x73;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#105;&#101;&#108;&#x2e;&#x70;&#46;&#119;&#111;&#x6f;&#100;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#112;&#x2e;&#x77;&#111;&#x6f;&#x64;&#x73;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#97;&#x6e;&#105;&#x65;&#108;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -2610,10 +2674,10 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#100;&#x61;&#110;&#105;&#101;&#108;&#x70;&#x77;&#111;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x64;&#97;&#110;&#x69;&#101;&#108;&#112;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x64;&#97;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#x6f;&#111;&#x64;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#101;&#x6c;&#x70;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#111;&#111;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#x2e;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#111;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#46;&#112;&#46;&#119;&#x6f;&#111;&#100;&#x73;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#105;&#x65;&#x6c;&#x2e;&#x70;&#46;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#46;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#x70;&#119;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#100;&#97;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#111;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#x65;&#108;&#x70;&#119;&#x6f;&#x6f;&#100;&#x73;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x64;&#97;&#110;&#x69;&#101;&#x6c;&#x70;&#119;&#111;&#111;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#x69;&#x65;&#108;&#x2e;&#112;&#46;&#x77;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x2e;&#112;&#46;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#100;&#97;&#110;&#105;&#101;&#x6c;&#46;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#108;&#46;&#112;&#46;&#119;&#x6f;&#111;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#100;&#97;&#110;&#105;&#101;&#108;&#46;&#x70;&#x2e;&#x77;&#111;&#x6f;&#x64;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#105;&#x65;&#x6c;&#46;&#112;&#x2e;&#119;&#111;&#111;&#100;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
@@ -2630,229 +2694,6 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <h3>关于作者</h3>
 
 <p>Daniel Woods醉心于企业级Java、Groovy以及Grails开发。他在JVM软件开发领域拥有10余年的工作经验，并且乐于向开源项目（比如<a href="http://www.ratpack.io/">Grails</a>和<a href="http://www.ratpack.io/">Ratpack</a>）贡献他的经验。Dan曾在Gr8conf和SpringOne 2GX大会上做过演讲嘉宾，展示了他基于JVM的企业级应用程序架构的专业知识。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Maven和Gradle对比]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven/"/>
-    <updated>2016-02-23T11:30:27+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/02/23/gradle-vs-maven</id>
-    <content type="html"><![CDATA[<p>Java世界中主要有三大构建工具：Ant、Maven和Gradle。经过几年的发展，Ant几乎销声匿迹、Maven也日薄西山，而Gradle的发展则如日中天。笔者有幸见证了Maven的没落和Gradle的兴起。Maven的主要功能主要分为5点，分别是依赖管理系统、多模块构建、一致的项目结构、一致的构建模型和插件机制。我们可以从这五个方面来分析一下Gradle比起Maven的先进之处。</p>
-
-<!-- more -->
-
-
-<h2>依赖管理系统</h2>
-
-<p>Maven为Java世界引入了一个新的依赖管理系统。在Java世界中，可以用groupId、artifactId、version组成的Coordination（坐标）唯一标识一个依赖。任何基于Maven构建的项目自身也必须定义这三项属性，生成的包可以是Jar包，也可以是war包或者ear包。一个典型的依赖引用如下所示：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-test<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>从上面可以看出当引用一个依赖时，version可以省略掉，这样在获取依赖时会选择最新的版本。而存储这些组件的仓库有远程仓库和本地仓库之分。远程仓库可以使用世界公用的central仓库，也可以使用Apache Nexus自建私有仓库；本地仓库则在本地计算机上。通过Maven安装目录下的settings.xml文件可以配置本地仓库的路径，以及采用的远程仓库的地址。</p>
-
-<p>Gradle在设计的时候基本沿用了Maven的这套依赖管理体系。不过它在引用依赖时还是进行了一些改进。首先引用依赖方面变得非常简洁。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">dependencies</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">compile</span> <span class="s1">&#39;org.hibernate:hibernate-core:3.6.7.Final&#39;</span>
-</span><span class='line'>    <span class="n">testCompile</span> <span class="err">‘</span><span class="nl">junit:junit:</span><span class="mi">4</span><span class="o">.+</span><span class="err">&#39;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>第二，Maven和Gradle对依赖项的scope有所不同。在Maven世界中，一个依赖项有6种scope，分别是complie(默认)、provided、runtime、test、system、import。而grade将其简化为了4种，compile、runtime、testCompile、testRuntime。那么如果想在gradle使用类似于provided的scope怎么办？别着急，由于gradle语言的强大表现力，我们可以轻松编写代码来实现类似于provided scope的概念（例如<a href="http://stackoverflow.com/questions/18738888/how-to-use-provided-scope-for-jar-file-in-gradle-build">How to use provided scope for jar file in Gradle build?</a>）。</p>
-
-<p>第三点是Gradle支持动态的版本依赖。在版本号后面使用+号的方式可以实现动态的版本管理。</p>
-
-<p>第四点是在解决依赖冲突方面Gradle的实现机制更加明确。使用Maven和Gradle进行依赖管理时都采用的是传递性依赖；而如果多个依赖项指向同一个依赖项的不同版本时就会引起依赖冲突。而Maven处理这种依赖关系往往是噩梦一般的存在。而Gradle在解决依赖冲突方面相对来说比较明确。在<a href="https://docs.gradle.org/current/userguide/dependency_management.html">Chapter 23. Dependency Management
-</a>中的23.2.3章节详细解读了gradle是如何处理版本冲突的。</p>
-
-<h2>多模块构建</h2>
-
-<p>在SOA和微服务的浪潮下，将一个项目分解为多个模块已经是很通用的一种方式。在Maven中需要定义个parent POM作为一组module的聚合POM。在该POM中可以使用<code>&lt;modules&gt;</code>标签来定义一组子模块。parent POM不会有什么实际构建产出。而parent POM中的build配置以及依赖配置都会自动继承给子module。</p>
-
-<p>而Gradle也支持多模块构建。而在parent的build.gradle中可以使用allprojects和subprojects代码块来分别定义里面的配置是应用于所有项目还是子项目。对于子模块的定义是放置在setttings.gradle文件中的。在gradle的设计当中，每个模块都是Project的对象实例。而在parent build.gradle中通过allprojects或subprojects可以对这些对象进行各种操作。这无疑比Maven要灵活的多。</p>
-
-<p>比如在parent的build.gradle中有以下代码：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">allprojects</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">task</span> <span class="n">hello</span> <span class="o">&lt;&lt;</span> <span class="o">{</span> <span class="n">task</span> <span class="o">-&gt;</span> <span class="n">println</span> <span class="s2">&quot;I&#39;m $task.project.name&quot;</span> <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>执行命令<code>gradle -q hello</code>会依次打印出父module以及各个submodule的项目名称。这种强大的能力能让gradle对各个模块具有更强的定制化。</p>
-
-<h2>一致的项目结构</h2>
-
-<p>在Ant时代大家创建Java项目目录时比较随意，然后通过Ant配置指定哪些属于source，那些属于testSource等。而Maven在设计之初的理念就是Conversion over configuration（约定大于配置）。其制定了一套项目目录结构作为标准的Java项目结构。一个典型的Maven项目结构如下：</p>
-
-<p><img src="http://www.huangbowen.net/images/project_structure.png" width="400"></p>
-
-<p>Gradle也沿用了这一标准的目录结构。如果你在Gradle项目中使用了标准的Maven项目结构的话，那么在Gradle中也无需进行多余的配置,只需在文件中包含<code>apply plugin:'java'</code>,系统会自动识别source、resource、test srouce、 test resource等相应资源。不过Gradle作为JVM上的构建工具，也同时支持groovy、scala等源代码的构建，甚至支持Java、groovy、scala语言的混合构建。虽然Maven通过一些插件（比如<a href="http://scala-tools.org/mvnsites/maven-scala-plugin/">maven-scala-plugin</a>）也能达到相同目的，但配置方面显然Gradle要更优雅一些。</p>
-
-<h2>一致的构建模型</h2>
-
-<p>为了解决Ant中对项目构建活动缺乏标准化的问题，Maven特意设置了标准的项目构建周期，其默认的构建周期如下所示：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;phases&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>initialize<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-sources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>compile<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-classes<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-test-sources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-test-sources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>generate-test-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-test-resources<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>test-compile<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>process-test-classes<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>prepare-package<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>post-integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>install<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;phase&gt;</span>deploy<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'><span class="nt">&lt;/phases&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而这种构建周期也是Maven最为人诟病的地方。因为Maven将项目的构建周期限制的太死，你无法在构建周期中添加新的phase，只能将插件绑定到已有的phase上。而现在项目的构建过程变得越来越复杂，而且多样化，显然Maven对这种复杂度缺少足够的应变能力。比如你想在项目构建过程中进行一项压缩所有javascript的任务，那么就要绑定到Maven的现有的某个phase上，而显然貌似放在哪个phase都不太合适。而且这些phase都是串行的，整个执行下来是一条线，这也限制了Maven的构建效率。而Gradle在构建模型上则非常灵活。在Gradle世界里可以轻松创建一个task，并随时通过<code>depends</code>语法建立与已有task的依赖关系。甚至对于Java项目的构建来说，Gradle是通过名为<code>java</code>的插件来包含了一个对Java项目的构建周期，这等于Gradle本身直接与项目构建周期是解耦的。</p>
-
-<h2>插件机制</h2>
-
-<p>Maven和Gradle设计时都采用了插件机制。但显然Gradle更胜一筹。主要原因在于Maven是基于XML进行配置。所以其配置语法太受限于XML。即使实现很小的功能都需要设计一个插件，建立其与XML配置的关联。比如想在Maven中执行一条shell命令，其配置如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;id&gt;</span>drop DB =&gt; db_name<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;goal&gt;</span>exec<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;executable&gt;</span>curl<span class="nt">&lt;/executable&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;arguments&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>-s<span class="nt">&lt;/argument&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>-S<span class="nt">&lt;/argument&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>-X<span class="nt">&lt;/argument&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>DELETE<span class="nt">&lt;/argument&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;argument&gt;</span>http://${db.server}:${db.port}/db_name<span class="nt">&lt;/argument&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/arguments&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而在Gradle中则一切变得非常简单。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">task</span> <span class="nf">dropDB</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Exec</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'> <span class="n">commandLine</span> <span class="err">‘</span><span class="n">curl</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="o">-</span><span class="n">s</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="n">s</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="o">-</span><span class="n">x</span><span class="err">’</span><span class="o">,</span><span class="err">’</span><span class="n">DELETE</span><span class="err">’</span><span class="o">,</span><span class="s2">&quot;http://${db.server}:{db.port}/db_name&quot;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在创建自定义插件方面，Maven和Gradle的机制都差不多，都是继承自插件基类，然后实现要求的方法。这里就不展开说明。</p>
-
-<hr />
-
-<p>从以上五个方面可以看出Maven和Gradle的主要差异。Maven的设计核心<code>Convention Over Configuration</code>被Gradle更加发扬光大，而Gradle的<code>配置即代码</code>又超越了Maven。在Gradle中任何配置都可以作为代码被执行的，我们也可以随时使用已有的Ant脚本（Ant task是Gradle中的一等公民）、Java类库、Groovy类库来辅助完成构建任务的编写。</p>
-
-<p>这种采用本身语言实现的DSL对本身语言项目进行构建管理的例子比比皆是。比如Rake和Ruby、Grunt和JavaScript、Sbt和Ruby&hellip;..而Gradle之所以使用Groovy语言实现，是因为Groovy比Java语言更具表现力，其语法特性更丰富，又兼具函数式的特点。这几年兴起的语言（比如Scala、Go、Swift）都属于强类型的语言，兼具面向对象和函数式的特点。</p>
-
-<p>最后想说的Gradle的命令行比Maven的要强大的多。以前写过一篇文章专门讲述了Gradle的命令行操作，详情请见<a href="http://www.huangbowen.net/blog/2013/09/01/command-line-of-gradle/">Gradle命令行黑魔法</a>。</p>
 ]]></content>
   </entry>
   

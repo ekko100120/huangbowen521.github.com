@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="在第一讲中显示了如何使用注解配置bean，其实这是Spring3引进的特性,Spring2使用的是XML的方式来配置Bean，那时候漫天的XML文件使得Spring有着配置地狱的称号。Spring也一直在力求改变这一缺陷。Spring3引入的注解方式确实使配置精简不少， &hellip;">
+  <meta name="description" content="Spring框架的核心功能之一就是控制反转（Inversion of Control, IoC），也叫做依赖注入（dependency injection, DI）。关于依赖注入的具体内容可以参见Martin Fowler写的一篇文章《Inversion of Control Containers &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/16/bean-defination-in-spring/">Spring-Context之四:Spring容器及bean的定义</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-16T02:29:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/16/bean-defination-in-spring/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/16/bean-defination-in-spring/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Spring框架的核心功能之一就是控制反转（Inversion of Control, IoC），也叫做依赖注入（dependency injection, DI）。关于依赖注入的具体内容可以参见Martin Fowler写的一篇文章<a href="http://martinfowler.com/articles/injection.html">《Inversion of Control Containers and the Dependency Injection pattern》</a>。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/16/bean-defination-in-spring/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -476,50 +520,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/17/how-to-improve-a-legacy-project/">如果让我完善几年前的一个项目，我会做哪些改进?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-17T00:18:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/02/17/how-to-improve-a-legacy-project/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/02/17/how-to-improve-a-legacy-project/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在08年的时候，我还没有大学毕业，当时在一家公司实习。那时候老板接了一个项目，是一个给中石油某下属公司做的一个web版本的管理系统，我和一个同学硬着头皮接下来做完了。这个系统后端用的是c#的web form,前端普通的html+css+javascript，数据库使用的是sql server2005，部署服务器使用的是Microsoft Server 2008。现在回顾这个系统，虽然代码写的烂，架构写的烂，但是能够正常运行，这是偶尔有一些莫名其妙难以解决的小bug。毕竟是自己5年前的代码嘛，那时候自己太嫩了，好多东西都不知道，没有多少经验。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/17/how-to-improve-a-legacy-project/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -547,6 +547,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/01/11/operate-the-university-using-agile/">以敏捷的方式运作一所大学</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/12/20/qa-in-agile-team/">敏捷团队中的QA由来</a>
       </li>
     
@@ -560,10 +564,6 @@
     
       <li class="post">
         <a href="/blog/2016/09/05/summary-for-2016-august/">2016年8月份</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/08/22/target-about-july/">2016年7月份的总结</a>
       </li>
     
   </ul>
