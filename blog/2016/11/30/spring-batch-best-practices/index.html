@@ -172,13 +172,22 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;bean id="..." class="..." scope="job"&gt;
-</span><span class='line'>    &lt;property name="name" value="#{jobParameters[input]}" /&gt;
-</span><span class='line'>&lt;/bean&gt;
-</span><span class='line'>                
-</span><span class='line'>&lt;bean id="..." class="..." scope="job"&gt;
-</span><span class='line'>    &lt;property name="name" value="#{jobExecutionContext['input.name']}.txt" /&gt;
-</span><span class='line'>&lt;/bean&gt;</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>@Component
+</span><span class='line'>@JobScope
+</span><span class='line'>public class CustomClass {
+</span><span class='line'>    
+</span><span class='line'>    @Value("#{jobParameters[jobDate]}")
+</span><span class='line'>    private String jobDate;
+</span><span class='line'>
+</span><span class='line'>    @Value("#{jobExecutionContext['input.name']}.")
+</span><span class='line'>    private String fileName;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>使用Java Config而不是xml的配置方式</h2>
@@ -230,16 +239,17 @@
 
 <h2>本地集成测试中使用内存数据库</h2>
 
-<p>Spring batch在运行时需要数据库支持，因为它需要在数据库中建立一套schema来存储job和step运行的统计信息。而在本地集成测试中我们可以借助Spring batch提供的内存Repository来存储Spring batch的任务执行信息，这样即避免了在本地配置一个数据库，又可以加快job的执行。</p>
+<p>Spring batch在运行时需要数据库支持，因为它需要在数据库中建立一套schema来存储job和step运行的统计信息。而在本地集成测试中我们可以借助Spring batch提供的内存Repository来存储Spring batch的任务执行信息，这样即避免了在本地配置一个数据库，又可以加快job的执行。先为Job的配置类添加扩展类：DefaultBatchConfigurer。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;bean id="jobRepository"
-</span><span class='line'>  class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"&gt;
-</span><span class='line'>    &lt;property name="transactionManager" ref="transactionManager"/&gt;
-</span><span class='line'>&lt;/bean&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class CustomJobConfiguration extends DefaultBatchConfigurer {
+</span><span class='line'>    
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>我们在build.gradle中加入对hsqldb的依赖：</p>
@@ -348,9 +358,9 @@
 
 <h2>使用Retry和Skip增强批处理工作的健壮性</h2>
 
-<p>在处理百万级的数据过程过程中难免会出现异常。如果一旦出现异常而导致整个批处理工作终止的话那么会导致后续的数据无法被处理。Spring Batch内置了Retry（重试）和Skip（跳过）机制帮助我们轻松处理各种异常。适合Retry的异常的特点是这些异常可能会随着时间推移而消失，比如数据库目前有锁无法写入、web服务当前不可用、web服务满载等。所以对这些异常我们可以配置Retry机制。而有些异常则不应该配置Retry，比如解析文件出现异常等，因为这些异常即使Retry也会始终失败。</p>
+<p>在处理百万级的数据过程过程中难免会出现异常。如果一旦出现异常而导致整个批处理工作终止的话那么会导致后续的数据无法被处理。Spring Batch内置了Retry（重试）和Skip（跳过）机制帮助我们轻松处理各种异常。我们需要将异常分为三种类型。第一种是需要进行Retry的异常，它们的特点是该异常可能会随着时间推移而消失，比如数据库目前有锁无法写入、web服务当前不可用、web服务满载等。所以对它们适合配置Retry机制。第二种是需要Skip的异常，比如解析文件的某条数据出现异常等，因为对这些异常即使执行Retry每次的结果也都是相同，但又不想由于某条数据出错而停止对后续数据的处理。第三种异常是需要让整个Job立刻失败的异常，比如如果出现了OutOfMemory的异常，那么需要整个Job立刻运行。</p>
 
-<p>即使Retry多次仍然失败也无需让整个step失败，可以对指定的异常设置Skip选项从而保证后续的数据能够被继续处理。我们也可以配置SkipLimit选项保证当Skip的数据条目达到一定数量后及时终止整个Job。</p>
+<p>一般来说需要Retry的异常也要配置Skip选项，从而保证后续的数据能够被继续处理。我们也可以配置SkipLimit选项保证当Skip的数据条目达到一定数量后及时终止整个Job。</p>
 
 <p>有时候我们需要在每次Retry中间隔做一些操作，比如延长Retry时间，恢复操作现场等，Spring Batch提供了BackOffPolicy来达到目的。下面是一个配置了Retry机制、Skip机制以及BackOffPolicy的step示例。</p>
 
@@ -371,7 +381,10 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>@Bean
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>@Bean
 </span><span class='line'>public Step step(){
 </span><span class='line'>    return stepBuilders.get("step")
 </span><span class='line'>            .&lt;Partner,Partner&gt;chunk(1)
@@ -382,6 +395,7 @@
 </span><span class='line'>            .faultTolerant()
 </span><span class='line'>            .skipLimit(10)
 </span><span class='line'>            .skip(UnknownGenderException.class)
+</span><span class='line'>            .skip(ServiceUnavailableException.class)
 </span><span class='line'>            .retryLimit(5)
 </span><span class='line'>            .retry(ServiceUnavailableException.class)
 </span><span class='line'>            .backOffPolicy(backoffPolicy)
@@ -612,7 +626,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - 黄博文 -
+  Copyright &copy; 2017 - 黄博文 -
   huangbowen521@gmail.com
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>

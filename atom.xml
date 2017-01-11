@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2016-12-20T22:39:39+08:00</updated>
+  <updated>2017-01-11T20:44:27+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -156,13 +156,22 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;bean id="..." class="..." scope="job"&gt;
-</span><span class='line'>    &lt;property name="name" value="#{jobParameters[input]}" /&gt;
-</span><span class='line'>&lt;/bean&gt;
-</span><span class='line'>                
-</span><span class='line'>&lt;bean id="..." class="..." scope="job"&gt;
-</span><span class='line'>    &lt;property name="name" value="#{jobExecutionContext['input.name']}.txt" /&gt;
-</span><span class='line'>&lt;/bean&gt;</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>@Component
+</span><span class='line'>@JobScope
+</span><span class='line'>public class CustomClass {
+</span><span class='line'>    
+</span><span class='line'>    @Value("#{jobParameters[jobDate]}")
+</span><span class='line'>    private String jobDate;
+</span><span class='line'>
+</span><span class='line'>    @Value("#{jobExecutionContext['input.name']}.")
+</span><span class='line'>    private String fileName;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>使用Java Config而不是xml的配置方式</h2>
@@ -214,16 +223,17 @@
 
 <h2>本地集成测试中使用内存数据库</h2>
 
-<p>Spring batch在运行时需要数据库支持，因为它需要在数据库中建立一套schema来存储job和step运行的统计信息。而在本地集成测试中我们可以借助Spring batch提供的内存Repository来存储Spring batch的任务执行信息，这样即避免了在本地配置一个数据库，又可以加快job的执行。</p>
+<p>Spring batch在运行时需要数据库支持，因为它需要在数据库中建立一套schema来存储job和step运行的统计信息。而在本地集成测试中我们可以借助Spring batch提供的内存Repository来存储Spring batch的任务执行信息，这样即避免了在本地配置一个数据库，又可以加快job的执行。先为Job的配置类添加扩展类：DefaultBatchConfigurer。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;bean id="jobRepository"
-</span><span class='line'>  class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"&gt;
-</span><span class='line'>    &lt;property name="transactionManager" ref="transactionManager"/&gt;
-</span><span class='line'>&lt;/bean&gt;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class CustomJobConfiguration extends DefaultBatchConfigurer {
+</span><span class='line'>    
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>我们在build.gradle中加入对hsqldb的依赖：</p>
@@ -332,9 +342,9 @@
 
 <h2>使用Retry和Skip增强批处理工作的健壮性</h2>
 
-<p>在处理百万级的数据过程过程中难免会出现异常。如果一旦出现异常而导致整个批处理工作终止的话那么会导致后续的数据无法被处理。Spring Batch内置了Retry（重试）和Skip（跳过）机制帮助我们轻松处理各种异常。适合Retry的异常的特点是这些异常可能会随着时间推移而消失，比如数据库目前有锁无法写入、web服务当前不可用、web服务满载等。所以对这些异常我们可以配置Retry机制。而有些异常则不应该配置Retry，比如解析文件出现异常等，因为这些异常即使Retry也会始终失败。</p>
+<p>在处理百万级的数据过程过程中难免会出现异常。如果一旦出现异常而导致整个批处理工作终止的话那么会导致后续的数据无法被处理。Spring Batch内置了Retry（重试）和Skip（跳过）机制帮助我们轻松处理各种异常。我们需要将异常分为三种类型。第一种是需要进行Retry的异常，它们的特点是该异常可能会随着时间推移而消失，比如数据库目前有锁无法写入、web服务当前不可用、web服务满载等。所以对它们适合配置Retry机制。第二种是需要Skip的异常，比如解析文件的某条数据出现异常等，因为对这些异常即使执行Retry每次的结果也都是相同，但又不想由于某条数据出错而停止对后续数据的处理。第三种异常是需要让整个Job立刻失败的异常，比如如果出现了OutOfMemory的异常，那么需要整个Job立刻运行。</p>
 
-<p>即使Retry多次仍然失败也无需让整个step失败，可以对指定的异常设置Skip选项从而保证后续的数据能够被继续处理。我们也可以配置SkipLimit选项保证当Skip的数据条目达到一定数量后及时终止整个Job。</p>
+<p>一般来说需要Retry的异常也要配置Skip选项，从而保证后续的数据能够被继续处理。我们也可以配置SkipLimit选项保证当Skip的数据条目达到一定数量后及时终止整个Job。</p>
 
 <p>有时候我们需要在每次Retry中间隔做一些操作，比如延长Retry时间，恢复操作现场等，Spring Batch提供了BackOffPolicy来达到目的。下面是一个配置了Retry机制、Skip机制以及BackOffPolicy的step示例。</p>
 
@@ -355,7 +365,10 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>@Bean
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>@Bean
 </span><span class='line'>public Step step(){
 </span><span class='line'>    return stepBuilders.get("step")
 </span><span class='line'>            .&lt;Partner,Partner&gt;chunk(1)
@@ -366,6 +379,7 @@
 </span><span class='line'>            .faultTolerant()
 </span><span class='line'>            .skipLimit(10)
 </span><span class='line'>            .skip(UnknownGenderException.class)
+</span><span class='line'>            .skip(ServiceUnavailableException.class)
 </span><span class='line'>            .retryLimit(5)
 </span><span class='line'>            .retry(ServiceUnavailableException.class)
 </span><span class='line'>            .backOffPolicy(backoffPolicy)
@@ -1956,9 +1970,9 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <ul>
 <li>命令：curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果：&#8221;Received request to list all users&#8221;</li>
-<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#97;&#x6e;&#105;&#101;&#108;&#x70;&#x77;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#x64;&#x61;&#110;&#x69;&#101;&#108;&#112;&#x77;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x70;&#119;&#x6f;&#111;&#x64;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#100;&#97;&#110;&#105;&#x65;&#x6c;&#112;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -d &lsquo;{ &ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x61;&#x6e;&#x69;&#x65;&#108;&#x70;&#x77;&#111;&#111;&#x64;&#x73;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#97;&#110;&#105;&#x65;&#108;&#x70;&#x77;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: &ldquo;Received request to create a new user with JSON: { &#8220;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#100;&#97;&#110;&#x69;&#x65;&#108;&#112;&#x77;&#111;&#x6f;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#115;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received request for user: dan&rdquo;</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#x2e;&#x70;&#46;&#119;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#100;&#97;&#x6e;&#x69;&#101;&#x6c;&#46;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#46;&#112;&#46;&#119;&#x6f;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#105;&#x65;&#x6c;&#46;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>&rdquo; }&#8221;</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#97;&#x6e;&#105;&#101;&#x6c;&#x2e;&#112;&#x2e;&#119;&#111;&#x6f;&#x64;&#115;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received update request for user: dan, JSON: { &#8220;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#46;&#x70;&#46;&#x77;&#111;&#111;&#100;&#x73;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#x2e;&#x70;&#x2e;&#x77;&#111;&#x6f;&#100;&#x73;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>&rdquo; }&#8221;</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: &ldquo;Received delete request for user: dan&rdquo;</li>
 </ul>
 
@@ -2596,10 +2610,10 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>现在实现了API后，可以运行一系列curl测试来确保该微服务符合预期：</p>
 
 <ul>
-<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#x70;&#119;&#111;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#112;&#119;&#111;&#111;&#100;&#x73;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#100;&#x61;&#110;&#x69;&#101;&#108;&#112;&#119;&#111;&#111;&#100;&#115;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#112;&#x77;&#111;&#111;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x64;&#x61;&#110;&#105;&#101;&#108;&#x70;&#x77;&#111;&#111;&#100;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x61;&#110;&#x69;&#x65;&#x6c;&#112;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}]</li>
-<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#46;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#100;&#x61;&#110;&#105;&#x65;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#100;&#97;&#110;&#105;&#x65;&#x6c;&#46;&#112;&#x2e;&#x77;&#111;&#x6f;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#97;&#x6e;&#105;&#101;&#108;&#46;&#x70;&#46;&#x77;&#x6f;&#111;&#100;&#x73;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo;}</li>
-<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#97;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#100;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x2e;&#112;&#46;&#119;&#111;&#111;&#x64;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>&rdquo;}</li>
+<li>命令: curl -d &lsquo;{&ldquo;username&rdquo;: &ldquo;dan&rdquo;, &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#100;&#x61;&#110;&#105;&#101;&#108;&#x70;&#x77;&#111;&#x6f;&#100;&#x73;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x64;&#97;&#110;&#x69;&#101;&#108;&#112;&#119;&#111;&#111;&#x64;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>&rdquo;}&#8217;<a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x64;&#97;&#110;&#x69;&#x65;&#x6c;&#112;&#x77;&#x6f;&#111;&#x64;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#x6e;&#x69;&#101;&#x6c;&#x70;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users,">http://localhost:5050/api/users,</a> 期望结果: [{&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#112;&#119;&#111;&#111;&#100;&#x73;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#x6c;&#112;&#x77;&#111;&#111;&#x64;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a>&rdquo;}]</li>
+<li>命令: curl -XPUT -d &lsquo;{ &ldquo;email&rdquo;: &ldquo;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#100;&#x61;&#x6e;&#105;&#x65;&#108;&#x2e;&#112;&#46;&#119;&#111;&#111;&#x64;&#115;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#x6c;&#x2e;&#x70;&#x2e;&#119;&#x6f;&#111;&#100;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>&rdquo; }&#8217;<a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#46;&#112;&#46;&#119;&#x6f;&#111;&#100;&#x73;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#x6e;&#105;&#x65;&#x6c;&#x2e;&#x70;&#46;&#119;&#111;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>&rdquo;}</li>
+<li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;id&rdquo;:1,&ldquo;username&rdquo;:&ldquo;dan&rdquo;,&ldquo;email&rdquo;:&ldquo;<a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x2e;&#x70;&#x2e;&#x77;&#x6f;&#x6f;&#x64;&#x73;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#x6e;&#x69;&#101;&#108;&#46;&#x70;&#x2e;&#119;&#x6f;&#x6f;&#x64;&#115;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo;}</li>
 <li>命令: curl -XDELETE <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: empty</li>
 <li>命令: curl <a href="http://localhost:5050/api/users/dan,">http://localhost:5050/api/users/dan,</a> 期望结果: {&ldquo;message&rdquo;:&ldquo;NOT FOUND&rdquo;,&ldquo;status&rdquo;:&ldquo;404&rdquo;}</li>
 </ul>
