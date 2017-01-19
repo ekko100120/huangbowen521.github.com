@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content=" 王淮的《打造Facebook》一书不厚，花半天时间轻松读完。书中没有大段的说教，只有近乎流水的陈述。正如作者所说，打造Facebook这本书由巴克伯格来写再合适不过。可惜他至少在近几年内没有这个打算。而王淮作为加入Facebook最早的员工之一，以工程师角度描述的视角恐怕更适合我们。 ">
+  <meta name="description" content="在使用源代码版本控制工具时，最佳实践是一直保持一个主干版本。但是为了应付实际开发中的各种情况，适时的开辟一些分支也是很有必要的。比如在持续开发新功能的同时，需要发布一个新版本，那么就需要从开发主干中建立一个用于发布的分支，在分支上进行bug fix，维护版本的稳定，并适时的将一些改动合并回主干。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/13/branchs-in-svn/">SVN中Branch的创建与合并</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-13T00:59:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/08/13/branchs-in-svn/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/08/13/branchs-in-svn/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/branch_trunk.jpg"></p>
+
+<p>在使用源代码版本控制工具时，最佳实践是一直保持一个主干版本。但是为了应付实际开发中的各种情况，适时的开辟一些分支也是很有必要的。比如在持续开发新功能的同时，需要发布一个新版本，那么就需要从开发主干中建立一个用于发布的分支，在分支上进行bug fix，维护版本的稳定，并适时的将一些改动合并回主干。目前大红大紫的源代码版本控制工具git很受大家推崇，原因之一就是其在这方面的功能相当强大。其实老牌的SVN也是有这样的功能的，接下来就给大家讲解下。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/08/13/branchs-in-svn/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -499,52 +545,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/25/practice-of-webdriver/">使用WebDriver遇到的那些坑</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-25T22:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/06/25/practice-of-webdriver/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/06/25/practice-of-webdriver/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/automatedRobot.png"></p>
-
-<p>在做web项目的自动化端到端测试时主要使用的是<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium WebDriver</a>来驱动浏览器。<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium WebDriver</a>的优点是支持的语言多，支持的浏览器多。主流的浏览器Chrome、Firefox、IE等都支持，手机上的浏览器Android、IPhone等也支持，甚至还支持<a href="http://phantomjs.org/">PhantomJS</a>（由于PhantomJS跑测试时并不需要渲染元素，所以执行速度快）。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/06/25/practice-of-webdriver/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -572,6 +572,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/01/19/the-object-oriented-thought-process/">面向对象的思考过程第四版译者序</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/11/operate-the-university-using-agile/">以敏捷的方式运作一所大学</a>
       </li>
     
@@ -585,10 +589,6 @@
     
       <li class="post">
         <a href="/blog/2016/10/08/12-hours-ultra-running/">12小时超级马拉松赛记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/09/05/summary-for-2016-august/">2016年8月份</a>
       </li>
     
   </ul>
