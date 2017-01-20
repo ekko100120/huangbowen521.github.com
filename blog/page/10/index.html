@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="上一节讲述了如何在XML中定义bean。这些bean都比较简单，基本只是个单一对象。但是在企业级开发中，一个对象或多或少都要跟其他对象发生关联，比如继承、调用、实现接口等。传统的方法中，如果对象A某方法的实现要调用对象B的方法，那么一般由对象A来维护对象B的生命周期，包括创建、调用、销毁等。 &hellip;">
+  <meta name="description" content="上文讲了基于构造器进行依赖注入，这里讲解基于Setter方法进行注入。在Java世界中有个约定（Convention）,那就是属性的设置和获取的方法名一般是:set+属性名(参数)及get+属性名()的方式。boolean类型稍有不同，可以使用is+属性名()方式来获取。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/18/setter-injection-in-spring/">Spring-Context之六:基于Setter方法进行依赖注入</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-18T00:33:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/18/setter-injection-in-spring/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2014/03/18/setter-injection-in-spring/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上文讲了基于构造器进行依赖注入，这里讲解基于Setter方法进行注入。在Java世界中有个约定（Convention）,那就是属性的设置和获取的方法名一般是:set+属性名(参数)及get+属性名()的方式。boolean类型稍有不同，可以使用is+属性名()方式来获取。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/18/setter-injection-in-spring/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -474,52 +518,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/20/spring-jms-and-activemq-sample/">ActiveMQ第二弹:使用Spring JMS与ActiveMQ通讯</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-20T23:18:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/02/20/spring-jms-and-activemq-sample/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2014/02/20/spring-jms-and-activemq-sample/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文章的完整代码可从我的github中下载：<a href="https://github.com/huangbowen521/SpringJMSSample.git">https://github.com/huangbowen521/SpringJMSSample.git</a></p>
-
-<p>上一篇文章中介绍了如何安装和运行ActiveMQ。这一章主要讲述如何使用Spring JMS向ActiveMQ的Message Queue中发消息和读消息。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/20/spring-jms-and-activemq-sample/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -547,6 +545,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/01/20/summary-for-2016/">一个程序员的2016年总结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/19/the-object-oriented-thought-process/">面向对象的思考过程第四版译者序</a>
       </li>
     
@@ -560,10 +562,6 @@
     
       <li class="post">
         <a href="/blog/2016/11/30/spring-batch-best-practices/">Spring Batch在大型企业中的最佳实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/08/12-hours-ultra-running/">12小时超级马拉松赛记</a>
       </li>
     
   </ul>

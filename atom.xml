@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2017-01-20T15:59:04+08:00</updated>
+  <updated>2017-01-20T17:03:32+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[一个程序员的2016年总结]]></title>
+    <link href="http://www.huangbowen.net/blog/2017/01/20/summary-for-2016/"/>
+    <updated>2017-01-20T16:59:24+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2017/01/20/summary-for-2016</id>
+    <content type="html"><![CDATA[<p>2016年过的很快，是被时间追着走。</p>
+
+<!-- more -->
+
+
+<h2>工作</h2>
+
+<p>2016年的工作可以分为三大块。</p>
+
+<p>1月份和2月份还在咨询团队。这两个月在某国内大型企业做技术教练。先后开展了TDD、Clean Code、Continus Integration等课程。做咨询的日子每天都有很多挑战，收获也是大大的。</p>
+
+<p>3月份、4月份以及8月份和9月份在印度Pune做TWU的讲师。在ThoughtWorks错失了以毕业生的身份参加TWU，不过还好可以以Coach的身份参加TWU。全英文授课，一对一coach，全新的环境&hellip;TWU对我来说挑战颇多，但是它绝对是一段奇妙的经历。有幸和来自全球8个国家的coach一起服务了有史以来TWU最大的一期batch。我很幸运自己是其中的一员。我很怀念大家一起备课，一起上课，一起泡吧，一起看电影，一起玩游戏的日子。尤其是每周一次的足球活动，能够直接感受巴西桑巴足球的魅力。</p>
+
+<p>5-7月份和10-12月份在某国外项目的offshore account上担任tech lead。经过在在咨询团队以及TWU的锤炼之后，自己在看待问题、处理事情完全换了一个视角。尤其是10-12月份，随便每天都很忙碌，但是自己也学到很多东西。</p>
+
+<h2>健身</h2>
+
+<p>当我在出差时，健身比较规律，一周能保证3次以上的健身房训练。当回到家以后时间就不能保证了。身体素质的巅峰期是在4月底的时候，卧推可以达到70KG。最弱的时候就是现在了。现在每周保持一次的训练节奏。</p>
+
+<h2>跑步</h2>
+
+<p>全年非完全统计总共跑了1336公里，耗时163个小时。</p>
+
+<p><img src="http://www.huangbowen.net/images/IMG_5181.PNG" width="400"></p>
+
+<p>有四场赛事值得纪念。</p>
+
+<ul>
+<li>第一个是右膝盖术后的越野跑复出之战，龙山50公里越野赛成功完赛，说明了术后恢复的确不错。</li>
+<li>第二个是9月份在印度参加的12小时超级马拉松赛，在膝盖不适的情况下跑了66公里，用时10.5小时。</li>
+<li>第三个是张掖百公里赛事在祁连山海拔4000多米的地方的失温事件，让我第一次感觉到死神是如此的接近。也因此让我错失了完赛百公里赛事的愿望。</li>
+<li>第四个是四姑娘山越野赛，耗时7个小时爬上了四姑娘山的大峰，海拔5035米。虽然它是个初级雪山，但让我感受到了登山的魅力。可惜最后由于高反而被关门，没有拿到砸核桃的神器。</li>
+</ul>
+
+
+<h2>翻译</h2>
+
+<p>拖了1年多，终于将《面向对象的思考过程》翻译出版，也算是了却了一桩心事。另外也校审和翻译了《C#多线程编程实战》的第二版，此书已经在出版过程中。还有参与了《基础设施即代码》一书的合译，目前正在校审过程中。</p>
+
+<h2>博客</h2>
+
+<p>今年写的博客数量少于往年。完结了《膝盖中了一箭》系列，因为实在不想再写这样的口水话文章。技术类的精品文章不是很多，不过还好在ThoughtWorks洞见上发表了好几篇。</p>
+
+<hr />
+
+<p>在2016年初的时候，我定下了每月一个目标的计划，结果执行了8各月就半途而废了。2017年初想法很多，先按下不表，过完新年再计议。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[面向对象的思考过程第四版译者序]]></title>
@@ -1754,46 +1808,6 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <hr />
 
 <p>经过2月份的休整之后，2月27日重新开始出差之旅。这次需要连续出差3个多月，直到6月中旬才能回去。鉴于3月份肯定比较忙，所以定的目标相对简单一点，就做20次腹肌撕裂者吧。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用SOCKS5翻墙]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/03/01/use-socks5-to-access-website/"/>
-    <updated>2016-03-01T01:23:29+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/03/01/use-socks5-to-access-website</id>
-    <content type="html"><![CDATA[<p>程序员离开了Google很难存活，尤其是现在被墙的网站越来越多，一批优秀的IT网站也深受影响。如果哪天GIHUB和StackOverFlow网站都被墙了，我估计整个中国的IT人员开发效率至少降低10个百分点吧。</p>
-
-<!-- more -->
-
-
-<p>之前一直使用的是公司提供的VPN来访问Google等站点。使用公司提供的VPN好处是不用交钱，不限流量，免费使用。坏处有两点：1是登录麻烦，每次都要输入冗长的密码，还要配合输入动态秘钥，这使得完全自动化变得异常困难；2是使用公司的VPN也不是任何网站都可以访问的，比如<a href="http://www.slideshare.net/">http://www.slideshare.net/</a>这个站点通过公司VPN死活访问不了。</p>
-
-<p>之前使用过免费的翻墙工具goAgent，通过google提供的GAE服务器作为中转站，流量是够了，但是速度稍感吃力。后来由于众所周知的原因GoAgent不再进行更新，功能也无法正常使用。</p>
-
-<p>在同事的推荐下，我决定尝试一些收费的Proxy服务。同事向我介绍了使用SOCKS5进行翻墙的技术。并推荐了收费的Proxy服务器。我试用了一下觉得不错，现在把配置方式讲述一下。</p>
-
-<ol>
-<li><p>首先是在<a href="https://www.fyzhuji.com/">枫叶主机</a>上购买Shadowsocks代理服务。</p>
-
-<p> <a href="https://www.fyzhuji.com/shadow.html">这里</a>可以选择你的计划。Shaowsocks是基于SOCKS5开发的程序组件，分为客户端和服务器端。其实枫叶主机就是找了一批机器安装了Shadowsocks服务器端，作为服务器，然后我们购买了服务以后就可以通过给定的密码和端口连接到这些服务器上去。</p>
-
-<p> 购买了以后可以查看自己可以使用服务器列表以及密码、端口等信息。</p>
-
-<p> <img src="http://www.huangbowen.net/images/fyzhuji.png" width="500"></p>
-
-<p> 我买的是季度用户，40元三个月，60G的流量。</p></li>
-<li><p>然后去<a href="https://shadowsocks.org/en/download/clients.html">shadowsocks</a>官网下载合适的客户端。</p>
-
-<p> 不幸的是官网已经被封了，所以无法直接访问。想要下载翻墙工具，但翻墙工具的下载老巢被墙了，这真是个蛋痛的问题。不过我想聪明的你一定可以想到其它的下载方式的。ShadowSocks支持几乎所有主流的操作系统，也包括移动操作系统。不过比较蛋痛的是我在App Store没有找到它的IOS版客户端，可能被苹果下架了。整个安装过程非常简单，这里就不详述了。</p></li>
-<li><p>然后就是配置客户端，主要是将购买的服务器地址以及密码、端口等配置到客户端中。</p>
-
-<p> 这个过程也不难，教程非常多。这里是枫叶主机提供的Windows上的配置教程：
- <a href="https://www.fyzhuji.com/knowledgebase-12.html">https://www.fyzhuji.com/knowledgebase-12.html</a>。以下是OSX系统上的配置教程：<a href="https://www.fyzhuji.com/knowledgebase-14.html">https://www.fyzhuji.com/knowledgebase-14.html</a>。主要注意的是ShadowSocks可以开启全局代理模式，它比普通的HTTP代理要强大的多。如果想要在Chrome下使用Shadowsocks的话，一种方式是讲Chrome的代理设置为默认使用系统代理；另一种方式就如Windows上配置教程一样使用SwitchySharp，并进行相应配置。</p></li>
-</ol>
-
-
-<p>你可以将ShadowSocks客户端设置为开机自启动。这样以后打开电脑就可以直接无拘无束的网上冲浪了，不亦快哉。</p>
 ]]></content>
   </entry>
   

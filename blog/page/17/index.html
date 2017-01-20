@@ -9,8 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="在Haskell的世界中，没有变量赋值，流程跳转，如果要实现一些简单的功能，比如求一个数组中的最大值，都需要借助递归实现。 递归函数的定义: A function may be partly defined in terms of itself.
-即如果一个函数的定义中使用了其自身， &hellip;">
+  <meta name="description" content="函数式编程的定义是： In computer science, functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,79 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/haskell-functional-programming-feature/">Haskell函数式编程之特性篇</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T12:46:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/17/haskell-functional-programming-feature/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/03/17/haskell-functional-programming-feature/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>函数式编程的定义是：</p>
+
+<p>In computer science, functional programming is a programming paradigm that treats computation as the evaluation of mathematical functions and avoids stateand mutable data.
+即：函数式编程是一种编程模型，他将计算机运算看做是数学中函数的计算，并且避免了引入状态及可变数据。</p>
+
+<p>它更强调函数的应用，而不像命令式编程更强调状态的改变。</p>
+
+<h2>无副作用（side effect）</h2>
+
+<p>命令式函数可能会改变程序的状态，这就会对其产生<strong>副作用</strong>。在命令式编程中，在执行程序不同的状态下同一个函数的返回结果会发生改变。例如，下面是一个使用JavaScript写的函数。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">getVal</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">[</span>
+</span><span class='line'>     <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getVal</span><span class="p">());</span> <span class="c1">//true</span>
+</span><span class='line'><span class="nx">state</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getVal</span><span class="p">());</span> <span class="c1">// false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/17/haskell-functional-programming-feature/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -545,75 +617,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling/">避免每次输入bundler Exec命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-04T00:24:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>bundle在ruby的世界里是个好东西，它可以用来管理应用程序的依赖库。它能自动的下载和安装指定的gem，也可以随时更新指定的gem。</p>
-
-<p><a href="https://rvm.io/">rvm</a>则是一个命令行工具，能帮助你轻松的安装，管理多个ruby环境。每个环境可以指定一系列的gem。它允许你为每一个项目指定其ruby的版本，需要的gem的版本。这能最大限度的避免由于ruby环境的差异，或者不同版本的gem造成的各种问题。</p>
-
-<p>当我在项目中引入了rvm后，使用rake命令时，每次都会出现这样的异常。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake aborted!
-</span><span class='line'>You have already activated rake 10.0.0, but your Gemfile requires rake 0.9.2.2. Using bundle <span class="nb">exec </span>may solve this.
-</span><span class='line'>/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler/runtime.rb:31:in <span class="sb">`</span>block in setup<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler/runtime.rb:17:in `setup&#39;</span>
-</span><span class='line'>/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler.rb:116:in <span class="sb">`</span>setup<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">/usr/local/rvm/gems/ruby-1.9.3-p194/gems/bundler-1.2.3/lib/bundler/setup.rb:7:in `&lt;top (required)&gt;&#39;</span>
-</span><span class='line'>/Users/twer/sourcecode/octopress/Rakefile:2:in <span class="sb">`</span>&lt;top <span class="o">(</span>required<span class="o">)</span>&gt;<span class="err">&#39;</span>
-</span><span class='line'><span class="o">(</span>See full trace by running task with --trace<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/02/04/bi-mian-mei-ci-shu-ru-bundler-execming-ling/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/18/">&larr; Older</a>
@@ -641,6 +644,10 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/01/20/summary-for-2016/">一个程序员的2016年总结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/19/the-object-oriented-thought-process/">面向对象的思考过程第四版译者序</a>
       </li>
     
@@ -654,10 +661,6 @@ gtShell支持将常用的一些目录保存为bookmark，提供快速跳转功�
     
       <li class="post">
         <a href="/blog/2016/11/30/spring-batch-best-practices/">Spring Batch在大型企业中的最佳实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/08/12-hours-ultra-running/">12小时超级马拉松赛记</a>
       </li>
     
   </ul>
