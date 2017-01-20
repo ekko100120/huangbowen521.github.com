@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2017-01-19T20:41:06+08:00</updated>
+  <updated>2017-01-20T10:34:09+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -1400,7 +1400,7 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
     <id>http://www.huangbowen.net/blog/2016/06/06/talk-abount-naming-issue</id>
     <content type="html"><![CDATA[<p>Martin Fowler曾经在<a href="http://martinfowler.com/bliki/TwoHardThings.html">一篇文章</a>中曾经引用过Phil Karlton的话：</p>
 
-<blockquote><blockquote><p>There are only two hard things in Computer Science: cache invalidation and naming things.</p></blockquote></blockquote>
+<blockquote><p>There are only two hard things in Computer Science: cache invalidation and naming things.</p></blockquote>
 
 <!-- more -->
 
@@ -1463,7 +1463,7 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 
 <p><strong>某些命名规范其实是可以进行自动化检查的</strong>，比如在Java应用的构建过程中可以引用checkStyle这款插件，对命名进行一些基本的检查，比如方法名、变量名是否遵循了一定模式等。这样在一定程度上可以强制大家遵守某些约定。自己以前曾经写过一篇文章，请参见<a href="http://www.huangbowen.net/blog/2013/06/21/introduce-checkstyle/">http://www.huangbowen.net/blog/2013/06/21/introduce-checkstyle/</a>。</p>
 
-<p><strong>最后要在团队中建立起code review的机制，通过code review来相互监督纠正命名问题</strong>，并且这样更容易达成一致的命名约定，方便协作开发。code review可以采取非正式会议评审的方式。最简单的方式就是每天找个固定时间大家一起聚在一个显示器前review每个人的代码，现场提出问题，当事人记录下来会后更改。这种方式非常高效。另外有的团队在嵌入代码时可能会引入一些代码评审机制，比如pull request， cherry pick等。这种review方式比较重量级，反馈周期也较长，好处是可以保证最终迁入的代码是没有问题的。</p>
+<p><strong>最后要在团队中建立起code review的机制，通过code review来相互监督纠正命名问题</strong>，并且这样更容易达成一致的命名约定，方便协作开发。code review可以采取非正式会议评审的方式。最简单的方式就是每天找个固定时间大家一起聚在一个显示器前review每个人的代码，现场提出问题，当事人记录下来会后更改。这种方式非常高效。另外有的团队在迁入代码时可能会引入一些代码评审机制，比如pull request， cherry pick等。这种review方式比较重量级，反馈周期也较长，好处是可以保证最终迁入的代码是没有问题的。</p>
 
 <hr />
 
