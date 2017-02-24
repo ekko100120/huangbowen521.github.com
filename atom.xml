@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2017-02-24T16:24:53+08:00</updated>
+  <updated>2017-02-24T17:03:36+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -245,13 +245,9 @@ Principle of least privilege’ 的体现。我们必须遵循这一原则，但
          it.remove();
      }
  }
-</code></pre></li>
-</ol>
+</code></pre>
 
-
-<p>  其while和if关键字与小括号之间并没有空格，违反了该手册中<code>3. 【强制】if/for/while/switch/do 等保留字与左右括号之间都必须加空格。</code>这一规则。</p>
-
-<ol>
+<p> 其while和if关键字与小括号之间并没有空格，违反了该手册中<code>3. 【强制】if/for/while/switch/do 等保留字与左右括号之间都必须加空格。</code>这一规则。</p></li>
 <li><p>集合处理中可以多推荐一些Java8的集合操作方法。</p></li>
 <li><p>有些名词没有过多解释，比如很多人可能都不知道什么叫一方库、二方库。</p></li>
 <li><p>希望除了这份开发手册以外，阿里巴巴也可以推出对应的checkstyle配置文件以及Intellij、Eclipse的配置文件。毕竟格式化这些事都可以交由IDE来解决，通过在构建时使用checkstyle插件也可以防止不合规的代码迁入到仓库，从源头上保证代码样式的一致性。</p></li>
