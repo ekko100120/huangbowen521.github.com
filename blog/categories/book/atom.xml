@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: book | 黄博文的地盘]]></title>
+  <link href="http://www.huangbowen.net/blog/categories/book/atom.xml" rel="self"/>
+  <link href="http://www.huangbowen.net/"/>
+  <updated>2017-06-08T22:29:51+08:00</updated>
+  <id>http://www.huangbowen.net/</id>
+  <author>
+    <name><![CDATA[黄博文]]></name>
+    <email><![CDATA[huangbowen521@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C#多线程编程实战(原书第2版)译者序]]></title>
+    <link href="http://www.huangbowen.net/blog/2017/05/17/multithreading-in-csharp-6-dot-0/"/>
+    <updated>2017-05-17T16:37:46+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2017/05/17/multithreading-in-csharp-6-dot-0</id>
+    <content type="html"><![CDATA[<p>毫不夸张的说，C#可能是这个星球上最与时俱进的语言了。几乎每隔一段时间，微软都会推出新版本的.NET Framework框架。每次版本更迭，C#都会引入一些令人兴奋的新特性，但为了保持向后兼容，它也变的越来越复杂。尤其是C#中的多线程编程方面，有太多的方式和方法可供选择。这可能会导致两种情况，初学者学会一种后就试图匹配任何场景，而有经验的开发人员则往往对某一场景纠结于应该选择哪种多线编程方式。避免该问题的方式就是深入了解C#的多线程编程的整个设施架构。而《Multithreading in C# 5.0 cookbook》一书则是一本能帮助你快速建立起C#中多线程编程世界观的书籍。</p>
+
+<!-- more -->
+
+
+<p>该书的阅读门槛很低，刚开始讲述了线程基础、线程同步、线程池等基本概念。接下来讲述了C#4.0引入的关于异步操作的任务并行库以及C#6.0中最新的关于异步编程的语法和库。另外也涉猎了并发集合、PLINQ及Reactive Extensions等用于提高异步编程开发效率的实用库。同时也讲述了异步I/O的常用场景和常见的并行编程模式。最后也讲述了在Windows 10以及其他操作系统平台上使用异步编程的一些范例。</p>
+
+<p>作者Eugene Agafonov编写此书时展示了他娴熟的技术功底。本书几乎每一小节都附有详细的可运行的代码，并且作者对代码都进行了细致入微的解读。读者可以一边阅读一边实战，一点也不会觉得吃力。
+本人在翻译和校审本书过程中得到了同事和家人的帮助和支持，华章公司的编辑们也给予了很多宝贵的建议，在此一并表示感谢。最后，希望本书能给大家带来一次超凡的阅读体验。</p>
+
+<p>黄博文</p>
+
+<p>购买链接:<a href="https://item.jd.com/12147384.html">https://item.jd.com/12147384.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>
