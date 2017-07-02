@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2017-06-08T23:07:40+08:00</updated>
+  <updated>2017-07-02T22:12:11+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HashiCorp Vault介绍]]></title>
+    <link href="http://www.huangbowen.net/blog/2017/07/02/hashicorp-vault-intro/"/>
+    <updated>2017-07-02T22:00:44+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2017/07/02/hashicorp-vault-intro</id>
+    <content type="html"><![CDATA[<p>HashiCorp Vault是一款企业级私密信息管理工具。说起Vault，不得不提它的创造者HashiCorp公司。HashiCorp是一家专注于DevOps工具链的公司，其旗下明星级产品包括Vagrant、Packer、Terraform、Consul、Nomad等，再加上Vault，这些工具贯穿了持续交付的整个流程。</p>
+
+<!-- more -->
+
+
+<p><img src="http://www.huangbowen.net/images/hashicorp_list.png" width="800"></p>
+
+<p>HashiCorp Vault在2016年四月进入了ThoughtWorks技术雷达，位于Tools分类，处于ACESS级别。在2017年3月份最新一起Tech Radar中，HashiCorp Vault已经处于TRIAL级别。</p>
+
+<p><img src="http://www.huangbowen.net/images/vault_tech_radar.png" width="600"></p>
+
+<p><a href="https://www.thoughtworks.com/radar/tools/hashicorp-vault">https://www.thoughtworks.com/radar/tools/hashicorp-vault</a></p>
+
+<h2>为什么要使用HashiCorp Vault？</h2>
+
+<p>在企业级应用开发过程中，团队每时每刻都需要管理各种各样的私密信息，从个人的登陆密码、到生产环境的SSH Key以及数据库登录信息、API认证信息等。通常的做法是将这些秘密信息保存在某个文件中，并且放置到git之类的源代码管理工具中。个人和应用可以通过拉取仓库来访问这些信息。但这种方式弊端很多，比如跨团队分享存在安全隐患、文件格式难以维护、私密信息难以回收等。</p>
+
+<p>尤其是微服务大行其道的今天，如何让开发者添加私密信息、应用程序能轻松的获取私密信息、采用不同策略更新私密信息、适时回收私密信息等变得越来越关键。所以企业需要一套统一的接口来处理私密信息的方方面面，而HashiCorp Vault就是这样的一款工具。</p>
+
+<h2>HashiCorp Vault的特性</h2>
+
+<p>HashiCorp Vault作为集中化的私密信息管理工具，具有以下特点：</p>
+
+<p>存储私密信息。 不仅可以存放现有的私密信息，还可以动态生成用于管理第三方资源的私密信息。所有存放的数据都是加密的。任何动态生成的私密信息都有租期，并且到期会自动回收。</p>
+
+<p>滚动更新秘钥。用户可以随时更新存放的私密信息。Vault提供了加密即服务（encryption-as-a-service）的功能，可以随时将密钥滚动到新的密钥版本，同时保留对使用过去密钥版本加密的值进行解密的能力。 对于动态生成的秘密，可配置的最大租赁寿命确保密钥滚动易于实施。</p>
+
+<p>审计日志。 保管库存储所有经过身份验证的客户端交互的详细审核日志：身份验证，令牌创建，私密信息访问，私密信息撤销等。 可以将审核日志发送到多个后端以确保冗余副本。</p>
+
+<p>另外，HaishiCorp Vault提供了多种方式来管理私密信息。用户可以通过命令行、HTTP API等集成到应用中来获取私密信息。HashiCorp Vault也能与Ansible、Chef、Consul等DevOps工具链无缝结合使用。</p>
+
+<h2>HashiCorp 架构</h2>
+
+<p>HashiCorp对私密信息的管理进行了合理的抽象，通过优良的架构实现了很好的扩展性和高可用。</p>
+
+<p><img src="http://www.huangbowen.net/images/hashicorp_vault_art.png" width="600"></p>
+
+<p>Storage backend: 存储后端，可以为内存、磁盘、AWS等地方。</p>
+
+<p>Barrier：隔离受信区域和非授信区域，保证内部数据的安全性。</p>
+
+<p>HTTP API：通过HTTP API向外暴露服务，Vault也提供了CLI，其是基于HTTP API实现的。</p>
+
+<p>Vault提供了各种Backend来实现对各种私密信息的集成和管理。比如Authentication Backend提供鉴权，Secret Backend用于存储和生成私密信息等。</p>
+
+<h2>总结</h2>
+
+<p>HashiCorp Vault作为私密信息管理工具，比传统的1password等方式功能更强大，更适合企业级的应用场景。在安全问题越来越严峻的今天，值得尝试HashiCorp Vault。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AWS认证权威考经（助理级认证篇）]]></title>
@@ -2391,52 +2447,6 @@ upload exceeds the maximum allowed object size.&rdquo; error message. What is a 
 <p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/UploadingObjects.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/UploadingObjects.html</a></p>
 
 <p>解析：所以S3能存放的最大对象是5T，但单个put操作支持的最大对象只有5G，超过5G的需要使用multi-part upload API上传。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[膝盖中了一箭之康复篇-一周年纪念]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/07/20/acl-for-one-year/"/>
-    <updated>2016-07-20T00:44:47+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/07/20/acl-for-one-year</id>
-    <content type="html"><![CDATA[<p>右膝盖前十字韧带在2014年12月份的一次常规踢球中不小心弄断。2015年5月份才确诊。随后2个月后的7月1日做了十字韧带重建术。到现在刚好是术后一年了。</p>
-
-<!-- more -->
-
-
-<p>总体来说恢复的情况我还比较满意。虽然两条腿的肌肉还不是很平衡，甚至在下雨天的时候右膝还有点隐隐作痛。但是好在我还可以继续运动，比如跑步、踢球、打球等。虽然不能再像以前那么勇猛。</p>
-
-<p>先盘点一下6月份的情况。</p>
-
-<p>6月份跑步出勤5次，总跑量52.75公里。其中包括两次半程马拉松，还有一次9公里的越野跑。这个9公里的越野跑是参加赵公山的登山赛。上行4.5公里，下行4.5公里，总爬升1400米，累计下降1400米。最终上山花了将近2个小时时间，下山花了将近1个半小时。由于当天下雨，所以对速度也有一定影响。尤其是下山刚开始冲得太快，摔了好几个跟头，手都破皮了，不得不减速。可能是连续上升加下降过于凶猛，快到终点前能明显感觉到右膝的疼痛，但还不至于跑不起来。到了终点休息了10分钟后疼痛消失。</p>
-
-<p>6月份健身房去的次数比较少，出勤率可能只有1/3。训练强度也只能说用于保持状态。6月份定的目标是交稿翻译的书籍，已经达成。</p>
-
-<p>从手术确诊到现在基本上每个月一篇文章记录了整个过程。康复训练是痛苦的，但也是值得的。因为如果错过了康复黄金期，那么以后要花多倍的力气，甚至即使花了力气也没用。对于这个韧带手术我的主刀医生喜欢激进的康复手段，比如术后第二天就练习抬腿，弯腿，并且下床。人家从德国学习回来以后立马就把一些理念运用了进去。而我在术前也看了很多国外的视频和文章，都主张激进的康复方式。所以我也练的比较拼。差不多一周我就脱拐了。三周的时候已经可以自己开车了。一个月的时候进入健身房开始骑自行车训练，顺便也练练萎缩的肌肉。二个月后开始跑步训练，并且二个半月的时候有一次在南京玄武湖跑了15公里。速度虽然很慢，但是跑完之后感觉良好。三个月后开始加强训练，跑步里程提高到了每次10公里。之后又加入了半马训练以及速度训练。在2016年1月份的时候刷新了自己的半马记录。术后6个月的时候我已经感觉不出自己是个做过韧带手术的人。</p>
-
-<p>进入2016年以后跑步训练也逐渐加量。半马跑了不少。不过一直没有打球和踢球，因为医生说最好要修养一年后再开展这样的剧烈运动。而我在韧带断裂后打球、踢球的次数屈指可数，慢慢的对这些运动的热情也变淡了。健身和跑步已经够耗费我的时间了。</p>
-
-<p>2016年5月份重回越野跑赛道，完赛了第一个50公里越野赛。看来饭要一口一口吃，以前两次向50公里+的越野赛赛事发起冲锋，一次被关门，一次退赛，这次终于如愿以偿。</p>
-
-<p>2016年7月份有场大赛，张掖100公里越野赛。届时我会第二次站在100公里越野赛的起点，这次虽然赛前由于种种原因训练不是很到位，但我还是期望能够顺利完赛。如果中间不出现任何伤病，完赛还是挺有信心的。</p>
-
-<p>去年7月中旬，术后10多天就托着拐杖来北京出差参加TID大会。一年以后的现在我又坐在国家会议中心酒店。只能感叹时间过得真快。</p>
-
-<p>7月份的目标就定为完赛张掖100公里越野赛，以及通过AWS架构师专家级认证吧。</p>
-
-<p>这一年的康复经历，我的经验如下：</p>
-
-<ol>
-<li>找一个靠谱的主治医生相当重要；</li>
-<li>术后2周的角度练习相当关键，忍痛黑练吧，至少练到100度；我依稀记得那种痛比骨头断的都痛，但为了以后少受罪，还是忍着吧；</li>
-<li>术后一个月能达到120度，这样粘连的可能性就非常小了；</li>
-<li>一个半月后可以骑车练习了；我发现骑车真的是康复的利器，虽然刚开始骑车特别痛，但坚持几天就有明显好转；</li>
-<li>跑步也是恢复的有效手段，再保守术后三个月也要开始跑步训练了。</li>
-<li>对于剧烈运动和对膝部有明显变向的运动（比如篮球、足球、羽毛球等）前半年最好不用做；半年后如果真的非常喜爱可以在无对抗的情况慢慢恢复训练。</li>
-</ol>
-
-
-<p>总之就是要练。静躺修养是康复的大忌。</p>
 ]]></content>
   </entry>
   
