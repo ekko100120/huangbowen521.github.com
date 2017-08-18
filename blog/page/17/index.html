@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="在我工作的项目中有这样一个需求。当通过自动部署脚本将当前一个CI构建的WAR包部署到指定服务器后，需要验证该WAR包是否被部署成功。 在这个项目中，持续集成服务器使用的是Jenkins，构建脚本使用的是maven，向服务器的部署使用的是Groovy写的部署脚本，调用了Tableuax API。 &hellip;">
+  <meta name="description" content="我目前工作的一个项目后端使用java和spring建立了一个restful service,前端使用AngularJS来渲染页面，提供用户接口。在前端的AngularJS项目中，我们使用Jasmine来写单元测试，使用AngularJS自带的Angular_scenario来写端到端测试。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/07/integrate-javascript-tests-to-gradle/">将AngularJS的单元测试和端到端测试集成到gradle构建脚本中</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-07T15:55:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/07/integrate-javascript-tests-to-gradle/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/05/07/integrate-javascript-tests-to-gradle/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我目前工作的一个项目后端使用java和spring建立了一个restful service,前端使用<a href="http://angularjs.org/">AngularJS</a>来渲染页面，提供用户接口。在前端的<a href="http://angularjs.org/">AngularJS</a>项目中，我们使用<a href="http://pivotal.github.io/jasmine/">Jasmine</a>来写单元测试，使用<a href="http://angularjs.org/">AngularJS</a>自带的Angular_scenario来写端到端测试。运行这些测试则使用的是<a href="http://karma-runner.github.io/">Karma</a>。</p>
+
+<p>虽然使用<a href="http://karma-runner.github.io/">Karma</a>在命令行下可以很方便的运行所有的测试，但是我们想将这些集成到<a href="http://www.gradle.org/">gradle</a>的构建脚本中，从而将<a href="http://angularjs.org/">AngularJS</a>的所有测试加入到CI的构建中。同时为了保证运行测试的效率，我们决定使用<a href="http://phantomjs.org/">PhantomJS</a>作为运行测试的浏览器环境。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/05/07/integrate-javascript-tests-to-gradle/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -494,61 +540,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/23/java-generic-type/">Java基础知识之泛型</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-23T00:26:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
-        
-           | <a href="/blog/2013/03/23/java-generic-type/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/03/23/java-generic-type/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>当我们在定义类，接口和方法时，可以接收一个类型作为参数，这就叫做泛型</strong>。</p>
-
-<p>函数可以传入普通的参数，也可以传入一个类型参数。不同之处是普通的参数就是值而已，但是类型参数却是个类型。</p>
-
-<p>使用泛型的好处:</p>
-
-<ul>
-<li>强类型检查。在编译时就可以得到类型错误信息。</li>
-<li>避免显式强制转换。</li>
-<li>方便实现通用算法。</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/23/java-generic-type/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/18/">&larr; Older</a>
@@ -576,6 +567,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/08/17/dashanbao-100km-running/">壮美大山包-2017中国大山包国际超百公里ITRA积分赛赛记</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/07/02/acl-for-two-years/">膝盖中了一箭之康复篇-两周年纪念</a>
       </li>
     
@@ -589,10 +584,6 @@
     
       <li class="post">
         <a href="/blog/2017/05/17/multithreading-in-csharp-6-dot-0/">C#多线程编程实战(原书第2版)译者序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/05/10/wenchuan-running/">五上汶川-熊猫热土环汶川超级越野赛赛记</a>
       </li>
     
   </ul>

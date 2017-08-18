@@ -9,7 +9,7 @@
   <meta name="author" content="黄博文">
 
   
-  <meta name="description" content="如果我要新建一个java的项目，那么有两个类库是必备的，一个是junit，另一个是Guava。选择junit，因为我喜欢TDD，喜欢自动化测试。而是用Guava，是因为我喜欢简洁的API。Guava提供了很多的实用工具函数来弥补java标准库的不足，另外Guava还引入了函数式编程的概念， &hellip;">
+  <meta name="description" content="包管理器是神马东西?让我们看看wikipedia上的介绍。 In software, a package management system, also called package manager, is a collection of software tools to automate &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/01/homebrew-in-mac/">Homebrew- MAC上的包管理利器</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-01T14:33:00+08:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/01/homebrew-in-mac/#disqus_thread"
+             data-disqus-identifier="http://www.huangbowen.net/blog/2013/07/01/homebrew-in-mac/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/lotsOfDogs.jpg"></p>
+
+<p>包管理器是神马东西?让我们看看<a href="http://en.wikipedia.org/wiki/Package_management_system">wikipedia</a>上的介绍。</p>
+
+<blockquote><p>In software, a package management system, also called package manager, is a collection of software tools to automate the process of installing, upgrading, configuring, and removing software packages for a computer&rsquo;s operating system in a consistent manner.</p></blockquote>
+
+<p>简单的来说，包管理器就是一个提供对一系列软件包的安装、卸载、升级的自动化工具。
+包管理器大体分为两种，一种是管理预编译好的软件（Binary installation/Precomplied packages)，如MAC上的App Store，Windows下的Windows installer。另一种是基于源码的安装包，通过编译脚本来安装软件（Sourcecode-based installation/installing using compile scripts），如MAC上的<a href="http://mxcl.github.io/homebrew/">Homebrew</a>，Linux上的apt-build。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/07/01/homebrew-in-mac/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -487,52 +538,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/07/integrate-javascript-tests-to-gradle/">将AngularJS的单元测试和端到端测试集成到gradle构建脚本中</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-07T15:55:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/05/07/integrate-javascript-tests-to-gradle/#disqus_thread"
-             data-disqus-identifier="http://www.huangbowen.net/blog/2013/05/07/integrate-javascript-tests-to-gradle/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>我目前工作的一个项目后端使用java和spring建立了一个restful service,前端使用<a href="http://angularjs.org/">AngularJS</a>来渲染页面，提供用户接口。在前端的<a href="http://angularjs.org/">AngularJS</a>项目中，我们使用<a href="http://pivotal.github.io/jasmine/">Jasmine</a>来写单元测试，使用<a href="http://angularjs.org/">AngularJS</a>自带的Angular_scenario来写端到端测试。运行这些测试则使用的是<a href="http://karma-runner.github.io/">Karma</a>。</p>
-
-<p>虽然使用<a href="http://karma-runner.github.io/">Karma</a>在命令行下可以很方便的运行所有的测试，但是我们想将这些集成到<a href="http://www.gradle.org/">gradle</a>的构建脚本中，从而将<a href="http://angularjs.org/">AngularJS</a>的所有测试加入到CI的构建中。同时为了保证运行测试的效率，我们决定使用<a href="http://phantomjs.org/">PhantomJS</a>作为运行测试的浏览器环境。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/05/07/integrate-javascript-tests-to-gradle/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/17/">&larr; Older</a>
@@ -560,6 +565,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/08/17/dashanbao-100km-running/">壮美大山包-2017中国大山包国际超百公里ITRA积分赛赛记</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/07/02/acl-for-two-years/">膝盖中了一箭之康复篇-两周年纪念</a>
       </li>
     
@@ -573,10 +582,6 @@
     
       <li class="post">
         <a href="/blog/2017/05/17/multithreading-in-csharp-6-dot-0/">C#多线程编程实战(原书第2版)译者序</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/05/10/wenchuan-running/">五上汶川-熊猫热土环汶川超级越野赛赛记</a>
       </li>
     
   </ul>
