@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2017-08-18T17:55:56+08:00</updated>
+  <updated>2017-08-20T23:32:21+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,133 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在AWS中部署OpenShift平台]]></title>
+    <link href="http://www.huangbowen.net/blog/2017/08/20/deploy-openshift-platform-to-aws/"/>
+    <updated>2017-08-20T22:55:47+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2017/08/20/deploy-openshift-platform-to-aws</id>
+    <content type="html"><![CDATA[<p>OpenShift是RedHat出品的PAAS平台。OpenShift做为PAAS平台最大的特点是它是完全容器化的PAAS平台，底层封装了Docker和Kubernetes，上层暴露了对开发者友好的接口来完成对应用程序的集成、部署、弹性伸缩等任务。</p>
+
+<!-- more -->
+
+
+<p>Docker提供了对打包和创建基于Linux的轻量级容器的抽象。而Kubernetes提供了多主机集群管理和Docker容器编排。OpenShift基于Docker和Kubernetes加入了新的功能：</p>
+
+<ul>
+<li>源代码管理、构建和部署</li>
+<li>在系统中集成镜像的管理</li>
+<li>按需扩展的应用程序管理</li>
+<li>在大型开发者组织中进行团队管理和用户追踪</li>
+</ul>
+
+
+<p>OpenShift直接提供支持的应用程序镜像有：</p>
+
+<p><img src="http://www.huangbowen.net/images/oslanguage.png" width="700"></p>
+
+<p>OpenShift直接提供支持的数据库镜像有：</p>
+
+<p><img src="http://www.huangbowen.net/images/osdatabase.png" width="700"></p>
+
+<p>除此之外，OpenShift还让你通过一键点击便生成相应的应用，比如几秒之内搭建好一个Jenkins服务。包括以下：</p>
+
+<p><img src="http://www.huangbowen.net/images/osapplication.png" width="700"></p>
+
+<h2>OpenShift架构概览</h2>
+
+<p><img src="http://www.huangbowen.net/images/openshiftart.png" width="700"></p>
+
+<p>从上图可以看出，OpenShift的典型用户分为两种，开发人员和运维人员。开发人员可以通过现有的代码管理工具和持续集成、交付工具利用OpenShift完成对应用程序的打包、部署、扩容操作。而运维人员可以利用现有的自动化工具实现对OpenShift平台的维护。</p>
+
+<p>OpenShift中的Kubernetes用来管理跨宿主机（或容器）的容器化应用程序，并提供部署、维护和应用程序扩容机制。对于一个Kubernetes集群来说，它包括一个或多个master以及一组node。</p>
+
+<p>Master主机托管了API服务器、controller manager服务器以及etcd实例。Master管理Kubernetes集群中的节点并控制运行在节点上的pod。</p>
+
+<p>Node则提供了容器的运行时环境。Kubernetes节点中的每个node会运行受Master管理的服务，当然也包括Docker、Kubelet及serverice proxy服务。node可以为云机器、物理系统或者虚拟系统。Kubelet用来更新node上的运行的容器状态。Service Proxy用于运行一个简单的网络代理，来反映定义在node的API中的服务，从而使node可以跨后端进行简单的TCP和UDP流转发。</p>
+
+<h2>OpenShift架设要求</h2>
+
+<p>如果想自己架设OpenShift平台作为商业用途，必须要获取OpenShift Enterprise的付费订阅。目前OpenShift Enterprise的最新版本为3.6版。对于Master和Node节点的系统要求如下。</p>
+
+<p>Master:</p>
+
+<ul>
+<li>物理或虚拟机，或者运行于公有云或私有云之上的实例</li>
+<li>基础操作系统为Red Hat企业版Linux（RHEL）7.1，并包含最小的安装选项</li>
+<li>2核CPU</li>
+<li>最小8GB内存</li>
+<li>最小30GB硬盘空间</li>
+</ul>
+
+
+<p>Node：</p>
+
+<ul>
+<li>物理或虚拟机，或者运行于公有云或私有云之上的实例</li>
+<li>基础操作系统为Red Hat企业版Linux（RHEL）7.1，并包含最小的安装选项</li>
+<li>Docker 1.6.2及以上版本</li>
+<li>1核CPU</li>
+<li>最小8GB内存</li>
+<li>最小15GB硬盘空间</li>
+<li>另外最小15GB的未分配空间，需要通过docker-storage-setup进行配置</li>
+</ul>
+
+
+<h3>环境要求：</h3>
+
+<ul>
+<li>需要一个DNS zone来解析OpenShift router的IP地址。比如*.cloudapps.example.com. 300 IN  A 192.168.133.2</li>
+<li>Master和Node之间必须要有共享的网络，两者之间可以互相通讯。</li>
+<li>需要一个Git Server和能够访问该Server的账号。</li>
+</ul>
+
+
+<h2>AWS中部署OpenShift平台</h2>
+
+<p>下图是一个在AWS中的OpenShift集群的示例。</p>
+
+<p><img src="http://www.huangbowen.net/images/refarch-ocp-on-aws-v3.png" width="700"></p>
+
+<ul>
+<li><p>Master节点：包含3个Master实例，实现高可用，上面运行etcd、通过一个external load balancer向外暴露服务。</p></li>
+<li><p>Infra Node: 由三个实例组成，这三个实例用来运行支撑OpenShift集群服务的一系列容器。</p></li>
+<li><p>App Node：用于运行应用程序容器的实例，可以按需进行扩展。</p></li>
+<li><p>Bastion：用于限制对集群中实例的ssh访问，增强安全性。</p></li>
+<li><p>存储：OpenShift使用EBS作为实例的文件系统并用于持久化容器的存储；另外还使用S3这个对象存储服务作为OpenShift registry的存储。
+ELB：总共有三个.一个用来在集群外访问OpenShift API、OpenShift console。一个在集群内访问OpenShift API。另一个用来访问通过route暴露的部署在集群中的应用程序服务。最后通过AWS的Route53来管理DNS。</p></li>
+</ul>
+
+
+<h2>部署OpenShift集群的三个阶段</h2>
+
+<p>在AWS中部署OpenShift集群包括三个阶段：</p>
+
+<ul>
+<li>第一阶段：在AWS中设置好基础设施</li>
+<li>第二阶段： 在AWS上部署OpenShift Container平台</li>
+<li>第三阶段： 部署后的环境检查</li>
+</ul>
+
+
+<p>关于整个部署活动绝大多数都是可以自动化的。RedHat提供了一个GitHub repo：openshift-ansible-contrib。openshift-ansible-contrib提供了将OpenShift集群部署到不同的Cloud供应商的解决方案，当然也包括了AWS。里面包含了相应的文档、代码以及脚本。RedHat提供了一个叫做openshift-ansible-playbooks的RPM包，openshift-ansible-contrib利用该RPM包来完成阶段1和阶段2，在阶段3中我们可以利用一些现有的脚本工具实现环境检查和认证。</p>
+
+<h3>对AWS环境的要求</h3>
+
+<p>选择部署的AWS区域需要至少有三个可用区以及2个EIP。该OpenShift平台需要新建三个公共子网和三个私有子网。
+由于需要新建一大批的AWS资源，所以必须要提供一个有适当权限的AWS用户，包括创建账号、使用S3、Route53、ELB、EC2等。</p>
+
+<p>六个子网需要在一个VPC中。Ansible脚本会建立一个NAT Gateway用来供内部的EC2实例访问外网。同时也会建立8个Security Groups来限制不同的实例、ELB和外部网络间的访问。</p>
+
+<p>openshift-ansible-contrib提供了部署基础设施、安装和配置OpenShift以及扩展router和registry的功能。运行Ansible的机器必须是RHEL7操作系统。具体的安装过程可参见<a href="https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_openshift_container_platform_3.5_on_amazon_web_services/deploying_openshift%E3%80%82">https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_openshift_container_platform_3.5_on_amazon_web_services/deploying_openshift%E3%80%82</a></p>
+
+<p>安装完毕后的环境检查可以参见<a href="https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_openshift_container_platform_3.5_on_amazon_web_services/operational-management%E3%80%82">https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_openshift_container_platform_3.5_on_amazon_web_services/operational-management%E3%80%82</a></p>
+
+<h2>总结</h2>
+
+<p>在AWS上部署OpenShift平台并不是一件轻松的事情，一方面需要对AWS的各种服务了如执掌，一方面也需要对OpenShift的架构和核心概念有所了解。虽然RedHat提供了一些Ansible脚本和RPM包来简化安装，但整个过程也绝非一片坦途。安装完备之后，如何和企业现有的应用程序开发流程、持续交付流水线结合起来无缝过度，也是一件非常考验人的事情。下一篇文章会对这些方面进行揭秘。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[壮美大山包-2017中国大山包国际超百公里ITRA积分赛赛记]]></title>
@@ -2127,244 +2254,6 @@ Principle of least privilege’ 的体现。我们必须遵循这一原则，但
 <p>7月份定的两个目标也没有完成。目标之一是张掖完赛，但跑了50公里，只完成了目标的50%。目标之二是考取AWS的解决方案架构师的专家级证书，但经过一个月的准备之后发现考取难度还是太大，所以就先考了一个AWS的开发人员证书。</p>
 
 <p>8月份在TWU预计会非常繁忙，暂时就不给8月份定什么目标吧，专心把TWU搞好。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AWS的SysOps认证考试样题解析]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample/"/>
-    <updated>2016-08-01T17:47:01+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/08/01/aws-sysops-exam-sample</id>
-    <content type="html"><![CDATA[<p>刚考过了AWS的developer认证，顺手做了一下SysOps的样题。以下是题目和答案。</p>
-
-<!-- more -->
-
-
-<hr />
-
-<p>When working with Amazon RDS, by default AWS is responsible for implementing which two management-related activities? (Pick 2 correct answers)</p>
-
-<ol type="a">
-<li><p>Importing data and optimizing queries</p></li>
-<li><p>Installing and periodically patching the database software</p></li>
-<li><p>Creating and maintaining automated database backups with a point-in-time recovery of up to five minutes</p></li>
-<li><p>Creating and maintaining automated database backups in compliance with regulatory long-term retention requirements</p></li>
-</ol>
-
-
-<p>答案：B C</p>
-
-<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.html">http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.html</a></p>
-
-<hr />
-
-<p>You maintain an application on AWS to provide development and test platforms for your developers.</p>
-
-<p>Currently both environments consist of an m1.small EC2 instance. Your developers notice performance degradation as they increase network load in the test environment.</p>
-
-<p>How would you mitigate these performance issues in the test environment?</p>
-
-<ol type="a">
-<li><p>Upgrade the m1.small to a larger instance type</p></li>
-<li><p>Add an additional ENI to the test instance</p></li>
-<li><p>Use the EBS optimized option to offload EBS traffic</p></li>
-<li><p>Configure Amazon Cloudwatch to provision more network bandwidth when network utilization exceeds 80%</p></li>
-</ol>
-
-
-<p>答案：A</p>
-
-<p>解析：添加ENI并不会增加带宽；m1.small机器类型没有EBS optimized option;network utilisation与机器类型相关，无法对m1.small provision更多的带宽</p>
-
-<hr />
-
-<p>Per the AWS Acceptable Use Policy, penetration testing of EC2 instances:</p>
-
-<ol type="a">
-<li><p>may be performed by the customer against their own instances, only if performed from EC2 instances.</p></li>
-<li><p>may be performed by AWS, and is periodically performed by AWS.</p></li>
-<li><p>may be performed by AWS, and will be performed by AWS upon customer request.</p></li>
-<li><p>are expressly prohibited under all circumstances.</p></li>
-<li><p>may be performed by the customer against their own instances with prior authorization from AWS.</p></li>
-</ol>
-
-
-<p>答案：E</p>
-
-<p>参考文档：<a href="https://aws.amazon.com/security/penetration-testing/">https://aws.amazon.com/security/penetration-testing/</a></p>
-
-<hr />
-
-<p>You have been tasked with identifying an appropriate storage solution for a NoSQL database that requires random I/O reads of greater than 100,000 4kB IOPS.</p>
-
-<p>Which EC2 option will meet this requirement?</p>
-
-<ol type="a">
-<li><p>EBS provisioned IOPS</p></li>
-<li><p>SSD instance store</p></li>
-<li><p>EBS optimized instances</p></li>
-<li><p>High Storage instance configured in RAID 10</p></li>
-</ol>
-
-
-<p>答案：B</p>
-
-<p>解析：这道题只有SSD instance store能提供10万的IOPS</p>
-
-<hr />
-
-<p>Instance A and instance B are running in two different subnets A and B of a VPC. Instance A is not able to ping instance B.</p>
-
-<p>What are two possible reasons for this? (Pick 2 correct answers)</p>
-
-<ol type="a">
-<li><p>The routing table of subnet A has no target route to subnet B</p></li>
-<li><p>The security group attached to instance B does not allow inbound ICMP traffic</p></li>
-<li><p>The policy linked to the IAM role on instance A is not configured correctly</p></li>
-<li><p>The NACL on subnet B does not allow outbound ICMP traffic</p></li>
-</ol>
-
-
-<p>答案：B D</p>
-
-<p>解析：同一个VPC下的所有subnet默认可以相互连接，所以A不对；ping连接不需要什么AWS权限，所以C也不对。而控制机器访问有两层，一层是给subnet指定的ACL，另一层是给机器指定的SG。</p>
-
-<hr />
-
-<p>Your web site is hosted on 10 EC2 instances in 5 regions around the globe with 2 instances per region.</p>
-
-<p>How could you configure your site to maintain site availability with minimum downtime if one of the 5 regions was to lose network connectivity for an extended period of time?</p>
-
-<ol type="a">
-<li><p>Create an Elastic Load Balancer to place in front of the EC2 instances. Set an appropriate health check on each ELB.</p></li>
-<li><p>Establish VPN Connections between the instances in each region. Rely on BGP to failover in the case of a region wide connectivity outage</p></li>
-<li><p>Create a Route 53 Latency Based Routing Record Set that resolves to an Elastic Load Balancer in each region. Set an appropriate health check on each ELB.</p></li>
-<li><p>Create a Route 53 Latency Based Routing Record Set that resolves to Elastic Load Balancers in each region and has the Evaluate Target Health flag set to true.</p></li>
-</ol>
-
-
-<p>答案：D</p>
-
-<p>参考文档：<a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html">http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html</a></p>
-
-<p>解析：只有开启了Evaluate Target Health flag，Route53才会根据健康情况进行路由</p>
-
-<hr />
-
-<p>You run a stateless web application with the following components: Elastic Load Balancer (ELB), 3 Web/Application servers on EC2, and 1 MySQL RDS database with 5000 Provisioned IOPS. Average response time for users is increasing. Looking at CloudWatch, you observe 95% CPU usage on the Web/Application servers and 20% CPU usage on the database. The average number of database disk operations varies between 2000 and 2500.</p>
-
-<p>Which two options could improve response times? (Pick 2 correct answers)</p>
-
-<ol type="a">
-<li><p>Choose a different EC2 instance type for the Web/Application servers with a more appropriate
-CPU/memory ratio</p></li>
-<li><p>Use Auto Scaling to add additional Web/Application servers based on a CPU load threshold</p></li>
-<li><p>Increase the number of open TCP connections allowed per web/application EC2 instance</p></li>
-<li><p>Use Auto Scaling to add additional Web/Application servers based on a memory usage threshold</p></li>
-</ol>
-
-
-<p>答案：A B</p>
-
-<p>解析：这里是application机器CPU过载，解决方式是要不加强application机器性能，要不增加更多的application机器，C没有用，D是基于内存门槛，所以都不对</p>
-
-<hr />
-
-<p>Which features can be used to restrict access to data in S3? (Pick 2 correct answers)</p>
-
-<ol type="a">
-<li><p>Create a CloudFront distribution for the bucket.</p></li>
-<li><p>Set an S3 bucket policy.</p></li>
-<li><p>Use S3 Virtual Hosting.</p></li>
-<li><p>Set an S3 ACL on the bucket or the object.</p></li>
-<li><p>Enable IAM Identity Federation.</p></li>
-</ol>
-
-
-<p>答案：B D</p>
-
-<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html</a>
-<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html</a></p>
-
-<hr />
-
-<p>You need to establish a backup and archiving strategy for your company using AWS. Documents should be immediately accessible for 3 months and available for 5 years for compliance reasons.</p>
-
-<p>Which AWS service fulfills these requirements in the most cost effective way?</p>
-
-<ol type="a">
-<li><p>Use StorageGateway to store data to S3 and use life-cycle policies to move the data into Redshift for
-long-time archiving</p></li>
-<li><p>Use DirectConnect to upload data to S3 and use IAM policies to move the data into Glacier for longtime
-archiving</p></li>
-<li><p>Upload the data on EBS, use life-cycle policies to move EBS snapshots into S3 and later into Glacier
-for long-time archiving</p></li>
-<li><p>Upload data to S3 and use life-cycle policies to move the data into Glacier for long-time archiving</p></li>
-</ol>
-
-
-<p>答案：D</p>
-
-<p>参考文档：<a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html</a></p>
-
-<p>解析：S3可以存放经常使用的文档，然后存档文件可以使用life-cycle policies放置到Glacier上</p>
-
-<hr />
-
-<p>Given the following IAM policy:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="s2">&quot;Version&quot;</span><span class="o">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;Statement&quot;</span><span class="o">:</span> <span class="p">[</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="s2">&quot;Effect&quot;</span><span class="o">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;Action&quot;</span><span class="o">:</span> <span class="p">[</span>
-</span><span class='line'><span class="s2">&quot;s3:Get*&quot;</span><span class="p">,</span> <span class="s2">&quot;s3:List*&quot;</span>
-</span><span class='line'><span class="p">],</span>
-</span><span class='line'><span class="s2">&quot;Resource&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
-</span><span class='line'><span class="p">},</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="s2">&quot;Effect&quot;</span><span class="o">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;Action&quot;</span><span class="o">:</span> <span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="s2">&quot;Resource&quot;</span><span class="o">:</span> <span class="s2">&quot;arn:aws:s3:::corporate_bucket/*&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>What does the IAM policy allow? (Pick 3 correct answers)</p>
-
-<ol type="a">
-<li><p>The user is allowed to read objects from all S3 buckets owned by the account</p></li>
-<li><p>The user is allowed to write objects into the bucket named &lsquo;corporate_bucket&rsquo;</p></li>
-<li><p>The user is allowed to change access rights for the bucket named &lsquo;corporate_bucket&rsquo;</p></li>
-<li><p>The user is allowed to read objects in the bucket named &lsquo;corporate_bucket&rsquo; but not allowed to list the objects
-in the bucket</p></li>
-<li><p>The user is allowed to read objects from the bucket named &lsquo;corporate_bucket&rsquo;</p></li>
-</ol>
-
-
-<p>答案：A B E</p>
-
-<p>解析：AWS的权限认证遵循最小化原则。即：默认情况都是deny的；显式allow会覆盖默认deny；显式deny会覆盖显式allow。</p>
 ]]></content>
   </entry>
   
