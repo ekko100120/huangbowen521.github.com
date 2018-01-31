@@ -4,7 +4,7 @@
   <title><![CDATA[黄博文的地盘]]></title>
   <link href="http://www.huangbowen.net/atom.xml" rel="self"/>
   <link href="http://www.huangbowen.net/"/>
-  <updated>2018-01-05T16:06:46+08:00</updated>
+  <updated>2018-01-31T22:49:31+08:00</updated>
   <id>http://www.huangbowen.net/</id>
   <author>
     <name><![CDATA[黄博文]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[一个HTTP Basic Authentication引发的异常]]></title>
+    <link href="http://www.huangbowen.net/blog/2018/01/31/an-issue-about-http-basic-authentication/"/>
+    <updated>2018-01-31T16:39:59+08:00</updated>
+    <id>http://www.huangbowen.net/blog/2018/01/31/an-issue-about-http-basic-authentication</id>
+    <content type="html"><![CDATA[<p>这几天在做一个功能，其实很简单。就是调用几个外部的API，返回数据后进行组装然后成为新的接口。其中一个API是一个很奇葩的API，虽然是基于HTTP的，但既没有基于SOAP规范，也不是Restful风格的接口。还好使用它也没有复杂的场景。只是构造出URL，发送一个HTTP的get请求，然后给我返回一个XML结构的数据。</p>
+
+<!-- more -->
+
+
+<p>我使用了Spring MVC中的RestTemplate作为客户端，然后引入了Jackson-dataformat-xml作为xml映射为对象的工具库。由于集成外部API的事情已经做了很多次了，集成这个API也是轻车熟路，三下五除二就完成了。</p>
+
+<p>接下来为了验证连通性，我先在SoapUI里配置了该外部API的某个测试环境，尝试发送了一个Get请求，成功收到了Response。然后我把自己的程序运行起来，尝试通过自己的程序调用该API，结果返回了HTTP 500错误，即“internal server error”。</p>
+
+<p>这可奇了怪了。我第一反应是程序中对外部API的配置和SoapUI中的配置不一样。我仔细对比了发送请求的URL，需要的HTTP header以及用作验证的username和password都是完全一致的。这个问题被排除。</p>
+
+<p>接下来我想再仔细看看Response，能否找到什么蛛丝马迹。仔细查看了Response的header和body，发现header一切正常，body是个空的body，没有提供任何的可用信息。</p>
+
+<p>然后我能想到的另一个解决方案就是联系该外部API的团队，让他们帮忙看看我发送了请求之后，为什么服务器会返回500。但可惜这是一个很老的服务了，找到该团队的人并且排期帮我看log至少要花好几天的时间了。而且既然SoapUI能调用成功，而应用程序却调用不成功，问题多半还是出在我们这。</p>
+
+<p>接下来我想既然问题有可能出在我们这，那么肯定是request有差异。由于我发的是一个Get请求，没有body实体，URL又完全一样，那么问题很可能出在request的header上。这个API需要request中包含两个自定义的header，而我在SoapUI以及自己的程序中都已经配置了。那问题会在哪里哪？</p>
+
+<p>既然在SoapUI里无法重现这个问题，我就使用了Chrome插件版的POSTMAN，通过它配置了该API的调用。然后奇迹出现了，我竟然在POSTMAN中重现了这个问题。当我看到在POSTMAN也返回了500 error后，我思考了5秒钟，猜到了原因。问题很可能是出在了Authentication这个header上面。</p>
+
+<p>要说这个问题，还要从HTTP的Basic Authentication说起。Basic Authentication是HTTP实现访问控制的最简单的一种技术。HTTP Client端会将用户名和密码组合后使用Base64加密，生成key为‘Authentication’，value为‘Basic BASE64CODE’的HTTP header，发送给服务器端以便进行Basic认证方式。</p>
+
+<p>但这个经典的Basic Authentication是要经历两步的。第一步，客户端发送不带Authentication header的HTTP请求，服务器检查后发现受访的资源需要认证，就会返回HTTP Status 401，表示未授权，客户端发现服务器端返回401后，会再构造一个新的请求，这次包含了Authentication header，服务器接收后验证通过，返回资源。</p>
+
+<p>那么我在自己的应用程序和POSTMAN中调用返回500 internal server error的原因是当第一次给Server发送不带Authentication header的HTTP请求时，Server竟然返回了HTTP Status 500。其实它应该返回401，这样HTTP Client会再发一个包含了Authentication的新请求。由于它返回了500，HTTP Client认为服务器有问题，就停止处理了。</p>
+
+<p>那为什么在SoapUI中调用可以成功那？那是因为SoapUI使用的Http client在发第一次请求时就已经设置了Authentication header，所以就没有问题。这样可以避免重复发请求的现象。这种行为叫做‘preemptive authentication’(抢先验证)，在SoapUI中你可以选择是否启用该行为。具体可以参见<a href="https://www.SoapUI.org/soap-and-wsdl/authenticating-soap-requests.html">How To Authenticate SOAP Requests in SoapUI</a>。</p>
+
+<p>所以问题的根源在于该外部API在实现Basic Authentication时没有完全遵循规范，<strong>这锅我们不背</strong>。</p>
+
+<p>解决方案有两种。第一种是让该外部API遵循Basic Authentication的规范，如果请求未授权应该返回401而不是500。不过我说过这是一个很古老的API了，让它们改要等到猴年马月了。</p>
+
+<p>第二种就是我的应用程序在给该外部API发送请求时，第一次就设置Authentication header。我们用的是RestTemplate，而RestTemplate底层使用的是Apache Http Client 4.0+版本。要注入这个header很简单，在实例化RestTemplate后，给其多加一个Intecepter。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">restTemplate</span><span class="o">.</span><span class="na">getInterceptors</span><span class="o">().</span><span class="na">add</span><span class="o">(</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nf">BasicAuthorizationInterceptor</span><span class="o">(</span><span class="s">&quot;username&quot;</span><span class="o">,</span> <span class="s">&quot;password&quot;</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>加上这一行代码后，运行程序，顺利的得到了Response，世界清静了。</p>
+
+<p>最后一个问题，为什么Http Client当配置了用户名和密码后，不主动的启用‘preemptive authentication’那？毕竟可以少发很多请求啊。这是Apache官方给出的原因：</p>
+
+<blockquote><blockquote><p>HttpClient does not support preemptive authentication out of the box, because if misused or used incorrectly the preemptive authentication can lead to significant security issues, such as sending user credentials in clear text to an unauthorized third party. Therefore, users are expected to evaluate potential benefits of preemptive authentication versus security risks in the context of their specific application environment.
+Nonetheless one can configure HttpClient to authenticate preemptively by prepopulating the authentication data cache.</p></blockquote></blockquote>
+
+<hr />
+
+<p>扩展阅读：</p>
+
+<ul>
+<li><a href="https://hc.apache.org/httpcomponents-client-ga/tutorial/html/authentication.html">Chapter 4. HTTP authentication</a></li>
+<li><a href="http://www.baeldung.com/how-to-use-resttemplate-with-basic-authentication-in-spring">Basic Authentication with the RestTemplate</a></li>
+<li><a href="https://www.SoapUI.org/soap-and-wsdl/authenticating-soap-requests.html">How To Authenticate SOAP Requests in SoapUI</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic access authentication</a></li>
+<li><a href="https://www.javaworld.com/article/2092353/core-java/httpclient-basic-authentication.html">HttpClient basic authentication</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[跑步花钱吗？]]></title>
@@ -2324,78 +2391,6 @@ Principle of least privilege’ 的体现。我们必须遵循这一原则，但
 <hr />
 
 <p>Spring Batch对批处理场景进行了合理的抽象，封装了大量的实用功能，使用它来开发批处理应用可以达到事半功倍的效果。在使用的过程中我们仍需要坚持总结一些最佳实践，从而能够交付高质量的可维护的批处理应用，满足企业级应用的苛刻要求。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[12小时超级马拉松赛记]]></title>
-    <link href="http://www.huangbowen.net/blog/2016/10/08/12-hours-ultra-running/"/>
-    <updated>2016-10-08T17:59:29+08:00</updated>
-    <id>http://www.huangbowen.net/blog/2016/10/08/12-hours-ultra-running</id>
-    <content type="html"><![CDATA[<p>8月初再次来到印度Pune出差，还是在TWU当讲师。这次的TWU是第51期，也是有史以来人数最多的一期。整个TWU的工作很多，非常忙，经常从早上8点忙到晚上8点。为了备战10月份的越野比赛，只有在周末才有时间拉个半马。</p>
-
-<!-- more -->
-
-
-<p>9月初从www.townscirpt.com网站上看到9月24日Pune会举行一场12小时超级马拉松，从晚上的7点钟跑到第二天早上的7点钟，心里顿时长了草。自己之前还没有参加过12小时超级马拉松，所以很想得到这样的一份体验。另外可以把这场比赛作为10月份越野赛的很好的一次赛前拉练。</p>
-
-<p>9月24日很快就到来了。之前一周非常忙，每天基本上都是凌晨2、3点才睡觉。为了保证24日晚上有充足的精力，我并没有参加23日晚上的TWU 毕业Party，而是在家里睡大觉。24日的整个白天也是除了吃就是睡。下午4点多睡醒了，开始收拾装备准备出发去赛场。</p>
-
-<p>比赛之前我从网上查了一下关于12小时马拉松的准备情况，了解到这样的马拉松通常都是在操场/公园之类的地方举行，地形无起伏。所以我初步制定了完成80公里的计划。并且列出了下面的装备清单。</p>
-
-<ul>
-<li>凡士林</li>
-<li>黑色长裤、牛仔裤、运动内裤两条</li>
-<li>短袖一件、长袖一件、外套一件</li>
-<li>跑鞋一双，袜子两双</li>
-<li>充满电的手机充电宝</li>
-<li>手机，手机充电线</li>
-<li>止痛片？</li>
-<li>好吃的零食</li>
-</ul>
-
-
-<p>带凡士林是为了防止裆部皮肤磨破，已经因为这个好几次比赛都吃亏了，所以这次12小时的跑步一定不能掉以轻心。带止痛片是为了缓解膝盖和脚踝的疼痛，但是最后忘记买了。好吃的零食也是为了补给了，12小时不吃东西万万不行，不过身在印度，还真没有发现任何好吃的零食，所以最后也没有带。最后带的东西是1到6列的那些东西.</p>
-
-<p>比赛前一周的时候我在jogger’s park刷线上半程马拉松刷到10公里的时候右膝盖突然感觉跑步时有异响。这可是一个非常的征兆。虽然并不是很痛，但几乎每次屈伸腿都会感觉里面似乎有东西在磨动。之后的一周就没有怎么运动，但是感觉膝盖的异响还是没有减轻。所以这也是参加比赛的一个巨大的隐患。但我不想因此而放过这次百公里比赛前的拉练机会，所以决定还是要参加。</p>
-
-<p>五点多去了little door餐馆吃了好吃的牛肉饭，把能量补足。然后使用印度本土的ola软件打了一辆车去目的地，一个高尔夫球场。上车后司机问我目的地正确不，我说没问题。接下来才是悲剧的开始。由于我的目的地是在城外，而ola默认是不跑城外的，它把我的目的地给定到了一个奇怪的地方。司机拉到后把我放下就走了。我用google map一下看妈的离目的地还有14公里远。我赶紧用uber重新叫车。当时时间已经是7点了，而且还是Pune的下班高峰期，连续叫了两辆Uber都被司机取消了。当时我看到已经错过比赛时间了，都想直接回去得了。但回去也要叫车啊，我又尝试叫了一次，并且在一个路人的帮助下司机pick up了我。当时上车已经7点半了，到了比赛场地是一个小时后了。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_4661.jpg" width="400"></p>
-
-<p>我急急忙忙领了号码簿，存了包，就开跑了。一开跑我就快哭了。这MD整个赛道都是在山上啊，12小时超级马拉松硬生生给整成了越野跑。赛道是一个全长4.2公里的公路。从这头跑到那头再跑回来算一圈。4.2公里中平路大概占1公里多，剩下的都是上坡和下坡。</p>
-
-<p>看到这路况我知道80公里的目标肯定是完成不了了。跑步过程中碰到一个赤脚大叔说他今天的目标是跑8个来回。我想8个来回也就是64公里左右，我也跑8个来回吧。看来到哪里都是赤脚的跑神，在开挂的印度也不例外。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_0006_2.jpg" width="400"></p>
-
-<p>虽然线路起伏很大，我感觉状态还好，上坡能跑，维持在9分多的配速，下坡也能冲到5分多。我知道长路漫漫，所以刚开始一定不能太猛了，免得后劲乏力。跑的过程中膝盖没有出现弹响，这让我很高兴。这边比赛的补给还挺好的，有瓶装水、饮料、饼干、香蕉、橘子、花生，还有盐。盐是那种一小包的包装，就像咖啡店里装糖的那种包装。这可是防止抽筋的利器，我直接撕一包到嘴里，然后合着矿泉水吞下。我在想以后比赛也别买盐丸了，直接装包盐，经济又划算。</p>
-
-<p>不知不觉我就刷了两圈了。第一圈用时52分钟，在山地环境下跑出这样的成绩我很满意。第二圈用时一个小时，速度有所下降，但也在接受的范围之内。第三圈1小时10分钟，因为上坡基本跑不动了，只能快走了，平路和下坡还是能跑。第三圈完了以后喝了些咖啡，觉得这个咖啡真是太美味了。在补给站呆了6分钟后，又重新向第四圈发起冲锋。</p>
-
-<p>其实第四圈整个人状态还好，就是膝盖又开始弹响，右膝盖又有点隐隐作痛。第四圈跑完的时候恰好花了4个半小时，当时是凌晨1点钟。还有6个小时比赛结束，而我还有4圈要跑。第5圈跑完用时1小时10分钟左右。这时候最快的一公里也只能到7分多点了，最慢的有将近12分钟。</p>
-
-<p>第五圈跑完在补给站的时候我又碰到了赤脚大叔，我说接下来我们一起跑吧。整个第六圈我们一起边跑边聊。这个大叔说他跑过的最长距离是100公里，是在山里跑的，用了24个小时。他很热情，看到没有的跑者都要打招呼，给他们加油。第六圈跑完再次进入补给站后，我感觉膝盖很痛，两个大腿肌肉硬的很，跑步已经完全失去弹性了。有个医护小妹帮我做了腿部肌肉放松。做完之后我发现MD路都走不了了。只好在站里休息了20多分钟才出发。而赤脚大叔早都弃我而去。</p>
-
-<p>我一拐一瘸的爬坡，恰好也碰到另一个跑友也是一拐一瘸，看起来伤的比我还严重。他问我是不是受伤了，说前面看我跑的很快，问我是不是专业跑步的。我说不是，业余玩票而已。他说他平时跑的比较少，这次是被朋友拉过来的，他的目标就是跑够12小时，接下来打算全程走完。这个小哥走的太慢，我和他走了一段路就分开了。后面有个大叔跟了上来陪着我跑。经过聊天才知道他是这次比赛的组织者之一，是专门负责赛道上参赛者的安全的。他说他跑过的最长距离是212公里，用时40小时。我的天啊！一山更比一山高。到了第7圈折返点的时候，看到一个跑友再用一个喷雾剂往腿上喷。我开始还以为是杀虫的。他问我要不要喷，可以减少疼痛感。我试了一下，还别说真有效，喷了以后膝盖的疼痛感减少了不少。我在想要不要下个月的比赛自己也带一瓶。</p>
-
-<p>跑完第7圈，这时候已经将近6点了。时间过的好快，我还没有任何瞌睡的感觉，只是腿部肌肉实在是非常僵硬。只有一个小时的时间，跑完一圈时间应该不够了，除非能拿出刚开始跑的那种装填。但这个时候整个人已经非常疲惫，只有慢慢走了，能走多少是多少。天也慢慢亮了，我突然发现路上跑的人变多了，而且各个竟然上坡还能跑。后来才知道原来有些人跑到凌晨就找钻进补给点的帐篷休息了，现在马上要到7点了，所以都出来完成赛事。他们由于休息了几个小时，所以精力自然比我要好的多。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_0020_2.jpg" width="400"></p>
-
-<p>果然我第8圈没有跑完就已经7点了，差1.5公里完成整整8圈，这也算是一点小遗憾吧。到了终点领了完赛T恤，还收获了一个完赛奖杯。跑步这么久，这可是我跑步以来收获的第一个奖杯，之前收到的都是完赛奖牌。我还和赛事主办者合了影。主办者也参加了比赛，跑了貌似不下10圈，尤其是最后上坡还能冲着跑，实力不一般。他说11月份要来中国参加100公里越野赛，当时太匆忙没有问他参加的是哪个比赛。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_4688.jpg" width="400"></p>
-
-<p>第一次12小时超级马拉松就这样跑完了。整个过程其实不是很累，没有那种让人绝望的感觉，也没有想过要放弃。可能是因为没有距离限制，即使跑不动了也可以走，所以心里比较淡定。总共跑了66公里，爬升2000米，下降2000米，这个成绩自己也比较满意。这个比赛我也见识了很多很牛的印度跑友。其中有个女的刚参加完新加坡的一个比赛，完成了168公里，她是这次比赛的女子组冠军。印度跑友超级热情，不止一个跑友问我知不知道Great Wall Marathon。我说知道，其实我心里在想，挂名长城马拉松的比赛中国一年没有10个也有5个，谁知道你们说的是哪一个。他们问我参加了Great Wall Marathon没，我说没有。他们问为什么，我说离我生活的城市太远了。</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_0023_2.jpg" width="400"></p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_0024_2.jpg" width="400"></p>
-
-<p>第一个马拉松是在布里斯班跑的，而第一个12小时超级马拉松是在Pune跑的。看来国外才是我的福地。希望这次膝盖的伤痛能尽快康复，待我完成百公里超马后，就正式收山, 转战铁三！</p>
-
-<p><img src="http://www.huangbowen.net/images/IMG_0017_2.jpg" width="400"></p>
 ]]></content>
   </entry>
   
